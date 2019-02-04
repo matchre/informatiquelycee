@@ -1,0 +1,17 @@
+job1_deploy_all_qualif:
+  stage: deploy
+  tags: 
+    - qualif
+  script:
+    - cd /appli/informatiquelycee
+    - git pull
+  only:
+    - master
+job2_deploy_all_prod:
+  stage: deploy
+  tags:
+    - prod
+  script:
+    - cd /appli/informatiquelycee 
+    - git pull
+  when: manual
