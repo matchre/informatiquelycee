@@ -3,8 +3,8 @@ job1_deploy_all_qualif:
   tags: 
     - qualif
   script:
-    - cd /appli/informatiquelycee
-    - git pull
+    - rm -rf /appli/informatiquelycee
+    - cp -R . /appli/informatiquelycee
   only:
     - master
 job2_deploy_all_prod:
