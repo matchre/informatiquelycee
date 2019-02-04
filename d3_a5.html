@@ -1,0 +1,145 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Visualiser des données avec D3</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Visualiser des données avec D3</span>
+					<span class="navbar-brand">Activité 5</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./d3_a1.html">Activité 1</a></li>
+	              <li><a href="./d3_a2.html">Activité 2</a></li>
+	              <li><a href="./d3_a3.html">Activité 3</a></li>
+                  <li><a href="./d3_a4.html">Activité 4</a></li>
+	              <li><a href="./d3_a6.html">Activité 6</a></li>
+	              <li><a href="./d3_a7.html">Activité 7</a></li>
+                  <li><a href="./d3_a8.html">Activité 8</a></li>
+	              <li><a href="./d3_a9.html">Activité 9</a></li>
+                  <li><a href="./d3_a10.html">Activité 10</a></li>
+                  <li><a href="./d3_a11.html">Activité 11</a></li>
+                  <li><a href="./d3_a12.html">Activité 12</a></li>
+                  <li><a href="./d3_a13.html">Activité 13</a></li>
+                  <li><a href="./d3_a14.html">Activité 14</a></li>
+                  <li><a href="./d3_a15.html">Activité 15</a></li>
+                  <li><a href="./d3_a16.html">Activité 16</a></li>
+                  <li><a href="./d3_a17.html">Activité 17</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="d3_a4.html"><span class="fui-triangle-left-large"></a></li>
+              <li><a href="d3_a6.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+            <p>Avant de poursuivre, il est nécessaire d'ouvrir une parenthèse consacrée aux fonctions anonymes en JavaScript.</p>
+            <p>Une fonction anonyme est une fonction qui, comme son nom l'indique, ne porte pas de nom. Elle ne peut donc pas être utilisée "classiquement" puisqu'il est impossible de l'appeler.</p>
+            <p>Dans la plupart des cas, une fonction anonyme est utilisée comme paramètre d'une autre fonction. Tout cela est un peu complexe, prenons un exemple :</p>
+            <h4>À faire vous même 5.1</h4>
+            <p>En utilisant <a href="https://jsfiddle.net/" target="_blank">JSFIDDLE</a>, testez le code ci-dessous :</p>
+            <pre><code class="javascript">
+function MaFonction (f){
+    f();
+}
+MaFonction(function(){alert("Cela fonctionne")});
+			</code></pre>
+            <hr>
+            <p>Dans l'exemple ci-dessus, nous définissons une fonction <i>MaFonction</i>. Cette fonction attend comme paramètre une fonction.</p>
+            <p><i>MaFonction(function(){alert("Cela fonctionne")});</i> nous faisons appel à la fonction que nous venons de définir et nous passons en paramètre une fonction anonyme <i>function(){alert("Cela fonctionne")}</i></p>
+            <p>Le plus important à comprendre est le fait que certaines fonctions (ou méthodes) peuvent prendre en paramètre une fonction. La fonction qui est passée en paramètre peut être une fonction anonyme.</p>
+            <p>Ceci étant dit, revenons maintenant à D3.</p>
+            <p>Les méthodes <i>attr</i> ou <i>style</i> ou encore <i>text</i>, que nous avons vu peuvent prendre une fonction anonyme en paramètre.</p>
+			<h4>À faire vous même 5.2</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+body.append("p")
+    .text(function(){var monTexte="Cela fonctionne"; return monTexte;});
+			</code></pre>
+            <p>Testez ce code</p>
+            <hr>
+            <p>Il est aussi possible, afin de rendre le code plus lisible, de présenter les choses de cette façon :</p>
+            <pre><code class="javascript">
+var body=d3.select("body");
+body.append("p")
+    .text(function(){
+        var monTexte="Cela fonctionne";
+        return monTexte;});
+			</code></pre>
+            <p>Comme vous pouvez le constater, la méthode <i>text</i> prend en paramètre une fonction anonyme. Cette fonction anonyme retourne la chaîne de caractère <i>"Cela fonctionne"</i>. La méthode <i>text</i> utilise la valeur retournée par la fonction anonyme.</p>
+            <p>Pour l'instant, l'intérêt de ce que nous venons de voir peut paraitre proche de nul ! En effet, le code ci-dessous ferait exactement la même chose :</p>
+            <pre><code class="javascript">
+var body=d3.select("body");
+body.append("p")
+    .text("Cela fonctionne");
+			</code></pre>
+            <p>Prenons un autre exemple, qui commencera à vous montrer l'intérêt des fonctions anonymes.
+            <h4>À faire vous même 5.3</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+body.append("p")
+    .style("color",function(){
+        var couleur=prompt("choisissez une couleur 1-rouge 2-bleue (tapez 1 ou 2)");
+        if (couleur=="1"){
+            return "red";
+        }
+        else if (couleur=="2"){
+            return "blue";
+        }
+        else{
+            return "black";
+        }
+      })
+    .text("Cela fonctionne");
+			</code></pre>
+            <p>Testez ce code</p>
+            <hr>
+            <p>Le deuxième paramètre de la méthode <i>style</i> est une fonction anonyme qui renvoie "red", "blue" ou "black" en fonction de la valeur saisie au clavier par l'utilisateur. Selon la valeur saisie par l'utilisateur nous aurons l'équivalent d'un :</p>
+            <ul>
+                <li><i>.style("color","red")</i> si l'utilisateur choisi 1</li>
+                <li><i>.style("color","blue")</i> si l'utilisateur choisi 2</li>
+                <li><i>.style("color","black")</i> si l'utilisateur choisi une autre valeur.</li>
+            </ul>
+    </div>
+	</body>
+</html>

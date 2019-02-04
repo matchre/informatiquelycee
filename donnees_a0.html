@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Les données (CSV, JSON et GeoJSON)</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Les données (CSV, JSON et GeoJSON)</span><span class="navbar-brand">Introduction</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./donnees_a1.html">Activité 1</a></li>
+                <li><a href="./donnees_a2.html">Activité 2</a></li>
+                <li><a href="./donnees_a3.html">Activité 3</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="donnees_a1.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Prérequis : il est souhaitable (mais non indispensable) d'avoir quelques idées sur les notions de réseau et de client-serveur. Vous trouverez <a href="./reseau_a1.html" target="_blank">ici</a> toutes les informations dont vous aurez besoin pour suivre cette série d'activités. Des connaissances en JavaScript sont aussi souhaitables.</p>
+        <p>Sur internet, il est possible de trouver un grand nombre d'informations. Ces informations sont, dans la plupart des cas, stockées sur des serveurs dans des bases de données.</p>
+        <p>Quand un client interroge un serveur afin de récupérer des données, le serveur effectue une requête auprès de la base de données et renvoie ensuite les informations demandées vers le client.</p>
+        <p>Sous quelle forme ces données transitent-elles entre le client et le serveur ?</p>
+        <p>Nous n'allons pas chercher à être exhaustifs et nous allons uniquement voir 3 exemples : le CSV, le JSON et le geoJSON.</p>
+        <p>Vous devez savoir qu'il existe d'autres formats de données, par exemple le XML (pour en savoir plus sur le XML, vous pouvez consulter le cours proposé par l'excellent site openclassrooms : <a href="https://openclassrooms.com/courses/structurez-vos-donnees-avec-xml" target="_blank">ici</a>), mais j'ai choisi de me restreindre aux 3 formats évoqués ci-dessus.</p>
+    </div>
+	</body>
+</html>

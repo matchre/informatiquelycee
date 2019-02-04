@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>De la couleur au niveau de gris</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">De la couleur au niveau de gris</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+								<li><a href="./pil_a2.html">Activité 2</a></li>
+								<li><a href="./pil_a3.html">Activité 3</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="pil_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>Pillow est une bibliothèque Python qui permet de travailler sur les images.</p>
+			<p>Dans cette activité, nous allons travailler avec une image que vous pouvez télécharger <a href="asset/tux.jpg">ici</a>.</p>
+			<p>Avant de rentrer dans le vif du sujet, quelques petits rappels sur les images :</p>
+			<ul>
+				<li>Une image est constituée de pixels (points), la résolution d'une image X x Y (par exemple 208 x 242 pour l'image que vous venez de télécharger) correspond à la taille de l'image (X : la largeur de l'image en pixel, Y: la hauteur de l'image en pixel).</li>
+				<li>Chaque pixel est constitué de 3 éléments (appelé aussi canal): un rouge, un vert et un bleu. C'est la somme de ces 3 couleurs qui permet d'obtenir un grand nombre de couleurs (synthèse additive)</li>
+				<li>Classiquement, à chaque canal, on associe un nombre binaire codé sur 8 bits (soit donc 24 bits par pixel)</li>
+				<li>Pour chaque pixel, on aura donc une valeur pour le rouge (comprise entre 0 et 255 puisque codé sur 8 bits), une valeur pour le vert (comprise entre 0 et 255) et une valeur pour le bleu (comprise entre 0 et 255). Quelques exemples : (0,0,0)=> noir ; (255,0,0)=> rouge ; (255,255,255)=> blanc ; (0,255,0)=> vert...</li>
+			</ul>
+			<p>N.B. Il peut exister un 4e canal en plus du canal rouge, canal vert et canal bleu, le canal "alpha" qui permet de gérer la transparence du pixel (par exemple, les images au format png gèrent la transparence). Chaque pixel est donc codé sur 32 bits (4 x 8)</p>
+			<h4>À faire vous-même 1.1</h4>
+			<p>
+				Partant du principe que l'image que vous avez téléchargée ci-dessus à une résolution de 208 par 242, que chaque pixel est constitué de 3 éléments (RVB) chacun codés sur 8 bits, calculez la taille de cette image en kilo octet (ko)</p>
+			<p>Rappel : 1 ko = 1024 octets ; 1 octet = 8 bits</p>
+			<hr>
+			<p>Si vous regardez la taille réelle de l'image en ko, vous allez sans doute trouver une valeur inférieure à celle que vous venez de calculer. Ceci est tout à fait normal, car le jpeg est un format compressé (le taux de compression est compris entre 20:1 et 25:1).</p>
+		</div>
+	</body>
+</html>

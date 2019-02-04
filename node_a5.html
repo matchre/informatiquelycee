@@ -1,0 +1,196 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Programmer côté serveur : ExpressJS</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Programmer côté serveur : ExpressJS</span>
+					<span class="navbar-brand">Activité 5</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./node_intro.html">Introduction</a></li>
+                <li><a href="./node_a1.html">Activité 1</a></li>
+                <li><a href="./node_a2.html">Activité 2</a></li>
+                <li><a href="./node_a3.html">Activité 3</a></li>
+                <li><a href="./node_a4.html">Activité 4</a></li>
+								<li><a href="./node_a6.html">Activité 6</a></li>
+	              <li><a href="./node_a7.html">Activité 7</a></li>
+	              <li><a href="./node_a8.html">Activité 8</a></li>
+								<li><a href="./node_a9.html">Activité 9</a></li>
+	              <li><a href="./node_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="node_a4.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="node_a6.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>Dans le cas des sites web "classiques", la plupart du temps, le serveur renvoie du code HTML au client (que ce soit du code HTML « statique » ou « fabriqué à la volée » par le serveur). À chaque échange client-serveur, une nouvelle page s'affiche ce qui rend la consultation du site quelque peu « hachée » (surtout si la connexion internet n'est pas très performante).</p>
+			<p>Il est possible d'éviter ces envois incessants de code HTML en « demandant » au serveur de nous envoyer non plus tout le code HTML, mais seulement ce qui est nécessaire pour actualiser la page côté client. Pour ce faire, une série de technologies est mise en œuvre. Toutes ces techniques sont regroupées sous le nom d'AJAX (Asynchronous JavaScript And XML).</p>
+			<p>Mon but n'est pas de m'étendre sur AJAX, vous devez juste savoir qu'à l'origine, les données qui vont permettre l'actualisation de la page web transitent entre le serveur et le client sous la forme de fichier XML (eXtensible Markup Language). Pour différentes raisons, le XML est de moins en moins utilisé au profit du JSON (JavaScript Object Notation), si vous désirez un retour sur le JSON, consultez les activités consacrées aux bases de données <a href="mongo_intro.html" target="_blank">ici</a>.</p>
+			<p>Dans les exemples qui vont suivre, le serveur enverra principalement au client des données au format JSON (et très peu de code HTML).</p>
+			<h4>À faire vous-même 5.1</h4>
+			<p>Créez une nouvelle application</p>
+			<p>Saisissez, étudiez et testez cet exemple</p>
+			<p>index.html</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+ &ltmeta charset="UTF-8"&gt
+ &lttitle&gtAjax&lt/title&gt
+ &ltscript src="lib/jquery-2.1.4.min.js"&gt&lt/script&gt
+ &ltscript src="javascript/script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+ &ltbutton&gtAfficher la liste&lt/button&gt
+ &ltdiv id="liste"&gt&lt/div&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>script.js</p>
+			<pre><code class="javascript">
+$(function(){
+$('button').on('click',function(){
+ $.ajax({
+  type :'GET',
+  url : '/api/affiche',
+  success : function(data){
+   $('#liste').html('&lth1&gtListe des adhérents&lt/h1&gt');
+   for (var i=0;i&ltdata.length;i++){
+    $('#liste').append('&lth3&gtIdentifiant : '+data[i].id+'&lt/h3&gt');
+    $('#liste').append('&ltp&gtNom : '+data[i].nom+'&lt/p&gt');
+    $('#liste').append('&ltp&gtPrénom : '+data[i].prenom+'&lt/p&gt');
+   }
+  }
+ })
+})
+});
+			</code></pre>
+			<p>serveur.js</p>
+			<pre><code class="javascript">
+var ficheInfo=[
+ {
+  id:1,
+  nom:"Depuis",
+  prenom:"Jean"
+ },
+ {
+  id:2,
+  nom:"Durand",
+  prenom:"Christian"
+ },
+ {
+  id:3,
+  nom:"Martin",
+  prenom:"Michel"
+ }
+]
+var express = require('express');
+var app = express();
+app.use('/javascript', express.static(__dirname + '/javascript'));
+app.use('/lib', express.static(__dirname + '/lib'));
+app.get('/', function (req, res) {
+ res.sendFile(__dirname + '/html/index.html');
+});
+app.get('/api/affiche', function(req, res) {
+ res.json(ficheInfo);
+});
+app.listen(8080);
+			</code></pre>
+			<hr>
+			<p>Quelques explications : </p>
+			<p>Analyse du fichier script.js</p>
+			<p>Nous utilisons une structure un peu spéciale : </p>
+			<pre><code class="javascript">
+$.ajax({ type :'GET', url : '/api/affiche', success : function(data){.....}})
+			</code></pre>
+			<p>$.ajax est une méthode propre à jQuery, il permet d'envoyer une requête HTTP au serveur.</p>
+			<p>Cette méthode prend un objet JavaScript en paramètre :</p>
+			<pre><code class="javascript">
+{ type :'GET', url : '/api/affiche', success : function(data){.....}})
+			</code></pre>
+			<ul>
+				<li>«type : 'GET'» =&gt notre requête HTTP sera de type GET</li>
+				<li>« url : '/api/affiche'» =&gt donne l'URL de destination (nous aurons une requête de type GET vers l'URL /api/affiche (en utilisant la notation déjà vue dans l'activité consacrée au réseaux et aux requêtes HTTP <a href="reseau_a1.html" target="_blank">ici</a> : «GET /api/affiche HTTP/1.1»)).</li>
+				<li>«success : function(data){....}» =&gt en cas de réponse positive du serveur (code 200), la fonction anonyme «function(data){....}» sera appelée (callback). Donc en cas de réponse positive du serveur, les instructions suivantes seront exécutées :
+					<pre><code class="javascript">
+$('#liste').html('&lth1&gtListe des adhérents&lt/h1&gt');
+ for (var i=0;i&ltdata.length;i++){
+  $('#liste').append('&lth3&gtIdentifiant : '+data[i].id+'&lt/h3&gt');
+  $('#liste').append('&ltp&gtNom : '+data[i].nom+'&lt/p&gt');
+  $('#liste').append('&ltp&gtPrénom : '+data[i].prenom+'&lt/p&gt');
+}
+					</code></pre>
+				</li>
+			</ul>
+			<p>À quoi correspond le paramètre « data » vu dans le dernier point ci-dessus ?</p>
+			<p>Il correspond au corps de la réponse HTTP renvoyée par le serveur. Comme nous le verrons ci-dessous, "data" est, dans cet exemple, un tableau d'objet JavaScript.</p>
+			<p>Analyse du fichier serveur.js</p>
+			<p>ficheInfo est un tableau contenant des objets JavaScript (le tableau évoqué ci-dessus) :</p>
+			<pre><code class="javascript">
+	var ficheInfo=[{id:1,nom:"Depuis",prenom:"Jean"},{id:2,nom:"Durand",prenom:"Christian"},{id:3,nom:"Martin",prenom:"Michel"}]
+			</code></pre>
+			<pre><code class="javascript">
+app.get('/api/affiche', function(req, res) {res.json(ficheInfo);});
+			</code></pre>
+			<p>nous avons déjà eu l'occasion de parler de la méthode get de l'objet app, en revanche, le contenu de la fonction de callback est intéressant.</p>
+			<pre><code class="javascript">
+function(req, res) {res.json(ficheInfo);}
+			</code></pre>
+			<p>json est une méthode (de l'objet res) permettant de renvoyer dans le corps de la réponse HTTP un objet JavaScript ou un tableau contenant des objets JavaScript (ce qui est notre cas ici). </p>
+			<h4>À faire vous-même 5.2</h4>
+			<p>En vous inspirant de ce qui a été fait dans l'application créée dans le "À faire vous-même 5.2", créez une nouvelle application qui permettra d'afficher les informations contenues dans le tableau d'objets JSON suivant :
+				<pre><code class="javascript">
+[{'nom': 'Durand','prenom': 'Carole','age':32,'sexe': 'F','secret':false},
+{'nom': 'Dupond','prenom': 'Jean-Pierre','age':19,'sexe': 'M','secret':false},
+{'nom': 'Dupuis','prenom': 'Gérard','age':46,'sexe': 'M','secret':true},
+{'nom': 'Michel','prenom': 'Justine','age':22,'sexe': 'F','secret':false},
+{'nom': 'Martin','prenom': 'Gertrude','age':56,'sexe': 'F','secret':true},
+{'nom': 'Ducro','prenom': 'Patrice','age':27,'sexe': 'M','secret':true},
+{'nom': 'Asset','prenom': 'Christophe','age':20,'sexe': 'M','secret':false},
+{'nom': 'Buloz','prenom': 'Marie','age':21,'sexe': 'F','secret':true},
+{'nom': 'Pouvert','prenom': 'Pierre','age':56,'sexe': 'M','secret':false},
+{'nom': 'Pichon','prenom': 'Paulette','age':45,'sexe': 'F','secret':false},
+{'nom': 'Thetas','prenom': 'Jeanne','age':58,'sexe': 'F','secret':true}]
+				</code></pre>
+				<p>Attention ce tableau devra être "stocké" côté serveur, dans le fichier "serveur.js"</p>
+		</div>
+	</body>
+</html>

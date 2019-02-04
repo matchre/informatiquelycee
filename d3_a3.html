@@ -1,0 +1,143 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Visualiser des données avec D3</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Visualiser des données avec D3</span>
+					<span class="navbar-brand">Activité 3</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./d3_a1.html">Activité 1</a></li>
+	              <li><a href="./d3_a2.html">Activité 2</a></li>
+	              <li><a href="./d3_a4.html">Activité 4</a></li>
+                  <li><a href="./d3_a5.html">Activité 5</a></li>
+	              <li><a href="./d3_a6.html">Activité 6</a></li>
+	              <li><a href="./d3_a7.html">Activité 7</a></li>
+                  <li><a href="./d3_a8.html">Activité 8</a></li>
+	              <li><a href="./d3_a9.html">Activité 9</a></li>
+                  <li><a href="./d3_a10.html">Activité 10</a></li>
+                  <li><a href="./d3_a11.html">Activité 11</a></li>
+                  <li><a href="./d3_a12.html">Activité 12</a></li>
+                  <li><a href="./d3_a12.html">Activité 13</a></li>
+                  <li><a href="./d3_a13.html">Activité 14</a></li>
+                  <li><a href="./d3_a15.html">Activité 15</a></li>
+                  <li><a href="./d3_a16.html">Activité 16</a></li>
+                  <li><a href="./d3_a17.html">Activité 17</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="d3_a2.html"><span class="fui-triangle-left-large"></a></li>
+              <li><a href="d3_a4.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+                Certaines balises HTML acceptent des attributs (par exemple "href" pour la balise &lta&gt ou encore "src" pour la balise &ltimg/&gt). D3 permet d'ajouter des attributs à une balise précédemment créée en utilisant la méthode <i>attr</i>
+            </p>
+			<h4>À faire vous même 3.1</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+body.append("a")
+    .attr("href","https://d3js.org/")
+    .text("Ceci est un lien, cliquez ici");
+			</code></pre>
+            <p>Testez ce code</p>
+            <hr>
+			<p>
+				Une remarque sur ce code :
+			</p>
+            <p>Nous avons créé une balise &lta&gt puis nous avons ajouté l'attribut <i>href="https://d3js.org/"</i> à cette balise &lta&gt</p>
+            <p>La méthode <i>attr</i> prend 2 arguments :</p>
+            <ul>
+                <li>le nom de l'attribut (dans notre exemple <i>href</i>)</li>
+                <li>la valeur de l'attribut (dans notre exemple <i>https://d3js.org/</i>)</li>
+            </ul>
+
+			<p>
+				Pour résumer, notre code a permis de mettre en place la structure suivante :
+            </p>
+            <pre><code class="html">
+&ltbody&gt
+  &lta href="https://d3js.org/"&gtCeci est un lien, cliquez ici&lt/a&gt
+&lt/body&gt
+			</code></pre>
+            <h4>À faire vous même 3.2</h4>
+            <p>Modifiez le fichier script.js afin qu'il permette d'afficher l'image de votre choix dans votre navigateur (il est évidemment interdit de modifier directement le fichier index.html).</p>
+            <hr>
+            <p>Il est possible de modifier le style appliqué à une balise (comme nous pourrions le faire avec du CSS) en utilisant la méthode <i>style</i>.</p>
+            <h4>À faire vous même 3.3</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+body.append("h1")
+    .style("color","red")
+    .text("Voici un titre en rouge");
+			</code></pre>
+            <p>Testez ce code</p>
+            <hr>
+            <p>Notez que l'ordre d'application des méthodes <i>style</i> et <i>text</i> n'a pas d'importance</p>
+            <pre><code class="javascript">
+var body=d3.select("body");
+body.append("h1")
+    .text("Voici un titre en rouge")
+    .style("color","red");
+			</code></pre>
+            <p>Ce code donne le même résultat que celui vu dans le "À faire vous même 3.3"</p>
+            <p>Il est possible d'appliquer plusieurs fois la méthode <i>style</i> sur une même balise.</p>
+            <h4>À faire vous même 3.4</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+body.append("h1")
+    .style("color","red")
+    .style("text-align","center")
+    .text("Voici un titre rouge et centré");
+			</code></pre>
+            <p>Testez ce code</p>
+            <hr>
+    </div>
+	</body>
+</html>

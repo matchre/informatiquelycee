@@ -1,0 +1,177 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Programmer côté serveur : ExpressJS</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Programmer côté serveur : ExpressJS</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./node_intro.html">Introduction</a></li>
+                <li><a href="./node_a2.html">Activité 2</a></li>
+                <li><a href="./node_a3.html">Activité 3</a></li>
+                <li><a href="./node_a4.html">Activité 4</a></li>
+                <li><a href="./node_a5.html">Activité 5</a></li>
+								<li><a href="./node_a6.html">Activité 6</a></li>
+	              <li><a href="./node_a7.html">Activité 7</a></li>
+	              <li><a href="./node_a8.html">Activité 8</a></li>
+								<li><a href="./node_a9.html">Activité 9</a></li>
+	              <li><a href="./node_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="node_intro.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="node_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+      <p>
+        Il existe beaucoup de tutoriaux qui décrivent l'installation de nodeJS sur les plateformes « classiques » (GNU/linux, windows ou encore Mac OS). Je vous propose le tutoriel de Mathieu Nebra sur le site OpenClassrooms :
+				<a href="https://openclassrooms.com/courses/des-applications-ultra-rapides-avec-node-js/installer-node-js" target="_blank">https://openclassrooms.com/courses/des-applications-ultra-rapides-avec-node-js/installer-node-js</a>
+      </p>
+			<h4>À faire vous-même 1.1</h4>
+			<p>Une fois l'installation terminée, ouvrez une console (aussi appelé terminal) et tapez « node -v ». Si votre installation s’est bien passée, vous devriez voir la version de nodeJS s'afficher dans la console.</p>
+			<hr>
+			<p>
+				Nous allons écrire notre premier programme avec nodeJS. Vous allez créer un dossier nommé "express" dans votre dossier de travail et créez un fichier JavaScript vierge, vous nommerez ce fichier "serveur.js".
+			</p>
+			<p>
+				Il existe de nombreux modules « livrés » d'office avec nodeJS, parmi ceci, nous allons utiliser le module http.
+			</p>
+			<h4>À faire vous-même 1.2</h4>
+			<p>Saisissez le code suivant dans le fichier que vous venez de créer.</p>
+			<pre><code class="javascript">
+var http = require('http');
+var serveur = http.createServer(function(req, res) {
+ res.writeHead(200, {"Content-Type": "text/html"});
+ res.write('&lt!doctype html&gt'
+ +'&lthtml lang="fr"&gt'
+ +'&lthead&gt'
+ +'&ltmeta charset="utf-8"&gt'
+ +'&lttitle&gtnodeJS&lt/title&gt'
+ +'&lt/head&gt'
+ +'&ltbody&gt'
+ +'&lth1&gtHello World! Ceci est un titre&lt/h1&gt'
+ +'&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt.&lt/p&gt'
+ +'&lt/body&gt'
+ +'&lt/html&gt');
+ res.end();
+});
+serveur.listen(8080);
+			</code></pre>
+			<p>En utilisant la console, placez-vous dans le dossier qui accueille le fichier serveur.js en utilisant la commande cd. Entrez dans la console :</p>
+			<pre><code>
+node serveur.js
+			</code></pre>
+			<p>Sans fermer la console, ouvrez un navigateur web, dans la barre d'adresse, tapez : "localhost:8080". Normalement, notre page web devrait s'afficher.</p>
+			<hr>
+			<p>Quelques explications s'imposent :</p>
+			<p>La consultation d'un site internet est un échange de données entre 2 ordinateurs distants (un client et un serveur), or, ici, nous n'utilisons qu'un ordinateur ?
+				Dans toute la phase de développement, il est tout à fait possible de n'utiliser qu'un seul ordinateur qui jouera à la fois (et en même temps) le rôle du client et le rôle serveur.</p>
+			<p>L'exécution, dans la console, de la commande node serveur.js "démarre" le serveur, une fois le serveur démarré, il "attend" les requêtes HTTP en provenance d'un client. Le navigateur web va envoyer ces requêtes au serveur. </p>
+			<p>Mais comment entrer en communication avec le serveur ? </p>
+			<p>il suffit d'utiliser une adresse un peu spéciale : localhost (localhost indique au navigateur web que le serveur se trouve sur la même machine que lui).</p>
+			<p>Le : 8080 définie le port utilisé par le serveur. Plusieurs applications peuvent utiliser la même connexion réseau à condition de ne pas utiliser le même port (on parle aussi de socket). Ici notre serveur "écoute" et "attend" une requête HTTP sur le port 8080 ( nous aurions pu en choisir un autre).</p>
+			<p>Passons maintenant à l'étude du code :</p>
+			<pre><code class="javascript">
+var http = require('http');
+			</code></pre>
+			<p>nodeJS possède de nombreux modules afin d'étendre ces possibilités de bases. Nous utilisons ici le module http qui permet de traiter des requêtes HTTP (et donc de développer un serveur web). Nous créons un objet (au sens programmation orientée objet, avec donc des attributs et des méthodes) que l'on nomme tout simplement http (nous aurions pu prendre un autre nom) à l'aide de l'instruction « require ».</p>
+			<p>La deuxième ligne est très longue, nous allons la décortiquer : </p>
+			<pre><code class="javascript">
+var serveur = http.createServer(...
+			</code></pre>
+			<p>nous créons un objet dénommé "serveur". Pour créer cet objet, nous utilisons une méthode de l'objet http : createServer. La méthode createServer accepte un paramètre : une fonction anonyme. Quel est le rôle de cette fonction anonyme ?</p>
+			<p>Nous rentrons ici dans le cœur de ce qui fait nodeJS : les callbacks</p>
+			<p>La programmation sous nodeJS est un peu particulière, tout est une question d’événement. La fonction anonyme passée en paramètre de la méthode createServer sera exécutée à chaque fois que le serveur recevra une requête HTTP venant de l'extérieur, le reste du temps, notre programme passera son temps à attendre. Cette fonction anonyme est un "callback" de l'événement requête HTTP.</p>
+			<p>Étudions maintenant cette fonction de callback :</p>
+			<pre><code class="javascript">
+function(req, res) {
+ res.writeHead(200, {"Content-Type": "text/html"});
+ res.write('&lt!doctype html&gt'
+ +'&lthtml lang="fr"&gt'
+ +'&lthead&gt'
+ +'&ltmeta Charest="utf-8"&gt'
+ +'&lttitle&gtnodeJS&lt/title&gt'
+ +'&lt/head&gt'
+ +'&ltbody&gt'
+ +'&lth1&gtHello World! Ceci est un titre&lt/h1&gt'
+ +'&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt.&lt/p&gt'
+ +'&lt/body&gt'
+ +'&lt/html&gt');
+ res.end() ;
+}
+			</code></pre>
+			<p>La fonction de callback prend deux paramètres : req (pour request) et res (pour response (réponse en anglais)). req et res sont tous les deux des objets, req va nous permettre de manipuler tout ce qui touche à la requête HTTP reçue par le serveur alors que res permettra de manipuler tout ce qui touche à la réponse du serveur (il est tout à fait possible de choisir d'autres noms : le premier paramètre concernera la requête et le second la réponse).</p>
+			<pre><code class="javascript">
+res.writeHead(200, {"Content-Type": "text/html"});
+			</code></pre>
+			<p>permet de "remplir" l'en-tête de la réponse HTTP avec le code de retour 200 ("Tout c'est bien passé") et avec le type de document renvoyé (du HTML).</p>
+			<pre><code class="javascript">
+res.write('&lt!doctype html&gt'
++'&lthtml lang="fr"&gt'
++'&lthead&gt'
++'&ltmeta Charest="utf-8"&gt'
++'&lttitle&gtnodeJS&lt/title&gt'
++'&lt/head&gt'
++'&ltbody&gt'
++'&lth1&gtHello World! Ceci est un titre&lt/h1&gt'
++'&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt.&lt/p&gt'
++'&lt/body&gt'
++'&lt/html&gt');
+			</code></pre>
+			<p>res.write permet de remplir le corps de la réponse HTTP : nous renvoyons une chaine de caractère (concaténation de plusieurs chaines de caractères) correspondant à du code HTML. J'ai placé les différentes balises les unes sous les autres afin de faciliter la lecture, sachez qu'il aurait été possible d'avoir :</p>
+			<pre><code class="javascript">
+'&lt!doctype html&gt&lthtml lang="fr"&gt&lthead&gt....&lt/html&gt'
+			</code></pre>
+			<p>C'est moins lisible, mais cela évite les concaténations.</p>
+			<pre><code class="javascript">
+res.end();
+			</code></pre>
+			<p>permet de terminer notre réponse HTTP avant son envoi vers le client.</p>
+			<p>Cette notion de fonction de callback est fondamentale pour la suite, si vous avez du mal, n'hésitez pas à poser des questions avant d'aller plus loin.</p>
+			<p>Il nous reste une dernière ligne à étudier :</p>
+			<pre><code class="javascript">
+serveur.listen(8080);
+			</code></pre>
+			<p>On applique la méthode listen à l'objet «serveur» (objet qui a été créé à l'aide de la méthode createServer), cette méthode « met en route le serveur » et lui indique le port sur lequel il doit « écouter » afin de recevoir les requêtes HTTP.</p>
+			<p>Cet exemple fonctionne, mais il peut satisfaisant ! Allons-nous nous amuser à mettre du code HTML dans notre fichier JavaScript ? Bien sûr que non, pour faciliter les choses, nous allons utiliser, dans la prochaine activité, un framework de nodeJS : express.</p>
+    </div>
+	</body>
+</html>

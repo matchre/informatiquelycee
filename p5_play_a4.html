@@ -1,0 +1,233 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu avec p5.play</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu avec p5.play</span>
+					<span class="navbar-brand">Activité 4</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+              	<li><a href="./p5_play_a1.html">Activité 1</a></li>
+	            <li><a href="./p5_play_a2.html">Activité 2</a></li>
+	            <li><a href="./p5_play_a3.html">Activité 3</a></li>
+					<li><a href="./p5_play_a5.html">Activité 5</a></li>
+	            <li><a href="./p5_play_a6.html">Activité 6</a></li>
+	            <li><a href="./p5_play_a7.html">Activité 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          	<li><a href="./p5_play_a3.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="./p5_play_a5.html"><span class="fui-triangle-right-large"></a></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<h4>À faire vous même 4.1</h4>
+			<p>
+				Écrivez un programme permettant d'afficher 2 sprites à l'écran. Ces 2 sprites devront avoir une vitesse d'origine et une position d'origine aléatoires. Les 2 sprites devront rebondir sur les bords de la fenêtre de jeu.
+			</p>
+			<iframe src="p5_play/a4_1/index.html" width="830px" height="330px"></iframe>
+			<hr>
+			<p>
+				Imaginez que maintenant nous désirions créer 10 sprites. Les choses commenceraient à se compliquer. Pour nous simplifier la tâche, p5.play nous propose de créer un groupe.
+			</p>
+			<h4>À faire vous même 4.2</h4>
+            <p>
+				Saisissez le code suivant dans le fichier script.js et testez cet exemple
+			</p>
+			<pre><code class="javascript">
+var img;
+var group_smiley;
+function preload() {
+    img=loadImage("asset/smiley.png")
+}
+
+function setup() {
+    createCanvas(800,300);
+    group_smiley=new Group();
+    for (i=0;i&lt10;i=i+1){
+        var smiley_sprite;
+        smiley_sprite=createSprite(random(20,780),random(20,280));
+        smiley_sprite.addImage(img);
+        smiley_sprite.setVelocity(random(-5,5),random(-5,5));
+        group_smiley.add(smiley_sprite);
+	}
+    wall_g=createSprite(-5,150,10,300);
+    wall_d=createSprite(805,150,10,300);
+    wall_h=createSprite(400,-5,800,10);
+    wall_b=createSprite(400,305,800,10);
+    wall_d.immovable=true;
+    wall_g.immovable=true;
+    wall_h.immovable=true;
+    wall_b.immovable=true;
+}
+function draw() {
+    background(240,240,240);
+    group_smiley.bounce(wall_g);
+    group_smiley.bounce(wall_d);
+    group_smiley.bounce(wall_b);
+    group_smiley.bounce(wall_h);
+    drawSprites();
+}
+			</code></pre>
+			<hr>
+			<p>Analysons le code ci-dessus :</p>
+            <p>Nous commençons par créer un groupe : <i>group_smiley=new Group();</i> (ce groupe se nommera <i>group_smiley</i>.</p>
+            <p>La boucle <i>for</i> permet de créer 10 sprites. Grâce à la méthode <i>add</i> (<i>group_smiley.add(smiley_sprite);</i>) chaque sprite est "rangé" dans le groupe <i>group_smiley</i></p>
+            <p>Pour la collision avec les bords de la fenêtre, nous utilisons la méthode <i>bounce</i> avec le groupe <i>group_smiley</i> (exemple : <i>group_smiley.bounce(wall_g);</i>, grâce à cette ligne, tous les sprites appartenant au groupe <i>group_smiley</i> rebondiront sur le bord gauche de la fenêtre de jeu).</p>
+			<h4>À faire vous même 4.3</h4>
+			<p>Pour qu'un sprite appartenant à un groupe <i>group_smiley</i> rebondisse sur les autres membres du groupe, il suffit d'écrire : <i>group_smiley.bounce(group_smiley);</i>.</p>
+            <p>Écrivez un programme permettant d'obtenir ceci :</p>
+            <iframe src="p5_play/a4_3/index.html" width="830px" height="330px"></iframe>
+			<hr>
+            <h4>À faire vous même 4.4</h4>
+            <p>
+				Écrivez un programme permettant d'obtenir ceci (à chaque collision entre le sprite "rigolant" et un des sprites "sanglants" le score augmente d'une unité, vous pouvez télécharger l'image du sprite "sanglant" <a href="asset/smiley_blood.png" target="_blank">ici</a>).
+			</p>
+            <iframe src="p5_play/a4_4/index.html" width="830px" height="330px"></iframe>
+			<hr>
+            <h4>À faire vous même 4.5</h4>
+            <p>
+				Saisissez le code suivant dans le fichier script.js et testez cet exemple
+			</p>
+			<pre><code class="javascript">
+var img;
+var smiley_sprite_1;
+var smiley_sprite_2;
+var cont=false;
+function preload() {
+	img=loadImage("asset/smiley.png");
+}
+
+function setup() {
+    createCanvas(800,300);
+    smiley_sprite_1=createSprite(100,150);
+    smiley_sprite_1.addImage(img);
+    smiley_sprite_1.setVelocity(3,0);
+    smiley_sprite_1.mass=1;
+    smiley_sprite_2=createSprite(600,150);
+    smiley_sprite_2.addImage(img);
+    smiley_sprite_2.immovable=true;
+}
+
+function draw() {
+	background(240,240,240);
+	smiley_sprite_1.bounce(smiley_sprite_2,contact);
+	if (cont==true){
+		text("il y a eu contact !",350,100)
+	}
+	drawSprites();
+}
+function contact(){
+	cont=true;
+
+}
+			</code></pre>
+			<hr>
+            <h4>À faire vous même 4.6</h4>
+            <p>
+				Saisissez le code suivant dans le fichier script.js et testez cet exemple
+			</p>
+			<pre><code class="javascript">
+var img_1;
+var img_2;
+var smiley_sprite;
+var group_smiley;
+var score=0;
+function preload() {
+	img_1=loadImage("asset/smiley.png")
+	img_2=loadImage("asset/smiley_blood.png")
+}
+function setup() {
+	createCanvas(800,300);
+	textSize(32);
+	smiley_sprite=createSprite(random(20,780),random(20,280));
+	smiley_sprite.addImage(img_1);
+	smiley_sprite.setVelocity(random(-5,5),random(-5,5));
+	group_smiley=new Group();
+	for (i=0;i&lt10;i=i+1){
+		var smiley_sprite_blood;
+		smiley_sprite_blood=createSprite(random(20,780),random(20,280));
+		smiley_sprite_blood.addImage(img_2);
+		smiley_sprite_blood.setVelocity(random(-5,5),random(-5,5));
+		group_smiley.add(smiley_sprite_blood);
+	}
+	wall_g=createSprite(-5,150,10,300);
+	wall_d=createSprite(805,150,10,300);
+	wall_h=createSprite(400,-5,800,10);
+	wall_b=createSprite(400,305,800,10);
+	wall_d.immovable=true;
+    	wall_g.immovable=true;
+    	wall_h.immovable=true;
+    	wall_b.immovable=true;
+}
+function draw() {
+	background(240,240,240);
+	group_smiley.bounce(wall_g);
+	group_smiley.bounce(wall_d);
+	group_smiley.bounce(wall_b);
+	group_smiley.bounce(wall_h);
+	smiley_sprite.bounce(wall_g);
+	smiley_sprite.bounce(wall_d);
+	smiley_sprite.bounce(wall_b);
+	smiley_sprite.bounce(wall_h);
+	group_smiley.bounce(group_smiley);
+	smiley_sprite.overlap(group_smiley,contact);
+	text("Score : "+score,10,50)
+	drawSprites();
+}
+function contact(sprite_1,sprite_2){
+	sprite_2.remove();
+	score=score+1;
+}
+			</code></pre>
+			<hr>
+            <p>Comme vous pouvez le constater ci-dessus, la fonction de callback <i>contact</i> peut prendre en paramètres les 2 sprites concernés par la collision. Si vous avez <i>X.overlap(Y,contact);</i> et <i>function contact(sprite_1,sprite_2)</i> alors X correspond à sprite_1 et Y correspond à sprite_2 (avec X et Y des sprites). Si X ou Y est un groupe de sprite (comme dans l'exemple ci-dessus), le fonctionnement reste le même : sprite_1 ou sprite_2 correspond au sprite du groupe qui a été concerné par la collision.</p>
+            <h4>À faire vous même 4.7</h4>
+            <p>Pour terminer cette activité, vous allez créer un petit jeu vidéo (il faut cliquer sur la fenêtre de jeu à l'aide du pointeur de la souris faute de quoi vous n'arriverez pas à diriger le sprite à l'aide des flèches):</p>
+            <iframe src="p5_play/a4_7/index.html" width="830px" height="330px"></iframe>
+            <p>Le sprite "souriant" est dirigé par le joueur à l'aide des flèches du clavier. Ce sprite doit attraper le plus possible de sprite "sanglant" en moins de 8 secondes.</p>
+            <p>Pour vous aider :</p>
+            <ul>
+                <li>la fonction <i>millis()</i> renvoie le nombre de millisecondes écoulées depuis que le lancement du programme.</li>
+                <li>la fonction <i>round</i> permet d'arrondir une valeur : <i>round(4.3)</i> renvoie 4</li>
+            </ul>
+    </div>
+	</body>
+</html>

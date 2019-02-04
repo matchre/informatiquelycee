@@ -1,0 +1,354 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Apprendre à programmer avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Apprendre à programmer avec Processing</span>
+					<span class="navbar-brand">Activité 9</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./proc_intro.html">Introduction</a></li>
+                <li><a href="./proc_a1.html">Activité 1</a></li>
+                <li><a href="./proc_a2.html">Activité 2</a></li>
+                <li><a href="./proc_a3.html">Activité 3</a></li>
+                <li><a href="./proc_a4.html">Activité 4</a></li>
+				<li><a href="./proc_a5.html">Activité 5</a></li>
+                <li><a href="./proc_a6.html">Activité 6</a></li>
+                <li><a href="./proc_a7.html">Activité 7</a></li>
+				<li><a href="./proc_a8.html">Activité 8</a></li>
+                <li><a href="./proc_a10.html">Activité 10</a></li>
+                <li><a href="./proc_a11.html">Activité 11</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="proc_a8.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="proc_a10.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+            Les tableaux vont nous permettre de stocker plusieurs valeurs (chaîne, nombre) dans une structure unique. Pour déclarer un tableau, la syntaxe est un peu particulière :
+        </p>
+        <pre><code>
+int[] tab = new int[3];
+        </code></pre>
+        <p>Cette ligne comporte beaucoup d'informations :</p>
+        <ul>
+            <li>int[] => indique que nous créons un tableau qui contiendra des entiers</li>
+            <li>tab => le nom du tableau</li>
+            <li>new int[3] => indique que ce tableau contiendra 3 éléments</li>
+        </ul>
+        <p>Nous avons déclaré le tableau, mais pour l'instant, il est vide. Nous allons maintenant le remplir :</p>
+        <pre><code>
+int[] tab = new int[3];
+tab[0]=5;
+tab[1]=65;
+tab[2]=42;
+        </code></pre>
+        <p>Nous avons : tab[indice de position] = valeur</p>
+        <p>L'indice de position commence toujours à zéro.</p>
+        <p>Le tableau tab est donc composé des nombres 5,65 et 42</p>
+        <p>Il aurait aussi été possible de déclarer le tableau et de remplir le tableau en une seule ligne :</p>
+        <pre><code>
+int[] tab = { 5, 65, 42 };
+        </code></pre>
+        <p>Pour "récupérer" les valeurs contenues dans le tableau, il suffit d'écrire nomDuTableau[indice de position], par exemple tab[0] est égal à 5.</p>
+        <h4>À faire vous-même 9.1</h4>
+        <p>
+            Soit le programme suivant :
+        </p>
+        <pre><code>
+int[] tab = new int[3];
+tab[0]=5;
+tab[1]=65;
+tab[2]=42;
+println("Le premier élément du tableau tab est "+tab[0]);
+println("Le deuxième élément du tableau tab est "+tab[1]);
+        </code></pre>
+        <p>
+            Quel est le résultat attendu après l’exécution de ce programme ? Vérifiez votre réponse à l'aide de Processing.
+        </p>
+        <hr>
+        <h4>À faire vous-même 9.2</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+String[] tabJour = {"lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"};
+int jour;
+for (int i=0;i&lt7;i=i+1){
+ jour=i+1;
+ println("Le jour "+jour+" est "+tabJour[i]);
+}
+        </code></pre>
+        <hr>
+        <p>Il est possible de connaitre le nombre d'éléments présents dans un tableau : tab.length est égal au nombre d'éléments présents dans le tableau tab</p>
+        <h4>À faire vous-même 9.3</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+String[] tabJour = {"lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"};
+int nbr;
+nbr=tabJour.length;
+println("Le tableau tabJour comporte "+nbr+" éléments");
+        </code></pre>
+        <hr>
+        <p>Java (et donc Processing) propose une méthode alternative pour créer et manipuler des tableaux : les "ArrayList".</p>
+        <p>Les "ArrayList" ont de multiples avantages par rapport au tableau classique. Par exemple, la taille du tableau est dynamique, elle peut donc être modifiée facilement en ajoutant et en supprimant un ou des éléments. Un "ArrayList" peut contenir différents types de valeur (int, String...). La méthode (la notion de méthode sera développée dans la série d'activités consacrée à la programmation orientée objet) "add" permet d'ajouter un élément au tableau, la méthode "get" permet de récupérer une valeur dans le tableau.</p>
+        <h4>À faire vous-même 9.4</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+ArrayList monTab = new ArrayList();
+monTab.add(15);
+monTab.add("hello");
+println("le premier élément du tableau est :"+monTab.get(0));
+println("le deuxième élément du tableau est :"+monTab.get(1));
+monTab.add(2.5);
+println("le troisième élément du tableau est :"+monTab.get(2));
+        </code></pre>
+        <hr>
+        <p>Comme vous pouvez le constater, le système d'index est le même que pour les tableaux "classiques".</p>
+        <p>La méthode "size" vous permet de connaitre le nombre d'éléments présent dans un "ArrayList". Il est, comme dans le cas des tableaux "classiques", souvent judicieux d'utiliser une boucle for pour parcourir le tableau.</p>
+        <h4>À faire vous-même 9.5</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+ArrayList monTab = new ArrayList();
+monTab.add(15);
+monTab.add("hello");
+monTab.add(2.5);
+for (int i=0; i&ltmonTab.size(); i=i+1){
+    println("index n°"+i+" : "+monTab.get(i));
+}
+        </code></pre>
+        <hr>
+        <p>La méthode "remove" permet de supprimer un élément du tableau</p>
+        <h4>À faire vous-même 9.6</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+ArrayList monTab = new ArrayList();
+monTab.add(15);
+monTab.add("hello");
+monTab.add(2.5);
+for (int i=0; i&ltmonTab.size(); i=i+1){
+    println("index n°"+i+" : "+monTab.get(i));
+}
+monTab.remove(1);
+println("l'élément d'index 1 vient d'être supprimé");
+for (int i=0; i&ltmonTab.size(); i=i+1){
+    println("index n°"+i+" : "+monTab.get(i));
+}
+        </code></pre>
+        <hr>
+        <p>Il n'est pas recommandé de remplir un "ArrayList" avec des valeurs de différents types. Il est possible d'imposer le type des valeurs en utilisant la notation &lttype&gt.</p>
+        <pre><code>
+ArrayList&ltInteger&gt monTab = new ArrayList&ltInteger&gt();
+monTab.add(15);
+monTab.add(20);
+monTab.add(25);
+for (int i=0; i&ltmonTab.size(); i=i+1){
+    println("index n°"+i+" : "+monTab.get(i));
+}
+        </code></pre>
+        <hr>
+        <p>Dans le cas où tous les éléments d'un "ArrayList" ont le même type, il est possible d'utiliser une boucle "for" un peu particulière pour parcourir le tableau.</p>
+        <pre><code>
+ArrayList&ltString&gt monTab = new ArrayList&ltString&gt();
+monTab.add("Hello");
+monTab.add("World");
+monTab.add("Toto");
+for (String val : monTab){
+    println(val+" : est un élément du tableau");
+}
+        </code></pre>
+        <p>N.B. Il est tout à fait possible d'écrire :</p>
+        <pre><code>
+ArrayList&ltString&gt monTab;
+monTab = new ArrayList&ltString&gt();
+monTab.add("Hello");
+monTab.add("World");
+monTab.add("Toto");
+for (String val : monTab){
+    println(val+" : est un élément du tableau");
+}
+        </code></pre>
+        <p>Autre structure de données très importante : les dictionnaires.</p>
+        <p>Un dictionnaire est composé de paires "clé/valeur", une "clé" est une chaîne de caractères et une "valeur" est un nombre qui est associé à la "clé".</p>
+        <p>Dans Processsing, un dictionnaire est de type "IntDict" si les "valeurs" sont des entiers et de type "FloatDict" si les "valeurs" sont de type "float". Dans ce qui suit, nous étudierons exclusivement les dictionnaires de type "IntDict" mais tout ce qui sera dit sera aussi valable pour les dictionnaires de type "FloatInt".</p>
+        <p>Pour créer un nouveau dictionnaire, il faut écrire :</p>
+        <pre><code>
+IntDict monDico;
+monDico = new IntDict();
+        </code></pre>
+        <p>La méthode "set" permet de créer une nouvelle paire "clé/valeur". Cette méthode prend 2 paramètres : </p>
+        <ul>
+            <li>premier paramètre : la clé</li>
+            <li>second paramètre : la valeur</li>
+        </ul>
+        <pre><code>
+IntDict monDico;
+monDico = new IntDict();
+monDico.set("pommes",10);
+        </code></pre>
+        <p>N.B. Nous allons utiliser un dictionnaire afin de créer un programme qui permettra de gérer des stocks de fruits.</p>
+        <h4>À faire vous-même 9.7</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+println(monDico);
+        </code></pre>
+        <hr>
+        <p>Comme vous pouvez le constater, un simple "println" permet d'afficher le contenu d'un dictionnaire :</p>
+        <pre><code>
+IntDict size=2 { "pommes": 10, "oranges": 15 }
+        </code></pre>
+        <p>La méthode "set" permet aussi de modifier la valeur d'une paire "clé/valeur" existante :</p>
+        <h4>À faire vous-même 9.8</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+println(monDico);
+monDico.set("pommes",9);
+println(monDico);
+        </code></pre>
+        <p>La méthode "get" renvoie la "valeur" associée à une "clé". Cette méthode prend un paramètre : la "clé" dont on recherche la valeur.</p>
+         <h4>À faire vous-même 9.9</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+int valOrange;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+valOrange=monDico.get("oranges");
+println("Nous avons "+valOrange+" oranges en stock");
+        </code></pre>
+        <p>Un dictionnaire se comporte comme un tableau classique : la première paire a pour indice 0, la deuxième paire a pour indice 1,...</p>
+        <p>La méthode "key" renvoie la clé de la paire "clé/valeur" située à l'indice i, cette méthode prend un paramètre : l'indice i</p>
+        <h4>À faire vous-même 9.10</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+int valOrange;
+String keyOrange;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+keyOrange=monDico.key(1);
+valOrange=monDico.get(keyOrange);
+println("Nous avons "+valOrange+" "+keyOrange+" en stock");
+        </code></pre>
+        <p>Cette méthode "key" a un interêt certain dans le cas de l'utilisation d'une boucle :</p>
+        <h4>À faire vous-même 9.11</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+int val;
+String key;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+monDico.set("bananes",8);
+for (int i=0;i&ltmonDico.size();i=i+1){
+    key=monDico.key(i);
+    val=monDico.get(key);
+    println("Nous avons "+val+" "+key+" en stock");
+}
+        </code></pre>
+        <p>N.B. La méthode "size" le nombre de paire "clé/valeur" présent dans le dictionnaire.</p>
+        <p>La méthode "increment" permet d'augmenter d'une unité la "valeur" associé à une "clé". Cette méthode prend un paramètre : la "clé" dont il faut augmenter la "valeur".</p>
+        <h4>À faire vous-même 9.12</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+monDico.set("bananes",8);
+println(monDico);
+monDico.increment("oranges");
+println(monDico);
+        </code></pre>
+        <hr>
+        <p>Si la "clé" passée en paramètre de la méthode "increment" n'existe pas, une nouvelle paire "clé/valeur" est alors créée (avec la "valeur" égale à un).</p>
+        <h4>À faire vous-même 9.13</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+monDico.set("bananes",8);
+println(monDico);
+monDico.increment("fraises");
+println(monDico);
+        </code></pre>
+        <hr>
+        <p>Il est possible de classer les paires "clé/valeur" d'un dictionnaire :</p>
+        <ul>
+            <li>avec la méthode "sortKeys" si vous voulez un classement par ordre alphabétique des "clés".</li>
+            <li>avec la méthode "sortValues" si vous voulez un classement selon les "valeurs" (ordre croissant).</li>
+            <li>avec la méthode "sortKeysReverse" si vous voulez un classement par ordre "alphabétique inverse" des "clés".</li>
+            <li>avec la méthode "sortValuesReverse" si vous voulez un classement selon les "valeurs" (ordre décroissant).</li>
+        </ul>
+        <h4>À faire vous-même 9.14</h4>
+        <p>Saisissez, analysez et testez ce programme :</p>
+        <pre><code>
+IntDict monDico;
+monDico = new IntDict();
+monDico.set("pommes",10);
+monDico.set("oranges",15);
+monDico.set("bananes",8);
+println("non classé : "+monDico);
+monDico.sortKeys();
+println("alphabétique clé : "+monDico);
+monDico.sortKeysReverse();
+println("alphabétique-inverse clé : "+monDico);
+onDico.sortValues();
+println("croissant valeur : "+monDico);
+monDico.sortValuesReverse();
+println("décroissant valeur : "+monDico);
+        </code></pre>
+        <hr>
+        <p>Il existe beaucoup d'autres méthodes très intéressantes permettant de manipuler les dictionnaires, je vous invite à les découvrir en consultant la documentation <a href="https://processing.org/reference/IntDict.html" target="_blank">officielle de Processing</a>.</p>
+    </div>
+	</body>
+</html>

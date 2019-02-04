@@ -1,0 +1,119 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Site web avec jQuery</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un site web avec jQuery</span>
+					<span class="navbar-brand">Activité 4</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./jq_intro.html">Introduction</a></li>
+	              <li><a href="./jq_a1.html">Activité 1</a></li>
+	              <li><a href="./jq_a2.html">Activité 2</a></li>
+	              <li><a href="./jq_a3.html">Activité 3</a></li>
+	              <li><a href="./jq_a5.html">Activité 5</a></li>
+								<li><a href="./jq_a6.html">Activité 6</a></li>
+	              <li><a href="./jq_a7.html">Activité 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="jq_a3.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="jq_a5.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>jQuery gére simplement les interactions avec l'utilisateur, nous parlerons d'événements.</p>
+			<p>Voici la structure de base de la gestion d'un événement :</p>
+			<pre><code>
+$('mon sélecteur').on('type événement', fonction de callback)
+			</code></pre>
+			<p>un exemple :</p>
+			<pre><code>
+$('#mon_id').on('click', function(){alert('Hello World !');})
+			</code></pre>
+			<p>En cas de clic de souris sur l'élément ayant pour id «mon_id», la fonction «function(){alert('Hello World !');}» sera exécutée.</p>
+			<p>La notion de fonction de callback est essentielle : une fonction de callback sera exécutée seulement après un « événement » donné (ici, un clic de souris sur l'élément ayant pour id «mon_id»), pas avant.</p>
+			<p>Notre fonction de callback ne porte pas de nom (nous n'avons pas « toto=function(){..} » ou « function toto(){...} »), on parle de fonction anonyme. Le nom d'une fonction est important quand le programmeur désire appeler (exécuter) cette fonction un peu plus loin dans le code, avec par exemple un « toto() ». Ici, ce n'est pas le programmeur qui va « demander » l'exécution de la fonction, mais un événement : donner un nom à notre fonction est inutile </p>
+			<p>N. B. Il existe énormément d'événements, voici une liste (non exhaustive) :</p>
+			<ul>
+				<li>dbclick =&gt double-clic de la souris</li>
+				<li>hover =&gt passage de la souris</li>
+				<li>mouseenter =&gt rentrer dans un élément</li>
+				<li>mouseleave =&gt quitter un élément</li>
+				<li>keydown =&gt touche de clavier enfoncé</li>
+				<li>keyup =&gt relâche une touche préalablement enfoncée</li>
+			</ul>
+			<h4>À faire vous-même 4.1</h4>
+			<p>Créer les 2 fichiers suivants : </p>
+			<p>index.html</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+&ltmeta charset="UTF-8"&gt
+&lttitle&gtjQuery&lt/title&gt
+&ltscript src="lib/jquery-2.1.4.min.js"&gt&lt/script&gt
+&ltscript src="javascript/script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+ &ltbutton id="afficheListe"&gtAfficher la liste&lt/button&gt
+ &ltul&gt
+ &lt/ul&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>script.js</p>
+			<pre><code class="javascript">
+$(function(){
+ var mesFruitsTab=["banane","pomme", "ananas","pêche","fraise"];
+ var firstClick=0;
+ $('#afficheListe').on('click',function(){
+  if (firstClick==0){
+   for(var i=0;i&ltmesFruitsTab.length;i++){
+    $('ul').append('&ltli&gt'+mesFruitsTab[i]+'&lt/li&gt');
+   }
+   firstClick=1;
+  }
+ });
+});
+			</code></pre>
+			<p>Décrire le résultat attendu. Quel est le rôle de la variable firstClick ?</p>
+    </div>
+	</body>
+</html>

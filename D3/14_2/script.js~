@@ -1,0 +1,27 @@
+var tab=[20,15,22,25,30,12];
+
+var body=d3.select("body");
+var svg=body.append("svg");
+svg.attr({"width":"500px","height":"200px"});
+var disque=svg.selectAll("circle").data(tab);
+disque.enter()
+    .append("circle")
+    	.attr("fill","black")
+    	.attr("cx",function(d,i){
+        	return (30+40*i)
+    	})
+    	.attr("cy",function(d,i){
+        	return 100
+    	})
+    	.attr("r",function(d,i){
+        	return (d)
+    	});
+disque.on("mouseover",function(){
+        d3.select(this)
+            .attr("fill","red")
+    });
+disque.on("mouseout",function(){
+        d3.select(this)
+            .attr("fill","black")
+    });
+

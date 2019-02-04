@@ -1,0 +1,194 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Réseau et Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Réseau et Processing</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procRe_a2.html">Activité 2</a></li>
+                  <li><a href="./procRe_a3.html">Activité 3</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procRe_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Pour suivre cette série d'activités, il est nécessaire d'avoir déjà des notions en matière de réseau. Si ce n'est pas votre cas, je vous invite à lire <a href="reseau_a1.html" target="_blank">ce document</a>.</p>
+        <p>Il est possible de créer un serveur avec Processing. Dans un premier temps nous allons programmer un serveur web (qui répond aux requêtes de type HTTP), les requêtes HTTP seront émisent par un navigateur web (Firefox par exemple).</p>
+        <p>La bibliothèque qui gère le réseau n'est pas integré par défaut à Processing, il est nécessaire de l'importer à l'aide de la ligne suivante :</p>
+        <pre><code>
+import processing.net.*;
+        </code></pre>
+        <p>Cette ligne devra être placée au début de votre programme à chaque fois que vous aurez l'intention d'utiliser les "fonctions réseau" de Processing.</p>
+        <h4>À faire vous-même 1.1</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+import processing.net.*;
+String HTTP_HEADER = "HTTP/1.0 200 OK\nContent-Type: text/html\n\n";
+Server s;
+Client c;
+void setup() {
+  s = new Server(this, 8080);
+}
+void draw() {
+  c = s.available();
+  if (c != null) {
+    String msgClient=c.readString();
+    println(msgClient);
+    s.write(HTTP_HEADER);
+    s.write("&lthtml&gt&lthead&gt&ltmeta charset='utf-8'&gt&lttitle&gtProcessing&lt/title&gt&lt/head&gt&ltbody&gt&lth3&gtOk cela fonctionne&lt/h3&gt&ltp&gtLe serveur a bien répondu à la requête HTTP&lt/p&gt&lt/body&gt&lt/html&gt");
+    c.stop();
+  }
+}
+        </code></pre>
+        <p>Une fois le programme ci-dessus "lancé", ouvrez un navigateur web et tapez dans la barre d'adresse de ce navigateur l'adresse suivante :</p>
+        <pre><code>
+http://localhost:8080/
+        </code></pre>
+        <p>Dans dans la console de Processing, vous devriez avoir quelque chose qui ressemble à :</p>
+        <img src="img/procRes_a1_2.png" alt="procRes_a1"/>
+        <p>N.B. Si vous avez d'autres messages du genre "Client SocketException: Socket closed", pas d'inquiétude, cela n'a pas une grande importance.</p>
+        <p>Dans le navigateur web vous devriez  avoir :</p>
+        <img src="img/procRes_a1_1.png" alt="procRes_a1"/>
+        <p>Remarque :</p>
+        <p>Pendant les phases de dévolepement, il est relativement courant d'utiliser une unique machine qui jouera à la fois le rôle du client et du serveur (client : le navigateur web, serveur : le programme "Processing"): </p>
+        <ul>
+            <li>L'adresse "localhost" indique au navigateur web que le serveur se trouve sur la même machine que lui.</li>
+            <li>Le "8080" définie le port utilisé par le serveur. Plusieurs applications peuvent utiliser la même connexion réseau à condition de ne pas utiliser le même port (on parle aussi de socket). Ici notre serveur "écoute" et "attend" une requête HTTP sur le port 8080 (voir ci-dessous pour plus d'explications).</li>
+        </ul>
+        <hr>
+        <p>Passons maintenant à l'analyse de ce code :</p>
+        <p>Le serveur répond à une requête HTTP en provenance d'un client (navigateur web). Pour que la réponse du serveur soit valide (comprise par le navigateur), il faut un en-tête (header en anglais), la variable "HTTP_HEADER" permet de stocker cet en-tête (la variable "HTTP_HEADER" sera utilisée un peu plus loin dans le programme).</p>
+        <pre><code>
+String HTTP_HEADER = "HTTP/1.0 200 OK\nContent-Type: text/html\n\n";
+        </code></pre>
+        <p>N.B. l'enchainement de caractères "\n" est un <a href="https://fr.wikipedia.org/wiki/Caract%C3%A8re_d%27%C3%A9chappement" target="_blank">caractère d'échapement</a> qui permet le saut de ligne.</p>
+        <p>Puisque nous avons affaire à un échange entre un serveur et un client, il nous faut définir des variables de type "Client" et de type "Server" (la bibliothèque "Réseau" que nous avons importée à la première ligne du programme, propose une classe Serveur et une classe Client).</p>
+        <pre><code>
+Server s;
+Client c;
+        </code></pre>
+        <p>Nous créons une instance de la classe Serveur :</p>
+        <pre><code>
+s = new Server(this, 8080);
+        </code></pre>
+        <p>Le premier paramètre du constructeur de la classe Serveur sera toujours "this", le second paramètre correspond au "port d'écoute" du serveur (8080 dans notre cas, mais vous pouvez choisir une autre valeur).</p>
+        <p>La méthode "available" de la classe Serveur renvoi un objet de type Client si un client cherche à rentrer en communication avec le serveur ou "null" dans le cas contraire (si plusieurs clients cherchent à entrer en communication avec le serveur en même temps, une liste de client est établie et le serveur traitera les éléments de cette liste les uns après les autres.</p>
+        <pre><code>
+c = s.available();
+        </code></pre>
+        <p>Si un client vient d'effectuer une requête vers le serveur, la variable c contient donc un objet de type Client dans le cas contraire (si aucun client ne vient d'effectuer une re), la variable c contient "null". Comme la ligne ci-dessus se trouve dans la fonction "draw" de Processing, la liste des clients est actualisée 60 fois par seconde.</p>
+        <pre><code>
+if (c != null) {....}
+        </code></pre>
+        <p>La suite du code sera éxecuté seulement si un client vient d'envoyer une requête.</p>
+        <pre><code>
+if (c != null) {....}
+        </code></pre>
+        <p>La lignes suivante :</p>
+        <pre><code>
+String msgClient=c.readString();
+        </code></pre>
+        <p>permet de placer dans la variable "msgClient" la chaine de caractère que le client courant vient d'envoyer au serveur. Dans notre cas, le client étant un navigateur web, cette chaine de caractères correspond à une requête HTTP.</p>
+        <p>Le "println" permet d'afficher cette chaine (la requête HTTP) dans la console Processing.</p>
+        <p>Le serveur répond ensuite en envoyant l'en-tête de sa réponse HTTP vers le client à l'aide de la méthode write :</p>
+        <pre><code>
+s.write(HTTP_HEADER);
+        </code></pre>
+        <p>puis, on envoie le reste de la réponse (le corps de la réponse) qui est aussi une chaine de caractères qui sera interprété par le navigateur comme du HTML (si le HTML vous est totalement inconnu, n'hésitez pas à consulter <a href="hbase_a1.html" target="_blank">cette série d'activités</a>.</p>
+        <pre><code>
+s.write("&lthtml&gt&lthead&gt&ltmeta charset='utf-8'&gt&lttitle&gtProcessing&lt/title&gt&lt/head&gt&ltbody&gt&lth3&gtOk cela fonctionne&lt/h3&gt&ltp&gtLe serveur a bien répondu à la requête HTTP&lt/p&gt&lt/body&gt&lt/html&gt");
+        </code></pre>
+        <p>Il est ensuite nécessaire de "cloturer la conversation client-serveur" en utilisant la méthode "stop" de la classe Client :</p>
+        <pre><code>
+c.stop();
+        </code></pre>
+        <p>Il est parfois nécessaire de distinguer la connexion d'un client et l'envoi d'une requête par un client. Le client doit se connecter au serveur avant de pouvoir envoyer une requête, mais une fois connecté, le client peut envoyer plusieurs requêtes sans être obligé de se reconnecter. Dans les exemples traités ici la connexion du client est immédiatement suivi par la requête HTTP, il est donc difficile de distinguer les deux, mais, cela ne sera pas toujours le cas.</p>
+        <p>Comme déjà vu plus haut La méthode "available" de la classe Server permet de lister les clients venant d'effectuer une requête vers le serveur. La fonction "serverEvent" est appelé lorsque le serveur détecte la connexion d'un nouveau client (le principe est le même que pour les fonctions qui détecte les évenements au niveau du clavier ou de la souris). Attention, si vous utilisez la fonction "serverEvent", la présence de la fonction "draw" dans votre programme est obligatoire (même si elle est "vide").</p>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+import processing.net.*;
+String HTTP_HEADER = "HTTP/1.0 200 OK\nContent-Type: text/html\n\n";
+Server s;
+Client c;
+void setup() {
+  s = new Server(this, 8080);
+}
+void draw() {
+  c = s.available();
+  if (c != null) {
+    s.write(HTTP_HEADER);
+    s.write("&lthtml&gt&lthead&gt&ltmeta charset='utf-8'&gt&lttitle&gtProcessing&lt/title&gt&lt/head&gt&ltbody&gt&lth3&gtOk cela fonctionne&lt/h3&gt&ltp&gtLe serveur a bien répondu à la requête HTTP&lt/p&gt&lt/body&gt&lt/html&gt");
+    c.stop();
+  }
+}
+void serverEvent ( Server serv, Client clie){
+  println("Un nouveau client vient de se connecter, son IP : "+clie.ip());
+}
+        </code></pre>
+        <p>Testez ce programme comme dans le "À faire vous-même 1.2".</p>
+        <hr>
+        <p>La fonction "serverEvent" prend 2 paramètres : un objet de type Server et un objet de type Client. Dans le programme ci-dessus, nous utilisons la méthode "ip" de la classe Client, cette méthode renvoi l'adresse IP du client. Dans notre exemple l'IP du client est "127.0.0.1", cette adresse particulière est synonyme de "localhost" (le client et le serveur se trouve sur le même ordinateur).</p>
+        <h4>À faire vous-même 1.3</h4>
+        <p>Le but est de tester le programme vu dans le "À faire vous-même 1.2" avec le client et le serveur sur deux machines différentes. Pour information, il est possible de déterminer l'adresse IP d'un ordinateur sous GNU/linux en tapant dans une console : </p>
+        <pre><code>
+ifconfig
+        </code></pre>
+        <p>Vous obtiendrez quelques choses qui ressemble à :</p>
+        <img src="img/procRes_a1_3.png" alt="procRes_a1"/>
+        <p>192.168.0.14 est l'adresse IP de ma machine.</p>
+        <hr>
+        <p>Nous avons dans cette activité programmer un "mini serveur" web (capable de répondre aux requêtes HTTP émisent par un navigateur web). Dans la suite nous programmerons avec Processing toujours le serveur mais aussi le client. Nous n'aurons plus besoin d'utiliser un navigateur web comme client et donc, nous n'aurons plus besoin d'utiliser le protocole HTTP.</p>
+        <p>Voici un petit résumé de ce qu'il faut retenir de cette activité :</p>
+        <ul>
+            <li>il nous faut créer un objet de type Server et un objet de type Client</li>
+            <li>la méthode "available" de la classe Server permet de lister les clients venant d'effectuer une requête (cette méthode renvoie "null" si aucun client n'a effectué de requête).</li>
+            <li>la méthode "readString" de la classe Client renvoie la chaine de caractère qui a été envoyée au serveur par le client.</li>
+            <li>la méthode "write" de la classe Server permet d'envoyer une chaine de caractères au client</li>
+            <li>la fonction "serverEvent" est appelée si un nouveau client se connecte au serveur</li>
+            <li>la méthode "ip" de la classe Client renvoie l'adresse IP du client.</li>
+        </ul>
+    </div>
+	</body>
+</html>

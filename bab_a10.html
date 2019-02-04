@@ -1,0 +1,279 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu ou une simulation 3D</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu ou une simulation 3D</span>
+					<span class="navbar-brand">Activité 10</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./bab_intro.html">Introduction</a></li>
+								<li><a href="./bab_a1.html">Activité 1</a></li>
+	              <li><a href="./bab_a2.html">Activité 2</a></li>
+	              <li><a href="./bab_a3.html">Activité 3</a></li>
+								<li><a href="./bab_a4.html">Activité 4</a></li>
+	              <li><a href="./bab_a5.html">Activité 5</a></li>
+	              <li><a href="./bab_a6.html">Activité 6</a></li>
+								<li><a href="./bab_a7.html">Activité 7</a></li>
+	              <li><a href="./bab_a8.html">Activité 8</a></li>
+								<li><a href="./bab_a9.html">Activité 9</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="bab_a9.html"><span class="fui-triangle-left-large"></a></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Dans cette activité nous allons nous intéresser à l'interaction "utilisateur-machine". Pour assurer cette interaction, JavaScript met à notre disposition les "listeners". Ces "listeners", vont "écouter" (ou plutôt surveiller) les périphériques d'entrées (clavier et souris par exemple).
+			</p>
+			<p>our mettre en place un listener, nous utiliserons la méthode "addEventListener" de l'objet "window" (l'objet "window" est l'objet de base en JavaScript, tous les autres objets descendent de l'objet "window" ). La méthode "addEventListener" prend 2 paramètres :</p>
+			<ul>
+				<li>l'événement à surveiller</li>
+				<li>une fonction de callback</li>
+			</ul>
+			<p>Qu'est-ce qu’une fonction de callback ?</p>
+			<p>Une fonction de callback est une fonction qui sera exécutée seulement après un « événement » donné, pas avant. Souvent, les fonctions de callback sont des fonctions anonymes. La fonction de callback passée en paramètre de la méthode  "addEventListener" sera exécutée seulement quand l'événement surveillé par le listener sera déclenché (appui sur une touche du clavier, clic de souris....)</p>
+			<p>Voici quelques événements qu'il est possible de surveiller grâce au listener :</p>
+			<ul>
+				<li>"click " : clic du bouton gauche de la souris</li>
+				<li>"dblclick" : double-clic du bouton gauche de la souris</li>
+				<li>"keydown" : appui (sans relâcher) sur une touche</li>
+				<li>"keyup" : relâcher une touche</li>
+				<li>"keypress" : appuyer puis relâcher sur une touche</li>
+			</ul>
+			<p>Voici un exemple d'utilisation de "addEventListener" :</p>
+			<pre><code class="javascript">
+window.addEventListener ("click", function(){
+ //***fonction de callback ici****
+}) ;
+			</code></pre>
+			<h4>À faire vous-même 10.1</h4>
+			<p>Écrire un programme qui, grâce à la méthode "alert" (fenêtre surgissante), affichera à l'écran "Hello World !" en cas de "simple clic" sur le bouton gauche de la souris.</p>
+			<hr>
+			<p>La fonction de callback peut prendre un paramètre que l'on nomme souvent "event". Ce paramètre est un objet qui contient des informations sur l'événement qui vient d'être déclenché.</p>
+			<p>Par exemple, il est possible, en cas d'utilisation des événements  "keydown", "keyup" et "keypress" de connaître le code de la touche du clavier qui a été actionnée par l'utilisateur avec "event.keyCode" :</p>
+			<pre><code class="javascript">
+window.addEventListener ("keydown", function(event){
+ alert (event.keyCode)
+}) ;
+			</code></pre>
+			<p>Pour connaître les valeurs des codes des touches, consultez cette page (voir le paragraphe "3.3. Key CodeValues") : <a href="http://unixpapa.com/js/key.html" target="_blank">ici</a></p>
+			<h4>À faire vous-même 10.2</h4>
+			<p>Écrire un programme qui affichera (méthode "alert") : "touche A" si vous appuyez sur la touche A et "autre touche que la touche A" si vous appuyez sur une autre touche que la touche A.</p>
+			<hr>
+			<p>Voici une méthode qui va vous permettre de programmer l'utilisation des touches, cette méthode est une méthode parmi beaucoup d'autres, n'hésitez pas à en changer si elle ne vous convient pas.</p>
+			<h4>À faire vous-même 10.3</h4>
+			<p>Créer une nouvelle application (app_16)</p>
+			<p>script.js</p>
+			<pre><code class="javascript">
+var keys={left:0,right:0}
+window.addEventListener('keydown',function(event){
+ if (event.keyCode==37){
+  keys.left=1;
+ }
+ if (event.keyCode==39){
+  keys.right=1;
+ }
+});
+window.addEventListener('keyup',function(event){
+ if (event.keyCode==37){
+  keys.left=0;
+}
+ if (event.keyCode==39){
+  keys.right=0;
+ }
+});
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("Camera",0, Math.PI/4, 15, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.HemisphericLight("Hemi", new BABYLON.Vector3(0, 1, 1), scene);
+var boite= new BABYLON.Mesh.CreateBox("box_1",2,scene);
+function animation(){
+ if (keys.left==1){
+  boite.rotation.y=boite.rotation.y+0.05;
+ }
+ if (keys.right==1){
+  boite.rotation.y=boite.rotation.y-0.05;
+ }
+}
+engine.runRenderLoop(function () {
+ animation();
+ scene.render();
+});
+			</code></pre>
+			<p>Analyser et tester cette application. Pourquoi, d'après vous, nous n'utilisons pas la variable temps dans ce cas ?</p>
+			<hr>
+			<p>Dans l'application app_16 nous créons un objet "keys" (2 attributs "left" et "right"). Si l'utilisateur appuie (sans la relâcher) sur la flèche gauche, l'attribut keys.left prend la valeur 1. Si l'utilisateur relâche cette touche, nous avons alors keys.left=0.</p>
+			<h4>À faire vous-même 10.4</h4>
+			<p>Créer une nouvelle application (app_17)</p>
+			<p>Ecrire un programme permettant d'afficher un cube. En cas d'appui sur la touche Entrée (keyCode 13), le cube devra se mettre en rotation. Un nouvel appui sur la touche Entrée arrêtera la rotation.</p>
+			<p>Attention : Ce "À faire vous-même" est plus difficile qu'il n'y parait</p>
+			<hr>
+			<p>Il est possible de détecter les clics de souris sur les objets présents à l'écran. Le listener doit avoir la structure suivante :</p>
+			<pre><code class="javascript">
+window.addEventListener('click',function(event){
+ var pickResult=scene.pick(event.clientX, event.clientY);
+});
+			</code></pre>
+			<p>"pickResult" est un objet contenant des informations sur le mesh qui a "subi" le clic de souris :</p>
+			<ul>
+				<li>"pickResult.hit" est égal à "true" si le clic a été effectué lorsque le pointeur de la souris se trouvait sur un mesh et "false" dans le cas contraire.</li>
+				<li>"pickResult.distance" donne la distance entre la caméra et le point sur lequel l'utilisateur vient de cliquer (type float)</li>
+				<li>"pickResult.pickedMesh" si le clic a été effectué lorsque le pointeur de la souris se trouvait sur un mesh, "pickResult.pickedMesh" correspond à ce mesh (type "BABYLON.Mesh")</li>
+				<li>"pickResult.pickedPoint" si l'utilisateur clique sur un mesh, donne les coordonnées (dans le repère local du mesh) du point cliqué. (type "Vector3" ou Null si aucun objet) </li>
+			</ul>
+			<h4>À faire vous-même 10.5</h4>
+			<p>Créer une nouvelle application (app_17)</p>
+			<p>script.js</p>
+			<pre><code class="javascript">
+var rotCube=0;
+window.addEventListener('click',function(event){
+ var pickResult=scene.pick(event.clientX, event.clientY);
+ if (pickResult.hit){
+  if (rotCube==0){
+   rotCube=1;
+	}
+  else{
+   rotCube=0
+  }
+ }
+});
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("Camera",0, Math.PI/4, 50, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1), scene);
+var boite= new BABYLON.Mesh.CreateBox("box_1",2,scene);
+function animation(){
+	boite.rotation.y=boite.rotation.y+rotCube*0.05;
+}
+engine.runRenderLoop(function () {
+ animation();
+ scene.render();
+});
+			</code></pre>
+			<p>Analyser et tester cette application.</p>
+			<hr>
+			<h4>À faire vous-même 10.6</h4>
+			<p>Créer une nouvelle application (app_18)</p>
+			<p>app_18 permet d'afficher 5 cubes en rotation</p>
+			<p>script.js</p>
+			<pre><code class="javascript">
+var rotCube=0;
+var tabBoite=[];
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("Camera",0, Math.PI/4, 50, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1), scene);
+//mise en place des 5 cubes
+for (i=0; i&lt5; i++){
+	var boite= new BABYLON.Mesh.CreateBox("box",2,scene);
+	boite.position.z=-5+i*5
+	tabBoite.push(boite);
+}
+function animation(){
+	for (i=0; i&lt5; i++){
+		tabBoite[i].rotation.y=tabBoite[i].rotation.y+0.05
+	}
+}
+engine.runRenderLoop(function () {
+ animation();
+ scene.render();
+});
+			</code></pre>
+			<p>Analyser et tester cette application.</p>
+			<hr>
+			<p>Analyse de l'app_18 :</p>
+			<ul>
+				<li>on crée 5 cubes que l'on place au fur et à mesure de leur création dans un tableau ("tabBoite.push(boite)"), non sans avoir oublié au préalable de modifier leur position ("boite.position.z=-5+i*5; ")</li>
+				<li>toujours à l'aide d'une boucle for, on parcourt le tableau "tabBoite" afin d'animer chacun des cubes "tabBoite[i].rotation.y=tabBoite[i].rotation.y+0.05" </li>
+			</ul>
+			<h4>À faire vous-même 10.7</h4>
+			<p>Créer une nouvelle application (app_19)</p>
+			<p>Après avoir bien compris l'app 18, modifier cette dernière afin qu'un clic de souris sur un cube provoque sa mise en rotation (un second clic provoquant son arrêt). Bien évidemment , les 5 cubes devront être indépendants les uns des autres.</p>
+			<p>Pour vous aider :</p>
+			<ul>
+				<li>vous pourrez créer un tableau "tabBoiteEtat" qui nous permettra de connaître l'état du cube i (si  tabBoiteEtat[i]=0, le cube i sera immobile, si  tabBoiteEtat[i]=1, le cube i sera en rotation)</li>
+				<li>si le clic de souris concerne le cube i, alors  "tabBoite[i]==pickResult.pickedMesh" renverra true</li>
+			</ul>
+			<hr>
+			<h4>À faire vous-même 10.8</h4>
+			<p>Créer une nouvelle application (app_20)</p>
+			<p>Voici les différents "éléments" que votre scène devra incorporer :</p>
+			<ul>
+				<li>un "tank" (voir la capture d'écran ci-dessous)</li>
+				<li>un sol (1 plan)</li>
+			</ul>
+			<img src="img/bab_10_1.png" alt="tank"/>
+			<p>Les flèches "gauche" et "droite" permettront au "tank" d'effectuer une rotation sur lui même. La flèche "haut" permettra au tank d'avancer (toujours avec le canon vers l'avant).</p>
+			<p>Pour vous aider :</p>
+			<p>le "tank" est composé de 2 cylindres.</p>
+			<p>N'oubliez pas qu'il existe 2 types de repère : le repère global O,x,y,z (associé à la scène) et le repère local O',x',y',z' (associé au "tank" : il se déplacera en même temps que le tank). Il est très important de réaliser que le repère local tournera en même temps que le "tank" (le canon du "tank" sera toujours confondu avec l'axe z' (mais pas avec l'axe z)).</p>
+			<p>tank vue du dessus</p>
+			<img src="img/bab_10_2.png" alt="tank"/>
+			<p>Après la rotation d'un angle α, l'utilisateur appuie sur la flèche "haut", les coordonnées du "tank" (dans le repère global O,x,y,z) vont donc devoir être modifiées, mais comment ?</p>
+			<img src="img/bab_10_3.png" alt="tank"/>
+			<p>Nous allons devoir faire un peu de trigonométrie.</p>
+			<img src="img/bab_10_4.png" alt="tank"/>
+			<p>J'espère que vous avez remarqué que nous avons un triangle rectangle : la ligne rouge est l'hypoténuse, la ligne bleue est le côté adjacent et le côté orange est le côté opposé. Donc :</p>
+			<p>cos α = ligne bleue / ligne rouge et sin α = ligne orange/ligne rouge</p>
+			<p>donc si le tank avance de 1 (ligne rouge) alors la coordonnée z devra augmenter de cos α et la coordonnée x de sin α</p>
+			<p>Évidemment, quelque soit la position du tank et quelques soit l'angle α (dans BabylonJS : tank.rotation.y), ce raisonnement est valable.</p>
+			<p>Comment cela va se traduire dans BabylonJS ?</p>
+			<p>Partons du principe qu'en cas d'appui sur le "flèche haut", à chaque image, le tank avance de 1. À chaque image il faudra donc modifier les coordonnées (globales) comme suit :</p>
+			<p>tank.position.x = tank.position.x+Math.sin(tank.rotation.y)</p>
+			<p>tank.position.z = tank.position.z+Math.cos(tank.rotation.y)</p>
+			<hr>
+			<h4>Pour aller plus loin</h4>
+			<p>Il reste beaucoup de choses à apprendre sur l'utilisation de BabylonJS, voici quelques liens "pour aller plus loin" :</p>
+			<ul>
+				<li>la documentation officielle est incontournable [en anglais]: <a href="http://doc.babylonjs.com/page.php?p=29" target="_blank">ici</a></li>
+				<li>Il est possible d'utiliser un moteur physique qui rendra vos scènes encore plus réalistes, voici un article écrit par David Rousset sur ce sujet [en anglais] : <a href="http://blogs.msdn.com/b/davrous/archive/2014/11/18/understanding-collisions-amp-physics-by-building-a-cool-webgl-babylon-js-demo-with-oimo-js.aspx" target="_blank">ici</a></li>
+				<li>Une série de tutoriaux consacrée à BabylonJS [en anglais]: <a href="https://github.com/BabylonJS/Babylon.js/wiki/00-Babylon.js-Primer" target="_blank">ici</a></li>
+				<li>Une autre série de tutoriaux consacrée à BabylonJS (auteur : Julian) [en anglais]: <a href="http://pixelcodr.com/" target="_blank">ici</a></li>
+				<li>Vidéo de présentation de BabylonJS (David Rousset et Michel Rousseau)[en français]: <a href="https://www.youtube.com/watch?v=zOjwMOs8f3o" target="_blank">ici</a></li>
+				<li>Série de vidéo sur WebGL et BabylonJS (David Cathue et David Rousset)[en anglais]: <a href="http://channel9.msdn.com/Series/Introduction-to-WebGL-3D-with-HTML5-and-Babylonjs" target="_blank">ici</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

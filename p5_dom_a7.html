@@ -1,0 +1,232 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer des pages web avec p5js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer des pages web avec p5js</span>
+					<span class="navbar-brand">Activité 7</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_dom_a1.html">Activité 1</a></li>
+                <li><a href="./p5_dom_a2.html">Activité 2</a></li>
+                <li><a href="./p5_dom_a3.html">Activité 3</a></li>
+                <li><a href="./p5_dom_a4.html">Activité 4</a></li>
+                <li><a href="./p5_dom_a5.html">Activité 5</a></li>
+                <li><a href="./p5_dom_a5.html">Activité 6</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="p5_dom_a6.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+           P5js gère le "glisser-déposer" ("drag&drop" en anglais). Il suffit de déposer un fichier dans une zone défini à l'avance. La fonction "drop" est un listener qui déclenche la fonction de "callback" qui lui est associée, quand le fichier, qui a été déposé, est prêt à être utilisé par votre programme.
+        </p>
+        <h4>À faire vous-même 7.1</h4>
+        <p>Modifier comme suit les fichiers suivants : </p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &ltdiv id="zone"&gt&ltp&gtglisser et déposer un fichier ici&lt/p&gt&lt/div&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+#zone {
+    border : 1px solid black;
+    text-align: center;
+    width : 30%;
+    height : 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#zone p{
+    margin-top:65px;
+}
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var zone;
+function setup(){
+    noCanvas();
+    zone=select("#zone");
+    zone.drop(fichierCharge);
+}
+function draw(){
+}
+function fichierCharge(){
+    createP("Le fichier a été déposé");
+}
+    </code></pre>
+    <p>Dans cet exemple, la zone de "glisser-déposer" est une "div". Le listener "drop" (associé à la div de "glisser-déposer"), a pour fonction de "callback" la fonction "fichierCharge". Pour l'instant, nous nous contentons d'afficher un message qui indique que le fichier a bien été "récupéré".</p>
+    <hr>
+    <p>La fonction de "callback" lié au listener "drop", peut prendre un paramètre que nous nommerons (mais ce n'est pas une obligation) "file". Comme vous l'avez sans doute deviné, "file" nous permettra d'obtenir des informations sur le fichier qui a été "déposé" :</p>
+    <ul>
+        <li>"file.name" correpond au nom du fichier</li>
+        <li>"file.size" correpond à la taille du fichier (en octet)</li>
+        <li>"file.type" correspond au "type" du fichier (image, text,...)</li>
+    </ul>
+    <h4>À faire vous-même 7.2</h4>
+        <p>Modifier comme suit le fichier suivant (index.html et style.css ne sont pas modifiés) et testez cet exemple en "glissant-déposant" différents types de fichiers (image, texte...) : </p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var zone;
+function setup(){
+    noCanvas();
+    zone=select("#zone");
+    zone.drop(fichierCharge);
+}
+function draw(){
+}
+function fichierCharge(file){
+    createP("Le fichier '"+file.name+"' a été déposé. Ce fichier est de type '"+file.type+"' et a pour taille "+file.size+" octets");
+}
+    </code></pre>
+    <hr>
+    <p>Tout cela n'aurait pas grand intérêt s'il n'était pas possible de récupérer le contenu du fichier : cela peut être fait grâce à "file.data".</p>
+    <h4>À faire vous-même 7.3</h4>
+        <p>Modifier comme suit le fichier suivant (index.html et style.css ne sont pas modifiés) et testez cet exemple en "glissant-déposant" différents types de fichiers (image, texte...) : </p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var zone;
+function setup(){
+    noCanvas();
+    zone=select("#zone");
+    zone.drop(fichierCharge);
+}
+function draw(){
+}
+function fichierCharge(file){
+    createP("Le fichier '"+file.name+"' a été déposé. Ce fichier est de type '"+file.type+"' et a pour taille "+file.size+" octets");
+    if (file.type=="image"){
+        img = createImg(file.data);
+        img.size(100,100);
+    }
+    else {
+        createP("Désolé ce fichier n'est pas un fichier de type image");
+    }
+}
+    </code></pre>
+    <p>Dans cet exemple, nous utilisons la fonction "createImg" pour la première fois, si vous voulez en savoir plus sur son utilisation, n'hésitez pas à consulter la <a href="http://p5js.org/reference/#/p5/createImg" target="_blank">documentation officielle</a></p>
+    <hr>
+    <p>Il est aussi possible de récupérer les données présentes dans un fichier de type "text" (ces fichiers n'ont pas forcément l'extension ".txt"). Dans ce cas, "file.data" est une chaîne de caractères. Cette chaîne de caractères correspond au contenu du fichier texte.</p>
+        <h4>À faire vous-même 7.4</h4>
+        <p>Modifier comme suit le fichier suivant (index.html et style.css ne sont pas modifiés) et testez cet exemple en "glissant-déposant" différents types de fichiers (image, texte...) : </p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var zone;
+function setup(){
+    noCanvas();
+    zone=select("#zone");
+    zone.drop(fichierCharge);
+}
+function draw(){
+}
+function fichierCharge(file){
+    createP("Le fichier '"+file.name+"' a été déposé. Ce fichier est de type '"+file.type+"' et a pour taille "+file.size+" octets");
+    if (file.type=="image"){
+        img = createImg(file.data);
+        img.size(100,100);
+    }
+    else if (file.type=="text"){
+        createP("contenu du fichier texte :");
+        createP(file.data);
+    }
+    else {
+        createP("Désolé, ce format de fichier n'est pas pris en charge");
+    }
+}
+        </code></pre>
+        <hr>
+        <p>P5js propose deux autres listeners qui pourraient vous être utiles :</p>
+        <ul>
+            <li>"dragOver" déclenche une fonction de "callback" quand l'utilisateur entre dans la zone de "glisser-déposer" en "transportant" un fichier</li>
+            <li>"dragLeave" déclenche une fonction de "callback" quand l'utilisateur sort de la zone de "glisser-déposer" en "transportant" un fichier</li>
+        </ul>
+        <h4>À faire vous-même 7.5</h4>
+        <p>Créez un programme permettant d'obtenir ceci (testez bien le cas où le fichier n'est pas de type "image") :</p>
+        <iframe src="./p5_dom/p5_dom_a7_5/index.html" width="800px" height="400px"></iframe>
+        <hr>
+        <p>Il est possible d'utiliser les images récupérées par "glisser-déposer" dans un canvas : </p>
+        <h4>À faire vous-même 7.6</h4>
+        <p>Modifier comme suit le fichier suivant (index.html et style.css ne sont pas modifiés) et testez cet exemple en "glissant-déposant" différents types de fichiers (image, texte...) : </p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var zone;
+var can;
+var msg;
+function setup(){
+    zone=select("#zone");
+    zone.drop(fichierCharge);
+    msg=createP("");
+    can=createCanvas(200,200);
+    background(0);
+}
+function draw(){
+}
+function fichierCharge(file){
+    if (file.type=="image"){
+        msg.html("");
+        img = createImg(file.data);
+        img.hide();
+        image(img,0,0,200,200);
+    }
+    else {
+        msg.html("Désolé ce fichier n'est pas un fichier de type image");
+    }
+}
+        </code></pre>
+        <p>Nous utilisons la fonction "image" qui permet d'afficher une image dans un canvas (voir <a href="http://p5js.org/reference/#/p5/image" target="_blank">ici</a> pour plus d'explications sur cette fonction).</p>
+        <p>Notez l'utilisation de la fonction "hide" qui permet de rendre un élément html invisible. Ici, nous rendons invisible "img" afin que l'image n'apparaisse que dans le canvas.
+        </p>
+    </div>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Programmation orientée objet avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Programmation orientée objet avec Processing</span>
+					<span class="navbar-brand">Correction "À faire vous-même 5.2"</span>
+        </div>
+        </div>
+    </nav>
+    <div class="container act">
+            <pre><code>
+Balle b1;
+Balle b2;
+class Balle {
+ int posX;
+ int posY;
+ int depX;
+ int depY;
+ int r;
+ int v;
+ int b;
+ // le constructeur
+ Balle (){
+  posX=int(10+random(180));
+  posY=int(10+random(180));
+  depX=int(-5+random(5));
+  depY=int(-5+random(5));
+  while(depX==0 || depY==0){
+    depX=int(-5+random(5));
+    depY=int(-5+random(5));
+  }
+  r=int(random(256));
+  v=int(random(256));
+  b=int(random(256));
+ }
+ void afficheBalle(){
+   fill(r,v,b);
+   ellipse(posX,posY,20,20);
+ }
+ void depBalle (){
+  if (posX<10 || posX>190){
+    depX=-depX;
+  }
+  if (posY<10 || posY>190){
+    depY=-depY;
+  }
+  posX=posX+depX;
+  posY=posY+depY;
+ }
+}
+
+void setup() {
+  size(200,200);
+  noStroke();
+  b1 = new Balle();
+  b2 = new Balle();
+}
+void draw(){
+  background(255);
+  b1.depBalle();
+  b2.depBalle();
+  b1.afficheBalle();
+  b2.afficheBalle();
+}
+			</code></pre>
+    </div>
+	</body>
+</html>

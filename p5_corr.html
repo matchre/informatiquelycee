@@ -1,0 +1,566 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>P5 : solutions</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+        <script src="./css/js/vendor/jquery.min.js"></script>
+        <script src="./css/js/flat-ui.min.js"></script>
+        <script src="libProc/processing.min.js"></script><script>
+					  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+					  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+					  ga('create', 'UA-92673245-1', 'auto');
+					  ga('send', 'pageview');
+					</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">P5 : les bases</span>
+        </div>
+      </div>
+    </nav>
+		<div class="container act">
+			<h4>Proposition solution "À faire vous-même 2.6"</h4>
+			<pre><code class="javascript">
+function setup() {
+	createCanvas(800,600);
+	background(240);
+	for (x=0;x&lt=800;x=x+1){
+		point(x,300);
+	}
+}
+function draw() {
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 2.7"</h4>
+			<pre><code class="javascript">
+function setup() {
+	createCanvas(600,600);
+	background(240);
+	y=0
+	for (x=0;x&lt=600;x=x+1){
+		point(x,y);
+		y=y+1;
+	}
+}
+function draw() {
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 2.8"</h4>
+			<pre><code class="javascript">
+function setup() {
+	createCanvas(600,600);
+	background(240);
+	y=0
+	for (x=600;x&gt=0;x=x-1){
+		point(x,y);
+		y=y+1;
+	}
+}
+function draw() {
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 2.9"</h4>
+			<pre><code class="javascript">
+function setup() {
+	createCanvas(800,600);
+	background(240);
+	for (x=0;x<=800;x=x+3){
+		point(x,300);
+	}
+}
+function draw() {
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 2.11"</h4>
+			<pre><code class="javascript">
+function setup() {
+	createCanvas(800,600);
+	background(240);
+	for (x=0;x&lt=800;x=x+1){
+		if (x&lt400){
+			stroke(255,0,0);
+		}
+		else{
+			stroke(0,0,255);
+		}
+		point(x,300);
+	}
+}
+function draw() {
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 2.12"</h4>
+			<pre><code class="javascript">
+function setup() {
+	createCanvas(600,400);
+	background(240);
+	for (y=0;y&lt=400;y=y+1){
+		for (x=0;x&lt=600;x=x+1){
+			if (x&lt200){
+				stroke(0,0,255);
+			}
+			if (x&gt200 && x&lt400){
+				stroke(255,255,255);
+			}
+			if (x&gt400){
+				stroke(255,0,0);
+			}
+			point(x,y);
+		}
+	}
+}
+function draw() {
+}
+		</code></pre>
+<h4>Proposition solution "À faire vous-même 3.2"</h4>
+			<pre><code class="javascript">
+function setup() {
+	createCanvas(200,200);
+	background(240);
+	for (x=0;x<=200;x=x+2){
+		line(x,0,200-x,200);
+	}
+}
+function draw() {
+}
+			</code></pre>
+<h4>Proposition solution "À faire vous-même 3.3"</h4>
+		<pre><code class="javascript">
+function setup() {
+	createCanvas(200,200);
+	background(240);
+	for (x=0;x<=200;x=x+2){
+		line(x,0,200-x,200);
+	}
+	for (y=0;y<=200;y=y+2){
+		line(0,y,200,200-y);
+	}
+}
+function draw() {
+}
+		</code></pre>
+		<h4>Proposition solution "À faire vous-même 3.5"</h4>
+			<pre><code class="javascript">
+function setup(){
+	createCanvas(400,400);
+	background(240);
+	ellipse(200,200,50,50);
+}
+function draw(){
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 3.7"</h4>
+				<pre><code class="javascript">
+function setup(){
+	createCanvas(400,400);
+	background(240);
+	x1=random(600);
+	y1=random(600);
+	x2=random(600);
+	y2=y1;
+	x3=x1;
+	y3=random(600);
+	triangle(x1,y1,x2,y2,x3,y3);
+}
+function draw(){
+}
+				</code></pre>
+				<h4>Proposition solution "À faire vous-même 3.10"</h4>
+				<pre><code class="javascript">
+	function setup(){
+		createCanvas(400,400);
+		background(240);
+		a=random(250);
+		rect(200-a/2,200-a/2,a,a);
+	}
+	function draw(){
+	}
+				</code></pre>
+				<h4>Proposition solution "À faire vous-même 3.12"</h4>
+				<pre><code class="javascript">
+function setup(){
+	createCanvas(400,400);
+	background(240);
+	arc(200,200,100,100,radians(35),radians(325));
+}
+function draw(){
+}
+				</code></pre>
+			<h4>Proposition solution "À faire vous-même 6.4"</h4>
+			<pre><code class="javascript">
+var posX;
+var vitX;
+function setup(){
+	createCanvas(200,200);
+	fill(255,0,0);
+	noStroke();
+	posX=20;
+	vitX=2;
+}
+function draw(){
+	background(240);
+	if (posX&lt10 || posX&gt190){
+		vitX=-vitX;
+	}
+	ellipse(posX,100,20,20);
+	posX=posX+vitX;
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 6.5"</h4>
+			<pre><code class="javascript">
+var posX;
+var vitX;
+function setup(){
+	createCanvas(400,100);
+	fill(255,0,0);
+	noStroke();
+	posX=20;
+	vitX=2;
+}
+function draw(){
+	background(240);
+	if (posX&lt20){
+		vitX=2;
+	}
+	if (posX&gt380){
+		vitX=-2;
+	}
+	posX=posX+vitX;
+	pacMan(vitX);
+}
+function pacMan(s){
+	var d;
+	var angle_dep;
+	var angle_arr;
+	if (s&gt0){
+		d=8;
+		angle_dep=radians(30);
+		angle_arr=radians(330);
+	}
+	else{
+		d=-8;
+		angle_dep=radians(-150);
+		angle_arr=radians(150);
+	}
+	fill(255,230,0);
+	arc(posX,50,40,40,angle_dep,angle_arr);
+	fill(0);
+	ellipse(posX+d,33,5,5);
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 6.6"</h4>
+			<pre><code class="javascript">
+var posX;
+var posY;
+var vitX;
+var vitY;
+function setup(){
+	createCanvas(200,200);
+	fill(255,0,0);
+	noStroke();
+	posX=random(10,190);
+	posY=random(10,190);
+	vitX=random(-3,3);
+	vitY=random(-3,3);
+}
+function draw(){
+	background(240);
+	if (posX&lt10 || posX&gt190){
+		vitX=-vitX
+	}
+	if (posY&lt10 || posY&gt190){
+		vitY=-vitY
+	}
+	ellipse(posX,posY,20,20);
+	posX=posX+vitX;
+	posY=posY+vitY;
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 6.7"</h4>
+			<pre><code class="javascript">
+var posX1;
+var posY1;
+var vitX1;
+var vitY1;
+var posX2;
+var posY2;
+var vitX2;
+var vitY2;
+var collision=false;
+function setup(){
+	createCanvas(200,200);
+	fill(255,0,0);
+	noStroke();
+	posX1=random(10,190);
+	posY1=random(10,190);
+	vitX1=random(-3,3);
+	vitY1=random(-3,3);
+	posX2=random(10,190);
+	posY2=random(10,190);
+	vitX2=random(-3,3);
+	vitY2=random(-3,3);
+}
+function draw(){
+	background(240);
+	if (collision==false){
+		deplacement();
+		contact();
+		fill(255,0,0);
+		ellipse(posX1,posY1,20,20);
+		fill(0,255,0);
+		ellipse(posX2,posY2,20,20);
+	}
+}
+function deplacement(){
+	if (posX1&lt10 || posX1&gt190){
+		vitX1=-vitX1;
+	}
+	if (posY1&lt10 || posY1&gt190){
+		vitY1=-vitY1;
+	}
+	if (posX2&lt10 || posX2&gt190){
+		vitX2=-vitX2;
+	}
+	if (posY2&lt10 || posY2&gt190){
+		vitY2=-vitY2;
+	}
+	posX1=posX1+vitX1;
+	posY1=posY1+vitY1;
+	posX2=posX2+vitX2;
+	posY2=posY2+vitY2;
+}
+function contact(){
+	var d=sqrt(pow((posX1-posX2),2)+pow((posY1-posY2),2));
+	if (d&lt20){
+		collision=true;
+	}
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 6.8"</h4>
+			<pre><code class="javascript">
+var angle;
+function setup(){
+	createCanvas (200,200);
+	translate(100,100);
+	angle=0.03;
+}
+function draw(){
+	background(0);
+	rotate(angle);
+	ellipse (0,0,20,20);
+	rect(-5,10,10,40);
+	for (i=0;i&lt7;i++){
+		rotate(radians(45));
+		rect(-5,10,10,40);
+	}
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 6.9"</h4>
+			<pre><code class="javascript">
+var angle1;
+var angle2;
+function setup(){
+	createCanvas(200,200);
+	angle1=0;
+	angle2=0;
+}
+function draw(){
+	push();
+	background(0);
+	push();
+	translate(100,100);
+	ellipse (0,0,20,20);
+	rotate(angle1);
+	rect(-5,10,10,40);
+	for (i=0;i&lt7;i++){
+		rotate(radians(45));
+		rect(-5,10,10,40);
+	}
+	pop();
+	translate(56,56);
+	rotate(angle2);
+	rect(-10,-10,20,20);
+	angle1=angle1+0.02;
+	angle2=angle2-0.1;
+	pop();
+}
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 6.10"</h4>
+			<pre><code class="javascript">
+var compt;
+var theta;
+function setup() {
+	theta=0.05;
+	compt=0;
+	createCanvas(300,300);
+	translate (150,150);
+}
+function draw() {
+	background(255);
+	rotate(theta);
+	tete();
+}
+function tete() {
+	fill(0,255,0);
+	ellipse (0,0,200,200);
+	if (compt&lt10){
+		fill(255,0,0);
+		compt=compt+1;
+	}
+	else if (compt&gt10 && compt&lt20) {
+		fill(0,0,255);
+		compt=compt+1;
+	}
+	else {
+		compt=0;
+	}
+	ellipse (-40,-50,20,30);
+	ellipse (40,-50,20,30);
+	line(0,-10,0,10);
+	line(-10,0,10,0)
+	line(-20,40,20,40);
+	line(-20,50,20,50);
+}
+            </code></pre>
+
+            <h4>Proposition solution "À faire vous-même 7.6"</h4>
+			<pre><code class="javascript">
+
+
+function setup(){
+	createCanvas(300,300);
+	background(240);
+	fill(255,0,0);
+	rect(50,100,200,100);
+}
+function draw(){
+  //
+}
+function mousePressed(){
+    if (inRect()){  
+        fill(0,255,0);
+        rect(50,100,200,100);
+    }
+}
+function inRect(){
+  if (mouseX>50 && mouseX<250 && mouseY>100 && mouseY<200){
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+
+
+
+
+			</code></pre>
+			<h4>Proposition solution "À faire vous-même 8.3"</h4>
+			<pre><code class="javascript">
+var key_d;
+var key_g;
+var key_h;
+var key_b;
+var x;
+var y;
+function setup(){
+	createCanvas(400,400);
+	stroke(0,0,0);
+	fill(0,0,0);
+	key_d=false;
+	key_g=false;
+	key_h=false;
+	key_b=false;
+	x=200;
+	y=200;
+}
+function draw(){
+	background(240);
+	deplacement();
+	ellipse(x,y,20,20)
+}
+function keyPressed(){
+	if (keyCode==39){
+		key_d=true;
+	}
+	if (keyCode==37){
+		key_g=true;
+	}
+	if (keyCode==38){
+		key_h=true;
+	}
+	if (keyCode==40){
+		key_b=true;
+	}
+}
+function keyReleased(){
+	if (keyCode==39){
+		key_d=false;
+	}
+	if (keyCode==37){
+		key_g=false;
+	}
+	if (keyCode==38){
+		key_h=false;
+	}
+	if (keyCode==40){
+		key_b=false;
+	}
+}
+function deplacement(){
+	if (key_d==true){
+		x=x+2;
+	}
+	if (key_g==true){
+		x=x-2;
+	}
+	if (key_h==true){
+		y=y-2;
+	}
+	if (key_b==true){
+		y=y+2;
+	}
+}
+	</code></pre>
+    <h4>Proposition solution "À faire vous-même 10.14"</h4>
+			<pre><code class="javascript">
+var str;
+var tab;
+function setup(){
+    createCanvas(400,200);
+    background(0);
+    textAlign(CENTER);
+    fill(255);
+    str="Bonjour*le*monde!";
+    text("Avant : "+str,200,90);
+    tab=splitTokens(str,"*");
+    str=join(tab," ");
+    text("Après : "+str,200,110);
+}
+function draw(){
+}
+
+	        </code></pre>
+
+    </div>
+	</body>
+</html>

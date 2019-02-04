@@ -1,0 +1,125 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu ou une simulation 3D</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu ou une simulation 3D</span>
+					<span class="navbar-brand">Activité 7</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./bab_intro.html">Introduction</a></li>
+								<li><a href="./bab_a1.html">Activité 1</a></li>
+	              <li><a href="./bab_a2.html">Activité 2</a></li>
+	              <li><a href="./bab_a3.html">Activité 3</a></li>
+								<li><a href="./bab_a4.html">Activité 4</a></li>
+	              <li><a href="./bab_a5.html">Activité 5</a></li>
+	              <li><a href="./bab_a6.html">Activité 6</a></li>
+								<li><a href="./bab_a8.html">Activité 8</a></li>
+	              <li><a href="./bab_a9.html">Activité 9</a></li>
+								<li><a href="./bab_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="bab_a6.html"><span class="fui-triangle-left-large"></a></li>
+						<li><a href="bab_a8.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>Il est possible de soumettre une "FreeCamera" à la gravitation.</p>
+			<p>Vous activerez la "gravitation" pour la caméra avec les 3 lignes suivantes :</p>
+			<pre><code class="javascript">
+scene.gravity = new BABYLON.Vector3(0, -1, 0);
+camera.applyGravity = true;
+camera.checkCollisions = true;
+			</code></pre>
+			<p>"scene.gravity" vous permets d'activer la gravité dans votre scène. Le "BABYLON.Vector3" représente le vecteur intensité de la pesanteur , habituellement noté g. </p>
+
+			<p>Si la notion de vecteur intensité de pesanteur ne vous est pas familière, sachez que vous devez avoir un "Vector3" avec les coordonnées x et z à 0 et la coordonnée y négative (plus cette coordonnée y sera "négative" et plus votre objet "tombera vite" (physiquement c'est un peu plus complexe, mais cette activité n'est pas un cours de physique), la caméra tombera moins vite avec un "Vector3(0, -1, 0)" qu'avec un "Vector3(0, -3, 0)"). Si vous voulez simuler la gravité terrestre, il faudra avoir "Vector3(0, -9.8, 0)". Évidemment, il est possible de simuler un monde avec des lois physiques complètement différentes, par exemple avec une caméra qui "tombera" à l'horizontale : "Vector3(0, 0, 2)" ou une caméra qui "tombera" vers le haut : "Vector3(0, 2, 0)". Je précise que tout ceci est exact si votre "sol" se trouve dans le plan xOz et que les "y" positifs sont vers le haut.</p>
+			<p>"camera.applyGravity" : permets d'activer la gravitation pour votre caméra</p>
+			<p>"camera.checkCollisions" : permets d'activer les collisions pour la caméra (nous aurons l'occasion de revenir sur les collisions un peu plus bas).</p>
+			<h4>À faire vous même 7.1</h4>
+			<p>Créer une nouvelle application app_07</p>
+			<p>script.js</p>
+			<pre><code class="javascript">
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 30, 0), scene);
+camera.attachControl(canvas);
+var light = new BABYLON.PointLight("pointLumineux1", new BABYLON.Vector3(100, 100, 0), scene);
+var plan=BABYLON.Mesh.CreatePlane("sol",200,scene);
+plan.rotation.x=Math.PI/2;
+var cube=BABYLON.Mesh.CreateBox("boite",5.0,scene)
+cube.position.z=40;
+cube.position.y=2;
+scene.gravity = new BABYLON.Vector3(0, -1, 0);
+camera.applyGravity = true;
+camera.checkCollisions = true;
+engine.runRenderLoop(function () {
+ scene.render();
+});
+			</code></pre>
+			<p>Étudier et tester cet exemple. Pour que la caméra (FreeCamera) tombe, il faut très légèrement "bouger" (à l'aide des flèches). Vous constatez que vous traversez le sol et que vous poursuivez votre chute "éternellement". </p>
+			<hr>
+			<h4>À faire vous même 7.2</h4>
+			<p>Créer une nouvelle application app_08</p>
+			<p>Reprenez l'exemple précédent (app_07) et ajoutez la prise en charge des collisions pour le sol (votre sol deviendra "consistant")</p>
+			<pre><code class="javascript">
+plan.checkCollisions = true
+			</code></pre>
+			<p>Vous devez également également ajouter les lignes suivantes :</p>
+			<pre><code class="javascript">
+camera.ellipsoid = new BABYLON.Vector3(1, 1, 1)
+			</code></pre>
+			<p>permet de donner un volume à votre caméra (un objet avec un volume égal à zéro (!?) ne peut pas entrer en collision avec un autre objet)</p>
+			<pre><code class="javascript">
+scene.collisionsEnabled = true
+			</code></pre>
+			<p>permet de rendre les collisions actives dans la scène</p>
+			<p>Tester cette nouvelle application (app_08)</p>
+			<p>Vérifiez que maintenant vous ne passez plus au travers du sol.</p>
+			<hr>
+			<p>Si maintenant vous vous déplacez sur le sol, vous remarquerez sans doute qu'il vous est possible de traverser le "cube".</p>
+			<h4>À faire vous même 7.3</h4>
+			<p>Modifier l'application app_08 pour que la caméra ne puisse plus passer au travers du cube.</p>
+			<p>Tester vos modifications</p>
+
+		</div>
+	</body>
+</html>

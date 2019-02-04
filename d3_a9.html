@@ -1,0 +1,466 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Visualiser des données avec D3</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Visualiser des données avec D3</span>
+					<span class="navbar-brand">Activité 9</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./d3_a1.html">Activité 1</a></li>
+	              <li><a href="./d3_a2.html">Activité 2</a></li>
+	              <li><a href="./d3_a3.html">Activité 3</a></li>
+                  <li><a href="./d3_a4.html">Activité 4</a></li>
+	              <li><a href="./d3_a5.html">Activité 5</a></li>
+	              <li><a href="./d3_a6.html">Activité 6</a></li>
+                  <li><a href="./d3_a7.html">Activité 7</a></li>
+	              <li><a href="./d3_a8.html">Activité 8</a></li>
+                  <li><a href="./d3_a10.html">Activité 10</a></li>
+                  <li><a href="./d3_a11.html">Activité 11</a></li>
+                  <li><a href="./d3_a12.html">Activité 12</a></li>
+                  <li><a href="./d3_a13.html">Activité 13</a></li>
+                  <li><a href="./d3_a14.html">Activité 14</a></li>
+                  <li><a href="./d3_a15.html">Activité 15</a></li>
+                  <li><a href="./d3_a16.html">Activité 16</a></li>
+                  <li><a href="./d3_a17.html">Activité 17</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="d3_a8.html"><span class="fui-triangle-left-large"></a></li>
+              <li><a href="d3_a10.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+            <p>
+                Dans cette activité nous allons commencer à créer des diagrammes dynamiques. Avant de rentrer dans le vif du sujet, nous allons un peu revenir en arrière avec un exemple très simple :
+            </p>
+            <pre><code class="javascript">
+var tab=[30,150,27,85,3,12];
+
+var body=d3.select("body");
+var para=body.selectAll("p").data(tab);
+para.enter()
+    .append("p")
+    .text(function(d,i){
+        return ("La valeur n°"+i+" du tableau est : "+d)
+    });
+            </code></pre>
+            <p>Rien de difficile ici, mais je voudrai revenir en détail sur la méthode <i>enter()</i> :</p>
+            <p>
+                <i>selectAll("p").data(tab)</i> permet d'associer les données contenues dans le tableau avec des balises &ltp&gt. Il y aura autant de balises &ltp&gt qu'il y a de données dans le tableau. Nous avons ici 6 données, il y aura donc, au bout du compte, 6 balises &ltp&gt.
+            </p>
+            <p>Si ces balises &ltp&gt n'existent pas, la méthode <i>enter()</i> va se charger de les créer en appliquant les méthodes qui lui sont "associées" (dans notre exemple nous aurons donc <i>.append("p").text(function(d,i){return ("La valeur n°"+i+" du tableau est : "+d)});</i> qui permet de créer une balise &ltp&gt (<i>append("p")</i>) et qui complète cette balise &ltp&gt avec le texte "La valeur n°... du tableau est : ..." (<i>.text(function(d,i){return ("La valeur n°"+i+" du tableau est : "+d)});</i>).</p>
+            <p>Notez bien que si les 6 balises &ltp&gt existaient déjà dans ma page, la méthode <i>enter()</i> ne serait pas "utilisée". Il est fondamental de bien comprendre que la méthode <i>enter()</i> est utilisée uniquement s'il manque des balises par rapport au nombre de données présentes dans le tableau.</p>
+            <h4>À faire vous même 9.1</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var tab=[30,150,27,85,3,12];
+
+var body=d3.select("body");
+body.append("p").text("coucou, je ne suis pas comme les autres");
+var para=body.selectAll("p").data(tab);
+para.enter()
+    .append("p")
+    .text(function(d,i){
+        return ("La valeur n°"+i+" du tableau est : "+d)
+    });
+            </code></pre>
+        <p>Analysez et testez ce code.</p>
+        <hr>
+        <p>Il y a 6 données dans le tableau, vu le <i>body.selectAll("p").data(tab)</i>, il y a donc besoin de 6 balises &ltp&gt. Il y déjà une balise &ltp&gt présente sur la page (<i>body.append("p").text("coucou, je ne suis pas comme les autres")</i>, il y a donc besoin de créer uniquement 5 balises. Ces 5 balises seront créées selon le modèle défini par la méthode <i>enter()</i> (<i>.append("p").text(function(d,i){return ("La valeur n°"+i+" du tableau est : "+d)});</i>. Comme vous pouvez le constater, la première valeur du tableau (30) est associée à la balise &ltp&gt préexistante. La première balise &ltp&gt créée par la méthode <i>enter()</i> est associée à la seconde valeur du tableau (150).</p>
+        <p>Nous allons voir maintenant comment actualiser la balise préexistante :</p>
+        <h4>À faire vous même 9.2</h4>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tab=[30,150,27,85,3,12];
+
+var body=d3.select("body");
+body.append("p").text("coucou, je ne suis pas comme les autres");
+var para=body.selectAll("p").data(tab);
+para.text(function(d,i){
+        return ("coucou, la valeur n°"+i+" du tableau est : "+d);
+    });
+para.enter()
+    .append("p")
+    .text(function(d,i){
+        return ("La valeur n°"+i+" du tableau est : "+d)
+    });
+        </code></pre>
+        <p>Analysez et testez ce code.</p>
+        <hr>
+        <p>La ligne située juste après <i>var para=body.selectAll("p").data(tab);</i> (<i>para.text(function(d,i){return ("coucou, la valeur n°"+i+" du tableau est : "+d);});</i>) permet de mettre à jour la balise &ltp&gt préexistante.</p>
+        <p>Évidemment, s'il existe plusieurs balises &ltp&gt préexistantes, elles seront toutes mises à jour.</p>
+        <h4>À faire vous même 9.2</h4>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tab=[30,150,27,85,3,12];
+
+var body=d3.select("body");
+body.append("p").text("coucou, je ne suis pas comme les autres");
+body.append("p").text("coucou, je ne suis une autre balise pré-existante");
+var para=body.selectAll("p").data(tab);
+para.text(function(d,i){
+        return ("coucou, la valeur n°"+i+" du tableau est : "+d);
+    });
+para.enter()
+    .append("p")
+    .text(function(d,i){
+        return ("La valeur n°"+i+" du tableau est : "+d)
+    });
+        </code></pre>
+        <p>Analysez et testez ce code.</p>
+        <hr>
+        <p>Comme vous pouvez le constater, la méthode <i>enter()</i> a créé 3 balises et les 2 balises préexistantes ont bien été mis à jour.</p>
+        <p>Il est très important d'avoir bien compris tout ce qu'il y a ci-dessus avant de pouvoir poursuivre, n'hésitez pas à poser des questions si nécessaire.</p>
+        <br>
+        <p>Nous allons maintenant nous intéresser à la mise à jour des données.</p>
+        <h4>À faire vous même 9.2</h4>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tab_0=[30,150,27,85,3,12];
+var tab_1=[25,120,40,75,15,23];
+var tab_2=[40,110,80,76,26,18];
+var tab=[tab_0,tab_1,tab_2]
+var n=0;
+
+var body=d3.select("body");
+function update(data){
+	var para=body.selectAll("p").data(data);
+	para.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+	para.enter()
+    	.append("p")
+    	.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+}
+update(tab[0]);
+setInterval(function() {
+	if (n==2){
+		n=-1;
+	}
+	n=n+1;
+	update(tab[n]);
+}, 3000);
+        </code></pre>
+        <p>Analysez et testez ce code.</p>
+        <hr>
+        <p>Avant de nous lancer dans l'analyse du code ci-dessus, il est nécessaire d'apporter quelques précisions sur la méthode JavaScript <i>setInterval</i> :</p>
+        <p>La méthode <i>setInterval</i> prend 2 paramètres : une fonction f et une durée dt. Le principe est simple, <i>setInterval</i> permet d'exécuter la fonction f tous les dt millisecondes.</p>
+        <p>Si nous prenons l'exemple ci-dessus :</p>
+        <pre><code class="javascript">
+setInterval(function() {
+	if (n==2){
+		n=-1;
+	}
+	n=n+1;
+	update(tab[n]);
+}, 3000);
+        </code></pre>
+        <p>la fonction anonyme <i>function() {if (n==2){n=-1;}n=n+1;update(tab[n]);</i> sera exécutée toutes les 3 secondes (3000 millisecondes).</p>
+        <p>Reprenons l'étude du code du "À faire vous même 9.2" en repartant du début :</p>
+        <pre><code class="javascript">
+var tab_0=[30,150,27,85,3,12];
+var tab_1=[25,120,40,75,15,23];
+var tab_2=[40,110,80,76,26,18];
+var tab=[tab_0,tab_1,tab_2]
+        </code></pre>
+        <p>Nous avons 3 jeux de données, ces jeux de données sont regroupés dans le tableau <i>tab</i> (tab[0] correspond au tableau <i>tab_0</i>, tab[1] correspond au tableau <i>tab_1</i>...</p>
+        <p>Nous avons ensuite créé une fonction <i>update(data)</i> qui contient le code suivant :</p>
+        <pre><code class="javascript">
+function update(data){
+	var para=body.selectAll("p").data(data);
+	para.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+	para.enter()
+    	.append("p")
+    	.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+}
+        </code></pre>
+        <p>Rien de nouveau ici : nous associons les données passées en paramètre de la fonction <i>update</i> avec des balises &ltp&gt (<i>var para=body.selectAll("p").data(data);</i>).</p>
+        <p>Les paragraphes qui existent déjà sont mis à jour : <i>para.text(function(d,i){return ("La valeur n°"+i+" du tableau est : "+d);});</i></p>
+        <p><i>enter()</i> permet de créer les paragraphes manquant : <i>para.enter().append("p").text(function(d,i){return ("La valeur n°"+i+" du tableau est : "+d);});</i></p>
+        <p><i>update(tab[0]);</i> permet d'appeler la fonction update une première fois, les données passées en paramètre correspondent aux données présentes dans la tableau <i>tab_0</i></p>
+        <p>Nous trouvons ensuite la méthode <i>setInterval</i> qui va nous permettre d'exécuter la fonction anonyme toutes les 3 secondes :</p>
+        <pre><code class="javascript">
+setInterval(function() {
+	if (n==2){
+		n=-1;
+	}
+	n=n+1;
+	update(tab[n]);
+}, 3000);
+        </code></pre>
+        <p>Cette fonction anonyme permet d'appeller la fonction update en changeant à chaque fois le tableau de données qui est passé en paramètre (tab_1, tab_2 puis de nouveau tab_0 et ainsi de suite...)</p>
+        <p>Résumons le déroulé des événements :</p>
+        <ul>
+            <li>Au départ, il n'y a aucun paragraphe présent, la fonction <i>update</i> est appelée avec le paramètre <i>tab[0]</i> (c'est à dire <i>tab_0</i>). La méthode <i>enter()</i> permet de créer les 6 paragraphes.</li>
+            <li>3 secondes plus tard, update est de nouveau appelée, mais cette fois avec le paramètre <i>tab[1]</i>. Les paragraphes existent déjà, ils sont mis à jour (avec <i>para.text(function(d,i){return ("La valeur n°"+i+" du tableau est : "+d);});</i>)</li>
+            <li>3 secondes plus tard, update est de nouveau appelée mais cette fois avec le paramètre <i>tab[2]</i>. Les paragraphes existent déjà, ils sont mis à jour</li>
+            <li>3 secondes plus tard, update est de nouveau appelée mais cette fois avec le paramètre <i>tab[0]</i>. Les paragraphes existent déjà, ils sont mis à jour.</li>
+            <li>....</li>
+        </ul>
+        <p>Mais que se passe-t-il si, par exemple, le tableau <i>tab_2</i> contient seulement 5 données ?</p>
+        <h4>À faire vous même 9.3</h4>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tab_0=[30,150,27,85,3,12];
+var tab_1=[25,120,40,75,15,23];
+var tab_2=[40,110,80,76,26];
+var tab=[tab_0,tab_1,tab_2]
+var n=0;
+
+var body=d3.select("body");
+function update(data){
+	var para=body.selectAll("p").data(data);
+	para.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+	para.enter()
+    	.append("p")
+    	.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+}
+update(tab[0]);
+setInterval(function() {
+	if (n==2){
+		n=-1;
+	}
+	n=n+1;
+	update(tab[n]);
+}, 3000);
+        </code></pre>
+        <p>Analysez et testez ce code.</p>
+        <hr>
+        <p>Comme vous pouvez le constater, lors du passage de <i>tab_1</i> vers <i>tab_2</i> le dernier paragraphe ("La valeur n°5 du tableau est : 23") reste en place : logique, le dernier tableau (<i>tab_2</i>) a besoin uniquement de 5 paragraphes, le 6e paragraphe reste en place sans modification.</p>
+        <p>Il est possible de supprimer un paragraphe quand aucune donnée ne lui est associé à l'aide de la méthode <i>exit()</i> :</p>
+        <h4>À faire vous même 9.3</h4>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tab_0=[30,150,27,85,3,12];
+var tab_1=[25,120,40,75,15,23];
+var tab_2=[40,110,80,76,26];
+var tab=[tab_0,tab_1,tab_2]
+var n=0;
+
+var body=d3.select("body");
+function update(data){
+	var para=body.selectAll("p").data(data);
+	para.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+	para.enter()
+    	.append("p")
+    	.text(function(d,i){
+        	return ("La valeur n°"+i+" du tableau est : "+d);
+    	});
+    para.exit().remove();
+}
+update(tab[0]);
+setInterval(function() {
+	if (n==2){
+		n=-1;
+	}
+	n=n+1;
+	update(tab[n]);
+}, 3000);
+        </code></pre>
+        <p>Analysez et testez ce code.</p>
+        <hr>
+        <p><i>para.exit()</i> permet de tenir compte des paragraphes non utilisés (quand il y a plus de paragraphes que de données).</p>
+        <p><i>para.exit().remove()</i> permet de supprimer les paragraphes non utilisés.</p>
+        <br>
+        <p>Nous allons maintenant reprendre l'exemple traité dans le "À faire vous même 8.5" : </p>
+        <pre><code class="javascript">
+var tab=[2,6,8,23,30,27,8];
+var body=d3.select("body");
+var echelleX=d3.scale.ordinal()
+                .domain(["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"])
+                .rangeBands([30, 370]);
+var echelleY=d3.scale.linear()
+                .domain([0,30])
+                .range([370,30]);
+var xAxe = d3.svg.axis()
+                  .scale(echelleX)
+                  .orient("bottom");
+var yAxe = d3.svg.axis()
+                  .scale(echelleY)
+                  .orient("left");
+var svg=body.append("svg");
+svg.attr({"width":"400px","height":"400px"})
+svg.selectAll("rect")
+    .data(tab)
+    .enter()
+    .append("rect")
+    .attr({"fill":"blue","stroke":"black"})
+    .attr("width",function(d,i){
+        return (340/tab.length);
+    })
+    .attr("height",function(d,i){
+        return (370-echelleY(d))
+    })
+    .attr("y",function(d,i){
+        return (echelleY(d))
+    })
+    .attr("x",function(d,i){
+        return (30+i*340/tab.length)
+    });
+svg.append("g")
+    .style("font-family","sans-serif")
+    .style("font-size","9px")
+    .attr({"fill": "none","stroke": "black"})
+    .attr("transform","translate(0,370)")
+    .call(xAxe);
+svg.append("g")
+    .style("font-family","sans-serif")
+    .style("font-size","11px")
+    .attr({"fill": "none","stroke": "black"})
+    .attr("transform","translate(30,0)")
+    .call(yAxe);
+        </code></pre>
+        <p>Nous allons maintenant avoir 3 jeux de données (3 semaines de données) :</p>
+        <h4>À faire vous même 9.4</h4>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tab_0=[2,6,8,23,30,27,8];
+var tab_1=[5,15,5,20,25,28,15];
+var tab_2=[4,10,9,18,21,29,10];
+var tab=[tab_0,tab_1,tab_2];
+var n=0;
+
+var body=d3.select("body");
+
+var echelleX=d3.scale.ordinal()
+                .domain(["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"])
+                .rangeBands([30, 370]);
+var echelleY=d3.scale.linear()
+                .domain([0,30])
+                .range([370,30]);
+var xAxe = d3.svg.axis()
+                  .scale(echelleX)
+                  .orient("bottom");
+var yAxe = d3.svg.axis()
+                  .scale(echelleY)
+                  .orient("left");
+var svg=body.append("svg");
+svg.attr({"width":"400px","height":"400px"});
+svg.append("g")
+    .style("font-family","sans-serif")
+    .style("font-size": "9px")
+    .attr({"fill": "none","stroke": "black"})
+    .attr("transform","translate(0,370)")
+    .call(xAxe);
+svg.append("g")
+    .style("font-family","sans-serif")
+    .style("font-size","11px")
+    .attr({"fill": "none","stroke": "black"})
+    .attr("transform","translate(30,0)")
+    .call(yAxe);
+function update(data){
+	var rect=svg.selectAll("rect").data(data);
+	rect.attr("height",function(d,i){
+        	return (370-echelleY(d))
+    	})
+    	.attr("y",function(d,i){
+        	return (echelleY(d))
+    	});
+    rect.enter()
+    	.append("rect")
+    	.attr({"fill":"blue","stroke":"black"})
+    	.attr("width",function(d,i){
+        	return (340/data.length);
+    	})
+    	.attr("height",function(d,i){
+        	return (370-echelleY(d))
+    	})
+    	.attr("y",function(d,i){
+        	return (echelleY(d))
+    	})
+    	.attr("x",function(d,i){
+        	return (30+i*340/data.length)
+    	});
+}
+update(tab[0]);
+setInterval(function() {
+	if (n==2){
+		n=-1;
+	}
+	n=n+1;
+	update(tab[n]);
+}, 3000);
+        </code></pre>
+        <p>Analysez et testez ce code.</p>
+        <hr>
+        <p>Comme vous pouvez le constater, le principe est identique à ce que nous avons vu plus haut.</p>
+        <p>Il est possible d'ajouter un titre qui, lui aussi, changera dynamiquement :</p>
+        <h4>À faire vous même 9.5</h4>
+        <p>Réalisez un programme permettant d'obtenir ceci :</p>
+        <iframe src="./D3/9_5/index.html" width="430px" height="430px"></iframe>
+        <p>Pour vous aider : il est possible d'effacer le contenu d'une balise en écrivant <i>text("")</i>, par exemple :</p>
+        <pre><code class="javascript">
+titre=svg.append("text").text("coucou");
+titre.text("") //permet d'effacer "coucou"
+        </code></pre>
+        <hr>
+        <p>Afin de rendre les animations plus "douces", D3 propose d'ajouter des transitions. Cela n'est pas très compliqué à mettre en place et je vous laisse étudier la question avec <a href="https://github.com/mbostock/d3/wiki/Transitions" target="_blank">la documentation officielle</a> et <a href="https://www.youtube.com/watch?v=EpeOzq8eDYk&index=8&list=PL6il2r9i3BqH9PmbOf5wA5E1wOG3FT22p" target="_blank">une petite vidéo</a> qui explique tout.</p>
+        <h4>À faire vous même 9.6</h4>
+        <p>Réalisez un programme permettant d'obtenir ceci :</p>
+        <iframe src="./D3/9_6/index.html" width="430px" height="430px"></iframe>
+    </div>
+	</body>
+</html>

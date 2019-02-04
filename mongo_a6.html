@@ -1,0 +1,104 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Initiation aux bases de données</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Initiation aux bases de données</span>
+					<span class="navbar-brand">Activité 6</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./mongo_intro.html">Introduction</a></li>
+								<li><a href="./mongo_a1.html">Activité 1</a></li>
+	              <li><a href="./mongo_a2.html">Activité 2</a></li>
+	              <li><a href="./mongo_a3.html">Activité 3</a></li>
+								<li><a href="./mongo_a4.html">Activité 4</a></li>
+	              <li><a href="./mongo_a5.html">Activité 5</a></li>
+								<li><a href="./mongo_a7.html">Activité 7</a></li>
+								<li><a href="./mongo_a8.html">Activité 8</a></li>
+	              <li><a href="./mongo_a9.html">Activité 9</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="mongo_a5.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="mongo_a7.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>Imaginons que nous voulions la fiche des femmes de plus de 40 ans.</p>
+			<p>Nous avons ici 2 contraintes : sexe:"F" <strong>et</strong> age:{$gt:40} dans la même requête.</p>
+			<p>Pour obtenir ce "et", il suffit de séparer les 2 contraintes par une virgule.</p>
+			<h4>À faire vous-même 6.1</h4>
+			<p>Dans la console mongoDB, taper la requête suivante :</p>
+			<pre><code>
+db.fiches.find({sexe:"F", age:{$gt:40}})
+			</code></pre>
+			<p>Que retourne cette requête ?</p>
+			<hr>
+			<p>Si vous désirez ajouter des contraintes, il suffit de les mettre les unes après les autres en les séparant par des virgules</p>
+			<p>exemple :</p>
+			<pre><code>
+db.fiches.find({sexe:"F", age:{$gt:40}, secret:false})
+			</code></pre>
+			<p>Il est aussi possible d'utiliser un "ou" comme dans : "Nous voulons la fiche des personnes de plus de 45 ans et des personnes ayant un profil "secret"."</p>
+			<p>Attention, malgré la présence d'un "et" dans notre demande nous allons devoir utiliser un "ou" dans notre requête (puisqu'il nous faut à la fois les fiches des personnes de plus de 45 ans et les fiches des personnes ayant un profil "secret") : age:{$gt:45} ou secret:true</p>
+			<h4>À faire vous-même 6.2</h4>
+			<p>Dans la console mongoDB, taper la requête suivante :</p>
+			<pre><code>
+db.fiches.find({$or:[{age:{$gt:45}}, {secret:true}]})
+			</code></pre>
+			<p>Vérifier que le résultat retourné est correct.</p>
+			<hr>
+			<p>Il est possible de combiner les "et" et les "ou"</p>
+			<p>Comment répondre à la demande suivante :</p>
+			<p>Nous voulons la fiche des femmes qui ont moins de 30 ans ou qui ont profil "public". (attention nous avons ici un "ou", pas un "ou exclusif" : la fiche d'une femme de moins de 30 ans qui a un profil "public" sera prise en compte par cette requête.)</p>
+			<h4>À faire vous-même 6.3</h4>
+			<p>Dans la console mongoDB, taper la requête suivante :</p>
+			<pre><code>
+db.fiches.find({sexe:"F", $or:[{age:{$lt:30}}, {secret:false}]})
+			</code></pre>
+			<p>Vérifier que le résultat retourné est correct.</p>
+			<hr>
+			<p>Comme vous pouvez le constater les requêtes peuvent être complexes, attention à ne pas vous "emmêler les pinceaux" avec les "et" et les "ou" !</p>
+			<h4>À faire vous-même 6.4</h4>
+			<p>Écrire et tester la requête permettant de récupérer la fiche des hommes de plus de 50 ans qui se prénomment Pierre ou Gérard</p>
+			<p>Pour information, vous ne devriez avoir qu'une seule réponse</p>
+			<hr>
+	</div>
+	</body>
+</html>

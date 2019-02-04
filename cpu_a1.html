@@ -1,0 +1,130 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Fonctionnement d'un microprocesseur</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Fonctionnement d'un microprocesseur</span>
+        </div>
+
+      </div>
+    </nav>
+    <div class="container act">
+      <h4>Présentation de la machine de Von Neumann</h4>
+      <p>John Von Neumann (1903-1957) a donné son nom à la "machine de Von Neumann". Cette architecture de Von Neumann est encore utilisée dans la quasi-totalité des ordinateurs actuels, voici pour commencer une version simplifiée de cette machine.</p>
+      <img src="img/cpu_1.jpg"/>
+      <p>Registre A : registre accumulateur (permet de "ranger" une valeur avant de l'utiliser)</p>
+      <p>Registre RI : registre instruction (l'instruction en cours est stockée dans ce registre)</p>
+      <p>Registre CO : (compteur ordinal) pointe en début d'instruction sur l'instruction que l'on veut traiter</p>
+      <p>Mémoire (RAM) : mémoire adressable (instructions et données sont "rangées" dans la mémoire. Chaque instruction ou donnée "possède" une adresse qui permet de repérer sa position en mémoire)</p>
+      <p>RADM  : registre d'adresses mémoires (contient des "adresses mémoires")</p>
+      <h4>Langage machine et langage d'assemblage</h4>
+      <h5>Présentation</h5>
+      <p>Le langage machine (binaire) est le seul langage "compris" par la machine, mais il est trop difficile à lire pour un humain (exemple d'une instruction : 10010010000111000101). Une amélioration très importante est de donner aux différentes instructions une représentation symbolique (ADD #3 est plus facile à lire et à comprendre que 0001000000000011 pourtant les 2 ont la même signification).</p>
+      <h5>Jeu d'instructions simplifié</h5>
+      <p>LDA : a pour but de mettre une donnée dans le registre A dont l'adresse ou la valeur est donnée en paramètre</p>
+			<p>ADD : additionne la donnée dont l'adresse ou la valeur est donnée en paramètre à la valeur contenue dans A</p>
+			<p>STA : permet de sauvegarder en mémoire (RAM) à l'adresse donnée en paramètre le contenu du registre A</p>
+			<p>BRA : permet de rompre l'ordre d'exécution séquentiel (ligne après ligne) des instructions en se "branchant" à l'instruction dont l'adresse est donnée en paramètre.</p>
+			<p>BRZ : permet de rompre la séquence de façon conditionnelle au contenu du registre A : si on trouve la valeur 0 dans le registre A=>l'instruction suivante est celle indiquée par le paramètre. Autrement, le programme suit son cours normal.</p>
+			<h5>Les modes d'adressage</h5>
+			<p>adressage immédiat : LDA #3=>charge la valeur 3 dans le registre A</p>
+			<p>adressage direct : LDA 100=>charge dans A la valeur contenue en mémoire à l'adresse 100</p>
+			<h5>exemples</h5>
+			<p>Voyons comment la machine de Von Neumann gère une suite d'instruction :</p>
+			<p><strong>Etat 1</strong></p>
+			<p>CO : 150<br>RADM  : ???<br>Mémoire :</p>
+			<img src="img/cpu_2.png"/><br>
+			<p>RI : LDA#3<br>A : ???<br>Explication : CO : 150 =&gt La prochaine instruction à lire se trouve en mémoire à l'adresse 150 (c'est un exemple) ; RI : LDA#3 =&gt On a placé LDA#3 dans RI</p>
+			<p><strong>Etat 2</strong></p>
+			<p>CO : 150<br>RADM  : ???<br>Mémoire :</p>
+			<img src="img/cpu_3.png"/><br>
+			<p>RI : LDA#3<br>A : 3<br>Explication : A : 3 =&gt On a "rangé" la valeur 3 dans le registre A</p>
+			<p>On passe maintenant  à l'instruction suivante CO=CO+1 =&gt CO : 151</p>
+			<p><strong>Etat 3</strong></p>
+			<p>CO : 151<br>RADM  : ???<br>Mémoire :</p>
+			<img src="img/cpu_4.png"/><br>
+			<p>RI : STA 201<br>A : 3<br>Explication : on a chargé l'instruction suivante (STA 201) dans le registre d'instruction</p>
+			<p><strong>Etat 4</strong></p>
+			<p>CO : 151<br>RADM  : ???<br>Mémoire :</p>
+			<img src="img/cpu_5.png"/><br>
+			<p>RI : STA 201<br>A : 3<br>Explication : On a "rangé" la valeur contenue dans le registre A (3) en mémoire (à l'adresse 201) et on passe à l'instruction suivante CO=CO+1 : on aura donc ensuite CO : 152</p>
+			<p><strong>Etat 5</strong></p>
+			<p>CO : 152<br>RADM  : ???<br>Mémoire :</p>
+			<img src="img/cpu_6.png"/><br>
+			<p>RI : BRA 576<br>A : 3<br>Explication : Nous avons ici un saut ( rupture de l'ordre d'exécution séquentiel), le compteur cardinal pointe maintenant sur l'instruction située à l'adresse 576 (la prochaine instruction exécutée sera donc LDA 343)</p>
+			<p>.....</p>
+			<h5>exemple de programme</h5>
+			<p>voici un programme en Python</p>
+			<pre><code class="python">
+x=3
+y=5
+z=x+y
+			</code></pre>
+			<p>et en assembleur cela donne quoi ?</p>
+			<p>Nous pouvons définir des variables x, y et z qui sont associées à des adresses en mémoire (une variable correspond à une adresse en mémoire, par exemple on associe x à la case mémoire d'adresse 121).</p>
+			<p>NB : la partie du code permettant d'associer les variables x, y et z à des "cases" mémoire n'est pas donnée ici (par souci de ne pas trop compliquer les choses)</p>
+			<pre><code>
+LDA #3
+STA x
+LDA #5
+STA y
+LDA x
+ADD y
+STA z
+			</code></pre>
+			<h5>Et les "langages de haut niveau" dans tout cela ?</h5>
+			<p>Il existe différents langages qui permettent de programmer un ordinateur, mais le seul directement utilisable par le processeur est, comme nous venons de le voir, le langage machine (suite de 0 et de 1)</p>
+			<p>Vous connaissez déjà quelques langages de haut niveau (au moins le Python et le JavaScript, mais il en existe beaucoup d'autres : C, C++, Java.....).</p>
+			<p>Les instructions, une fois écrites par le programmeur, sont forcément « traduites » en langage  machine.</p>
+			<p>Un programme spécialisé assure cette traduction. Ce système de traduction s'appellera interpréteur ou bien compilateur, suivant la méthode utilisée pour effectuer la traduction.</p>
+			<p>En simplifiant à l'extrême, l'interpréteur assure une traduction "à la volée" des instructions. (une ligne est traduite en langage machine puis immédiatement exécutée).</p>
+			<p>La compilation traduit l'ensemble des instructions en langage machine. Une fois cette traduction assurée, il est alors possible d'exécuter le programme (le fameux .exe sous windows). C et C++ sont des langages compilés.</p>
+			<p>Les langages compilés sont réputés plus rapides à l'exécution que les langages interprétés. En revanche, il faut savoir que la compilation peut prendre beaucoup de temps (pour de gros programmes) et à chaque modification du code source (code source : suite d'instruction écrite par le programmeur), une nouvelle compilation est nécessaire.</p>
+			<p>Il existe une troisième voie qui a le vent en poupe : le code source est compilé en pseudocode (appelé bytecode) qui n'est pas encore du langage machine, mais s'en rapproche par rapport au code source de départ. Ce bytecode est ensuite interprété (l'interprétation est beaucoup plus rapide que pour des langages 100% interprétés). Beaucoup de langages dit "modernes" utilisent ce système de bytecode : Python, Java, JavaScript.....(tous ces langages n'utilisent pas le même système d'interprétation du bytecode, par exemple Java utilise une machine virtuelle pour effectuer cette interprétation).</p>
+			<h5>Pour aller plus loin...</h5>
+			<p>En fait le système est un peu plus complexe</p>
+			<img src="img/cpu_8.jpg"/><br>
+			<p>Le bus permet aux impulsions électriques (représentées par des 0 et des 1) de "voyager" entre les différentes parties du système.</p>
+			<p>Les multiplexeurs (MUX1 et MUX2 sur le schéma) sont en quelque sorte des aiguillages. Par exemple, en fonction de l'état de MUX1 (état commandé par un quatrième "fil" non représenté sur le schéma), nous retrouvons en sortie de MUX1 les informations en provenance du registre CO ou du registre RADM.</p>
+			<p>L'unité arithmétique et logique (UAL) peut, selon son état, présenter à sa sortie :</p>
+			<ul>
+				<li>les informations en provenance du registre A</li>
+				<li>les informations en provenance de MUX2</li>
+				<li>l'addition des informations qui proviennent du registre A et de MUX2</li>
+			</ul>
+			<p>Chacun de ces systèmes est composé de nombreuses portes logiques qui assurent les fonctions décrites ci-dessus.
+			<p>Vous devez aussi savoir que tout ce beau monde doit fonctionner de concert. Le chef d'orchestre est un système d'horloge qui donne des "tops" régulièrement, à chaque top, les différents composants sont "autorisés" à changer d'état. En simplifiant, un micro processeur à 2 GHz possède une horloge qui donne 2 milliards de tops par seconde !</p>
+			<p>Pour terminer, et ici encore en simplifiant énormément, chaque instruction en langage machine va électriquement parlant agir sur les portes logiques et ainsi modifier l'état du système à chaque top d'horloge.</p>
+			<p>Et avec tout cela, on arrive à "fabriquer" des jeux vidéos et bien d'autres choses </p>
+		</div>
+	</body>
+</html>

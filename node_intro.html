@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Programmer côté serveur : ExpressJS</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Programmer côté serveur : ExpressJS</span>
+					<span class="navbar-brand">Introduction</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./node_a1.html">Activité 1</a></li>
+                <li><a href="./node_a2.html">Activité 2</a></li>
+                <li><a href="./node_a3.html">Activité 3</a></li>
+                <li><a href="./node_a4.html">Activité 4</a></li>
+                <li><a href="./node_a5.html">Activité 5</a></li>
+								<li><a href="./node_a6.html">Activité 6</a></li>
+	              <li><a href="./node_a7.html">Activité 7</a></li>
+	              <li><a href="./node_a8.html">Activité 8</a></li>
+								<li><a href="./node_a9.html">Activité 9</a></li>
+	              <li><a href="./node_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="node_a1.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+      <p>
+        Il y a quelques années, le web était dit « statique » : le concepteur de site web écrivait son code HTML et ce code était simplement envoyé par le serveur au client. Les personnes qui consultaient le site avaient toutes droit à la même page, le web était purement « consultatif ».
+      </p>
+      <p>
+        Les choses ont ensuite évolué : les serveurs sont aujourd'hui capables de générer eux même du code HTML. Les résultats qui s'afficheront à l'écran dépendront donc des demandes effectuées par l'utilisateur du site : le web est devenu dynamique.
+      </p>
+      <p>
+        Différents langages de programmation peuvent être utilisés « côté serveur » afin de permettre au serveur de générer lui-même le code HTML à envoyer. Le plus utilisé encore aujourd'hui se nomme PHP. Nous n'utiliserons pas PHP, je n'insisterai donc pas sur ce sujet. D'autres langages sont utilisables côté serveur (pour permettre la génération dynamique de code HTML), voici un liste non-exhaustive : Java, Python, ASP....
+      </p>
+      <p>
+				J'ai volontairement omis un langage : le JavaScript. L'utilisation du JavaScript côté serveur  est relativement récente. Pour ne pas partir avec de fausses idées en tête, vous devez bien comprendre que nous allons parler de JavaScript qui s’exécute sur le serveur. Quand vous associez une page HTML avec un script JavaScript (à l'aide de la balise &ltscript&gt), ce script est bien stocké sur le serveur, mais il est envoyé au client (par l'intermédiaire d'une requête HTTP) afin d'être exécuté par le navigateur. Attention donc à ne pas confondre le JavaScript exécuté côté client (par le navigateur) et le JavaScript exécuté côté serveur.
+      </p>
+			<h4>Et nodeJS fût....</h4>
+			<p>
+				Comme je viens de vous le rappeler, jusqu'à une époque récente, le JavaScript était uniquement destiné à être exécuté sur le client. Pour être plus précis, tous les navigateurs web (Firefox, Chrome, Opéra...) sont « équipés » d'un moteur JavaScript. Ce moteur JavaScript a pour but d'interpréter le code et d'afficher le résultat dans le navigateur.
+			</p>
+			<p>
+				Le moteur du navigateur made in Google, Chrome, se nomme V8.
+			</p>
+			<p>
+				Ryan Dahl a décidé, en 2009, d'utiliser le moteur V8 afin de permettre l'exécution de JavaScript côté serveur (c'est-à-dire sans utiliser de navigateur web) : nodeJS était né !
+			</p>
+			<p>
+				Je précise que nodeJS n'est ni le premier, ni le seul à proposer du JavaScript côté serveur, mais force et de constater qu'aujourd'hui, c'est lui qui à le vent en poupe.
+			</p>
+			<p>
+				Précisons une chose : nodeJS n'est pas un serveur web (comme Apache par exemple), c'est juste une plateforme permettant d’exécuter du JavaScript.  Avec nodeJS nous allons devoir programmer notre serveur web !
+			</p>
+    </div>
+	</body>
+</html>

@@ -1,0 +1,406 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Visualiser des données avec D3</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Visualiser des données avec D3</span>
+					<span class="navbar-brand">Activité 11</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./d3_a1.html">Activité 1</a></li>
+	              <li><a href="./d3_a2.html">Activité 2</a></li>
+	              <li><a href="./d3_a3.html">Activité 3</a></li>
+                  <li><a href="./d3_a4.html">Activité 4</a></li>
+	              <li><a href="./d3_a5.html">Activité 5</a></li>
+	              <li><a href="./d3_a6.html">Activité 6</a></li>
+                  <li><a href="./d3_a7.html">Activité 7</a></li>
+	              <li><a href="./d3_a8.html">Activité 8</a></li>
+                  <li><a href="./d3_a9.html">Activité 9</a></li>
+                  <li><a href="./d3_a10.html">Activité 10</a></li>
+                  <li><a href="./d3_a12.html">Activité 12</a></li>
+                  <li><a href="./d3_a13.html">Activité 13</a></li>
+                  <li><a href="./d3_a14.html">Activité 14</a></li>
+                  <li><a href="./d3_a15.html">Activité 15</a></li>
+                  <li><a href="./d3_a16.html">Activité 16</a></li>
+                  <li><a href="./d3_a17.html">Activité 17</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="d3_a10.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="d3_a12.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+           <p>Il est possible d'ajouter du texte dans un diagramme camembert</p>
+            <h4>À faire vous même 11.1</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var tab=[15,30,35,70];
+var couleurs=["green","black","purple","blue"];
+var body=d3.select("body");
+var svg=body.append("svg");
+svg.attr({"width":"400px","height":"400px"})
+svg.style("border","1px solid black");
+
+var pieTab=d3.layout.pie();
+pieTab.value(function(d){
+		return d;
+	});
+
+var arc=d3.svg.arc();
+arc.outerRadius(180);
+
+var grp=svg.append("g").attr("transform","translate(200,200)");
+var graph=grp.selectAll("path").data(pieTab(tab))
+graph.enter()
+	.append("path")
+	.attr("fill",function(d,i){
+			return(couleurs[i]);
+		})
+	.attr("d",arc);
+var texte=grp.selectAll("text").data(pieTab(tab));
+texte.enter()
+	.append("text")
+	.attr("transform", function(d) {
+		d.innerRadius=0;
+		d.outerRadius=180;
+        return "translate(" + arc.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+	.attr("fill","white")
+    .text(function(d) {
+        return d.data;
+    });
+        </code></pre>
+        <p>Testez ce code</p>
+        <hr>
+        <p>Quelques commentaires sur le code du "À faire vous même 11.1" :</p>
+        <p>La seule nouveauté, par rapport aux exemples précédents, est que nous ajoutons un <i>text</i> au groupe <i>grp</i> :</p>
+        <pre><code class="javascript">
+var texte=grp.selectAll("text").data(pieTab(tab));
+texte.enter()
+	.append("text")
+	.attr("transform", function(d) {
+		d.innerRadius=0;
+		d.outerRadius=180;
+        return "translate(" + arc.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+	.attr("fill","white")
+    .text(function(d) {
+        return d.data;
+    });
+        </code></pre>
+        <p>La transformation</p>
+        <pre><code class="javascript">
+.attr("transform", function(d) {
+    d.innerRadius=0;
+    d.outerRadius=180;
+    return "translate(" + arc.centroid(d) + ")";
+})
+        </code></pre>
+        <p>nous permet d'afficher le texte correctement. Sans cette transformation, tous les textes seraient affichés au centre du camembert. Pour que cela fonctionne correctement, il est nécessaire de renseigner les "innerRadius" et "outerRadius".</p>
+        <p><i>.attr("text-anchor", "middle")</i> permet de bien centrer le texte, alors que <i>.attr("fill","white")</i> permet d'avoir un texte en blanc.</p>
+        <p><i>.text(function(d) {return d.data;});</i> permet d'afficher le texte (qui correspond aux valeurs contenues dans le tableau <i>tab</i>). J'attire votre attention sur le <i>d.data</i>, pourquoi ce "data" ?</p>
+        <p>Il ne faut pas perdre de vue que le layout "pie" a transformé nos données afin de les rendre compatibles avec la construction d'un diagramme camembert. Voici à quoi ressemblent nos données après transformation :</p>
+        <pre><code class="javascript">
+Object { data: 15, value: 15, startAngle: 5.654866776461628, endAngle: 6.283185307179586, padAngle: 0, innerRadius: 0, outerRadius: 180 }
+Object { data: 30, value: 30, startAngle: 4.39822971502571, endAngle: 5.654866776461628, padAngle: 0, innerRadius: 0, outerRadius: 180 }
+Object { data: 35, value: 35, startAngle: 2.9321531433504733, endAngle: 4.39822971502571, padAngle: 0, innerRadius: 0, outerRadius: 180 }
+Object { data: 70, value: 70, startAngle: 0, endAngle: 2.9321531433504733, padAngle: 0, innerRadius: 0, outerRadius: 180 }
+        </code></pre>
+        <p>Nous avons des objets JavaScript relativement complexes, la seule chose à retenir que les valeurs de notre tableau se trouvent dans l'attribut <i>data</i> des différents objets. Donc, pour récupérer les valeurs du tableau, il nous faudra écrire <i>d.data</i></p>
+        <br>
+        <p>Il est possible d'utiliser des données plus complexes, par exemple, un tableau d'objets JavaScript :</p>
+        <pre><code class="javascript">
+var tab=[{"valeur": 15, "nom":"A"},{"valeur": 30, "nom":"B"},{"valeur": 35, "nom":"C"},{"valeur": 70, "nom":"D"}];
+        </code></pre>
+        <p>Chaque objet comporte 2 attributs : "valeur" et "nom". <i>tab[1].valeur</i> est égal à 30 et <i>tab[2].nom</i> est égal "C".</p>
+        <h4>À faire vous même 11.2</h4>
+        <p>Que vaut tab[0].nom ? et tab[3].valeur ?</p>
+        <hr>
+        <h4>À faire vous même 11.3</h4>
+        <p>Compléter le code ci-dessous afin d'obtenir ceci :</p>
+        <iframe src="./D3/11_3/index.html" width="430px" height="430px"></iframe>
+        <pre><code class="javascript">
+var tab=[{"valeur": 15, "nom":"A"},{"valeur": 30, "nom":"B"},{"valeur": 35, "nom":"C"},{"valeur": 70, "nom":"D"}];
+var couleurs=["green","black","purple","blue"];
+var body=d3.select("body");
+var svg=body.append("svg");
+svg.attr({"width":"400px","height":"400px"})
+svg.style("border","1px solid black");
+
+var pieTab=d3.layout.pie();
+pieTab.value(function(d){
+		return d.valeur;
+	});
+
+var arc=d3.svg.arc();
+arc.outerRadius(180);
+
+var grp=svg.append("g").attr("transform","translate(200,200)");
+var graph=grp.selectAll("path").data(pieTab(tab))
+graph.enter()
+	.append("path")
+	.attr("fill",function(d,i){
+			return(couleurs[i]);
+		})
+	.attr("d",arc);
+............
+............
+............
+............
+        </code></pre>
+        <hr>
+        <p>Il est possible de réorganiser le code, au lieu de lier les données à la fois aux chemins (path) et aux textes (text), il est possible de lier les données directement aux groupes qui contiendront un chemin et un texte. Pour l'instant, nous avons un groupe (<i>grp</i>), qui contient plusieurs chemins et plusieurs textes. Dans la version que nous allons développer ci-dessous, nous relierons les données aux groupes, nous aurons alors plusieurs groupes (autant de groupes qu'il y a de données dans le tableau), chaque groupe contiendra un chemin (<i>path</i>) et un texte.</p>
+        <h4>À faire vous même 11.4</h4>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var tab=[{"valeur": 15, "nom":"A"},{"valeur": 30, "nom":"B"},{"valeur": 35, "nom":"C"},{"valeur": 70, "nom":"D"}];
+var couleurs=["green","black","purple","blue"];
+var body=d3.select("body");
+var svg=body.append("svg");
+svg.attr({"width":"400px","height":"400px"})
+svg.style("border","1px solid black");
+
+var pieTab=d3.layout.pie();
+pieTab.value(function(d){
+		return d.valeur;
+	});
+
+var arc=d3.svg.arc();
+arc.outerRadius(180);
+
+var grp=svg.selectAll("g").data(pieTab(tab))
+grp.enter()
+    .append("g")
+    .attr("transform","translate(200,200)");
+
+grp.append("path")
+	.attr("fill",function(d,i){
+			return(couleurs[i]);
+		})
+	.attr("d",arc);
+
+grp.append("text")
+	.attr("transform", function(d,i) {
+		d.innerRadius=0;
+		d.outerRadius=180;
+        return "translate(" + arc.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+	.attr("fill","white")
+    .text(function(d,i) {
+        return d.data.nom;
+    });
+        </code></pre>
+        <hr>
+        <p>Dans le code ci-dessus, comme indiqué plus haut, nous associons les données à des groupes svg (un groupe différent pour chaque donnée). A chacun des groupes nous ajoutons un chemin et un texte.</p>
+               <pre><code class="javascript">
+.text(function(d,i) {
+    return d.data.nom;
+});
+        </code></pre>
+        <p>Dans le code ci-dessus, le paramètre <i>d</i> correspond à une des données présentes dans le tableau <i>tab</i> (parce que le tableau <i>tab</i> est lié aux groupes (<i>grp</i>) et que le texte <i>text</i> se trouve dans un groupe).</p>
+        <h4>À faire vous même 11.5</h4>
+        <p>À partir des données suivantes (PIB des pays en 2014) :</p>
+         <pre><code class="javascript">
+[{"valeur": 18287000, "nom":"États-Unis"},{"valeur": 11285000, "nom":"Chine"},{"valeur": 4882000, "nom":"Japon"},{"valeur": 3909000, "nom":"Allemagne"},{"valeur": 3003000, "nom":"Royaume-Uni"},{"valeur":2935000, "nom":"France"}];
+        </code></pre>
+        <p>Créez un programme permettant d'obtenir ceci :</p>
+        <iframe src="./D3/11_5/index.html" width="730px" height="730px"></iframe>
+        <hr>
+        <p>Il est possible de créer une légende :</p>
+        <iframe src="./D3/11_6/index.html" width="630px" height="630px"></iframe>
+        <h4>À faire vous même 11.6</h4>
+        <p>Étudiez attentivement ce programme après l'avoir testé</p>
+        <pre><code class="javascript">
+var tab=[{"valeur": 18287000, "nom":"États-Unis"},{"valeur": 11285000, "nom":"Chine"},{"valeur": 4882000, "nom":"Japon"},{"valeur": 3909000, "nom":"Allemagne"},{"valeur": 3003000, "nom":"Royaume-Uni"},{"valeur":2935000, "nom":"France"}];
+var couleurs=["green","black","purple","blue","grey","olive"];
+var body=d3.select("body");
+var svg=body.append("svg");
+svg.attr({"width":"600px","height":"600px"})
+
+var pieTab=d3.layout.pie();
+pieTab.value(function(d){
+		return d.valeur;
+	});
+
+var arc=d3.svg.arc();
+arc.outerRadius(200);
+
+var grp=svg.selectAll("g.arcs").data(pieTab(tab))
+grp.enter()
+    .append("g")
+    .attr("class","arcs")
+    .attr("transform","translate(210,350)");
+
+grp.append("path")
+	.attr("fill",function(d,i){
+			return(couleurs[i]);
+		})
+	.attr("d",arc);
+
+var leg=svg.selectAll("g.legende").data(pieTab(tab))
+leg.enter()
+    .append("g")
+    .attr("class","legende")
+    .attr("transform",function(d,i){
+        return "translate(450,"+(100+30*i)+")";
+        });
+
+leg.append("rect")
+	.attr("width",15)
+	.attr("height",15)
+	.attr("fill",function (d,i){
+		return couleurs[i];
+	});
+leg.append("text")
+	.attr("x", 25)
+	.attr('y', 12)
+	.attr("fill","black")
+	.style("font-size","12px")
+    .text(function(d,i) {
+        return d.data.nom;
+    });
+        </code></pre>
+        <hr>
+            <pre><code class="javascript">
+var leg=svg.selectAll("g.legende").data(pieTab(tab))
+leg.enter()
+    .append("g")
+    .attr("class","legende")
+    .attr("transform",function(d,i){
+        return "translate(450,"+(100+30*i)+")";
+        });
+        </code></pre>
+        <p>Comme vous pouvez le constater, nous créons une série de groupe (<i>leg</i>) qui sera associée aux données contenues dans <i>tab</i>. Afin de ne pas "confondre" avec les groupes qui ont été utilisés pour créer le diagramme (<i>grp</i>), nous avons attribué une classe différente à chacune des séries de groupes (la classe <i>arc</i> pour les groupes associés au diagramme et la classe <i>legende</i> pour les groupes associés à la légende).</p>
+        <p>J'insiste encore sur le fait qu'à chaque ligne de la légende correspond un nouveau groupe. Il y aura autant de groupes avec la classe <i>legende</i> qu'il y a de données dans le tableau <i>tab</i>.</p>
+                <pre><code class="javascript">
+leg.append("rect")
+	.attr("width",15)
+	.attr("height",15)
+	.attr("fill",function (d,i){
+		return couleurs[i];
+	});
+leg.append("text")
+	.attr("x", 25)
+	.attr('y', 12)
+	.attr("fill","black")
+	.style("font-size","12px")
+    .text(function(d,i) {
+        return d.data.nom;
+    });
+        </code></pre>
+        <p>À chaque groupe de classe <i>legende</i> on ajoute un rectangle et un texte. Attention les coordonnées du texte sont données par rapport au coin haut-gauche du groupe (même chose pour les rectangles).</p>
+        <p>Cet exemple est un peu difficile, n'hésitez pas à poser des questions.</p>
+        <h4>À faire vous même 11.7</h4>
+        <p>Ajoutez un titre afin d'obtenir ceci :</p>
+        <iframe src="./D3/11_7/index.html" width="630px" height="500px"></iframe>
+        <hr>
+        <p>Il est possible de réaliser un diagramme camembert dynamique :</p>
+        <iframe src="./D3/11_8/index.html" width="630px" height="500px"></iframe>
+            <h4>À faire vous même 11.8</h4>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var tab_0=[30,150,27,34];
+var tab_1=[25,120,40,75];
+var tab_2=[40,110,80,76];
+var tab=[tab_0,tab_1,tab_2]
+var n=0;
+var couleurs=["green","yellow","purple","blue"];
+var body=d3.select("body");
+var svg=body.append("svg");
+svg.attr({"width":"400px","height":"400px"})
+svg.style("border","1px solid black");
+
+var pieTab=d3.layout.pie();
+pieTab.value(function(d){
+        return d;
+    });
+
+var arc=d3.svg.arc();
+arc.outerRadius(180);
+
+var grp=svg.append("g").attr("transform","translate(200,200)");
+var graph=grp.selectAll("path").data(pieTab(tab_0))
+graph.enter()
+	.append("path")
+	.attr("fill",function(d,i){
+			return(couleurs[i]);
+		})
+	.attr("d",arc)
+	.each(function(d){this._current=d;});
+
+function update(data){
+    graph.data(pieTab(data));
+    graph.transition().duration(750).attrTween("d", arcTween);
+
+}
+
+function arcTween(a) {
+  var i = d3.interpolate(this._current, a);
+  this._current = i(0);
+  return function(t) {
+    return arc(i(t));
+  };
+}
+setInterval(function() {
+	if (n==2){
+		n=-1;
+	}
+	n=n+1;
+	update(tab[n]);
+}, 3000);
+        </code></pre>
+        <p>Testez ce code</p>
+        <hr>
+        <p>Même si la structure reste quelque peu identique à ce nous avons vu dans l'activité 9 (présence d'une fonction update), il y a tout de même beaucoup de différence. Je ne vais pas entrer dans les détails car cela est un peu complexe. Si vous avez besoin de construire un diagrame camembert dynamique, il suffira de reprendre la structure exposé ici. Quelques points à retenir :</p>
+        <ul>
+            <li>nous avons ajouté la ligne <i>.each(function(d){this._current=d;});</i> qui permet d'enregistrer la valeur courante des angles.</li>
+            <li>la fonction update comporte 2 lignes : <i>graph.data(pieTab(data));</i> (qui remet à jour les données) et <i>graph.transition().duration(750).attrTween("d", arcTween);</i> (qui redessine le diagrame)</li>
+            <li>nous avons dû ajouter une fonction <i>arcTween</i>. En ce qui concerne cette fonction, je ne rentrerai pas dans les détails, vous devez juste savoir qu'elle est indispensable.</li>
+        </ul>
+    </div>
+	</body>
+</html>

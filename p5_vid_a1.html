@@ -1,0 +1,154 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>La vidéo avec p5.js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">La vidéo avec p5.js</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_vid_a2.html">Activité 2</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="p5_vid_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Avant de pouvoir travailler sur ces activités, il est nécessaire d'avoir étudié :</p>
+        <ul>
+            <li>les activités consacrées à p5js. Si ce n'est pas le cas, rendez-vous <a href="p5_base_a1.html">ici</a></li>
+            <li>les deux activités consacrées au traitement des images avec p5js (voir <a href="p5_Img_a1.html">ici</a>)</li>
+        </ul>
+        <p>Pour des raisons que je n'aborderai ici, il est nécessaire d'utiliser le navigateur Firefox de chez Mozilla pour tester les exemples proposés dans ces activités.</p>
+        <h4>À faire vous-même 1.1</h4>
+        <ul>
+            <li>Dans votre dossier personnel, créez un dossier "p5_vid".</li>
+            <li>Créez un dossier "vid_0" dans le dossier "p5_vid"</li>
+            <li>Dans le dossier "vid_0", créez un fichier "index.html" et "script.js".</li>
+            <li>Télécharger la vidéo <a href="asset/fingers.webm">fingers.webm</a>. Placez cette vidéo dans le dossier "vid_0"</li>
+            <li>Téléchargez le fichier <a href="https://github.com/processing/p5.js/releases/download/0.5.2/p5.min.js" target="_blank">p5.min.js</a>. Placez ce fichier dans le dossier "vid_0"</li>
+            <li>Téléchargez le fichier <a href="https://raw.githubusercontent.com/lmccart/p5.js/master/lib/addons/p5.dom.js" target="_blank">p5.dom.js</a>. Placez ce fichier dans le dossier "vid_0"</li>
+        </ul>
+        <p>N.B. Il est possible d'utiliser une autre vidéo que celle proposée ci-dessus (fingers.webm), cependant attention à 3 choses :</p>
+        <ul>
+            <li>le format de la vidéo doit être compatible (pour avoir la liste des formats compatibles voir <a href="https://developer.mozilla.org/fr/docs/Web/HTML/formats_media_support" target="_blank">ici</a>).</li>
+            <li>vérifiez que la licence de la vidéo vous permet de la réutiliser</li>
+            <li>la résolution de la vidéo ne doit pas être trop importante, faute de quoi, les calculs demandés risquent de dépasser les capacités de votre machine.</li>
+        </ul>
+        <hr>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Complétez le fichier "index.html" avec le code suivant : </p>
+        <pre><code>
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtLes images avec p5.js&lt/title&gt
+    &ltscript src="p5.min.js"&gt&lt/script&gt
+    &ltscript src="p5.dom.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>Ce fichier ne sera plus modifié dans la suite de ces activités. A chaque fois que vous aurez à créer un nouvel exemple, il vous suffira de "copier-coller" le dossier "vid_0" (en modifiant le nom).</p>
+        <hr>
+        <h4>À faire vous-même 1.3</h4>
+		<p>Saisissez, testez et analysez ce code :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var maVideo;
+function setup() {
+    maVideo=createVideo("fingers.webm");
+    maVideo.loop();
+}
+function draw() {
+}
+        </code></pre>
+        <hr>
+        <p>Le programme ci-dessus ne présente aucune difficulté : nous créons un objet <i>maVideo</i> à l'aide de la fonction <i>createVideo</i>. La méthode <i>loop</i> permet de jouer la vidéo en boucle.</p>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Saisissez, testez et analysez ce code :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var maVideo;
+function setup() {
+	createCanvas(800,600);
+	maVideo=createVideo("fingers.webm");
+	maVideo.loop();
+	maVideo.hide();
+}
+function draw() {
+	background(255);
+	image(maVideo);
+}
+        </code></pre>
+        <hr>
+        <p>En testant cet exemple, vous avez dû vous rendre compte que l'on obtient le même résultat que dans le "À faire vous-même 1.4". Pourtant il y a une énorme différence : la vidéo est maintenant jouée dans un canvas.</p>
+        <p>Une vidéo n'est qu'une suite d'images fixes qui défilent à grande vitesse (environ 30 images par seconde). Comme vous l'avez peut-être remarqué, dans la fonction <i>draw</i>, nous utilisons la fonction <i>image</i>. Cette fonction <i>image</i> prend en paramètre l'objet "vidéo" <i>maVideo</i>. Cet objet <i>maVideo</i> va "fournir" à la fonction <i>image</i> une succession d'images fixes (les images qui composent la vidéo "fingers.webm"). À chaque exécution de la fonction <i>draw</i>, l'objet <i>maVideo</i> fournira une nouvelle image à la fonction <i>image</i>. Dans notre canvas nous aurons donc une succession d'images fixes qui, parce qu'elles défilent rapidement (la fonction <i>draw</i> est exécutée plusieurs dizaines de fois par seconde), donneront "l'illusion" du mouvement.</p>
+        <p>On peut se poser la question : quel est l'intérêt de cette méthode puisqu'elle donne exactement le même résultat que dans le "À faire vous-même 1.4" ? La réponse est simple : comme nous avons une succession d'images, nous allons pouvoir appliquer ce que nous avons appris dans les activités consacrées au traitement des images avec p5.js (voir <a href="p5_Img_a1.html">ici</a>).</p>
+        <p>Dernière chose, la méthode <i>hide</i> appliquée à l'objet <i>maVideo</i> permet de ne pas afficher la vidéo une deuxième fois, en dehors du canvas.</p>
+        <h4>À faire vous-même 1.5</h4>
+        <p>Tout ce que nous allons faire dans la suite peut aussi être fait, non pas avec une vidéo pré-enregistrée, mais avec le flux vidéo en provenance d'une webcam (vidéo en "direct"). Si vous disposez d'une webcam, saisissez, testez et analysez ce code :</p>
+        <pre><code class="javascript">
+var maVideo;
+function setup() {
+	createCanvas(800,600);
+	maVideo=createCapture();
+	maVideo.hide();
+}
+function draw() {
+	background(255);
+	image(maVideo);
+}
+        </code></pre>
+        <p>Comme vous pouvez le constater la différence est minime par rapport au programme proposé dans le "À faire vous-même 1.4" : nous remplaçons le <i>createVideo</i> par <i>createCapture</i> (cette fonction ne prend aucun paramètre), nous supprimons la ligne <i>maVideo.loop()</i> devenue inutile (vidéo en "direct").</p>
+        <h4>À faire vous-même 1.6</h4>
+        <p>En vous inspirant de ce vous avez appris dans les activités consacrées au traitement des images avec p5.js (voir <a href="p5_Img_a1.html">ici</a>), créez un programme permettant d'obtenir ceci (on pourra utiliser un filtre) :</p>
+        <iframe src="p5_vid/a1_6/index.html" width="830px" height="330px"></iframe>
+        <p>N'oubliez pas que vous pouvez utiliser le flux vidéo d'une webcam à la place de la vidéo proposée.</p>
+        <h4>À faire vous-même 1.7</h4>
+        <p>En vous inspirant de ce vous avez appris dans les activités consacrées au traitement des images avec p5.js (voir <a href="p5_Img_a1.html">ici</a>), créez un programme permettant d'obtenir ceci (les pixels "sombres" (canaux rouge, vert et bleu inférieurs à 50) ont été remplacés par des pixels rouges) :</p>
+        <iframe src="p5_vid/a1_7/index.html" width="330px" height="250px"></iframe>
+        <hr>
+    </div>
+	</body>
+</html>

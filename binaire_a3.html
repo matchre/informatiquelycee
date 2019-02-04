@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- Auteur : Tom Niget @zdimension_ -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>La notion de base</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="./asset/conv_base_exemple.js"></script>
+    <style>
+	.imagediv {
+		width: 100%;
+		text-align: center;
+	}
+        .anecdote {
+	padding: 8px;
+    margin: 0 0 15px;
+    background-color: #fff;
+    border: 2px solid #e7e9ec;
+    border-radius: 6px;
+}
+	</style>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <span class="navbar-brand">Les systèmes de bases</span>
+				<span class="navbar-brand">Activité 3 - La notion de base</span></div>
+		<div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./genindex.html">Retour au menu</a></li>
+				  <li><a href="./binaire_a1.html">Activité 1 - Le binaire</a></li>
+				  <li><a href="./binaire_a2.html">Activité 2 - L'hexadécimal</a></li>
+								<li><a><b>Activité 3 - La notion de base</b></a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+		<li><a href="genindex.html"><span class="fui-home"></a></li>
+		<li><a href="binaire_a2.html"><span class="fui-triangle-left-large"></a></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+      <p>L'auteur de ce cours est Tom Niget, élève de seconde au lycée G Fichet de Bonneville.</p>
+      <h3>Activité 3 - La notion de base</h3>
+      <p><i>Cette activité est en quelque sorte la généralisation des deux activités précédentes, la première traitait de la base 2, la deuxième de la base 16, celle-ci décrit les bases en général. Vous y trouverez donc des faits ayant déjà été évoqués par le passé, mais cette redondance est nécessaire.</i></p>
+      <p>En maths, on a un outil bien pratique appelé la <b>notation positionnelle</b>. Comme son nom l'indique, c'est une notation, donc un moyen de noter les choses. Ici, en l'occurence, c'est un moyen d'écrire les nombres.</p>
+      <p>Le principe, c'est que vous prenez ce qu'on appelle une base, puis vous écrivez le nombre comme un somme de produits de puissances de cette base. Ça va jusque là ? Bon. Pour l'exemple, on va prendre un nombre au hasard. 4791. Ça sonne bien. Donc :</p>
+      <p>$4791$</p>
+      <p>Si vous vous souvenez de quand vous avec appris les nombres à l'école, vous devriez pouvoir voir ça comme &laquo; 4 milliers, 7 centaines, 9 dizaines et 1 unité &raquo;. Vous noterez que chaque &laquo; truc &raquo; et une puissance de 10 :</p>
+      <ul>
+        <li>Un millier = $10^3$</li>
+        <li>Une centaine = $10^2$</li>
+        <li>Une dizaine = $10^1$</li>
+        <li>Une unité = $10^0$</li>
+      </ul>
+      <p>On peut donc écrire 4791 comme ceci :</p>
+      <p>$4791 = 4\times10^3+7\times10^2+9\times10^1+1\times10^0$</p>
+      <p>La notation positionnelle, c'est ça. On a un nombre, 4791, et on prend chacun de ses chiffres et on le multiplie par la base élevée à la puissance correspondante : on commence à 0 en partant de la droite (les unités), puis 1 (les dizaines), puis 2 (les centaines) et ainsi de suite.</p>
+      <p>Mais là, certains vont peut-être se demander : pourquoi 10 ? La réponse est, parce que. C'est totalement arbitraire. Il n'y a pas de &laquo; base privilégiée &raquo;, donc on a juste pris quelque chose au hasard. Bien sûr, il y a le classique argument ud &laquo; c'est parce qu'on a 10 doigts &raquo;. Oui. Sans doute. Mais on a aucun moyen d'en être sûr, et pour être honnête, ça ne nous avancerait pas à grand-chose.</p>
+      <p>Maintenant que l'on sait que 10 est totalement arbitraire, pourquoi ne pas essayer avec autre chose ? Pour reste dans le thème, on va essayer avec 16. C'est joli 16, ça sonne bien.</p>
+      <p>Donc si on veut écrire 4791 en base 16, il faut qu'on travaille non pas avec des puissances de 10, mais avec des puissances de 16. C'est-à-dire 1, 16, 256, 4096, 65536 et tutti quanti.</p>
+      <p>On a déjà vu comment convertir un nombre en base 16 dans <a href="binaire_a2.html">l'activité 2</a> mais je vais en reparler maintenant de manière plus générale. Pour convertir un nombre $n$ en sa représentation en base $b$, il faut suivre l'algorithme suivant :</p>
+      <ul>
+        <li>On appelle $D$ la liste des chiffres (le résultat).</li>
+        <li>Tant que $n > 0$
+          <ul>
+            <li>Ajouter $n \mod b$ à $D$</li>
+            <li>Diviser (division entière) $n$ par $b$</li>
+          </ul>
+        </li>
+        <li>Inverser l'ordre de $D$</li>
+      </ul>
+      <p>Vous remarquerez que je parle de $mod$ et de division entière, et ces termes vous sont peut-être inconnus. Mais en fait, peut-être pas. En fait, ce ne sont que des mots compliqués pour parler de la division euclidienne, mais si, celle que vous avez apprise à l'école. Celle ou on pose la division, puis à droite on note le résultat et à gauche on a la reste. Et bien l'opérateur $mod$ (pour <b>modulo</b>, parfois noté $\%$) ça signie &laquo; le reste de la division euclidienne &raquo;</p>
+      <p>Voici donc une ré-écriture simplifiée de l'algorithme :</p>
+      <ul>
+        <li>On appelle $D$ la liste des chiffres (le résultat).</li>
+        <li>Tant que $n > 0$
+          <ul>
+            <li>Faire la division euclidienne de $n$ par $b$.</li>
+            <li>Ajouter le reste à $D$</li>
+            <li>Mettre le quotient dans $n$</li>
+          </ul>
+        </li>
+        <li>Inverser l'ordre de $D$</li>
+      </ul>
+      <p>C'est bien beau tout ça, mais je pense qu'un exemple ne ferait pas de mal. Donc, pour 4791 en base 16 :</p>
+      <script>poser_conv_base(4791, 16);</script>
+      <p>Vous avez sans doute remarqué la nouvelle colonne dans la conversion de base. C'est dû au fait que lorsqu'on note un nombre dans une base $b$, on ne peut utiliser que $b$ chiffres différents. C'est normal : chaque chiffre est le reste d'une division par $b$. Et par définition, le reste est plus petit que le divisieur (si je divide un nombre par 16, le reste peut être au maximum 15).</p>
+      <p>Cela fait qu'en base 10 (celle qu'on utilise tous les jours), on utilise 10 chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8 et 9.</p>
+      <p>Si l'on convertit un nombre en une base plus petite (exemple familier : le binaire), il suffit de n'utiliser que les chiffres nécessaires (ici, 0 et 1). Mais si on utilise une base plus grande que 10 ? Arbitrairement, on a choisi de compléter avec des lettres.</p>
+      <p>On a donc le tableau d'équivalence suivant :</p>
+      <table style="width: 100%">
+        <tr><th>Base 10</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+        <tr><th>Base 16</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>10</td></tr>
+      </table>
+      <p>Pour revenir au résultat de tout à l'heure, comme on a obtenu <b>12B7</b>, on peut écrire :</p>
+      <p>$4791_{10} = 12B7_{16}$</p>
+      <div class="well">Lorsque vous écrivez des puissances ($2^{10}$, $10^4$, et cæetera), on dit que la puissance est en <b>exposant</b>.<br>
+      Ici, lorsqu'on écrit une base ($123_{10}$, $1110101_{2}$), on dit que le nombre est en <b>indice</b>.</div>
+      <p>C'est d'ailleurs comme cela que ça s'appelle. Le binaire est la base d'<b>indice</b> 2. L'hexadécimal est la base d'<b>indice</b> 16.</p>
+      <p>En théorie, on peut utiliser quasiment n'importe quel nombre. À part 0. Oui, on peut faire des bases négatives ou non-entières. On peut faire une base -2 (ça s'appelle le négabinaire), -3 (négaternaire), 60 (sexagésimal), quater-imaginaire (2$i$), et même la base d'or qui a pour indice φ (le nombre d'or).</p>
+      <p>Voici un outil pour convertir un nombre en base 10 vers une base de votre choix :</p>
+      <div class="panel panel-default">
+        <script>
+        $(document).ready(function(){
+          $("#cb_submit").click(function(){
+            $("#cb_result").html("");
+            var num = parseInt($("#cb_nombre").val());
+            if (isNaN(num)) $("#cb_result").html('<span style="color:red">Nombre invalide : ' + $("#cb_nombre").val() + "</span>");
+            else
+            {
+              var base = parseInt($("#cb_base").val());
+              if (isNaN(base) || base <= 1 || base > 62) $("#cb_result").html('<span style="color:red">Base invalide : ' + $("#cb_base").val() + "</span>");
+              else
+              {
+                poser_conv_base(num, base, $("#cb_result"));
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "cb_result"]);
+              }
+            }
+          });
+        });
+        </script>
+        <div class="panel-heading">Convertisseur de base</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="input-group">
+                <span class="input-group-addon">Nombre</span>
+                <input type="text" class="form-control" id="cb_nombre" value="1234"/>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="input-group">
+                <span class="input-group-addon">Base</span>
+                <input type="text" class="form-control" id="cb_base" value="16"/>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <button type="button" style="width:100%" class="btn" id="cb_submit">Convertir</button>
+            </div>
+          </div>
+          <div style="margin-top: 15px">
+            <div id="cb_result" class="well">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>Voici un &laquo; petit &raquo; tableau récapitulatif des bases les plus petites :</p>
+      <table style="width: 100%">
+        <tr><th>Base 2</th><td>0</td><td>1</td><td>10</td><td>11</td><td>100</td><td>101</td><td>110</td><td>111</td><td>1000</td><td>1001</td><td>1010</td><td>1011</td><td>1100</td><td>1101</td><td>1110</td><td>1111</td><td>10000</td></tr>
+        <tr><th>Base 8</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>20</td></tr>
+        <tr><th>Base 10</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+        <tr><th>Base 16</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>10</td></tr>
+      </table><br>
+      <p>Pour terminer, un peu de maths (pour les secondes ça risque de piquer, mais pour les terminales ça va passer tout seul). Si on écrit un nombre $x$ avec la notation positionnelle dans une base $b$ et que l'on nomme cette représentation $r$, chaque chiffre étant $c_i$ et $n$ étant le nombre de chiffres avec $i \in [0,n-1]$, on a :</p>
+      <p>$r = c_{n-1}c_{n-2}\ldots c_{2}c_{1}c_{0}$</p>
+      <p>$x = \sum\limits_{i=0}^{n-1} c_i b^i = c_{n-1}b^{n-1} + c_{n-2}b^{n-2} + \ldots + c_{2}b^{2} + c_{1}b^{1} + c_{0}b^{0}$</p>
+      <p>Si $4791_{10} = 12B7_{16}$, alors on a :</p>
+      <p>$4791_{10} = 4\times10^3 + 7\times10^2 + 9\times10^1 + 1\times10^0 = 4\times1000 + 7\times100 + 9\times10 + 1 = 4000 + 700 + 90 + 1 = 4791$</p>
+      <p>$12B7_{16} = 1\times16^3 + 2\times16^2 + 11\times16^1 + 7\times16^0 = 1\times4096 + 2\times256 + 11\times16 + 7 = 4096 + 512 + 176 + 7 = 4791$</p>
+		</div>
+	</body>
+</html>

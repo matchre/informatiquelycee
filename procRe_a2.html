@@ -1,0 +1,141 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Réseau et Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Réseau et Processing</span>
+					<span class="navbar-brand">Activité 2</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procRe_a1.html">Activité 1</a></li>
+                  <li><a href="./procRe_a3.html">Activité 3</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procRe_a1.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="procRe_a3.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Dans cette activité, nous allons programmer le client.</p>
+        <h4>À faire vous-même 2.1</h4>
+        <p>Saisissez, analysez et testez ces programmes</p>
+        <p>Le serveur :</p>
+        <pre><code>
+import processing.net.*;
+Server s;
+void setup(){
+  s = new Server(this,6500);
+}
+void draw(){
+  Client c = s.available();
+  if (c!=null){
+    String msg=c.readString();
+    println(msg);
+    s.write("OK, message bien reçu");
+  }
+}
+        </code></pre>
+        <p>Le client :</p>
+        <pre><code>
+import processing.net.*;
+Client c;
+void setup(){
+  c = new Client(this, "localhost", 6500);
+  c.write("Coucou, je suis le client");
+}
+void draw(){
+  if (c.available()>0){
+    String msg=c.readString();
+    println(msg);
+  }
+}
+        </code></pre>
+        <p>Il est possible de tester cet exemple en utilisant une seule machine. Il faut alors lancer 2 fois Processing (une pour le client et l'autre pour le serveur). Vous pouvez aussi tester cet exemple sur 2 machines différentes (une pour le client et une pour le serveur). Dans ce cas, attention a bien modifier le code côté client en remplaçant "localhost" (ligne : "c = new Client(this, "localhost", 6500);") par l'adresse IP de la machine jouant le rôle du serveur.</p>
+        <p>Dans tous les cas, ATTENTION de lancer le programme côté serveur avant de le lancer côté client.</p>
+        <hr>
+        <p>Analysons cet exemple :</p>
+        <p>Côté serveur : rien de nouveau</p>
+        <p>Coté client : </p>
+        <p>Nous commençons par créer une instance de la classe Client :</p>
+        <pre><code>
+Client c;
+...
+c = new Client(this, "localhost", 6500);
+        </code></pre>
+        <p>Le constructeur de client prend 3 paramètres : this, l'adresse IP du serveur, le port.</p>
+        <p>Dans notre exemple, le client envoie un message au serveur dès le lancement du programme (fonction "setup") :</p>
+        <pre><code>
+c.write("Coucou, je suis le client");
+        </code></pre>
+        <p>Comme vous pouvez le constater, le client envoie une chaîne de caractères vers le serveur à l'aide de la méthode "write".</p>
+        <p>Nous retrouvons, comme dans le cas du serveur, une méthode "available" :</p>
+        <pre><code>
+if (c.available()>0){...}
+        </code></pre>
+        <p>La méthode "available" de la classe Client (à ne pas confondre avec la méthode "available" de la classe Server), renvoie un nombre. Si un message, en provenance du serveur, est prêt à être lu par le client, "c.available()" est alors supérieur à zéro.</p>
+        <p>Les lignes :</p>
+        <pre><code>
+String msg=c.readString();
+println(msg);
+        </code></pre>
+        <p>seront exécutées uniquement si un message, en provenance du serveur, est prêt à être lu.</p>
+        <pre><code>
+String msg=c.readString();
+        </code></pre>
+        <p>La variable "msg" (de type chaîne de caractères), contient le message qui a été envoyé par le serveur (la méthode "readString" renvoie le message envoyé par le serveur (ce message est de type String).</p>
+        <p>Résumons l'échange "client-serveur" :</p>
+        <ul>
+            <li>le client envoie le message "Coucou, je suis le client" au serveur</li>
+            <li>le serveur reçoit ce message et l'affiche dans la console Processing</li>
+            <li>le serveur répond au client en envoyant le message "OK, message bien reçu"</li>
+            <li>le client reçoit ce message et l'affiche dans la console Processing</li>
+        </ul>
+        <h4>À faire vous-même 2.2</h4>
+        <p>En vous inspirant de ce qui a été fait dans le "À faire vous-même 2.1", créez un client qui enverra un message au serveur uniquement après que l'utilisateur ait appuyé sur un "bouton".</p>
+        <img src="img/procRes_a2_1.png">
+        <hr>
+        <h4>À faire vous-même 2.3</h4>
+        <p>Reprenez l'exemple proposé dans le "À faire vous-même 2.2" mais avec cette fois un serveur et 2 clients (le code pour les 2 clients sera identique). Vous pouvez utiliser une seule machine pour le serveur et les 2 clients (vous devez alors ouvrir 3 fois Processing) ou utiliser 3 machines différentes (attention à bien renseigner l'adresse IP du serveur).</p>
+        <hr>
+        <p>Comme vous l'avez sans doute remarqué, si vous envoyez le message depuis un client, les 2 clients recevront la réponse du serveur (même le client "qui n'a rien demandé"). La réponse du serveur est envoyée à tous les clients connectés, on parle de "broadcast".</p>
+    </div>
+	</body>
+</html>

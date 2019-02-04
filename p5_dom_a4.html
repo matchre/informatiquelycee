@@ -1,0 +1,173 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer des pages web avec p5js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer des pages web avec p5js</span>
+					<span class="navbar-brand">Activité 4</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_dom_a1.html">Activité 1</a></li>
+                <li><a href="./p5_dom_a2.html">Activité 2</a></li>
+                <li><a href="./p5_dom_a3.html">Activité 3</a></li>
+                <li><a href="./p5_dom_a5.html">Activité 5</a></li>
+                <li><a href="./p5_dom_a6.html">Activité 6</a></li>
+                <li><a href="./p5_dom_a7.html">Activité 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="p5_dom_a3.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="p5_dom_a5.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+           Dans cette activité, nous allons évoquer le positionnement des différents éléments présents sur une page web.
+        </p>
+        <p>
+            Comme nous l'avons déjà vu dans les activités consacrées au HTML et au CSS (voir <a href="hbase_a1.html" target="_blank">ici</a>), les éléments se placent les uns à la suite des autres (on parle du "flux naturel du document"), les éléments se succèdent dans l'ordre où ils sont déclarés dans le code HTML. Il existe 2 types de balises, les balises de type "block" qui prennent toute la largeur de la page (il est donc impossible d'avoir 2 éléments l'un à côté de l'autre si l'un des 2 éléments est de type "block"). Dit autrement, après une balise de type "block", nous aurons un retour à la ligne. Voici des exemples de balises de type "block" : p, div,  toutes les balises h,...Autre type de balises, les balises de type "inline" qui prennent uniquement la largeur dont elles ont besoin (2 balises de type "inline" peuvent se ranger l'une à côté de l'autre). Dit autrement, après une balise de type "inline", nous n'aurons pas de retour à la ligne . Exemples de balises de type "inline" : span, a, img...
+        </p>
+        <p>
+            Pour en savoir sur les éléments de type "inline" et de type "block" n'hésitez pas à consulter l'excellent cours se trouvant sur le site <a href="https://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-modele-des-boites" target="_blank">OpenClassrooms </a>(profitez de votre visite pour étudier le dimensionnement des éléments ("width" et "height") et la notion de marge (margin et padding)).
+        </p>
+        <p>P5js propose aussi un moyen qui, au premier abord, vous paraîtra sans doute plus simple à utiliser, mais dont il faudra se méfier "comme de la peste" : le positionnement absolu (ici aussi, vous pouvez consulter le site <a href="https://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css" target="_blank">OpenClassrooms </a> si vous voulez en savoir plus sur les différents types de positionnements).
+        </p>
+        <p>Pour positionner un élément de façon "absolue", il vous faudra utiliser la fonction "position"</p>
+        <p>La fonction "position" prend 2 paramètres : la coordonnée x de l'élément que l'on souhaite positionner et la coordonnée y de ce même élément. Le point de coordonnées (0,0) correspond au coin gauche supérieur de la fenêtre du navigateur.</p>
+        <h4>À faire vous-même 4.1</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+    noCanvas();
+    para1=createP("Voici un premier paragraphe");
+    para2=createP("Voici un deuxième paragraphe");
+    para3=createP("Voici un troisième paragraphe");
+    para4=createP("Voici un quatrième paragraphe");
+}
+function draw(){
+
+}
+    </code></pre>
+    <p>Testez ce code puis ajoutez la ligne ci-dessous à la fin de la fonction "setup"</p>
+           <pre><code class="javascript">
+para4.position(5,5);
+    </code></pre>
+    <hr>
+    <p>Comme vous pouvez le constater, avant de rajouter la ligne "para4.position(5,5);", il n'y a aucun problème, nous avons le "flux naturel" de la page (la balise "p" est de type block. En revanche, l'utilisation de la fonction "position" met un terme à cette "belle harmonie" : les éléments se marchent les uns sur les autres. C'est logique, l'utilisation d'un positionnement absolu interrompt le "flux naturel" et peut entraîner des résultats problématiques comme ici.</p>
+    <p>Vous allez me dire : "Et bien, il suffit de faire attention aux coordonnées des différents éléments et tout devrait bien se passer !"</p>
+    <h4>À faire vous-même 4.2</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+    noCanvas();
+    para1=createP("Voici un premier paragraphe");
+    para2=createP("Voici un deuxième paragraphe");
+    para3=createP("Voici un troisième paragraphe");
+    para4=createP("Voici un quatrième paragraphe");
+    para4.position (300,5);
+}
+function draw(){
+
+}
+    </code></pre>
+    <p>À première vue, tout est ok, mais diminuez maintenant la taille de votre navigateur, et là, au bout d'un moment, vous devriez voir le quatrième paragraphe disparaitre.</p>
+    <hr>
+    <p>Ce qui rend l'utilisation de la fonction "position" relativement périlleuse, c'est que vous ne contrôlez pas la taille de la fenêtre du navigateur. Si la fenêtre du navigateur est trop petite, certains de vous éléments pourraient ne pas apparaître.</p>
+      <p>conclusion : prudence avec la fonction "position", ne vous en servez pas "à tout bout de champ" !</p>
+    <p>ATTENTION : quand vous dessinez des figures dans un canvas, les coordonnées de ces figures sont toujours données par rapport au coin supérieur gauche du canvas, quelle que soit la position du canvas.</p>
+    <h4>À faire vous-même 4.3</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var x=5;
+var v=2;
+function setup(){
+    para1=createP("Voici un premier paragraphe");
+    para2=createP("Voici un deuxième paragraphe");
+    para3=createP("Voici un troisième paragraphe");
+    para4=createP("Voici un quatrième paragraphe");
+    can=createCanvas(200,200);
+    fill(255,0,0);
+}
+function draw(){
+    background(240);
+    if (x&lt5 || x&gt195){
+        v=-v;
+    }
+    x=x+v;
+    ellipse(x,100,10,10);
+}
+    </code></pre>
+    <p>Comme vous pouvez le constater, les coordonnées du disque sont bien données par rapport au canvas.</p>
+    <h4>À faire vous-même 4.4</h4>
+    <p>Modifiez le programme vu dans le "À faire vous-même 4.3", en ajoutant "can.position(10,10);" à la fin de la fonction "setup".</p>
+    <hr>
+    <p>Comme vous pouvez le constater, les paragraphes sont recouverts par le canvas, mais malgré le déplacement du canvas, la "balle" continue à se déplacer comme auparavant</p>
+    <p>Il est possible de rendre le fond du canvas transparent à l'aide de la fonction "clear"</p>
+    <h4>À faire vous-même 4.5</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var x=5;
+var v=2;
+function setup(){
+    para1=createP("Voici un premier paragraphe");
+    para2=createP("Voici un deuxième paragraphe");
+    para3=createP("Voici un troisième paragraphe");
+    para4=createP("Voici un quatrième paragraphe");
+    can=createCanvas(200,200);
+    fill(255,0,0);
+    can.position(10,10);
+}
+function draw(){
+    clear();
+    if (x&lt5 || x&gt195){
+        v=-v;
+    }
+    x=x+v;
+    ellipse(x,100,10,10);
+}
+    </code></pre>
+    <p>Ce qui peut donner des effets "sympas"</p>
+    <iframe src="./p5_dom/p5_dom_a4_5/index.html" width="600px" height="230px"></iframe>
+    </div>
+	</body>
+</html>

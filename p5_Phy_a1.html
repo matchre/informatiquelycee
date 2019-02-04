@@ -1,0 +1,273 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Faire de la physique (et un peu de maths) avec p5js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-92673245-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Faire de la physique (et un peu de maths) avec avec p5js</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_Phy_a2.html">Activité 2</a></li>
+                <li><a href="./p5_Phy_a3.html">Activité 3</a></li>
+                <li><a href="./p5_Phy_a4.html">Activité 4</a></li>
+                <li><a href="./p5_Phy_a5.html">Activité 5</a></li>
+                <li><a href="./p5_Phy_a6.html">Activité 6</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="p5_Phy_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Vous devez avoir des connaissances de base sur les vecteurs (un niveau "classe de seconde" de l'enseignement général devrait suffire). Si nécessaire, vous trouverez des cours de mathématiques en ligne qui abordent ce sujet, par exemple <a href="https://www.kartable.fr/seconde/mathematiques/specifique/chapitres-4/les-vecteurs/cours/les-vecteurs/3611" target="_blank">ici</a>.</p>
+        <p>Vous devez maîtriser les notions suivantes :</p>
+        <ul>
+            <li>qu'est-ce qu'un vecteur</li>
+            <li>coordonnées d'un vecteur</li>
+            <li>norme d'un vecteur</li>
+            <li>addition et soustraction de 2 vecteurs</li>
+            <li>produit d'un vecteur par un réel</li>
+        </ul>
+        <p>Avant de pouvoir travailler sur ces activités, il est nécessaire d'avoir étudié les activités consacrées à p5.js. Si ce n'est pas le cas, rendez-vous <a href="p5_base_a1.html">ici</a>.</p>
+        <h4>À faire vous-même 1.1</h4>
+        <ul>
+            <li>Dans votre dossier personnel, créez un dossier "p5_phy".</li>
+            <li>Créez un dossier "phy_0" dans le dossier "p5_phy"</li>
+            <li>Dans le dossier "phy_0", créez un fichier "index.html", "script.js" et "mobile.js".</li>
+            <li>Téléchargez le fichier <a href="https://github.com/processing/p5.js/releases/download/0.5.2/p5.min.js" target="_blank">p5.min.js</a>. Placez ce fichier dans le dossier "phy_0"</li>
+        </ul>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Complétez le fichier "index.html" avec le code suivant : </p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtFaire de la physique (et un peu de maths) avec avec p5js&lt/title&gt
+    &ltscript src="p5.min.js"&gt&lt/script&gt
+    &ltscript src="mobile.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>Ce fichier ne sera plus modifié dans la suite de ces activités. À chaque fois que vous aurez à créer un nouvel exemple, il vous suffira de "copier-coller" le dossier "phy_0" (en modifiant le nom).</p>
+        <p>Nous n'utiliserons pas le fichier "mobile.js" dans cette activité.</p>
+        <hr>
+        <p>Pour manipuler les vecteurs, p5js propose la classe "p5.Vector". Voici quelques exemples d'utilisation des méthodes de la classe p5.Vector (un vecteur est un objet (au sens programmation orientée objet) dans p5js) :</p>
+        <p>Pour créer un vecteur, il suffit d'écrire :</p>
+        <pre><code class="javascript">
+var AB;
+function setup() {
+   AB=createVector(5,15);
+}
+function draw() {
+}
+        </code></pre>
+        <p>Ce programme vous  permet de créer un vecteur $\vec{AB}$ de coordonnées $\begin{pmatrix} 5 \\ 15 \end{pmatrix}$</p>
+        <p>Si vous ne passez aucun paramètre à la fonction <i>createVector</i> :</p>
+        <pre><code class="javascript">
+var AB;
+function setup() {
+   AB=createVector();
+}
+function draw() {
+}
+        </code></pre>
+        <p>par défaut, le vecteur $\vec{AB}$ a pour coordonnées $\begin{pmatrix} 0 \\ 0 \end{pmatrix}$ (vecteur nul $\vec{0}$).</p>
+        <p>Il est possible d'obtenir la coordonnée x d'un vecteur $\vec{AB}$ en écrivant "AB.x" (même chose pour la coordonnée y avec "AB.y"). "AB.x" et "AB.y".</p>
+        <h4>À faire vous-même 1.3</h4>
+        <p>Saisissez et testez ce code</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var AB;
+function setup() {
+    createCanvas(800,600);
+    AB=createVector(5,15);
+    text("x : "+AB.x+" y : "+AB.y,10,10);
+}
+function draw() {
+}
+
+        </code></pre>
+        <hr>
+        <p>La méthode <i>mag</i> permet d'obtenir la norme d'un vecteur.</p>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code class="javascript">
+var AB;
+var normeAB;
+function setup() {
+    createCanvas(800,600);
+    AB=createVector(5,15);
+    normeAB = AB.mag();
+    text("norme : "+normeAB,10,10);
+}
+function draw() {
+}
+        </code></pre>
+        <hr>
+        <p>La méthode <i>mult</i> permet d'avoir le résultat d'un vecteur par un réel. Cette méthode peut s'utiliser de 2 manières différentes :</p>
+        <ul>
+            <li><i>AB.mult(k)</i> permet d'avoir k$\vec{AB}$. Après cette ligne, le vecteur $\vec{AB}$ a maintenant pour valeur k$\vec{AB}$ (c'est un peu l'équivalent d'un "x=k*x" pour une variable x)</li>
+            <li><i>CD=p5.Vector.mult(AB,k)</i> permet d'avoir $\vec{CD}=k\vec{AB}$</li>
+        </ul>
+        <h4>À faire vous-même 1.5</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code class="javascript">
+var AB;
+var k=2;
+function setup() {
+    createCanvas(800,600);
+    AB=createVector(5,15);
+    text("Avant => x : "+AB.x+" y : "+AB.y,10,10);
+    AB.mult(k);
+    text("Après => x : "+AB.x+" y : "+AB.y,10,30);
+}
+function draw() {
+}
+
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 1.6</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code class="javascript">
+var AB;
+var CD;
+var k=2;
+function setup() {
+    createCanvas(800,600);
+    AB=createVector(5,15);
+    CD=p5.Vector.mult(AB,k)
+    text("AB => x : "+AB.x+" y : "+AB.y,10,10);
+    text("CD => x : "+CD.x+" y : "+CD.y,10,30);
+}
+function draw() {
+}
+        </code></pre>
+        <hr>
+        <p>La méthode <i>add</i> permet d'additionner 2 vecteurs. Comme pour la méthode <i>mult</i>, la méthode <i>add</i> peut être utilisée de 2 façons :</p>
+        <ul>
+            <li><i>AB.add(CD)</i> permet d'avoir $\vec{AB}+\vec{CD}$. Après cette ligne, le vecteur $\vec{AB}$ a maintenant pour valeur $\vec{AB}+\vec{CD}$ (c'est un peu l'équivalent d'un "x=y+x" pour une variable x)</li>
+            <li><i>EF=p5.Vector.add(AB,CD)</i> permet d'avoir $\vec{EF}=\vec{AB}+\vec{CD}$</li>
+        </ul>
+        <h4>À faire vous-même 1.7</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code class="javascript">
+var AB;
+var CD;
+function setup() {
+    createCanvas(800,600);
+    AB=createVector(5,15);
+    CD =createVector(9,8);
+    text("Avant : AB => x : "+AB.x+" y : "+AB.y,10,10);
+    text("Avant : CD => x : "+CD.x+" y : "+CD.y,10,30);
+    AB.add(CD);
+    text("Après : AB => x : "+AB.x+" y : "+AB.y,10,50);
+    text("Après : CD => x : "+CD.x+" y : "+CD.y,10,70);
+}
+function draw() {
+}
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 1.8</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code class="javascript">
+var AB;
+var CD;
+var EF;
+function setup() {
+    createCanvas(800,600);
+    AB=createVector(5,15);
+    CD =createVector(9,8);
+    EF = createVector();
+    text("Avant : AB => x : "+AB.x+" y : "+AB.y,10,10);
+    text("Avant : CD => x : "+CD.x+" y : "+CD.y,10,30);
+    text("Avant : EF => x : "+EF.x+" y : "+EF.y,10,50);
+    EF = p5.Vector.add(AB,CD)
+    text("Après : AB => x : "+AB.x+" y : "+AB.y,10,70);
+    text("Après : CD => x : "+CD.x+" y : "+CD.y,10,90);
+    text("Après : EF => x : "+EF.x+" y : "+EF.y,10,90);
+}
+function draw() {
+}
+        </code></pre>
+        <hr>
+        <p>La méthode <i>sub</i> permet de soustraire 2 vecteurs, elle s'utilise comme la méthode <i>add</i>. La relation $\vec{EF}=\vec{AB}-\vec{CD}$ s'écrit :</p>
+        <pre><code class="javascript">
+EF = p5.Vector.sub(AB,CD);
+        </code></pre>
+        <p>Comme pour la méthode <i>add</i>, il est aussi possible d'écrire :</p>
+        <pre><code>
+AB.sub(CD);
+        </code></pre>
+        <p>La méthode <i>normalize</i> permet de normaliser un vecteur (cette notion vous est peut-être inconnue). Soit un vecteur $\vec{AB}$ la normalisation de ce vecteur donnera un vecteur $\vec{u}$ qui aura la même direction et le même sens que $\vec{AB}$ mais qui n'aura pas la même norme. On aura $||\vec{u}||$=1 ($\vec{u}$ est un vecteur unitaire). On aura donc $\vec{AB}=||\vec{AB}||\vec{u}$.</p>
+        <h4>À faire vous-même 1.9</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code class="javascript">
+var AB;
+var normeAB;
+function setup() {
+    createCanvas(800,600);
+    AB=createVector(5,15);
+    normeAB=AB.mag();
+    text("Avant norme de u = "+normeAB,10,10);
+    AB.normalize();
+    normeAB=AB.mag();
+    text(" Après norme de AB = "+normeAB,10,30);
+}
+function draw() {
+}
+        </code></pre>
+        <hr>
+    </div>
+	</body>
+</html>

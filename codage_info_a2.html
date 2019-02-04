@@ -1,0 +1,94 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Codage de l'information</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Codage de l'information</span>
+					<span class="navbar-brand">Activité 2</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./codage_info_a1.html">Activité 1</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="codage_info_a1.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Depuis le début de cette série d’activité, nous parlons de "données", sachant que le processeur gère uniquement 2 états essayons maintenant de voir comment sont codés certains types de données dans un ordinateur.</p>
+        <h4>Comment sont codés les nombres entiers positifs ?</h4>
+        <p>Commençons par le plus simple : comment sont codés les nombres entiers positifs ?
+        Je vous invite à étudier l’activité rédigée par Tom Niget : rendez-vous <a href="binaire_a1.html" target="_blank">ici</a>.</p>
+        <h4>Comment sont codés les textes ?</h4>
+        <p>Un texte est une suite de caractères, nous allons donc plutôt nous poser la question, comment sont stockés les caractères ?</p>
+        <p>La réponse est simple, à chaque caractère on associe un code binaire. Par exemple le caractère " A " est représenté par le code binaire 1000001, le caractère " 4 " est représenté par le code binaire 110100.</p>
+        <p>Historiquement, une des premières méthodes de codage des caractères est appelée ASCII (American Standard Code for Information Interchange ), vous trouverez la table ASCII <a href="http://www.asciitable.com/" target="_blank">ici</a> (sur ce site les codes sont donnés en représentation décimale (base 10), hexadécimale (base 16) et octal (base 8) mais pas en représentation binaire).</p>
+        <p>Dans le système de codage ASCII, chaque caractère est codé sur un octet. En réalité sur les 8 bits seuls 7 sont utilisés pour coder les caractères, le 8e bit, appelé bit de parité, est utilisé pour détecter les erreurs.  Si vous avez su répondre aux questions du "À faire vous même 1.1", il est donc évident pour vous qu’avec le système ASCII, il est possible de coder au maximum 128 caractères.
+        Au début de l’histoire de l’informatique cela ne posait pas trop de problèmes, mais avec l’arrivée des outils de bureautiques (traitement de texte…), cela est devenu problématique :  par exemple, pour le français, les caractères accentués ("é", "à"... ) ne sont pas codés dans le système ASCII.</p>
+        <p>Pour pallier à cette difficulté, d’autres normes ont vu le jour, par exemple l’UTF-8 (Unicode Transformation Format). Afin d’assurer une compatibilité avec l’ASCII, les caractères codés en ASCII ont exactement le même code en UTF-8 (en UTF-8 le caractère "A" est toujours représenté par le code binaire 01000001). Pour dépasser la limite des 127 caractères de l'ASCII, en UTF-8, certains caractères sont codés sur plus d’un octet.</p>
+        <h4>À faire vous-même 2.1</h4>
+        <p>Allez plus loin sur le codage des caractères en étudiant ce qui est expliqué sur ce site : <a href="http://openweb.eu.org/articles/jeux_caracteres" target="_blank"> http://openweb.eu.org/articles/jeux_caracteres</a></p>
+        <hr>
+        <h4>Comment sont codées les images ?</h4>
+        <p>Une image est composée de petits points appelés pixel. La dimension d’une image vous donne le nombre de pixels qui compose l’image, par exemple une image de dimension 800 x 600 (800 par 600), signifie que cette image est composée de 800 pixels en largeur et de 600 pixels en hauteur, soit en tout 800 x 600 = 480000 pixels.</p>
+        <p>Une image est dite HD (haute définition) si au minimum, elle est composée de 720 pixels en hauteur (dimension 1280 x 720). Une image est dite full HD si au minimum, elle est composée de 1080 pixels en hauteur (dimension 1920 x 1080).</p>
+        <p>À chaque pixel on associe 3 couleurs : le rouge, le vert et le bleu. On parle du canal rouge, du canal vert et du canal bleu d’un pixel. La théorie physique de la synthèse additive des couleurs (pour plus d’informations sur cette théorie, voir <a href="https://fr.wikipedia.org/wiki/Synth%C3%A8se_additive" target="_blank">ici</a>) montre que la variation de l’intensité lumineuse de chaque canal permet d’obtenir un très grand nombre de couleurs. Certains types d’images associent à chaque pixel un canal supplémentaire appelé canal alpha. Ce canal permet de gérer la transparence du pixel (nous n’aborderons pas cet aspect des choses ici).</p>
+        <p>La valeur de l’intensité lumineuse associée à chaque canal de chaque pixel d’une image est très souvent codée sur un octet. Nous avons donc pour chaque pixel, un octet pour coder la valeur de l’intensité lumineuse du canal rouge, un octet pour coder la valeur de l’intensité lumineuse du canal vert et un octet pour coder la valeur de l’intensité lumineuse du canal bleu.</p>
+        <h4>À faire vous-même 2.2</h4>
+        <p>Combien de couleurs différentes est-il possible d’obtenir pour une image codée sur 24 bits (3 x 8 = 24).</p>
+        <hr>
+        <h4>À faire vous-même 2.3</h4>
+        <p>Calculez le nombre de bits nécessaire pour coder une image full HD (dimension 1920 x 1080). Donnez ensuite cette valeur en Mo (méga octet).</p>
+        <p>Pour vous aider : 1 Ko (kilo octet) = 1024 octet ; 1 Mo (méga octet) = 1024 Ko ; 1 Go (giga octet) = 1024 Mo</p>
+        <hr>
+        <p>Comme vous avez pu le constater dans le "À faire vous même 2.3", la taille d’une image full HD 24 bits dépasse le Mo. Ce qui peut éventuellement poser des problèmes de taille de stockage notamment dans le cadre de la vidéo. En effet, une vidéo est une succession d’image fixe qui, pour donner l’illusion du mouvement, défile à grande vitesse (environ 30 images par seconde).</p>
+        <h4>À faire vous-même 2.4</h4>
+        <p>Calculez la taille en Go d’un film d’une heure full HD (image codée sur 24 bits).</p>
+        <hr>
+        <p>Sachez qu'un Blu-Ray (quadruple couche) peut contenir au maximum 128 Go de données.</p>
+        <p>Les images sont donc compressées afin de diminuer leurs tailles. Nous n’aborderons pas ici ces méthodes de compression. Sachez cependant qu’il existe 2 types de compression : la compression sans perte (aucune information de perdue au cours de la compression) et la compression avec perte (perte d’information au cours de la compression). Le format PNG est un format d’image compressée sans perte alors que le JPEG est un format d’image compressée avec perte.</p>
+        <p>Une image compressée avec perte prendra moins de place que la même image compressée sans perte. Tout est une histoire de compromis entre la qualité d’une image et sa taille (en Mo). </p>
+
+
+
+
+        <hr>
+    </div>
+	</body>
+</html>

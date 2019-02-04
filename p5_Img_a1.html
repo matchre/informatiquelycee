@@ -1,0 +1,156 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Les images avec p5.js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Les images avec p5.js</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_Img_a2.html">Activité 2</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="p5_Img_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Avant de pouvoir travailler sur ces activités, il est nécessaire d'avoir étudié les activités consacrées à p5.js. Si ce n'est pas le cas, rendez-vous <a href="p5_base_a1.html">ici</a>.</p>
+        <p>Pour des raisons que je n'aborderai ici, il est nécessaire d'utiliser le navigateur Firefox de chez Mozilla pour tester les exemples proposés dans ces activités.</p>
+        <h4>À faire vous-même 1.1</h4>
+        <ul>
+            <li>Dans votre dossier personnel, créez un dossier "p5_image".</li>
+            <li>Créez un dossier "img_0" dans le dossier "p5_image"</li>
+            <li>Dans le dossier "img_0", créez un fichier "index.html" et "script.js".</li>
+            <li>Télécharger l'image <a href="asset/tux.jpg">tux.jpg</a>. Placez cette image dans le dossier "img_0"</li>
+            <li>Téléchargez le fichier <a href="https://github.com/processing/p5.js/releases/download/0.5.2/p5.min.js" target="_blank">p5.min.js</a>. Placez ce fichier dans le dossier "img_0"</li>
+        </ul>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Complétez le fichier "index.html" avec le code suivant : </p>
+        <pre><code>
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtLes images avec p5.js&lt/title&gt
+    &ltscript src="p5.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>Ce fichier ne sera plus modifié dans la suite de ces activités. A chaque fois que vous aurez à créer un nouvel exemple, il vous suffira de "copier-coller" le dossier "img_0" (en modifiant le nom).</p>
+        <hr>
+        <h4>À faire vous-même 1.3</h4>
+		<p>Saisissez, testez et analysez ce code :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var img;
+function preload() {
+	img=loadImage("tux.jpg");
+}
+function setup() {
+    createCanvas(208,242);
+}
+function draw() {
+    background(240,240,240);
+	image (img,0,0);
+}
+        </code></pre>
+        <p>Nous retrouvons les fonctions <i>draw</i> et <i>setup</i> déjà vu précédement. Petite nouveauté, la fonction <i>preload</i> qui sera exécutée avant la fonction <i>setup</i>. <i>img=loadImage("tux.jpg");</i> permet de créer un objet <i>img</i> et de "placer" l'image "tux" dans cet objet.</p>
+        <p>nous utilisons la fonction "image" qui permet d'afficher l'image. Cette fonction prend 3 paramètres :</p>
+        <ul>
+            <li>"img" => nom de l'objet qui contient l'image à afficher</li>
+            <li>0 => coordonnée x du coin supérieur gauche de l'image</li>
+            <li>0 => coordonnée y du coin supérieur gauche de l'image</li>
+        </ul>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Créez un programme qui permettra de placer l'image "tux.jpg" (dimensions : 208x242) au milieu de la fenêtre (on prendra une fenêtre (canvas) de 400x400)).</p>
+        <hr>
+        <p>Cette image ("tux.jpg") est une image dite matricielle (aussi appelée bitmap). Les images matricielles sont composées de points appelés pixels. Chaque pixel possède 3 canaux : un rouge, un vert et un bleu (nous aurons l'occasion de revenir sur ce point un peu plus loin). Afin d'en savoir plus sur les images matricielles, je vous invite à lire l'article "Wikipédia" consacré à ce sujet <a href="https://fr.wikipedia.org/wiki/Image_matricielle" target="_blank">ici</a>. Notez qu'il existe un autre type d'images : les images vectorielles (voir les activités consacrées aux images vectorielles <a href="svg_a1.html" target="_blank">ici</a>).</p>
+        <p>Il est possible de colorer votre image avec la fonction "tint". La fonction "tint" prend 3 paramètres : le canal rouge, le canal vert, le canal bleu</p>
+        <h4>À faire vous-même 1.5</h4>
+        <p>Saisissez, analysez et testez ce programme</p>
+        <pre><code>
+var img;
+function preload() {
+	img=loadImage("tux.jpg");
+}
+function setup() {
+    createCanvas(208,242);
+}
+function draw() {
+	background(240,240,240);
+	tint(255,0,0);
+	image (img,0,0);
+}
+        </code></pre>
+        <h4>À faire vous-même 1.6</h4>
+        <p>Sachant que la fonction "noTint" (cette fonction ne prend aucun paramètre) permet d'annuler les effets de la fonction "tint", afficher, côte à côte 2 images : une colorée en vert et une normale.</p>
+        <iframe src="p5_img/a1_6/index.html" width="445px" height="275px"></iframe>
+        <hr>
+        <p>Il est aussi possible d'appliquer des filtres (comme avec un logiciel de retouche d'image (Gimp par exemple)). Nous n'allons pas passer en revue tous les filtres proposés par p5js.</p>
+        <p>Si vous voulez en savoir plus sur les filtres dans p5js, je vous invite à consulter la documentation officielle :
+            <a href="https://p5js.org/reference/#/p5/filter" target="_blank">https://p5js.org/reference/#/p5/filter</a>.</p>
+        <h4>À faire vous-même 1.7</h4>
+        <p>Saisissez, analysez et testez ce programme</p>
+        <pre><code>
+var img;
+function preload() {
+	img=loadImage("tux.jpg");
+}
+function setup() {
+    createCanvas(420,242);
+}
+function draw(){
+  image (img,0,0);
+  filter(BLUR,3);
+  image (img,209,0);
+}
+        </code></pre>
+        <hr>
+        <p>La fonction "filtre" prend ici 2 paramètres : le type de filtre (ici BLUR) et l'intensité du filtre (ici 3).</p>
+        <p>Vous aurez sans doute remarqué que le filtre s'applique aux images qui ont déjà été affichées dans la fenêtre. Ici, le filtre s'applique à la première image (coordonnées 0,0) et pas à la seconde (coordonnées 209,0).</p>
+        <h4>À faire vous-même 1.8</h4>
+        <p>Écrivez un programme permettant d'obtenir ceci :</p>
+         <iframe src="p5_img/a1_8/index.html" width="445px" height="275px"></iframe>
+    </div>
+	</body>
+</html>

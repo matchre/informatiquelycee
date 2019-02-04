@@ -1,0 +1,236 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu avec Phaser</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu avec Phaser</span>
+					<span class="navbar-brand">Activité 6</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./phaser_intro.html">Introduction</a></li>
+								<li><a href="./phaser_a1.html">Activité 1</a></li>
+	              <li><a href="./phaser_a2.html">Activité 2</a></li>
+	              <li><a href="./phaser_a3.html">Activité 3</a></li>
+								<li><a href="./phaser_a4.html">Activité 4</a></li>
+	              <li><a href="./phaser_a5.html">Activité 5</a></li>
+	              <li><a href="./phaser_a7.html">Activité 7</a></li>
+								<li><a href="./phaser_a8.html">Activité 8</a></li>
+	              <li><a href="./phaser_a9.html">Activité 9</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="phaser_a5.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="phaser_a7.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Beaucoup de jeux utilisent des sprites animés pour créer les animations des personnages.
+			</p>
+			<p>
+				Avec  ou sans Phaser,  la  technique d'animation est  toujours  la  même. Nous utiliserons le
+				principe du dessin animé : faire défiler des images fixes.
+			</p>
+			<p>
+				Voici les séries d'images fixes que nous allons utiliser dans cette activité.
+			</p>
+			<img src="img/jeux2d_6_1.jpg">
+			<p>
+				Vous trouverez cette image <a href="http://www.webisn.byethost5.com/imgPhaser.zip">ici</a>.
+			</p>
+			<p>
+				Comme vous pouvez le constater, cette image au format png, va nous permettre de gérer plusieurs
+				animations.  Par exemple, si nous prenons les 6 premières représentations de Sonic (en partant en
+				haut à gauche), il est évident que leur enchaînement rapide à l'écran donnera l'impression que Sonic
+				est en train de marcher vers la droite .
+			</p>
+			<p>
+				Sans Phaser, le code à écrire pour mettre en place cette animation serait relativement long. Avec Phaser, c'est un jeu d'enfant.
+			</p>
+			<p>
+				Pour commencer, nous allons (par  la pensée)  découper  notre image .png (que nous appellerons
+				désormais "spritesheet") en petites vignettes de 48 pixels de large et 48 pixels de haut. À l'aide d'un
+				logiciel de dessin standard, vérifiez que chaque petite vignette contient bien un dessin de Sonic. Ces
+				vignettes vont être ensuite numérotées  en partant d'en haut à gauche.  Par  exemple, la première
+				vignette de la deuxième ligne portera le numéro 11 (la première vignette de la première ligne porte
+				le numéro zéro).
+			</p>
+			<h4>À faire vous même 6.1</h4>
+			<p>
+				Saisissez, analysez et testez ce code afin de comprendre l'utilisation des sprites animés (n'oubliez pas de placer le fichier "sonicsprites.png" dans le dossier asset).
+			</p>
+			<pre><code class="javascript">
+var game = new Phaser.Game(800,600,Phaser.AUTO,'content',{preload: preload, create: create,update:update});
+function preload(){
+    game.load.spritesheet('spriteSonic','asset/sonicsprites.png',48,48);
+}
+function create(){
+    sonic=game.add.sprite(400,300,'spriteSonic');
+    sonic.anchor.setTo (0.5,0.5);
+    sonic.animations.add('marche',[0,1,2,3,4,5],10,true);
+    sonic.play('marche');
+}
+function update(){
+}
+			</code></pre>
+			<hr>
+			<p>
+				Remarques sur le code du "À faire vous même 6.1" :
+			</p>
+			<p>
+				Dans la fonction "preload", nous ne chargeons plus une image, mais un spritesheet (série d'image composant les différentes animations) :
+			</p>
+			<pre><code class="javascript">
+game.load.spritesheet('spriteSonic','asset/sonicsprites.png',48,48);
+			</code></pre>
+			<p>
+				Le premier paramètre 'spriteSonic' est le nom du spritesheet, le second 'asset/sonicsprites.png' correspond au chemin vers le fichier "sonicsprites.png", ensuite nous avons la largeur des vignettes : 48 et enfin la hauteur des vignettes : 48.
+			</p>
+			<pre><code class="javascript">
+sonic=game.add.sprite(400,300,'spriteSonic');
+			</code></pre>
+			<p>
+				rien de nouveau, nous créons un sprite comme dans les exemples précédents.
+			</p>
+			<pre><code class="javascript">
+sonic.animations.add('marche',[0,1,2,3,4,5],10,true);
+			</code></pre>
+			<p>
+				cette ligne nous permet de créer une animation, voici les différents paramètres de la fonction add :
+				<ul>
+					<li>'marche' : le nom de l'animation</li>
+					<li>[0,1,2,3,4,5] : tableau contenant les index de position des images composant l'animation. Notre animation "'marche'" sera composée des 6 premières vignettes du spritesheet.</li>
+					<li>10 : vitesse de l'animation => nous aurons ici 10 images par seconde.</li>
+					<li>true : l'animation sera jouée en boucle (mettre à false si vous voulez que l'animation ne soit jouée qu'une fois).</li>
+				</ul>
+			</p>
+			<pre><code class="javascript">
+sonic.play('marche');
+			</code></pre>
+			<p>
+				permet de jouer l'animation
+			</p>
+			<h4>À faire vous même 6.2</h4>
+			<p>
+				Sachant qu'il est possible :
+			</p>
+			<ul>
+				<li>d'afficher une image fixe issue du spritesheet :
+					<pre><code class="javascript">
+sonic.frame=6;
+					</code></pre>affichera l'image n°6 (attention, rappelez-vous que la première image du spritesheet a le numéro 0)</li>
+				<li>de stopper toutes les animations en cours avec
+					<pre><code class="javascript">
+sonic.animations.stop();
+					</code></pre></li>
+			</ul>
+			<p>
+				Écrivez un programme permettant de mettre en place plusieurs animations. L'utilisateur pourra changer d'animation. Par exemple : la touche A permettra de "jouer" l'animation "marche" (image 0 à 5), la touche B lancera l'animation "attente" (image 7 à 10), la touche C arrêtera les animations et affichera une image fixe (image 6). Au lancement du programme, l'image fixe n°6 sera affichée.
+			</p>
+			<hr>
+			<p>
+				Et si maintenant nous voulons faire courir Sonic de la droite vers la gauche ?
+			</p>
+			<p>
+				Visiblement, nous n'avons pas les vignettes adaptées !
+			</p>
+			<p>
+				Phaser propose une solution relativement simple : "retourner" le sprite !
+			</p>
+			<h4>À faire vous même 6.3</h4>
+			<p>
+				Saisissez, analysez et testez ce code
+			</p>
+			<pre><code class="javascript">
+var game = new Phaser.Game(800,600,Phaser.AUTO,'content',{preload: preload, create: create,update:update});
+function preload(){
+    game.load.spritesheet('spriteSonic','asset/sonicsprites.png',48,48);
+}
+function create(){
+    sonic=game.add.sprite(400,300,'spriteSonic');
+    sonic.anchor.setTo (0.5,0.5);
+    sonic.animations.add('marche',[0,1,2,3,4,5],10,true);
+    sonic.frame=6;
+}
+function anim(){
+    if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+        sonic.scale.x=-1;
+        sonic.play('marche');
+        }
+    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+        sonic.scale.x=1;
+        sonic.play('marche');
+    }
+}
+function update(){
+    anim();
+}
+			</code></pre>
+			<hr>
+			<p>
+				Remarques sur le code du "À faire vous même 6.3" :
+			</p>
+			<ul>
+				<li>nous créons une animation "marche" :
+					<pre><code class="javascript">
+sonic.animations.add('marche',[0,1,2,3,4,5],10,true);
+					</code></pre></li>
+				<li>au lancement du programme, l'image n°6 est affichée (image fixe) :
+					<pre><code class="javascript">
+sonic.frame=6;
+					</code></pre></li>
+				<li>à chaque image, nous appelons la fonction "anim"</li>
+				<li>contenu de la fonction "anim" : en cas d'appui sur la flèche gauche, nous "inversons" le sprite
+					<pre><code class="javascript">
+sonic.scale.x=-1;
+					</code></pre>
+				et nous lançons l'animation marche. Le raisonnement est identique en cas d'appui sur la flèche droite : le sprite est "remis à l'endroit"
+					<pre><code class="javascript">
+sonic.scale.x=1;
+					</code></pre></li>
+			</ul>
+			<h4>À faire vous même 6.4</h4>
+			<p>
+				Sonic doit pouvoir se déplacer vers la droite et vers la gauche (utilisation des flèches du clavier).
+				L'animation devra être adaptée à la situation (marche vers la gauche, marche vers la droite, attente
+				en regardant vers la gauche, attente en regardant vers la droite).
+			</p>
+    </div>
+	</body>
+</html>

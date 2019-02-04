@@ -1,0 +1,109 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>La vidéo avec p5.js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">La vidéo avec p5.js</span>
+					<span class="navbar-brand">Activité 2</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_vid_a1.html">Activité 1</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="p5_vid_a1.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Au lieu d'utiliser la fonction <i>image</i> pour afficher la vidéo, il est possible de la "reconstruire" totalement en utilisant les données extraites grâce à la méthode <i>loadPixels</i>. L'idée étant de travailler sur l'aspect artistique des choses.</p>
+        <p>Voici un exemple de ce qu'il est possible de réaliser :</p>
+        <iframe src="p5_vid/a2/index.html" width="350px" height="280px"></iframe>
+        <p>En observant attentivement la "vidéo" ci-dessus, vous remarquerez qu'elle est uniquement composée de disques noirs (créé avec la fonction <i>ellipse</i>) de rayon plus au moins grand. Plus le pixel de la vidéo d'origine est "foncé" et plus le disque à un rayon important.</p>
+        <p>Comme déjà évoqué plus haut, nous n'utilisons pas la fonction <i>image</i> comme dans l'activité précédente. Il est donc inutile d'utiliser la fonction <i>updatePixels</i> qui permet de mettre à jour les pixels d'une image préalablement affichée. Pour obtenir le tableau de pixels (tableau dénommé <i>pixels</i>), il sera nécessaire d'utiliser la méthode <i>update</i> sur l'objet <i>maVideo</i>. Nous aurons ce genre de programme :</p>
+        <pre><code class="javascript">
+var maVideo;
+var largeur=320;
+var hauteur=240;
+var index=0;
+var step=8
+function setup() {
+	createCanvas(largeur,hauteur);
+	maVideo=createVideo("fingers.webm");
+	maVideo.hide();
+	maVideo.loop();
+	noStroke();
+	fill(0);
+}
+
+function draw() {
+	background(255);
+	maVideo.loadPixels();
+    //À partir de cette ligne il est possible d'utiliser le tableau de pixels : maVideo.pixels[]
+	/*Le code est à compléter à partir d'ici
+    /+++++++++++++++++
+    /+++++++++++++++++
+    /+++++++++++++++++
+    /+++++++++++++++++
+    /+++++++++++++++++
+    /+++++++++++++++++
+}
+        </code></pre>
+        <p>Vu que nous n'affichons pas d'image dans la canvas à l'aide de la fonction <i>image</i>, nous travaillons directement sur les données issues de la vidéo "fingers.webm", voilà pourquoi nous écrivons <i>maVideo.loadPixels()</i> à la place de l'habituel <i>loadPixels()</i> et <i>maVideo.pixels[]</i> à la place du non moins habituel <i>pixels[]</i>.
+        <p>Tout cela est un peu complexe, mais en résumé, vous utiliserez <i>loadPixels()</i>, <i>pixels[]</i> et <i>updatePixels</i> si vous utilisez la fonction <i>image</i>. Dans le cas où vous n'utilisez pas la fonction <i>image</i>, vous utiliserez <i>maVideo.loadPixels()</i> et <i>maVideo.pixels[]</i>.</p>
+        <p>Tous les pixels de la vidéo d'origine ne sont pas utilisés, ici j'utilise un pixel tous les 8 pixels (d'où la variable <i>step=8</i>). Le premier disque correspond au pixel n°0, le deuxième disque correspond au pixel n°8, le troisième disque correspond au pixel n°16...</p>
+        <p>N'oubliez pas que le tableau <i>maVideo.pixels[]</i> est composé de 4 grandeurs pour chaque pixel (canal rouge, canal vert, canal bleu, canal alpha). La variable <i>index</i> correspond à l'indice d'un élément du tableau <i>maVideo.pixels[]</i> :</p>
+        <ul>
+            <li>le canal rouge du pixel n°0 (coordonnées x=0, y=0) est donné par <i>maVideo.pixels[0]</i> (<i>index=0</i>)</li>
+            <li>le canal vert du pixel n°0 (coordonnées x=0, y=0) est donné par <i>maVideo.pixels[1]</i> (<i>index=1</i>)</li>
+            <li>le canal bleu du pixel n°0 (coordonnées x=0, y=0) est donné par <i>maVideo.pixels[2]</i> (<i>index=2</i>)</li>
+            <li>le canal alpha du pixel n°0 (coordonnées x=0, y=0) est donné par <i>maVideo.pixels[3]</i> (<i>index=3</i>)</li>
+            <li>le canal rouge du pixel n°1 (coordonnées x=1, y=0) est donné par <i>maVideo.pixels[4]</i> (<i>index=4</i>)</li>
+            <li>......</li>
+        </ul>
+        <h4>À faire vous-même 2.1</h4>
+        <p>Déterminer la relation reliant <i>index</i>, <i>x</i> (coordonnée x du pixel), <i>y</i> (coordonnée y du pixel) et <i>largeur</i> (largeur de la vidéo d'origine).</p>
+        <hr>
+        <h4>À faire vous-même 2.2</h4>
+        <p>En vous aidant de ce qui vient d'être expliqué, créez un programme permettant d'obtenir la "vidéo" ci-dessus.</p>
+        <p>N'oubliez pas que vous pouvez utiliser le flux vidéo d'une webcam à la place de la vidéo proposée.</p>
+        <p>Cette activité est particulièrement difficile, n'hésitez pas à procéder étape par étape et à poser des questions.</p>
+        <hr>
+    </div>
+	</body>
+</html>

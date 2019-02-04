@@ -1,0 +1,218 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Données et Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Données et Processing</span>
+					<span class="navbar-brand">Activité 2</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procAnDo_a1.html">Activité 1</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procAnDo_a1.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Autre format de données très courant sur le "web", le JSON (JavaScript Object Notation). Comme les "dictionnaires" proposés par Processing, le JSON fonctionne avec un système de paire clé/valeur. Le format JSON, comme son nom l'indique, est dérivé de la notation des objets du langage JavaScript.</p>
+        <p>Un objet JavaScript est encadré par des accolades :</p>
+        <pre><code>
+{cle_1 : val_1, cle_2 : val_2, cle_3 : val_3}
+        </code></pre>
+        <p>souvent, pour une question de lisibilité, on écriera :</p>
+        <pre><code>
+{
+    cle_1 : val_1,
+    cle_2 : val_2,
+    cle_3 : val_3
+}
+        </code></pre>
+        <p>Un fichier au format JSON peut regrouper un grand nombre d'objets :</p>
+        <pre><code>
+[{
+    "nom" : "Durand",
+    "prenom" : "Jean-Pierre",
+    "date_naissance" : "23/05/1985"
+},
+{
+    "nom" : "Dupont",
+    "prenom" : "Christophe",
+    "date_naissance" : "15/12/1967"
+},
+{
+    "nom" : "Terta",
+    "prenom" : "Henry",
+    "date_naissance" : "12/06/1978"
+}]
+        </code></pre>
+        <p>Ci-dessus, nous avons un tableau contenant des objets (nous utilisons la notation JavaScript : les caractères [ et ] représentent respectivement le début et la fin d'un tableau).</p>
+        <p>La "valeur" d'une paire "clé/valeur" peut être un tableau  :</p>
+        <pre><code>
+{
+    "nom" : "Durand",
+    "prenom" : "Jean-Pierre",
+    "date_naissance" : "23/05/1985"
+    "sport" : ["tennis", "football", "pétanque"]
+}
+        </code></pre>
+        <p>ou même un autre objet :</p>
+        <pre><code>
+{
+    "nom" : "Durand",
+    "prenom" : "Jean-Pierre",
+    "date_naissance" : "23/05/1985"
+    "adresse" : {"num":6, "rue":"impasse du rossignol", "ville":"Nogent-le-Rotrou", "cp":"28400"}
+}
+         </code></pre>
+        <p>Comme vous pouvez le constater, il est possible d'obtenir des structures de données très complexes avec le format JSON.</p>
+        <p>Pour en savoir plus sur le JSON, vous pouvez lire l'article sur <a href="https://fr.wikipedia.org/wiki/JavaScript_Object_Notation" target="_blank">Wikipédia</a>.</p>
+        <h4>À faire vous-même 2.1</h4>
+        <p>Téléchargez le fichier <a href="asset/ident.json">ident.json</a> et ouvrez-le à l'aide d'un éditeur de texte.</p>
+        <hr>
+        <p>Il nous faut d'abord créer un objet de type "JSONArray" puis récupérer les données présentes dans le fichier "ident.json" :</p>
+        <pre><code>
+JSONArray json;
+json=loadJSONArray("ident.json");
+         </code></pre>
+        <p>Attention : notre fichier json contient un tableau d'objet (commence par [ et se termine par ], les différents objets sont séparés par des virgules) nous utilisons donc "JSONArray" et "loadJSONArray". Dans le cas où le fichier json serait composé d'un unique objet JavaScript, il faudrait utiliser "JSONObject" et "loadJSONObject".</p>
+        <p>Le tableau contient 3 objets JavaScript, la méthode "getJSONObject" va nous permettre de récupérer un de ces 3 objets JavaScript. Cette méthode prend un seul paramètre, l'indice de position de l'objet dans le tableau (le premier objet JavaScript à, comme d'habitude, l'indice 0).</p>
+        <h4>À faire vous-même 2.2</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+JSONArray json;
+void setup(){
+  json=loadJSONArray("ident.json");
+  JSONObject obj=json.getJSONObject(1);
+  println(obj);
+}
+        </code></pre>
+        <p>Comme vous pouvez le constater, l'objet s'affiche dans la console de Processing.</p>
+        <hr>
+        <p>Comme avec les données de type CSV, nous allons utiliser les méthodes "getString", "getInt",... pour récupérer la "valeur" associée à une "clé". Les méthodes "getString", "getInt",... prennent un paramètre : la "clé" de la "valeur" recherchée.</p>
+        <h4>À faire vous-même 2.3</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+JSONArray json;
+void setup(){
+  json=loadJSONArray("ident.json");
+  JSONObject obj=json.getJSONObject(1);
+  String nom=obj.getString("nom");
+  println(nom);
+}
+        </code></pre>
+        <h4>À faire vous-même 2.4</h4>
+        <p>Créez un programme permettant d'obtenir ceci :</p>
+        <img src="img/procAnDo_a2_1.png">
+        <hr>
+        <p>Il est possible de parcourir le tableau d'objet à l'aide d'une boucle :</p>
+        <h4>À faire vous-même 2.5</h4>
+        <p>Créez un programme permettant d'obtenir ceci (il faudra extraire les données du fichier ident.json et obligatoirement utiliser une boucle).</p>
+        <p>Pour vous aider : la méthode "size" renvoie le nombre d'objets présents dans un tableau (utilisation : "json.size()").</p>
+        <img src="img/procAnDo_a2_2.png">
+        <hr>
+        <p>Il existe beaucoup d'autres méthodes utiles, n'hésitez pas à consulter la <a href="https://processing.org/reference/JSONArray.html" target="_blank">documentation officielle</a>.</p>
+        <p>De nombreux sites web proposent des services basés sur des API (Application Programming Interface). Ces sites sont capables de fournir des données aux formats JSON sur "simple demande". Souvent, ces "demandes" sont effectuées par l'intermédiaire d'une url (si vous avez besoin de vous rafraichir la mémoire à propos de la notion d'url, n'hésitez pas à consulter ce <a href="reseau_a1.html" target="_blank">document</a>).</p>
+        <p>Nous allons illustrer ce propos en utilisant l'API d'un site qui fournit des informations météo au format JSON. Vous trouverez ce site à l'adresse suivante : <a href="http://openweathermap.org/api" target="_blank">openweathermap.org/api</a></p>
+        <p>Pour profiter de ce service,s il est nécessaire de s'inscrire (<a href="http://home.openweathermap.org/users/sign_up" target="_blank">http://home.openweathermap.org/users/sign_up</a>) afin de pouvoir récupérer une clé (API key). Notez bien cette clé quelque part, elle vous servira dès que vous voulez accéder au service.</p>
+        <h4>À faire vous-même 2.6</h4>
+        <p>Ouvrez votre navigateur préféré et copier-coller l'url suivante dans la barre d'url du navigateur :</p>
+        <pre><code>
+http://api.openweathermap.org/data/2.5/weather?q=bonneville,fr&lang=fr&units=metric&APPID=XXXXXXXXXXXXX
+        </code></pre>
+        <p>ATTENTION : il faut remplacer les "X" par la clé (API key) que vous aurez obtenue lors de votre inscription.</p>
+        <hr>
+        <p>Au lieu d'obtenir, comme d'habitude, une page web, vous devriez obtenir uniquement quelque chose qui ressemblera à ceci :</p>
+        <pre><code>
+{"coord":{"lon":6.41,"lat":46.08},"weather":[{"id":800,"main":"Clear","description":"ensoleillé","icon":"01d"}],"base":"stations","main":{"temp":17.35,"pressure":1016,"humidity":59,"temp_min":16,"temp_max":19},"visibility":10000,"wind":{"speed":2.1,"deg":250},"clouds":{"all":0},"dt":1443975257,"sys":{"type":1,"id":6002,"message":0.0095,"country":"FR","sunrise":1443937016,"sunset":1443978495},"id":3031679,"name":"Bonneville","cod":200}
+        </code></pre>
+        <p>Comme les données sont réactualisées relativement souvent, vous n'obtiendrez pas la même chose que moi !</p>
+        <p>Avec une simple url, le site open weather renvoie des informations météo sous forme de données JSON.</p>
+        <p>Détaillons l'url :</p>
+        <pre><code>
+http://api.openweathermap.org/data/2.5/weather
+        </code></pre>
+        <p>Cette partie de l'url ne changera pas (sauf si vous désirez autre chose que les conditions météo actuelles, à ce moment-là, il faudra remplacer "weather" par autre chose (consulter le site open weather pour plus d'informations)).</p>
+        <pre><code>
+?q=bonneville,fr&lang=fr&units=metric&APPID=XXXXXXXXXXXXX
+        </code></pre>
+        <pre><code>
+        </code></pre>
+        <p>À partir du point d'interrogation, vous devez renseigner les différents paramètres qui permettront à open weather de vous renvoyer les bonnes informations. Ces paramètres sont séparés par le caractère "&".</p>
+        <ul>
+            <li>"q=bonneville,fr" le paramètre "q" correspond au nom de la ville suivi du pays (fr dans notre cas)</li>
+            <li>"lang=fr" la langue utilisée sera le français</li>
+            <li>"units=metric" on désire avoir les longueurs en mètres (et les vitesses en mètre par seconde).</li>
+            <li>"APPID" correspond à l'API key</li>
+        </ul>
+        <p>Il est possible de construire des requêtes beaucoup plus complexes, encore une fois, veuillez consulter le site open weather pour plus d'informations.</p>
+        <p>Intéressons-nous maintenant aux données JSON renvoyées (nous n'allons pas tout détailler) :</p>
+        <ul>
+            <li>"coord":{"lon":6.41,"lat":46.08} latitude et longitude du lieu</li>
+            <li>"weather":[{"id":800,"main":"Clear","description":"ensoleillé","icon":"01d"}] "weather" correspond à un tableau qui contient un seul objet.</li>
+            <li>"main":{"temp":17.35,"pressure":1016,"humidity":59,"temp_min":16,"temp_max":19} "main" correspond à un objet qui contient différents types d'informations</li>
+            <li>"dt":1443975257 "dt" nous donne l'heure et la date de diffusion du bulletin au format "timestamp" (voir <a href="http://www.timestamp.fr/" target="_blank">ici</a> pour plus d'informations sur la notion de timestamp)</li>
+            <li>"sunrise":1443937018,"sunset":144397849 : respectivement heure de lever et de coucher du soleil au format timestamp</li>
+        </ul>
+        <h4>À faire vous-même 2.7</h4>
+        <p>Saisissez, analysez et testez le programme suivant</p>
+        <pre><code>
+JSONObject json;
+void setup(){
+  json=loadJSONObject("http://api.openweathermap.org/data/2.5/weather?q=bonneville,fr&lang=fr&units=metric");
+  JSONArray tabWeather=json.getJSONArray("weather");
+  JSONObject objWeather=tabWeather.getJSONObject(0);
+  String desc=objWeather.getString("description");
+  String ville=json.getString("name");
+  println(desc+" à "+ville);
+}
+        </code></pre>
+        <hr>
+        <p>Vous pouvez constater que la "récupération" des données peut parfois s'avérer complexe. La "clé" "description" n'est pas accessible directement : il faut tout commencer par récupérer le tableau "weather", puis récupérer le premier objet du tableau (il n'y a qu'un seul objet dans ce tableau !) et enfin récupérer la "valeur" associée à la "clé" "description". À chaque étape, il faut bien veiller à utiliser la bonne méthode : "getJSONArray" puis "getJSONObject" et enfin "getString".</p>
+        <h4>À faire vous-même 2.8</h4>
+        <p>Reprenez le programme du "À faire vous-même 2.7" en le modifiant pour obtenir la météo dans la ville de votre choix</p>
+        <hr>
+        <h4>À faire vous-même 2.9</h4>
+        <p>Créez un programme permettant d'obtenir quelque chose qui ressemblera à ceci (avec la ville de votre choix) :</p>
+        <img src="img/procAnDo_a2_3.png">
+        <p>Pour vous aider : les icônes dont vous aurez besoin sont téléchargeables <a href="asset/icon_meteo.zip">ici</a>.</p>
+    </div>
+	</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Animation sprites</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Animation sprites</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Dans cette activité, nous allons apprendre à réaliser une animation à partir d'images fixes en utilisant le principe du dessin animé. Cette technique est, entre autres, utilisée dans les jeux vidéos.</p>
+        <p>Nous utiliserons plusieurs séries d'images :</p>
+        <ul>
+            <li><img src="asset/sonic_1.png">sonic_1.png</li>
+            <li><img src="asset/sonic_2.png">sonic_2.png</li>
+            <li><img src="asset/sonic_3.png">sonic_3.png</li>
+            <li><img src="asset/sonic_4.png">sonic_4.png</li>
+        </ul>
+        <p>Télécharger une archive contenant ces fichiers en cliquant <a><a href="asset/sonic.zip">ici</a></p>
+        <h4>À faire vous-même 1.1</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+PImage[] tabIm;
+int index=0;
+int compt=0;
+void setup(){
+  size(200,200);
+  PImage img=loadImage("sonic_1.png");
+  tabIm=new PImage[6];
+  for (int i=0;i&lttabIm.length;i++){
+    tabIm[i]=img.get(48*i,0,48,48);
+  }
+}
+void draw(){
+  background(255);
+  if (compt==10){
+    compt=0;
+    index=index+1;
+    if (index>5){
+      index=0;
+    }
+  }
+  compt=compt+1;
+  image(tabIm[index],75,75);
+}
+        </code></pre>
+        <hr>
+        <p>L'analyse de l'exemple du "À faire vous-même 1.1" ne devrait pas vous posez de problème. Si l'utilisation de la méthode "get" de la classe Image vous ait inconnu, n'hésitez pas à étudier la fin de l'activité 2 de la série consacrée aux images : <a href="procImg_a2.html" target="_blank" >ici</a>. Plus généralement, il est nécessaire d'avoir étudié la série d'activités consacrée aux images.</p>
+        <p>Les différentes images de "Sonic" sont "découpées" (à l'aide de la méthode "get") et placées dans le tableau tabIm.
+        <pre><code>
+for (int i=0;i&lttabIm.length;i++){
+    tabIm[i]=img.get(48*i,0,48,48);
+}
+        </code></pre>
+        <p>Il est important de comprendre les rôles des variables "index" et "compt" :</p>
+        <ul>
+            <li>"compt" permet de changer l'image de Sonic après "10 boucles draw" (si le changement d'image avait lieu à chaque tour de "boucle draw", l'animation serait beaucoup trop rapide). La variable "compt" permet de contrôler la vitesse de l'animation.</li>
+            <li>"index" permet de parcourir le tableau tabIm (et donc d'afficher les différentes images de Sonic)</li>
+        </ul>
+        <p>Il est possible d'obtenir un code un peu plus "propre" en utilisant des fonctions :</p>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+PImage[] tabIm;
+int index=0;
+int compt=0;
+void setup(){
+  size(200,200);
+  tabIm=creaAnim("sonic_1.png",6);
+}
+void draw(){
+  background(255);
+  anim(tabIm,7,75,75);
+}
+void anim(PImage[] tabIm, int vitAnim,int x, int y){
+  if (compt==vitAnim){
+    compt=0;
+    index=index+1;
+    if (index==tabIm.length){
+      index=0;
+    }
+  }
+  compt=compt+1;
+  image(tabIm[index],x,y);
+}
+PImage[] creaAnim(String nomImg,int nbImage){
+  PImage img=loadImage(nomImg);
+  PImage[] tabImg=new PImage[nbImage];
+  for (int i=0;i&lttabImg.length;i++){
+    tabImg[i]=img.get(48*i,0,48,48);
+  }
+  return tabImg;
+}
+        </code></pre>
+        <hr>
+        <p>Étudiez attentivement le code proposé dans le "À faire vous-même 1.2", plus particulièrement, intéressez-vous aux fonctions "creAnim" et "anim" (quels sont les paramètres de ces fonctions ? Que renvoient ces fonctions ? ...). Sinon, le principe reste identique à celui vu dans le "À faire vous-même 1.1".</p>
+        <p>Il est possible d'encore améliorer la gestion des animations en utilisant la programmation orientée objet et en créant une classe "SpriteAnim".</p>
+        <h4>À faire vous-même 1.3</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+SpriteAnim an;
+void setup(){
+  size(200,200);
+  an=new SpriteAnim("sonic_1.png",6,5);
+}
+void draw(){
+  background(255);
+  an.anim(75,25);
+}
+
+class SpriteAnim {
+  int index;
+  int compt;
+  int vit;
+  int nbImg;
+  PImage img;
+  PImage[] tabImg;
+  SpriteAnim(String nomImg,int nbImage, int vitAnim){
+    index=0;
+    compt=0;
+    vit=vitAnim;
+    nbImg=nbImage;
+    img=loadImage(nomImg);
+    tabImg=new PImage[nbImage];
+    for (int i=0;i&ltnbImg;i++){
+      tabImg[i]=img.get(48*i,0,48,48);
+    }
+  }
+  void anim(int x, int y){
+    if (compt==vit){
+      compt=0;
+      index=index+1;
+      if (index==nbImg){
+        index=0;
+      }
+    }
+    compt=compt+1;
+    image(tabImg[index],x,y);
+  }
+}
+        </code></pre>
+        <hr>
+        <p>Étudiez plus précisément la classe SpriteAnim (le constructeur et la méthode "anim").</p>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Créez un programme permettant de déplacer Sonic à l'aide des flèches du clavier (droites et gauche). L'animation devra être adaptée à la situation (court vers la gauche, court vers la droite, attente en regardant vers la gauche, attente en regardant vers la droite). Sonic ne devra pas pouvoir sortir de l'écran.</p>
+    </div>
+	</body>
+</html>

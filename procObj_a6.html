@@ -1,0 +1,120 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Programmation orientée objet avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Programmation orientée objet avec Processing</span>
+					<span class="navbar-brand">Activité 6</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procObj_a1.html">Activité 1</a></li>
+                <li><a href="./procObj_a2.html">Activité 2</a></li>
+                <li><a href="procObj_a3.html">Activité 3</a></li>
+                <li><a href="procObj_a4.html">Activité 4</a></li>
+                  <li><a href="procObj_a5.html">Activité 5</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procObj_a5.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+            Pour terminer avec les objets, il nous reste une notion importante à aborder : l'héritage.
+        </p>
+        <p>
+            Nous allons créer une nouvelle classe (la classe magicien) qui héritera de la classe personnage (on dira que la classe magicien sera la classe fille et personnage sera la classe parente).
+        </p>
+        <p>Pour une fois, ce terme d'héritage est bien approprié à la situation. En effet, la classe magicien va hériter de toutes les méthodes et de tous les attributs de la classe personnage (une instance de magicien aura un nom et des points de vie, comme une instance de personnage, et pourra utiliser les méthodes de la classe personnage). Alors quel est l'intérêt de créer une nouvelle classe ? Eh bien, l'instance de magicien aura un attribut supplémentaire (pointDeMagie) et une méthode supplémentaire (lancerDesSorts). En tout, une instance de magicien aura 3 attributs (2 hérités de la classe personnage (vie et nom) et 1 qui lui est propre (pointDeMagie)) et 3 méthodes (2 hérités de la classe personnage et 1 propre)</p>
+        <p>La mise en place de l'héritage est très simple, puisqu'il suffit d'utiliser le mot "extends" suivi du nom de la classe parente, dans notre exemple, on définira la classe magicien comme suit :</p>
+        <pre><code>
+class Magicien extends Personnage
+        </code></pre>
+        <h4>À faire vous même 6.1</h4>
+        <p>
+            Saisissez, analysez et testez ce code
+        </p>
+        <pre><code>
+Magicien gandalf;
+class Personnage {
+ int vie;
+ String nom;
+ Personnage(int nbrVie, String nomPerso){
+  vie=nbrVie;
+  nom=nomPerso;
+ }
+ void afficheEtat(){
+   println ("Il reste "+vie+" points de vie à "+nom);
+ }
+ void perdVie (){
+  println (nom+" subit une attaque, il perd une vie");
+  vie=vie-1;
+ }
+}
+class Magicien extends Personnage {
+  int pointDeMagie;
+  Magicien(int nbrVie, String nomPerso, int magie){
+    super (nbrVie, nomPerso);
+    pointDeMagie=magie;
+  }
+  void lancerDesSorts(){
+    println(nom+" fait de la magie");
+    pointDeMagie=pointDeMagie-1;
+    println("Il reste "+pointDeMagie+" points de magie à "+nom+".");
+  }
+}
+void setup(){
+ gandalf = new Magicien(20,"Gandalf",15);
+ gandalf.afficheEtat();
+ gandalf.perdVie();
+ gandalf.afficheEtat();
+ gandalf.lancerDesSorts();
+}
+        </code></pre>
+        <hr>
+        <p>Une ligne doit particulièrement attirer votre attention :</p>
+        <pre><code>
+super (nbrVie, nomPerso);
+        </code></pre>
+        <p>Le mot clé "super" permet d'appeler le constructeur de la classe parente (sans cette ligne, le constructeur de la classe Personnage ne serait pas exécuté et les attributs "vie" et "nom" ne serait pas initialisés. "super" prend en paramètres les paramètres attendus par le constructeur de la classe Personnage.</p>
+        <p>Nous aurons, un peu plus tard, l'occasion de mettre en œuvre l'héritage.</p>
+    </div>
+	</body>
+</html>

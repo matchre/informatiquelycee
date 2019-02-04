@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Dessiner avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Dessiner avec Processing</span>
+					<span class="navbar-brand">Activité 5</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procDes_a1.html">Activité 1</a></li>
+                <li><a href="./procDes_a2.html">Activité 2</a></li>
+                  <li><a href="./procDes_a3.html">Activité 3</a></li>
+                  <li><a href="./procDes_a4.html">Activité 4</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procDes_a4.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+            Il est possible d'écrire du texte dans la fenêtre Processing.
+        </p>
+        <p>La fonction "text" permet d'afficher une chaine de caractères. Cette fonction prend 3 paramètres : la chaine de caractères, la coordonnée x du coin "haut-gauche" du texte, la coordonnée y du coin "haut-gauche" du texte .</p>
+        <h4>À faire vous-même 5.1</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+size(200,200);
+background(255);
+fill(0);
+text("Hello World",60,100);
+        </code></pre>
+        <hr>
+        <p>"fill" permet de choisir la couleur du texte.</p>
+        <p>Il est possible de choisir la taille de la police de caractère avec la fonction "textSize" qui prend pour unique paramètre la taille de la police de caractère.</p>
+        <p>J'ai dit un peu plus haut que les 2 derniers paramètres de la fonction "text" correspondaient aux coordonnées du coin "haut-gauche" du texte. Il est possible de modifier ce comportement par défaut grâce à la fonction "textAlign". Cette fonction prend un seul paramètre qui peut être : "LEFT", "RIGHT" ou "CENTER".</p>
+        <img src="img/procDes_a5_1.png" alt="proc">
+        <p>Dans le schéma ci-dessus, le point A a pour coordonnées les 2 derniers paramètres de la fonction "text".</p>
+        <ul>
+            <li>le cas 1 correspond à "LEFT" (comportement par défaut)</li>
+            <li>le cas 2 correspond à "RIGHT"</li>
+            <li>le cas 3 correspond à "CENTER"</li>
+        </ul>
+         <h4>À faire vous-même 5.2</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+size(200,200);
+background(255);
+fill(0);
+text("Hello World",100,70);
+textAlign(RIGHT);
+text("Hello World",100,100);
+textAlign(CENTER);
+text("Hello World",100,130);
+        </code></pre>
+        <hr>
+         <h4>À faire vous-même 5.3</h4>
+            <p>Écrire un programme permettant d'obtenir quelque chose qui ressemblera à ceci :</p>
+            <img src="./img/p5_base_a9_1.png"/>
+    </div>
+	</body>
+</html>

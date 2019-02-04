@@ -1,0 +1,137 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Faire de la physique (et un peu de maths) avec p5js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-92673245-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Faire de la physique (et un peu de maths) avec p5js</span>
+					<span class="navbar-brand">Activité 4</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_Phy_a1.html">Activité 1</a></li>
+                <li><a href="./p5_Phy_a2.html">Activité 2</a></li>
+                <li><a href="./p5_Phy_a3.html">Activité 3</a></li>
+                <li><a href="./p5_Phy_a5.html">Activité 5</a></li>
+                <li><a href="./p5_Phy_a6.html">Activité 6</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="p5_Phy_a3.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="p5_Phy_a5.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Voici le code de l'objet "Mobile" qui sera utilisé dans cette activité (mais aussi dans les suivantes sauf mention contraire).</p>
+        <h4>À faire vous-même 4.1</h4>
+        <p>Saisissez et analysez</p>
+        <p>mobile.js</p>
+        <pre><code class="javascript">
+Mobile=function (x,y,masse,ray,ro,ve,bl) {
+  this.OM = new createVector(x,y);
+  this.dOM = new createVector();
+  this.v = new createVector();
+  this.dv = new createVector();
+  this.a = new createVector();
+  this.sommeF = new createVector();
+  this.m=masse;
+  this.r=ray;
+  this.rouge=ro;
+  this.vert=ve;
+  this.bleu=bl;
+  this.affiche=function(){
+    fill(this.rouge,this.vert,this.bleu);
+    ellipse(this.OM.x,this.OM.y,2*this.r,2*this.r);
+  }
+  this.update=function(dt){
+    this.a=p5.Vector.mult(this.sommeF,1/this.m);
+    this.dv = p5.Vector.mult(this.a,dt);
+    this.v.add(this.dv);
+    this.dOM = p5.Vector.mult(this.v,dt);
+    this.OM.add(this.dOM);
+    this.sommeF.mult(0);
+  }
+  this.ajoutForce=function(F){
+    this.sommeF.add(F);
+  }
+  this.setVit=function(vit){
+    this.v.x=vit.x;
+    this.v.y=vit.y;
+  }
+}
+        </code></pre>
+        <hr>
+        <p>Nous allons travailler sur une force omniprésente pour les terriens que nous sommes : le poids.</p>
+        <p>Le poids d'un objet A est l'action exercée par la planète Terre sur A.</p>
+        <p>Nous avons $\vec{P}=m.\vec{g}$</p>
+        <p>avec m la masse de l'objet A (en Kg) et $\vec{g}$ le vecteur intensité de pesanteur.</p>
+        <p>voici les caractéristiques de $\vec{g}$ :</p>
+        <ul>
+            <li>direction : verticale du lieu</li>
+            <li>sens : vers le bas</li>
+            <li>norme $||\vec{g}||$ = 9,8 mètre par seconde par seconde ou encore newton par kilogramme (cette valeur est une valeur moyenne sur Terre, en fait, elle dépend de l'altitude et de la latitude du lieu).</li>
+        </ul>
+        <h4>À faire vous-même 4.2</h4>
+        <p>Créer un programme qui permettra de voir une balle (mobile) tomber en chute libre (chute libre = chute d'un objet uniquement soumis à son poids). Voici ce que devra donner votre programme :</p>
+        <iframe src="p5_phy/a4_2/index.html" width="230px" height="430px"></iframe>
+        <p>Pour relancer l'animation, appuyez sur F5</p>
+        <p>Remarque : si vous attribuez 9,8 à la norme de l'intensité de pesanteur votre chute risque d'être lente à l'écran. En effet, avec 9,8 mètres par seconde par seconde, cela donne dans la fenêtre de Processing 9,8 pixels par seconde par seconde (la vitesse augmente de 9,8 pixels par seconde toutes les secondes). Nous avons une échelle d'1 mètre pour 1 pixel. Avec une fenêtre de 200 pixels de haut tout se passe donc comme si nous observions de très loin une chute de 200 mètres de haut. Pour avoir une chute un peu plus rapide à l'écran, vous pouvez prendre $||\vec{g}||$ = 98 pixels par seconde par seconde. Dans ce cas là, nous aurons une échelle de 10 mètres pour 1 pixel.</p>
+        <hr>
+        <p>Galilée (1564-1642) a été le premier à affirmer que, dans le cas d'une chute libre, la vitesse de chute d'un corps est indépendante de sa masse. L'astronaute David Scott a eu l'occasion de rendre hommage à Galilée depuis la Lune en faisant l'expérience avec une plume et un marteau (vous pouvez voir la vidéo <a href="https://www.youtube.com/watch?v=QlQIPje4FYQ" target="_blank">ici</a>)</p>
+        <h4>À faire vous-même 4.3</h4>
+        <p>Créez une petite animation qui montre que 2 "balles" de masses différentes tombent à la même vitesse (dans le cas d'une chute libre).</p>
+        <iframe src="p5_phy/a4_3/index.html" width="230px" height="430px"></iframe>
+        <p>Pour relancer l'animation, appuyez sur F5</p>
+        <hr>
+        <h4>À faire vous-même 4.4</h4>
+            <p>Créez un programme permettant d'obtenir ceci :</p>
+            <iframe src="p5_phy/a4_4/index.html" width="630px" height="430px"></iframe>
+            <p>Pour relancer l'animation, appuyez sur F5</p>
+    </div>
+	</body>
+</html>

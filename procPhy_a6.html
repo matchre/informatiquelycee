@@ -1,0 +1,127 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Faire de la physique (et un peu de maths) avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-92673245-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Faire de la physique (et un peu de maths) avec Processing</span>
+					<span class="navbar-brand">Activité 6</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procPhy_a1.html">Activité 1</a></li>
+                <li><a href="./procPhy_a2.html">Activité 2</a></li>
+                <li><a href="./procPhy_a3.html">Activité 3</a></li>
+                <li><a href="./procPhy_a4.html">Activité 4</a></li>
+                <li><a href="./procPhy_a6.html">Activité 5</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procPhy_a5.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Le poids est une manifestation "locale" d'une des 4 forces qui régissent l'univers : la force gravitationnelle.</p>
+        <p>Soit 2 corps sphériques (planètes, étoiles,...) P1 et P2, de centre M1 et M2, de masse m1 et m2. Soit d la distance entre les 2 centres (d=$||\vec{M1M2}||$)</p>
+        <img src="img/procPhy_a6_1.png" alt="proc">
+        <p>La force gravitationnelle exercée par P2 sur P1 a les caractristiques suivantes : </p>
+        <ul>
+            <li>norme : $||\vec{F}||=\frac{G.m1.m2}{d^2}$ avec G la constante universelle de gravitation, $G=6,67.10^{-11} N.m^2.Kg^{-2}$</li>
+            <li>direction : la droite (M1M2)</li>
+            <li>sens : de M1 vers M2</li>
+        </ul>
+        <h4>À faire vous-même 6.1</h4>
+        <p>En utilisant la classe "Mobile", créez un programme permettant de simuler l'effet de la gravitation sur 2 astres P1 et P2. Testez votre programme</p>
+        <p>Pour vous aider :</p>
+        <ul>
+            <li>en utilisant la relation de Chasles, on obtient la relation suivante : $\vec{M1M2}=\vec{OM2}-\vec{OM1}$</li>
+            <li>vous pouvez prendre $2.10^{30}$ pour m2, la masse de P2 (qui jouera le rôle d'une étoile) et $6.10^{24}$ pour m1, la masse de P1 (qui jouera le rôle d'une planète). Dans Processing, il faudra écrire 2e30 pour m1 et 6e24 pour m2.</li>
+            <li>À cause de l'échelle (temps et espace), il est sans doute judicieux de changer la valeur de G. Vous pourrez prendre $G=6,67.10^{-26}$ (6.67e-26 dans Processing).</li>
+        </ul>
+        <canvas id="a6_1" class="proc" data-processing-sources="code/phy_a6_1.pde"></canvas>
+        <img src="./img/repeter.png" class="rep" onclick="startSketch_a6_1();">
+        <script type="application/javascript">
+            var processingInstance_a6_1;
+            function startSketch_a6_1() {
+                if (!processingInstance_a6_1) {
+                    processingInstance_a6_1 = Processing.getInstanceById('a6_1');
+                }
+                processingInstance_a6_1.setup();
+            }
+        </script>
+        <hr>
+        <p>Comme vous pouvez le constater, la collision entre la planète et l'étoile est inévitable ! Pourquoi alors les planètes orbitent autour de leur étoile sans jamais les percuter ?</p>
+        <p>Tout est une histoire de vitesse initiale. Si au début de la simulation la vitesse de P1 par rapport à P2 est nulle, alors il y aura collision. En revanche, avec une vitesse initiale bien choisie, il est possible d'obtenir ceci :</p>
+        <canvas id="a6_2" class="proc" data-processing-sources="code/phy_a6_2.pde"></canvas>
+        <h4>À faire vous-même 6.2</h4>
+        <p>En repartant de l'exemple du "À faire vous-même 6.1", modifiez votre programme pour que la planète orbite autour de son étoile. En faisant vos essais, vous aurez sans doute l'occasion d'observer les 3 trajectoires possibles : elliptique, parabolique et hyperbolique (la trajectoire circulaire est un cas particulier de la trajectoire elliptique).</p>
+        <img src="img/procPhy_a6_2.png" alt="proc">
+        <hr>
+        <p>Il y a un léger problème dans les simulations créées ci-dessus : P2 exerce une force sur P1, mais pourquoi P1 n'exercerait pas une force sur P2 ?</p>
+        <p>En fait, P1 exerce bien une force sur P2, nous pouvons même dire, d'après la 3e loi de Newton, que la force exercée par P1 sur P2 a la même norme et la même direction que la force exercée par P2 sur P1, en revanche, ces 2 forces ont des sens opposés.</p>
+        <p>Pourquoi alors les simulations ci-dessus ont l'air tout à fait correctes malgré l'omission de la force exercée par P1 sur P2 ?</p>
+        <p>La masse de P2 est beaucoup plus importante que la masse de P1. Ils subissent la même force (en norme), mais, comme nous l'indique la 2e loi de Newton, l'effet d'une force sur un mobile est inversement proportionnel à la masse du mobile : la force a un effet important sur P1 et quasiment aucun effet sur P2.</p>
+        <p>Remarque : la présence de la planète P1 fait tout de même très légèrement osciller l'étoile P2. L'observation de cette oscillation est une des méthode employée pour détecter les planètes extrasolaires (<a href="http://exobio.chez-alice.fr/detection.htm" target="_blank">détection exoplanète</a>).</p>
+        <h4>À faire vous-même 6.3</h4>
+        <p>Créez une simulation avec 2 étoiles de masse identique (on pourra prendre m = $4,5.10^{30}$ et $G=6,67.10^{-26}$). À vous de trouver des vitesses initiales permettant obtenir ceci :</p>
+        <canvas id="a6_3" class="proc" data-processing-sources="code/phy_a6_3.pde"></canvas>
+        <img src="./img/repeter.png" class="rep" onclick="startSketch_a6_3();">
+        <script type="application/javascript">
+            var processingInstance_a6_3;
+            function startSketch_a6_3() {
+                if (!processingInstance_a6_3) {
+                    processingInstance_a6_3 = Processing.getInstanceById('a6_3');
+                }
+                processingInstance_a6_3.setup();
+            }
+        </script>
+        <hr>
+        <p>Nous obtenons ci-dessus quelque chose qui pourrait s'apparenter à <a href="https://fr.wikipedia.org/wiki/%C3%89toile_binaire" target="_blank">une étoile binaire</a>.</p>
+    </div>
+	</body>
+</html>

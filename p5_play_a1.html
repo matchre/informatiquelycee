@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu avec p5.play</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu avec p5.play</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+              	<li><a href="./p5_play_a2.html">Activité 2</a></li>
+	            <li><a href="./p5_play_a3.html">Activité 3</a></li>
+	            <li><a href="./p5_play_a4.html">Activité 4</a></li>
+				<li><a href="./p5_play_a5.html">Activité 5</a></li>
+	            <li><a href="./p5_play_a6.html">Activité 6</a></li>
+	            <li><a href="./p5_play_a7.html">Activité 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./p5_play_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>Pour suivre ces activités, il est nécessaire d'avoir des connaissances de base en matière de programmation en JavaScript. Des connaissances sur l'utilisation de la bibliothèque JavaScript p5.js sont aussi requises.
+				Si nécessaire, vous trouverez des activités consacrées aux bases de la programmation en JavaScript <a href="jbase_a1.html" target="_blank">ici</a> et des activités consacrées à p5.js <a href="p5_base_a1.html" target="_blank">ici</a> </p>
+			<p>
+				p5.play est une bibliothèque qui facilite la création de jeux vidéos, elle est développée par Paolo Pedercini. Vous trouverez le site officiel du projet <a href="http://p5play.molleindustria.org/" target="_blank">ici</a>.
+			</p>
+			<p>
+				Il est important de bien comprendre que p5.play est, en quelque sorte, une "surcouche" à la bibliothèque p5.js. Tout ce qui a été vu sur p5.js reste valable ici, p5.play apporte juste de nouvelles fonctionnalités.
+			</p>
+			<p>
+			</p>
+			<h4>À faire vous même 1.1</h4>
+			<p>
+				Dans un dossier "p5_play", que vous aurez créé au préalable dans votre dossier personnel, créez un dossier "play_0".
+			</p>
+			<p>Dans le dossier "play_0", créez les dossiers et fichier suivants :</p>
+			<ul>
+				<li>un fichier "index.html"</li>
+				<li>un fichier "script.js"</li>
+				<li>un fichier "style.css"</li>
+				<li>un dossier "asset"</li>
+				<li>un dossier "lib"</li>
+			</ul>
+			<hr>
+			<h4>À faire vous même 1.2</h4>
+			<p>
+				Vous allez maintenant avoir à télécharger 2 bibliothèques : p5.js et p5.play
+			</p>
+			<p>
+				Pour télécharger p5.js, rendez-vous sur le site <a href="http://p5js.org/download/" target="_blank">http://p5js.org/download/</a>
+			</p>
+			<p>
+				Cliquez dans le rectangle "p5.min.js", cela devrait lancer le téléchargement du fichier.
+			</p>
+			<p>
+				Une fois le téléchargement terminé, placez le fichier "p5.min.js" dans le dossier "lib" que vous venez de créer.
+			</p>
+			<p>
+				Ensuite il vous faut télécharger la bibliothèque "p5.play" en allant sur le site <a href="http://p5play.molleindustria.org/" target="_blank">http://p5play.molleindustria.org/</a>
+			</p>
+            <p>
+				Une fois sur le site, cliquez sur "Download", cela devrait lancer le téléchargement d'une archive au format zip ("p5.play-master.zip").
+            </p>
+			<p>Dès que le téléchargement est terminé, "dézippez" cette archive. Vous devriez alors vous retrouver avec un dossier "p5.play-master".</p>
+			<p>Dans ce dossier "p5.play-master", vous devriez trouver un dossier "lib". Dans ce dossier "lib", vous devriez trouver un fichier "p5.play.js".</p>
+			<p>Copiez ce fichier "p5.play.js" dans le dossier "lib" que vous avez créé ci-dessus.</p>
+			<p>Vous devriez maintenant avoir dans votre dossier "lib" 2 fichiers : "p5.min.js" et "p5.play.js"</p>
+			<hr>
+			<h4>À faire vous même 1.3</h4>
+			<p>
+				Complétons le fichier index.html :
+			</p>
+			<p>
+				index.html
+			</p>
+			<pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtCréer un jeu avec p5.play&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="lib/p5.min.js"&gt&lt/script&gt
+    &ltscript src="lib/p5.play.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<hr>
+			<p>
+				Le contenu de ce fichier "index.html" ne devrait pas vous poser de problème, si ce n'est pas le cas n'hésitez pas à poser des questions.
+			</p>
+			<p>
+				La structure que nous venons de mettre en place (dossier "play_0") pourra être "copier-coller" à chaque fois que vous commencerez à coder un nouvel exemple (il suffira de renommer le dossier en "play_1", "play_2",....). Dans la suite, seul le fichier "script.js" sera modifié.
+				Le fichier "style.css" n'est pour l'instant pas utilisé, il le sera, si nécessaire, dans les prochaines activités.
+			</p>
+    </div>
+	</body>
+</html>

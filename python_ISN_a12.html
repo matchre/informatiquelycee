@@ -1,0 +1,253 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Premiers pas avec Python</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Premiers pas avec Python</span>
+					<span class="navbar-brand">Activité 12</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+								<li><a href="./python_ISN_a1.html">Activité 1</a></li>
+	              <li><a href="./python_ISN_a2.html">Activité 2</a></li>
+	              <li><a href="./python_ISN_a3.html">Activité 3</a></li>
+								<li><a href="./python_ISN_a4.html">Activité 4</a></li>
+                <li><a href="./python_ISN_a5.html">Activité 5</a></li>
+                <li><a href="./python_ISN_a6.html">Activité 6</a></li>
+								<li><a href="./python_ISN_a7.html">Activité 7</a></li>
+								<li><a href="./python_ISN_a8.html">Activité 8</a></li>
+								<li><a href="./python_ISN_a9.html">Activité 9</a></li>
+								<li><a href="./python_ISN_a10.html">Activité 10</a></li>
+								<li><a href="./python_ISN_a11.html">Activité 11</a></li>
+								<li><a href="./python_ISN_a13.html">Activité 13</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="python_ISN_a11.html"><span class="fui-triangle-left-large"></a></li>
+						<li><a href="python_ISN_a13.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<h3>Les listes et les dictionnaires</h3>
+			<p>
+				Les listes (souvent appelées tableaux dans les autres langages) vont nous permettre de stocker plusieurs valeurs (chaîne, nombre) dans une structure unique :
+			</p>
+			<p>maListe1 = ["pomme","orange","fraise"] </p>
+			<p>ou</p>
+			<p>maListe2=[56,76,45,89]</p>
+			<p>Pour lire le contenu d'une liste, il suffit d'utiliser un « indice de position » (le 1er élément de la liste a l'indice 0, le deuxième élément a l'indice 1...). On aura : maListe [indice de position].</p>
+			<h4>À faire vous-même 12.1</h4>
+			<p>
+				Soit le programme suivant :
+			</p>
+			<pre><code class='python'>
+maListe=["pomme","orange","fraise"]
+print(maListe[1])
+			</code></pre>
+			<p>
+				Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.
+			</p>
+			<hr>
+			<p>Oublier que l'indice de position du 1er élément d'une liste est 0 et pas 1 est une erreur « classique ».</p>
+			<h4>À faire vous-même 12.2</h4>
+			<p>
+				Écrire un programme qui demande à l'utilisateur un numéro de mois (de 1 à 12), puis affiche : « Vous avez sélectionné le mois de : xxxxxx » (avec xxxxxx janvier si l'utilisateur a choisi 1, août si l'utilisateur a choisi 8...).
+			</p>
+			<hr>
+			<h4>À faire vous-même 12.3</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+semaine=['lundi','mardi','mercredi','jeudi','vendredi']
+i=0
+while i&lt5:
+	print(semaine[i])
+	i=i+1
+print("C'est terminé")
+
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+			<hr>
+			<p>La boucle for va nous permettre de parcourir les éléments d'une liste plus facilement qu'avec une boucle while.</p>
+			<h4>À faire vous-même 12.4</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+semaine=['lundi','mardi','mercredi','jeudi','vendredi']
+for jour in semaine:
+	print(jour)
+print("C'est terminé")
+			</code></pre>
+			<p>La variable "jour" prendra successivement toutes les valeurs contenues dans la liste semaine.</p>
+			<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+			<hr>
+			<p>Il est possible de connaître la taille d'une liste en utilisant l'instruction len(nomDeLaListe).</p>
+			<h4>À faire vous-même 12.5</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+semaine=['lundi','mardi','mercredi','jeudi','vendredi']
+print(len(semaine))
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+			<hr>
+			<p>Il est possible d'ajouter un élément à une liste (en fin de liste plus précisément) grâce à append. Pour ajouter l'élément b à la fin de la liste L, il faut utiliser une syntaxe un peu particulière :  L.append(b)</p>
+			<h4>À faire vous-même 12.6</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+semaine=['lundi','mardi','mercredi','jeudi','vendredi']
+for jour in semaine:
+	print(jour)
+print("Rajoutons le samedi")
+semaine.append('samedi')
+for jour in semaine:
+	print(jour)
+print("Voilà, comme vous pouvez le constater c'est chose faite !")
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+			<hr>
+			<h3>Les dictionnaires</h3>
+			<p>Les dictionnaires ressemblent aux listes. Chaque élément d'un dictionnaire est composé de 2 parties, on parle de pairs "clé/valeur". Voici un exemple de dictionnaire :</p>
+			<pre><code class='python'>
+monDico={"nom":"Durand", "prenom":"Christophe", "date de naissance":"29/02/1981"}
+			</code></pre>
+			<p>Comme vous pouvez le constater, nous utilisons des accolades {} pour définir le début et la fin du dictionnaire (alors que nous utilisons des crochets [] pour les listes).
+				Dans le dictionnaire ci-dessus, "nom", "prenom" et "date de naissance" sont des clés et "Durand", "Christophe" et "29/02/1981" sont des valeurs.
+				La clé "nom" est associée à la valeur "Durand", la clé "prenom" est associée à la valeur "Christophe" et la clé "date de naissance" est associée à la valeur "29/02/1981".
+				Les clés sont des chaînes de caractères ou des nombres. Les valeurs peuvent être des chaînes de caractères, des nombres, des booléens...</p>
+				<p>Pour créer un dictionnaire, il est aussi possible de procéder comme suit :</p>
+				<pre><code class='python'>
+monDico={}
+monDico["nom"]="Durand"
+monDico["prenom"]="Christophe"
+monDico["date de naissance"]="29/02/1981"
+				</code></pre>
+				<p>Pour afficher le contenu d'un dictionnaire, un simple "print" peut faire l'affaire</p>
+				<h4>À faire vous-même 12.7</h4>
+				<p>Soit le programme suivant :</p>
+				<pre><code class='python'>
+monDico={"nom":"Durand", "prenom":"Christophe", "date de naissance":"29/02/1981"}
+print(monDico)
+				</code></pre>
+				<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+				<hr>
+				<p>Il est évidemment possible d'afficher la valeur associée à une clé :</p>
+				<h4>À faire vous-même 12.8</h4>
+				<p>Soit le programme suivant :</p>
+				<pre><code class='python'>
+monDico={"nom":"Durand", "prenom":"Christophe", "date de naissance":"29/02/1981"}
+print("Bonjour je m'appelle "+monDico["prenom"]+" "+monDico["nom"]+", je suis né le "+monDico["date de naissance"])
+				</code></pre>
+				<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+				<hr>
+				<p>Il est facile d'ajouter un élément à un dictionnaire :</p>
+				<h4>À faire vous-même 12.9</h4>
+				<p>Soit le programme suivant :</p>
+				<pre><code class='python'>
+monDico={"nom":"Durand", "prenom":"Christophe", "date de naissance":"29/02/1981"}
+print("Bonjour je m'appelle "+monDico["prenom"]+" "+monDico["nom"]+", je suis né le "+monDico["date de naissance"])
+monDico['lieu naissance']="Bonneville"
+print ("à "+monDico["lieu naissance"])
+				</code></pre>
+				<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+				<hr>
+				<p>Le mot clé "del" permet du supprimer une paire "clé/valeur"</p>
+				<h4>À faire vous-même 12.10</h4>
+				<p>Soit le programme suivant :</p>
+				<pre><code class='python'>
+monDico={"nom":"Durand", "prenom":"Christophe", "date de naissance":"29/02/1981"}
+print("Bonjour je m'appelle "+monDico["prenom"]+" "+monDico["nom"]+", je suis né le "+monDico["date de naissance"])
+monDico['lieu naissance']="Bonneville"
+print ("à "+monDico["lieu naissance"])
+				</code></pre>
+				<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+				<hr>
+				<p>Le mot clé "del" permet du supprimer une paire "clé/valeur"</p>
+				<h4>À faire vous-même 12.11</h4>
+				<p>Soit le programme suivant :</p>
+				<pre><code class='python'>
+mesFruits={"poire":3, "pomme":4, "orange":2}
+print("avant le del")
+print(mesFruits)
+del mesFruits["pomme"]
+print("après le del")
+print(mesFruits)
+				</code></pre>
+				<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+				<hr>
+				<p>Il est possible de modifier une valeur :</p>
+				<h4>À faire vous-même 12.12</h4>
+				<p>Soit le programme suivant :</p>
+				<pre><code class='python'>
+mesFruits={"poire":3, "pomme":4, "orange":2}
+print(mesFruits)
+print ("Nous avons vendu une pomme")
+mesFruits["pomme"]=mesFruits["pomme"]-1
+print(mesFruits)
+				</code></pre>
+				<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse.</p>
+				<hr>
+				<p>Il est possible de parcourir "automatiquement" un dictionnaire à l'aide d'une boucle for. Ce parcours peut se faire selon les clés ou les valeurs.
+					Commençons par parcourir les clés à l'aide de la méthode (nous verrons la notion de méthode un peu plus tard) keys()</p>
+					<h4>À faire vous-même 12.13</h4>
+					<p>Tester le programme suivant :</p>
+					<pre><code class='python'>
+mesFruits={"poire":3, "pomme":4, "orange":2}
+for fruit in mesFruits.keys():
+	print (fruit)
+					</code></pre>
+					<hr>
+					<p>La méthode values() permet de parcourir le dictionnaire selon les valeurs</p>
+					<h4>À faire vous-même 12.14</h4>
+					<p>Tester le programme suivant :</p>
+					<pre><code class='python'>
+mesFruits={"poire":3, "pomme":4, "orange":2}
+for qte in mesFruits.values():
+	print (qte)
+					</code></pre>
+					<hr>
+					<p>Enfin, il est possible de parcourir un dictionnaire à la fois sur les clés et les valeurs en utilisant la méthode item().</p>
+					<h4>À faire vous-même 12.15</h4>
+					<p>Tester le programme suivant :</p>
+					<pre><code class='python'>
+mesFruits={"poire":3, "pomme":4, "orange":2}
+print ("Stock de fruits :")
+for fruit,qte in mesFruits.items():
+	print (fruit+" : "+str(qte))
+					</code></pre>
+					<hr>
+		</div>
+	</body>
+</html>

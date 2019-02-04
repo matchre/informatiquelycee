@@ -1,0 +1,428 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer des pages web avec p5js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer des pages web avec p5js</span>
+					<span class="navbar-brand">Activité 5</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_dom_a1.html">Activité 1</a></li>
+                <li><a href="./p5_dom_a2.html">Activité 2</a></li>
+                <li><a href="./p5_dom_a3.html">Activité 3</a></li>
+                <li><a href="./p5_dom_a4.html">Activité 4</a></li>
+                <li><a href="./p5_dom_a6.html">Activité 6</a></li>
+                <li><a href="./p5_dom_a7.html">Activité 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="p5_dom_a4.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="p5_dom_a6.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+           Vous savez déjà que tout ce qui concerne la décoration de la page fait partie du domaine du css.
+        </p>
+        <h4>À faire vous-même 5.1</h4>
+        <p>Modifiez comme suit les fichiers suivants : </p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &ltp&gtHello World&lt/p&gt
+    &ltp&gtUn deuxième paragraphe&lt/p&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+p {
+    background-color:rgb(255,0,0);
+}
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+    noCanvas();
+}
+function draw(){
+}
+    </code></pre>
+    <hr>
+    <p>Rien d'extraordinaire dans l'exemple ci-dessus : nous avons utilisé le fichier "style.css" pour attribuer un style (couleur de fond rouge) à toutes les balises "p" de la page. Au passage, vous pouvez vérifier que la balise "p" est bien une balise de type "block", par défaut, elle prend toute la largeur de la page. Vous pouvez compléter le fichier "style.css" en ajoutant un "width:50%;" juste en dessous du "background-color:rgb(255,0,0);", vous constaterez alors que les paragraphes ne prennent plus que 50 % de la largeur disponible. En revanche, le "passage à la ligne" est toujours d'actualité : les 2 paragraphes se placent toujours sur 2 lignes différentes.</p>
+    <p>Si nous rajoutons un paragraphe depuis le code JavaScript avec la fonction "createP", ce nouveau paragraphe aura aussi un fond rouge :</p>
+    <h4>À faire vous-même 5.2</h4>
+        <p>Modifier comme suit le fichier suivant (index.html et style.css ne sont pas modifiés) : </p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+    noCanvas();
+    para=createP("ce paragraphe a été créé depuis le JavaScript, il a un fond rouge");
+}
+function draw(){
+}
+    </code></pre>
+    <hr>
+    <p>La fonction "style" permet de modifier le css lié à un élément html. Cette fonction prend 2 paramètres, la propriété à modifier et la valeur à donner à cette propriété.</p>
+    <h4>À faire vous-même 5.3</h4>
+        <p>Modifier comme suit le fichier suivant (index.html et style.css ne sont pas modifiés) : </p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+    noCanvas();
+    para=createP("ce paragraphe a un fond vert");
+    para.style("background-color","rgb(0,255,0)");
+}
+function draw(){
+}
+    </code></pre>
+    <hr>
+    <h4>À faire vous-même 5.4</h4>
+    <p>Créez un programme permettant d'obtenir ceci :</p>
+    <iframe src="./p5_dom/p5_dom_a5_3/index.html" width="800px" height="230px"></iframe>
+    <p>Pour vous aider : vous aurez sans doute besoin d'utiliser les 2 listeners "mouseOver" (qui appelle une fonction de "callback" quand le curseur de la souris survole l'élément "surveillé" par "mouseOver") et "mouseOut" (qui appelle une fonction de "callback" quand le curseur de la souris "quitte" l'élément "surveillé" par "mouseOut"). Si nécessaire, vous pouvez consultez la documentation officielle <a href="http://p5js.org/reference/#/libraries/p5.dom" target="_blank">ici</a>).</p>
+    <hr>
+    <p>Dans les exemples précédents, les 2 premiers paragraphes ont été créés depuis le html et le 3ème depuis le JavaScript. Est-il possible de modifier (avec, par exemple, les fonctions "html" et "style") les 2 paragraphes créés depuis le html ?</p>
+    <p>La réponse est oui, mais avant d'étudier cette possibilité, il faut, si nécessaire, revoir la fonction d'id et de class en html.</p>
+        <p>Pour faire court, il est possible d'identifier un élément html particulier en lui attribuant un id ou une class (pour la différence entre id et class, replongez-vous dans les activités consacrées au html et au css). </p>
+        <h4>À faire vous-même 5.5</h4>
+        <p>Créez un nouvel exemple avec les fichiers suivants et testez-le :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &ltp id="para1"&gtUn premier paragraphe&lt/p&gt
+    &ltp id="para2"&gtUn deuxième paragraphe&lt/p&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+#para1 {
+    background : rgb(255,255,0);
+    font-size : 15px;
+}
+#para2 {
+     background-color : rgb(0,255,255);
+     font-size : 20px;
+}
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+    noCanvas();
+}
+function draw(){
+}
+    </code></pre>
+        <hr>
+        <p>Pour modifier le style (ou le contenu) des paragraphes d'id "para1" et "para2", nous allons utiliser la fonction "select" afin de créer des éléments "modifiables". Cette fonction "select" prend un paramètre : l'id de l'élément concerné (il est aussi possible d'utiliser la classe d'un élément (select(".maClasse")) ou même le type de balise (select("p")). Une fois l'élément créé avec la fonction "select", vous pouvez le manipuler comme bon vous semble, comme s'il avait été créé depuis le JavaScript.</p>
+        <h4>À faire vous-même 5.6</h4>
+        <p>Modifiez le fichier "script.js" de l'exemple précédent (les 2 autres fichiers restent identiques</p>
+        <pre><code class="javascript">
+var p1;
+var p2;
+function setup(){
+    noCanvas();
+    p1=select("#para1");
+    p2=select("#para2");
+    p1.mouseOver(modifIn_p1);
+    p1.mouseOut(modifOut_p1);
+    p2.mouseOver(modifIn_p2);
+    p2.mouseOut(modifOut_p2);
+}
+function draw(){
+}
+function modifIn_p1(){
+    p1.style("background-color","rgb(255,0,0)");
+    p1.style("font-size","20px");
+}
+function modifIn_p2(){
+    p2.style("background-color","rgb(255,0,0)");
+    p2.style("font-size","25px");
+}
+function modifOut_p1(){
+    p1.style("background-color","rgb(255,255,0)");
+    p1.style("font-size","15px");
+}
+function modifOut_p2(){
+    p2.style("background-color","rgb(0,255,255)");
+    p2.style("font-size","20px");
+}
+        </code></pre>
+         <hr>
+        <p>Imaginez que dans l'exemple ci-dessus, j'ai besoin de modifier 5 paramètres css ; il faudrait donc que j'utilise 5 fois la fonction "style". Il existe une solution plus simple : attribuer une classe, qui aura été préalablement définie dans le fichier css, à un élément html en utilisant la fonction "class"). Cette fonction prend un paramètre : le nom de la classe à attribuer.</p>
+        <h4>À faire vous-même 5.7</h4>
+        <p>Créez un nouvel exemple avec les fichiers suivants et testez-le :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &ltp id="para1"&gtUn premier paragraphe&lt/p&gt
+    &ltp id="para2"&gtUn deuxième paragraphe&lt/p&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+.survol {
+     background-color : rgb(255,0,0);
+     font-size : 20px;
+}
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var p1;
+var p2;
+function setup(){
+    noCanvas();
+    p1=select("#para1");
+    p2=select("#para2");
+    p1.mouseOver(modifIn_p1);
+    p1.mouseOut(modifOut_p1);
+    p2.mouseOver(modifIn_p2);
+    p2.mouseOut(modifOut_p2);
+}
+function draw(){
+}
+function modifIn_p1(){
+    p1.class("survol");
+}
+function modifIn_p2()   {
+    p2.class("survol");
+}
+function modifOut_p1(){
+    p1.removeClass("survol");
+}
+function modifOut_p2(){
+    p2.removeClass("survol");
+}
+    </code></pre>
+        <p>Vous aurez sans doute compris tout seul que la fonction "removeClass" permet de supprimer l'attribution d'une classe à un élément.</p>
+        <hr>
+        <p>Il est possible, en utilisant la fonction "selectAll" de sélectionner plusieurs éléments. Cette fonction permet de créer un tableau contenant plusieurs éléments html. Cette fonction prend en paramètre le type de balise (par exemple : selectAll("p"), permettra de constituer un tableau contenant tous les paragraphes de la page web) ou une class (par exemple : selectAll(".maClass") permettra de constituer un tableau contenant tous les éléments qui auront la class "maClass").</p>
+        <h4>À faire vous-même 5.8</h4>
+        <p>Créez un nouvel exemple avec les fichiers suivants et testez-le :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &ltp&gtUn premier paragraphe&lt/p&gt
+    &ltp&gtUn deuxième paragraphe&lt/p&gt
+    &ltp&gtUn troisième paragraphe&lt/p&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+.normal {
+     background-color : rgb(255,255,0);
+     font-size : 15px;
+}
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var paras;
+function setup(){
+    noCanvas();
+    paras=selectAll("p");
+    for (i=0;i&ltparas.length;i=i+1){
+        paras[i].class("normal");
+    }
+}
+function draw(){
+}
+        </code></pre>
+        <p>Comme vous pouvez le constater ci-dessus, nous utilisons une boucle "for" pour parcourir le tableau "paras" afin d'attribuer à chaque élément de ce tableau la class "normal".</p>
+        <hr>
+        <p>Il est possible de définir un "listener" sur chaque élément à l'aide d'une boucle "for" :</p>
+        <h4>À faire vous-même 5.9</h4>
+        <p>Créez un nouvel exemple avec les fichiers suivants et testez-le :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &ltp&gtUn premier paragraphe class="normal"&lt/p&gt
+    &ltp&gtUn deuxième paragraphe class="normal"&lt/p&gt
+    &ltp&gtUn troisième paragraphe class="normal"&lt/p&gt
+    &lth3&gt&lt/h3&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+.normal {
+     background-color : rgb(255,255,0);
+     font-size : 15px;
+}
+.survol {
+     background-color : rgb(255,0,0);
+     font-size : 20px;
+}
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var paras;
+var h;
+function setup(){
+    noCanvas();
+    paras=selectAll("p");
+    for (i=0;i&ltparas.length;i=i+1){
+        paras[i].mouseOver(modifIn);
+        paras[i].mouseOut(modifOut);
+    }
+    h=select("h3");
+}
+function draw(){
+}
+function modifIn(){
+    h.html("Vous survolez un des paragraphes");
+}
+function modifOut(){
+    h.html("");
+}
+        </code></pre>
+        <hr>
+        <p>Une question se pose : imaginons que nous voulions que tout paragraphe survolé se voit appliquer la class "survol", comment faire ?</p>
+        <p>Pour l'instant, il nous suffisait d'écrire "p1.class("survol")" dans la fonction de callback qui gère le "survole" de l'élément "p1". Problème, ici, nous ne connaissons pas à l'avance le paragraphe qui sera survolé, par quoi faut-il remplacer "p1" ? La réponse est simple : par le mot-clé "this" qui signifie "l'élément courant" ou "l'élément concerné".</p>
+        <h4>À faire vous-même 5.10</h4>
+        <p>Créez un nouvel exemple avec les fichiers suivants et testez-le :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &ltp&gtUn premier paragraphe class="normal"&lt/p&gt
+    &ltp&gtUn deuxième paragraphe class="normal"&lt/p&gt
+    &ltp&gtUn troisième paragraphe class="normal"&lt/p&gt
+    &lth3&gt&lt/h3&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+.normal {
+     background-color : rgb(255,255,0);
+     font-size : 15px;
+}
+.survol {
+     background-color : rgb(255,0,0);
+     font-size : 20px;
+}
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var paras;
+var h;
+function setup(){
+    noCanvas();
+    paras=selectAll("p");
+    for (i=0;i&ltparas.length;i=i+1){
+        paras[i].mouseOver(modifIn);
+        paras[i].mouseOut(modifOut);
+    }
+    h=select("h3");
+}
+function draw(){
+}
+function modifIn(){
+    this.class("survol");
+}
+function modifOut(){
+    this.class("normal");
+}
+        </code></pre>
+    </div>
+
+	</body>
+</html>

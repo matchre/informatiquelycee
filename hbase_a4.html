@@ -1,0 +1,189 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5 et CSS3 : les bases</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">HTML5 et CSS3 : les bases</span>
+					<span class="navbar-brand">Activité 4</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./hbase_a1.html">Activité 1</a></li>
+	              <li><a href="./hbase_a2.html">Activité 2</a></li>
+	              <li><a href="./hbase_a3.html">Activité 3</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="hbase_a3.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Pour terminer, voici quelques balises très utilisées :
+			</p>
+			<h5>La balise a</h5>
+			<pre><code class="html">
+&lta href="mon_autre_page.html"&gtCliquez ici pour vous rendre sur mon autre page&lt/a&gt
+			</code></pre>
+			<p>
+				La balise a permet de créer des liens hypertextes, ce sont ces liens hypertextes qui vous permettent de "voyager" entre les pages d'un site ou entre les sites. Les liens hypertextes sont par défaut soulignés et de couleur bleue (modifiable grâce au CSS). La balise a possède un attribut href qui a pour valeur le chemin du fichier que l'on cherche à atteindre ou l'adresse du site cible (exemple :   &lta href="http://www.google.fr"&gtCliquez ici pour vous rendre sur google.fr&lt/a&gt). Entre la balise ouvrante et fermante, on trouve le texte qui s'affichera à l'écran (c'est ce texte qui est souligné et de couleur bleue).La balise peut sans problème se trouver en plein milieu d'un paragraphe.
+			</p>
+			<h5>La balise image</h5>
+			<p>
+				Comme vous devez déjà vous en douter, la balise image sert à insérer des......images :
+			</p>
+			<pre><code data-trim contenteditable>
+&ltimg src="mon_image.jpg" alt="avion"/&gt
+			</code></pre>
+			<p>
+				la balise img est à la fois ouvrante et fermante comme la balise br. Elle possède 2 attributs :
+			</p>
+			<ul>
+				<li>src qui doit être égal au nom du fichier image (ou au chemin si le fichier image se trouve dans un autre dossier).</li>
+				<li>alt qui doit être égal à une description de votre image (cet attribut est utilisé notamment par les systèmes de description des pages web utilisés par les non-voyants), il faut donc systématiquement renseigner cet attribut.</li>
+
+			</ul>
+			<h5>Les balises form, input et button</h5>
+			<p>
+				Les formulaires sont des éléments importants des sites internet, ils permettent à l'utilisateur de transmettre des informations. Un formulaire devra être délimité par une balise form (même si ce n'est pas une obligation) :
+			</p>
+			<p>
+				&ltform&gt<br/>
+				....<br/>
+				&lt/form&gt
+			</p>
+			<p>
+				Il existe différentes balises permettant de construire un formulaire, notamment la balise input. Cette balise possède un attribut type qui lui permet de jouer des rôles très différents.
+			</p>
+			<p>
+				La balise button nous sera aussi d'une grande utilité.
+			</p>
+			<h4>À faire vous même 4.1</h4>
+			<p>
+				Créez un fichier html contenant le code suivant :
+			</p>
+			<pre><code class="html">
+
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+&ltmeta charset="utf-8"&gt
+&lttitle&gtVoici mon site&lt/title&gt
+&lt/head&gt
+&ltbody&gt
+&ltform&gt
+&ltp&gtvoici un champ de texte : &ltinput type="text"/&gt&lt/p&gt
+&ltp&gtvoici une checkbox &ltinput type="checkbox"/&gt&lt/p&gt
+&ltbutton&gtCliquez ici !&lt/button&gt
+&lt/form&gt
+&lt/body&gt
+&lt/html&gt
+
+			</code></pre>
+			<p>
+				Testez votre code à l'aide d'un navigateur web (Firefox ou Chrome) en “double-cliquant” sur le fichier html que vous venez de créer.
+			</p>
+			<h5>Les balises div et span</h5>
+			<p>
+				Ces 2 balises sont très utilisées (surtout la balise div). Pourtant, il faudrait, autant que possible, les éviter, pourquoi ?
+			</p>
+			<p>
+				Parce qu'elles n'ont aucune signification particulière, ce sont des balises  dites “génériques”.
+			</p>
+			<p>
+				À quoi servent-elles alors ?
+			</p>
+			<p>
+				À organiser la page, à regrouper plusieurs balises dans une même entité.
+			</p>
+			<p>
+				Pourquoi 2 balises génériques ?
+			</p>
+			<p>
+				Parce que div est une balise de type “block” et que span est une balise de type “inline” !
+			</p>
+			<p>
+				Sans vouloir trop entrer dans les détails, Il faut bien comprendre que l'ordre des balises dans le code HTML a une grande importance. Les balises sont affichées les unes après les autres, on parle du flux normal de la page.
+			</p>
+			<p>
+				C'est ici qu'entrent en jeu les balises de type "block" et les balises de type "inline".
+			</p>
+			<ul>
+				<li>Les contenus des balises de type "block" (p, div,h1,...) se placent sur la page web les uns en dessous des autres.</li>
+				<li>Les contenus des balises de type "inline" (strong, img, span, a) se placent sur la page web les uns à côté des autres.</li>
+			</ul>
+			<p>
+				Cela revient à dire qu'une balise de type “block” prend toute la largeur de la page alors qu'une balise de type “inline” prend juste la largeur qui lui est nécessaire.
+			</p>
+			<h4>À faire vous même 4.2</h4>
+			<p>
+				Créer un fichier html contenant le code suivant :
+			</p>
+			<pre><code data-trim contenteditable>
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+&ltmeta charset="utf-8"&gt
+&lttitle&gtVoici mon site&lt/title&gt
+&lt/head&gt
+&ltbody&gt
+&ltdiv&gtdiv est une balise de type "block"&lt/div&gt
+&ltp&gtla balise p est une autre balise de type block&lt/p&gt
+&ltspan&gtEn revanche, span est une balise de type "inline"&lt/span&gt
+&lta href="www.google.fr"&gtEt voici une autre balise de type "inline"&lt/a&gt
+&lth1&gth1 est bien une balise de type "block"&lt/h1&gt
+&ltspan&gtla malheureuse balise span est "obligée" de se placer en dessous&lt/span&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>Tester ce code</p>
+			<hr>
+			<h5>Pour allez plus loin :</h5>
+			<p>
+				Nous avons juste survolé le HTML et le CSS, pour ceux qui veulent entrer dans les détails, je vous conseille l'excellent cours de Mathieu Nebra sur le site openclassrooms :
+			</p>
+			<p>
+				<a href="http://fr.openclassrooms.com/informatique/cours/apprenez-a-creer-votre-site-web-avec-html5-et-css3" target="_blank" >http://fr.openclassrooms.com/informatique/cours/apprenez-a-creer-votre-site-web-avec-html5-et-css3</a>
+			</p>
+			<h4>À faire vous même 4.3</h4>
+			<p>
+				Élaborez une page HTML en utilisant les balises vues dans les activités consacrées au HTML.
+			</p>
+    </div>
+	</body>
+</html>

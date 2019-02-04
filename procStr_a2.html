@@ -1,0 +1,115 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Traitement des chaînes de caractères</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Traitement des chaînes de caractères</span>
+					<span class="navbar-brand">Activité 2</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procStr_a1.html">Activité 1</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="procStr_a1.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Il est possible de séparer les éléments d'une chaîne de caractères en utilisant un "caractère séparateur" :</p>
+        <p>La méthode "split" prend 2 arguments : la chaîne de caractères à séparer et le "caractère séparateur"</p>
+        <pre><code>
+split("tata;titi;toto",";")
+        </code></pre>
+        <p>Dans l'exemple ci-dessus, la méthode "split" retourne le tableau suivant : {"tata","titi","toto"}</p>
+        <h4>À faire vous-même 2.1</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String str="toto;titi;tata";
+String[] tab=split(str,";");
+println(tab.length);
+println(tab[1]);
+        </code></pre>
+        <hr>
+        <p>Il est tout à fait possible d'utiliser le caractère "espace" comme "caractère séparateur". Il suffira d’écrire : <i>split(str," " );</i></p>
+        <h4>À faire vous-même 2.2</h4>
+        <p>Écrivez un programme permettant de séparer les différents mots d'une phrase. Par exemple, en partant de la phrase "Bonjour le monde", votre programme devra permettre d'afficher ceci :</p>
+        <pre><code>
+le mot n°0 est 'Bonjour'
+le mot n°1 est 'le'
+le mot n°2 est 'monde'
+        </code></pre>
+        <p>Attention votre programme devra fonctionner avec n'importe quelle phrase (donc avec n'importe quel nombre de mots).</p>
+        <p>Pour vous aider : pour que le programme fonctionne avec n'importe quelle phrase, il sera sans doute nécessaire d'utiliser une boucle.</p>
+        <hr>
+        <h4>À faire vous-même 2.3</h4>
+        <p>Écrivez un programme permettant d'inverser les mots d'une phrase. Par exemple, pour la phrase "Bonjour le monde", on obtiendra "monde le Bonjour"</p>
+        <p>Pour vous aider : il faudra (sans doute) utiliser la concaténation.</p>
+        <hr>
+        <p>La méthode "splitTokens" est une méthode "cousine" de la méthode "split" qui permet de considérer plusieurs "caractères séparateurs" en même temps.</p>
+        <h4>À faire vous-même 2.4</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String str="toto titi,tata;tutu! hello";
+String[] tab=splitTokens(str," ;,!");
+for (int i=0;i&lttab.length;i=i+1){
+    println(tab[i]);
+}
+        </code></pre>
+        <p>Les "caractères séparateurs" sont placés les uns à la suite des autres (y compris le caractère "espace").</p>
+        <hr>
+        <p>La méthode "join" a l'effet inverse de la méthode "split" :</p>
+        <p>À partir d'un tableau contenant des chaînes de caractères, la méthode "join" crée une chaîne unique. Chaque élément est séparé par un "caractère de séparation"</p>
+        <h4>À faire vous-même 2.5</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String[] tab={"toto","titi","tata"};
+String st=join(tab,";");
+println(st);
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 2.6</h4>
+        <p>Écrivez un programme permettant d'obtenir la chaîne "Bonjour le monde" à partir de la chaîne "Bonjour*le*monde" :</p>
+        <pre><code>
+Avant : Bonjour*le*monde
+Après : Bonjour le monde
+        </code></pre>
+    </div>
+	</body>
+</html>

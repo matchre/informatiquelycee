@@ -1,0 +1,219 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer des pages web avec p5js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer des pages web avec p5js</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_dom_a2.html">Activité 2</a></li>
+                <li><a href="./p5_dom_a3.html">Activité 3</a></li>
+                <li><a href="./p5_dom_a4.html">Activité 4</a></li>
+                <li><a href="./p5_dom_a5.html">Activité 5</a></li>
+                <li><a href="./p5_dom_a6.html">Activité 6</a></li>
+                <li><a href="./p5_dom_a7.html">Activité 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="p5_dom_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+           Pour suivre cette série d'activités consacrée à la réalisation de pages web avec p5js, il est nécessaire d'avoir quelques connaissances sur HTML et CSS. Si ce n'est pas votre cas, vous trouverez des activités consacrées à ce sujet <a href="hbase_a1.html" target="_blank">ici</a>.
+        </p>
+        <p>Vous pouvez reprendre la structure de base qui avait été mis en place dans les activités consacrées aux "bases" de p5js (dossier "ex0" voir <a href="p5_base_a1.html" target="_blank">ici</a>). Il suffira, comme précédemment d'effectuer des "copier-collers" de ce dossier à chaque fois que vous voudrez créer un nouvel exemple.</p>
+        <p>
+            Le fichier HTML présent dans le dossier "ex0" (voir ci-dessus), se présentait comme ceci :
+        </p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+		<p>Comme vous pouvez le constater, la balise "body" est vide, mais il est tout à fait possible d'y placer des balises HTML :</p>
+        <h4>À faire vous-même 1.1</h4>
+        <p>Modifiez les fichiers (index.html, script.js et style.css) comme suit :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &lth1&gtp5js&lt/h1&gt
+    &ltp&gtCe site est consacré à la bibliothèque JavaScript p5js&lt/p&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>ATTENTION : si votre ordinateur n'est pas connecté à internet,  il faudra télécharger l'archive <a href="https://github.com/processing/p5.js/releases/download/0.4.23/p5.zip">suivante</a>, l'extraire, placer le fichier "p5.min.js" et le fichier "p5.dom.js"  (vous trouverez ce fichier dans le dossier "addons" de l'archive) dans votre répertoire "ex0". Ensuite, vous devrez modifier le code du fichier "index.html" :</p>
+        <ul>
+            <li>remplacer systématiquement &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"&gt&lt/script&gt par &ltscript src="p5.min.js"&gt&lt/script&gt</li>
+            <li>remplacer systématiquement &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/addons/p5.dom.min.js"&gt&lt/script&gt par &ltscript src="p5.dom.min.js"&gt&lt/script&gt</li>
+        </ul>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+  createCanvas(400,400);
+  background(240);
+}
+function draw(){
+}
+        </code></pre>
+        <p>style.css</p>
+        <pre><code class="css">
+h1 {
+    text-align:center;
+}
+        </code></pre>
+        <hr>
+        <p>Comme vous pouvez le constater, tout fonctionne, le titre de la balise "h1" est bien centré (voir le fichier "style.css") et nous avons bien un paragraphe qui se situe juste au-dessus de la surface de dessin.</p>
+        <p>Cette surface de dessin est, en fait, une balise "canvas" qui a été "ajoutée" à la page grâce à la fonction "createCanvas".</p>
+        <p>P5js propose d'autres fonction permettant d'ajouter d'autres balises HTML depuis le script JavaScript : la fonction "createP" crée une balise "p", cette fonction prend un paramètre, le contenu de la balise "p".</p>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Saisissez, analysez et tester ce programme (les fichiers "index.html" et "style.css" restent inchangés par rapport à l'exemple précédent).</p>
+        <p>script.js</p>
+        <pre><code>
+function setup(){
+  createCanvas(400,400);
+  background(240);
+  createP("je suis un paragraphe ajouté à la page depuis le script JavaScript !")
+}
+function draw(){
+}
+        </code></pre>
+        <hr>
+        <p>L'ordre des "createCanvas" et des "createP" dans le script JavaScript détermine leur ordre d'apparition à l'écran.</p>
+        <h4>À faire vous-même 1.3</h4>
+        <p>Modifiez les fichiers ("index.html" et "script.js") comme suit (le fichier "style.css" reste inchangé) :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &lth1&gtp5js&lt/h1&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+  createP("je suis le premier paragraphe, j'apparais avant le 'canvas'")
+  createCanvas(400,400);
+  background(240);
+  createP("je suis un paragraphe ajouté à la page depuis le script JavaScript !")
+}
+function draw(){
+}
+        </code></pre>
+        <hr>
+        <p>La création d'un "canvas" n'est pas une obligation, si vous n'avez pas besoin de "dessiner", le "createCanvas" (et donc le "background") peuvent être supprimés. Cependant, pour éviter que p5js crée un canvas par défaut, vous devez utiliser la fonction "noCanvas".</p>
+        <pre><code class="javascript">
+noCanvas();
+        </code></pre>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Modifiez l'exemple précédent pour ne plus avoir de surface de dessin (canvas) à l'écran.</p>
+        <hr>
+        <p>P5js propose quelques fonctions du type "create....", celles que vous connaissez déjà ("createCanvas" et "createP") et les autres : </p>
+        <ul>
+            <li>"createDiv" permet de créer une balise "div", cette fonction prend un argument : le contenu de la balise "div"</li>
+            <li>"createSpan" permet de créer une balise "span", cette fonction prend un argument : le contenu de la balise "span"</li>
+            <li>"createImg" permet de créer une balise "img", cette fonction prend un argument : le contenu de la balise "img"</li>
+            <li>"createA" permet de créer une balise "a", cette fonction prend un argument : le contenu de la balise "a"</li>
+            <li>...</li>
+        </ul>
+        <p>Il existe bien d'autres fonctions du type "createXXXX", pour avoir une liste exhaustive, vous pouvez consulter la documentation officielle <a href="http://p5js.org/reference/#/libraries/p5.dom" target="_blank">ici</a>.           </p>
+        <p>Si vous ne trouvez pas "votre bonheur" dans les fonctions "createXXXX" proposées par p5js (par exemple, il n'y a pas de fonction "createH1"), il est possible d'utiliser la fonction "createElement". La fonction "createElement" prend 2 arguments : la balise que l'on veut créer et le contenu de cette balise.</p>
+        <h4>À faire vous-même 1.5</h4>
+        <p>Modifiez les fichiers ("index.html" et "script.js") comme suit (le fichier "style.css" reste inchangé) :</p>
+        <p>index.html</p>
+        <pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtp5.js&lt/title&gt
+    &ltlink rel="stylesheet" href="style.css"&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/p5.min.js"&gt&lt/script&gt
+    &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.18/addons/p5.dom.min.js"&gt&lt/script&gt
+    &ltscript src="script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+        </code></pre>
+        <p>script.js</p>
+        <pre><code class="javascript">
+function setup(){
+  createElement('h1','je suis un titre h1');
+  createP("je suis le premier paragraphe, j'apparais avant le 'canvas'")
+  createCanvas(400,400);
+  background(240);
+  createP("je suis un paragraphe ajouté à la page depuis le script JavaScript !")
+}
+function draw(){
+}
+        </code></pre>
+    </div>
+	</body>
+</html>

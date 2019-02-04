@@ -1,0 +1,218 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu ou une simulation 3D</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu ou une simulation 3D</span>
+					<span class="navbar-brand">Activité 9</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./bab_intro.html">Introduction</a></li>
+								<li><a href="./bab_a1.html">Activité 1</a></li>
+	              <li><a href="./bab_a2.html">Activité 2</a></li>
+	              <li><a href="./bab_a3.html">Activité 3</a></li>
+								<li><a href="./bab_a4.html">Activité 4</a></li>
+	              <li><a href="./bab_a5.html">Activité 5</a></li>
+	              <li><a href="./bab_a6.html">Activité 6</a></li>
+								<li><a href="./bab_a7.html">Activité 7</a></li>
+	              <li><a href="./bab_a8.html">Activité 8</a></li>
+								<li><a href="./bab_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="bab_a8.html"><span class="fui-triangle-left-large"></a></li>
+						<li><a href="bab_a10.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Si vous désirez animer les objets qui se trouvent dans une scène, il ne faut jamais oublier qu'une animation est une succession très rapide d'image fixe (comme pour un dessin animé). Pour "animer" un objet, il suffit de modifier un des paramètres de l'objet à chaque image. Comment modifier un paramètre à chaque image ? En plaçant cette modification dans la boucle de jeu "engine.runRenderLoop".
+			</p>
+			<h4>À faire vous-même 9.1</h4>
+			<p>Créer une nouvelle application (app_10)</p>
+			<p>script.js</p>
+			<pre><code class="javascript">
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("Camera",0, Math.PI/4, 15, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.PointLight("Omnidir", new BABYLON.Vector3(10, 0, 10), scene);
+var boite= new BABYLON.Mesh.CreateBox("box_1",3,scene);
+engine.runRenderLoop(function () {
+ boite.rotation.y=boite.rotation.y+0.05;
+ scene.render();
+});
+			</code></pre>
+			<p>Analyser et tester cette application</p>
+			<hr>
+			<p>Analyse de l'app_10 :</p>
+			<p>Ce code ne présente aucune difficulté : à chaque image, la valeur de "boite.rotation.y" augmente de 0,05 radian.</p>
+			<p>N.B. Il est souvent judicieux de regrouper tout ce qui concerne l'animation d'un objet dans une fonction et d'appeler cette fonction dans la boucle de jeu "engine.runRenderLoop"</p>
+			<p>On pourra donc privilégier le code suivant :</p>
+			<pre><code class="javascript">
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("Camera",0, Math.PI/4, 15, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.PointLight("Omnidir", new BABYLON.Vector3(10, 0, 10), scene);
+var boite= new BABYLON.Mesh.CreateBox("box_1",3,scene);
+function animationBoite(){
+	boite.rotation.y=boite.rotation.y+0.05;
+}
+engine.runRenderLoop(function () {
+ animationBoite();
+ scene.render();
+});
+			</code></pre>
+			<p>Pour l'instant, cela ne change pas grand chose, mais cela aura son utilité (clarté du code) avec des programmes plus complexes.</p>
+			<p>
+				Dans les jeux vidéos (ou dans les simulations), il est souvent indispensable d'introduire la notion de temps. Tout se passe comme si nous déclenchions un chronomètre au début de l'exécution du programme, pour cela il suffit d'introduire une variable "temps" et d'incrémenter cette variable temps à chaque image.
+			</p>
+			<p>
+				Si l'on part du principe que nous avons un FPS de 30 images par seconde, il faut donc incrémenter notre variable temps de 1/30 de seconde à chaque image.
+			</p>
+			<h4>À faire vous-même 9.2</h4>
+			<p>Créer une nouvelle application (app_11)</p>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var temps=0;
+var vAngle=1;
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("Camera",0, Math.PI/4, 15, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.PointLight("Omnidir", new BABYLON.Vector3(10, 0, 10), scene);
+var boite= new BABYLON.Mesh.CreateBox("box_1",3,scene);
+function animationBoite(){
+	boite.rotation.y=vAngle*temps;
+}
+engine.runRenderLoop(function () {
+ temps=temps+1/30
+ animationBoite();
+ scene.render();
+});
+			</code></pre>
+			<p>Analyser et tester cette application</p>
+			<hr>
+			<p>
+				L'introduction d'une variable temps va nous permettre d'utiliser ce que l'on appelle en physique des équations horaires.
+			</p>
+			<p>
+				Par exemple, pour la rotation d'un objet, on trouve l'équation horaire suivante : α = ω.t (avec α l'angle,  ω la vitesse angulaire en radian par seconde et t le temps), d'où le "boite.rotation.y=vAngle*temps;" (avec "boite.rotation.y" à la place de α, "vAngle" à la place de ω et "temps" à la place de t).
+			</p>
+			<p>
+				Nous sommes parties du principe que le nombre d'images par seconde sera de 30, or, rien n'est moins sûr, si par exemple votre scène se complexifie, le FPS risque de chuter : quelle en serait alors la conséquence pour le "chronomètre interne" de notre programme ?
+			</p>
+			<p>
+				Le temps doit s'écouler toujours "à la même vitesse" quel que soit le nombre d'images par seconde. Nous voici confrontés à un véritable problème : la méthode employée dans l'app_11 n'est donc pas satisfaisante.
+			</p>
+			<p>La méthode "getDeltaTime()" donne le temps écoulé depuis le dernier rendu d'image. Au lieu d'avoir "temps=temps+1/30", nous aurons "temps=temps+engine.getDeltaTime()/1000"</p>
+			<p>Attention : "engine.getDeltaTime()" renvoie une valeur en milliseconde, il faut donc diviser cette valeur par 1000 pour obtenir un temps en seconde.</p>
+			<h4>À faire vous même 9.3</h4>
+			<p>Modifier app_11 en remplaçant "temps=temps+1/30" par "temps=temps+engine.getDeltaTime()", puis tester cette modification.</p>
+			<hr>
+			<h4>À faire vous-même 9.4</h4>
+			<p>Créer une nouvelle application (app_12)</p>
+			<p>
+				Vous allez écrire un programme permettant de simuler l'orbite (circulaire) d'une planète autour d'une étoile. Tous les éléments visuels (lumière(s), position de la caméra,...) sont laissés à votre libre choix.
+			</p>
+			<p>
+				Pour vous aider :
+			</p>
+			<p>
+				Soit le point A de coordonnées x et y
+			</p>
+			<img src="img/bab_9_1.jpg">
+			<p>À décrira un cercle ayant pour rayon r et pour centre O si à tout instant :
+			</p>
+			<p>
+				x = r . sin (ω.t)
+			</p>
+			<p>
+				y = r . cos (ω.t)
+			</p>
+			<p>
+				avec  ω la vitesse angulaire (vitesse de rotation en radian par seconde) et t la variable temps.
+			</p>
+			<hr>
+			<p>En JavaScript, il faudra utiliser "Math.sin()" pour le sinus et "Math.cos()" pour le cosinus (exemple : "Math.sin(vAng*temps)").</p>
+			<h4>À faire vous-même 9.5</h4>
+			<p>Créer une nouvelle application (app_13)</p>
+			<p>Votre scène devra comporter une sphère et un "sol" (plan), la sphère étant au-dessus du sol. La sphère devra chuter vers le sol.</p>
+			<p>Il est possible de simuler à peu près fidèlement la chute d'une sphère. En effet, les objets ne tombent pas à vitesse constante (si on ne tient pas compte des frottements).</p>
+			<p>Voici l'équation qui donne l'altitude d'un objet en fonction du temps t :</p>
+			<p>y= -&frac12; x g x t&sup2; + y0 (x représente le signe de la multilication).
+			<p>avec y l'altitude de l'objet (y est positif), g est l'intensité de la pesanteur (normalement 9,8 N/Kg, mais dans BabylonJS, je vous conseille de prendre une valeur inférieure), y0 est l'altitude de l'objet à t = 0</p>
+			<hr>
+			<h4>À faire vous-même 9.6</h4>
+			<p>Créer une nouvelle application (app_14)</p>
+			<p>La sphère passe au travers du sol, modifier votre code pour que la sphère s'arrête au niveau du sol.</p>
+			<hr>
+			<p>Il est possible de détecter la collision entre 2 objets grâce à la méthode  "intersectsMesh" :
+			<pre><code class="javascript">
+objet1. intersectsMesh(objet2,true);
+			</code></pre>
+			<p>Si "objet1" entre en contact avec "objet2" (ou vis versa) la méthode "intersectsMesh" renverra true (sinon elle renverra false). Quand le deuxième paramètre de la méthode est à true, la détection des collisions est plus précise (mais aussi plus gourmande en terme de calculs).</p>
+			<h4>À faire vous-même 9.7</h4>
+			<p>Créer une nouvelle application (app_15)</p>
+			<p>Modifier le code développé dans l'app_14 pour que la sphère disparaisse 2 secondes après avoir touché le sol.</p>
+			<p>Pour vous aider :</p>
+			<p>La méthode "dispose"
+				<pre><code class="javascript">
+sphere.dispose()
+				</code></pre>
+				<p>permet de supprimer un objet (ici l'objet "sphere").</p>
+				<p>La méthode "setTimeout" vous permet d'exécuter une fonction après un certain délai :
+				<pre><code class="javascript">
+window.setTimeout(function(){
+ //cette fonction sera exécutée après un délai de 2 secondes
+},2000)
+				</code></pre>
+				<p><strong>Attention</strong> :
+				<p>pour éviter d'avoir des problèmes, veillez à rajouter, juste avant la ligne "engine.runRenderLoop", les 2 lignes suivantes : </p>
+				<pre><code class="javascript">
+sphere.computeWorldMatrix(true);
+plan.computeWorldMatrix(true);
+				</code></pre>
+				<p>Ces 2 lignes "obligent" BabylonJS à effectuer certains calculs avant le rendu de la première image.</p>
+		</div>
+	</body>
+</html>

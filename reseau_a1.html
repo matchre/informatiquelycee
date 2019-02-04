@@ -1,0 +1,178 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Réseau, Internet et protocole HTTP</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Réseau, Internet et protocole HTTP</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./reseau_a2.html">Activité 2</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="reseau_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+
+			<p>Que se passe-t-il lorsque vous tapez dans la barre d'adresse de votre navigateur «http://www.google.fr» ?</p>
+			<p>Votre ordinateur (que l'on appellera le client) va chercher à entrer en communication avec un autre ordinateur (que l'on appellera le serveur) se trouvant probablement à des milliers de kilomètres de chez vous. Pour pouvoir établir cette communication,
+				il faut bien sûr que les 2 ordinateurs, le client et le serveur, soient « reliés ». On dira que nos 2 ordinateurs sont en réseau.</p>
+			<p>Il existe énormément de réseaux (les ordinateurs de la salle sont tous en « réseau »), certains réseaux sont reliés à d'autres réseaux qui sont eux-mêmes reliés à d'autres réseaux........ce qui forme « des réseaux de réseaux de réseaux...... ».
+			Savez-vous comment on appelle cet assemblage multiple de réseaux ? Internet !</p>
+			<h4>Adresse IP</h4>
+			<p>Tout ordinateur possède une adresse sur un réseau : son adresse IP.</p>
+			<p>C'est grâce à cette adresse que les différents ordinateurs peuvent s'identifier sur un réseau.</p>
+			<p>Une adresse IP est de la forme "74.125.133.94" (cette adresse IP correspond au serveur de google "google.fr")</p>
+            <p>Les adresses IP sont de la forme : "a.b.c.d", avec a, b, c et d compris entre 0 et 255 (vous aurez donc deviné que a, b, c et d sont codés chacun sur un octet).</p>
+            <p>N.B. Une autre norme est en train d'être déployée, la norme IPV6 (alors que les adresses IP vues ci-dessus appartiennent à la norme IPV4). Pourquoi cette nouvelle norme ? Parce qu' avec le système IPV4, il risque, dans les prochaines années, de manquer d'adresses IP disponibles sur internet.</p>
+            <h4>À faire vous-même 1.1</h4>
+            <p>Ouvrez une console et tapez dans cette console la commande <i>ifconfig</i> si vous êtes sous Linux et <i>ipconfig</i> si vous êtes sous Windows. Cette commande vous fournit un grand nombre d'informations et parmi ces informations, vous devriez trouver l'adresse IP de votre ordinateur.</p>
+            <hr>
+            <h4>Serveur DNS</h4>
+			<p>Comme cette suite de nombres n'est pas très simple à retenir, des serveurs appelés serveurs DNS se chargent de la traduction des noms en adresses IP. Par exemple, un serveur DNS traduira "google.fr" en "74.125.133.94"</p>
+			<h4>Notion de client-serveur</h4>
+			<p>En tapant «http://www.google.fr», votre machine va chercher à entrer en communication avec le serveur portant le nom «www.google.fr» (en faite c'est plus compliqué, pour les puristes nous dirons donc que la communication va être établie avec le serveur www du domaine google.fr, mais bon, pour la suite nous pourrons nous contenter de l'explication « simplifiée »).</p><p>Une fois la liaison établie, le client et le serveur vont échanger des informations en dialoguant :</p>
+			<p>client : bonjour www.google.fr (ou bonjour www se trouvant dans le domaine google.fr), pourrais-tu m'envoyer le code html contenu dans le fichier index.html</p>
+			<p>serveur : OK, voici le code html demandé</p>
+			<p>client : je constate que des images, du code css et du code JavaScript sont utilisés, peux-tu me les envoyer</p>
+			<p>serveur : OK, les voici</p>
+			<p>Évidemment ce dialogue est très imagé, mais il porte tout de même une part de « vérité ».<p>
+			<p>J'espère que vous commencez à comprendre les termes client (celui qui demande quelque chose) et serveur (celui qui fournit ce qui a été demandé).</p>
+			<h4>et le HTTP ?</h4>
+			<p>Nous venons de voir que les ordinateurs communiquent entre eux, pour assurer cette communication, ils utilisent ce que l'on appelle des protocoles.</p>
+			<p>Selon Wikipedia, dans le cas général, protocole :</p>
+			<p><i>On nomme protocole les conventions qui facilitent une communication sans faire directement partie du sujet de la communication elle-même.</i></p>
+ 			<p>En électronique et en informatique (toujours selon Wikipedia) :</p>
+			<p><i>un protocole de communication est un ensemble de contraintes permettant d'établir une communication entre deux entités (dans le cas qui nous intéresse 2 ordinateurs)</i></p>
+			<p>Pour que la communication soit possible, le client et le serveur doivent avoir des règles communes, ces règles sont définies dans un protocole. Comme vous l'avez sans doute deviné, le protocole de communication employé ici se nomme HTTP.</p>
+			<p>Le protocole HTTP (HyperText Transfer Protocol) a été inventé par Tim Berners-Lee (1955-....) au début des années 1990. Tim Berners-Lee est aussi à l'origine du langage HTML et des « adresses web ». C'est la combinaison de ces 3 éléments (HTTP, HTML, « adresse web ») que l'on nomme aujourd'hui le « web » (« web » qu'il ne faut pas confondre avec l'internet (erreur ultra classique), même si le web utilise l'internet).</p>
+			<p>Le HTTP va permettre au client d'effectuer des requêtes à destination d'un serveur. En retour, le serveur va envoyer une réponse.</p>
+			<p>Voici une version simplifiée de la composition d'une requête :</p>
+			<ul>
+				<li>la méthode employée pour effectuer la requête</li>
+				<li>l'URL de la ressource</li>
+				<li>la version du protocole utilisé par le client (souvent HTTP 1.1)</li>
+				<li>le navigateur employé (Firefox, Chrome) et sa version</li>
+				<li>le type du document demandé (par exemple HTML)</li>
+				<li>...</li>
+			</ul>
+			<p>Certaines de ces lignes sont optionnelles.</p>
+			<p>Voici un exemple de requête HTTP (la méthode, l'URL et la version du protocole se trouvent sur la première ligne) :</p>
+			<pre><code>
+GET /mondossier/monFichier.html HTTP/1.1
+User-Agent : Mozilla/5.0
+Accept : text/html
+			</code></pre>
+			<p>Revenons uniquement sur 2 aspects (si nécessaire nous reviendrons sur les autres plus tard) : la méthode employée et l'URL.</p>
+			<h4>Les méthodes des requêtes HTTP</h4>
+			<p>Une requête HTTP  utilise une méthode (c'est une commande qui demande au serveur d'effectuer une certaine action). Voici la liste des méthodes disponibles :</p>
+ 			<p>GET, HEAD, POST, OPTIONS, CONNECT, TRACE, PUT, PATCH, DELETE</p>
+			<p>Détaillons 4 de ces méthodes :</p>
+			<ul>
+				<li>GET : C'est la méthode la plus courante pour demander une ressource.  Elle est sans effet sur la ressource.</li>
+				<li>POST : Cette méthode est utilisée pour soumettre des données en vue d'un traitement (côté serveur). Typiquement c'est la méthode employée lorsque l'on envoie  au serveur les données issues d'un formulaire ( avec une balise form, voir les activités sur HTML5 et CSS3).</li>
+				<li>DELETE : Cette méthode permet de supprimer une ressource sur le serveur.</li>
+				<li>PUT : Cette méthode permet de modifier une ressource sur le serveur</li>
+			</ul>
+			<h4>L'URL (et l'URI)</h4>
+			<p>Une URI (Uniform Ressource Identifier) permet d'identifier une ressource sur un réseau, une URL est un cas particulier d'URI. Nous ne nous attarderons pas sur les subtiles différences entre une URI et une URL et à partir de maintenant je parlerai exclusivement d'URL (par souci de simplification).</p>
+			<p>L'URL indique « l'endroit » où se trouve une ressource sur le serveur. Un fichier peut se trouver dans un dossier qui peut lui-même se trouver dans un autre dossier.....on parle d'une structure en arborescence, car elle ressemble à un arbre à l'envers :</p>
+			<img src="img/url.jpg" alt="arbo" class="img-responsive"/>
+			<p>Comme vous pouvez le constater, la base de l'arbre s'appelle la racine de l'arborescence et se représente par un /</p>
+			<h4>Chemin absolu ou chemin relatif ?</h4>
+			<p>Pour indiquer la position d'un fichier (ou d'un dossier) dans l'arborescence, il existe 2 méthodes : indiquer un chemin absolu ou indiquer un chemin relatif. Le chemin absolu doit indiquer « le chemin » depuis la racine. Par exemple l'URL du fichier fichier3.jpg sera : /dossier2/dossier3/fichier3.jpg</p>
+			<p>Remarquez que nous démarrons bien de la racine / (attention les symboles de séparation sont aussi des /)</p>
+			<p>Imaginons maintenant que le fichier fichier1.css fasse appel au fichier fichier3.jpg (comme un fichier HTML peut faire appel à un fichier CSS ou JavaScript). Il est possible d'indiquer le chemin non pas depuis la racine, mais depuis le dossier (dossier2) qui accueille le fichier1.css, nous parlerons alors de chemin relatif  :</p>
+			<p> dossier3/fichier3.jpg</p>
+			<p>Remarquez l’absence du / au début du chemin (c'est cela qui nous permettra de distinguer un chemin relatif et un chemin absolu).</p>
+			<p>Imaginons maintenant que nous désirions indiquer le chemin relatif du fichier fichier1.txt depuis le dossier dossier4.</p>
+			<p>Comment faire ?</p>
+			<p>Il faut « reculer » d'1 « cran » dans l'arborescence (pour se retrouver dans le dossier dossier2 et ainsi pouvoir repartir vers la bonne « branche ». Pour ce faire il faut utiliser 2 points : ..</p>
+			<p>../dossier2/fichier3.jpg</p>
+			<p>Il est tout à fait possible de remonter de plusieurs « crans » : ../../ depuis le dossier dossier4 permet de « retourner » à la racine.</p>
+			<p>Remarque : la façon d'écrire les chemins (avec des slash (/) comme séparateurs) est propre aux systèmes dits « UNIX », par exemple GNU/Linux ou encore Mac OS. Sous Windows, ce n'est pas le slash qui est utilisé, mais l'antislash (\). Pour ce qui nous concerne ici, les chemins réseau (et donc le web), pas de problème, c'est le slash qui est utilisé. </p>
+			<h4>Réponse du serveur à une requête HTTP</h4>
+			<p>Une fois la requête reçue, le serveur va renvoyer une réponse, voici un exemple de réponse du serveur :</p>
+			<pre><code>
+HTTP/1.1 200 OK
+Date: Thu, 15 feb 2013 12:02:32 GMT
+Server: Apache/2.0.54 (Debian GNU/Linux) DAV/2 SVN/1.1.4
+Connection: close
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=ISO-8859-1
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+&ltmeta charset="utf-8"&gt
+&lttitle&gtVoici mon site&lt/title&gt
+&lt/head&gt
+&ltbody&gt
+ &lth1&gtHello World! Ceci est un titre&lt/h1&gt
+&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt. Avez-vous bien compris ?&lt/p&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>Nous n'allons pas détailler cette réponse, voici quelques explications sur les éléments qui nous seront indispensables par la suite :</p>
+			<p>Commençons par la fin : le serveur renvoie du code HTML, une fois ce code reçu par le client, il est interprété par le navigateur qui affiche le résultat à l'écran. Cette partie correspond au corps de la réponse.</p>
+			<p>La 1re ligne se nomme la ligne de statut :</p>
+			<ul>
+				<li>HTTP/1.1 : version de HTTP utilisé par le serveur</li>
+				<li>200 : code indiquant que le document recherché par le client a bien été trouvé par le serveur. Il existe d'autres codes dont un que vous connaissez peut-être déjà : le code 404 (qui signifie  «Le document recherché n'a pu être trouvé»).</p>
+			</ul>
+			<p>Les 5 lignes suivantes constituent l'en-tête de la réponse, une ligne nous intéresse plus particulièrement : «Server: Apache/2.0.54 (Debian GNU/Linux)».</p>
+			<pre><code>
+Server: Apache/2.0.54 (Debian GNU/Linux) DAV/2 SVN/1.1.4
+			</code></pre>
+
+		<h4>Les serveurs HTTP</h4>
+		<p>Il existe différents types de serveur capable de répondre à des requêtes HTTP (on les appelle serveurs HTTP ou encore serveurs web). Que faut-il pour constituer un serveur web ?</p>
+		<ul>
+			<li>un ordinateur (souvent ce sont des machines spécialisées : elles sont conçues pour fonctionner 24h/24h....., mais il est possible d'utiliser un ordinateur « classique » (surtout si votre but est uniquement de faire des tests).</li>
+			<li>un système d'exploitation : Les distributions GNU/Linux sont, pour différentes raisons, à privilégier. Dans la réponse HTTP que nous avons étudiée ci-dessus, le serveur fonctionne sous une distribution GNU/Linux dénommée Debian (mais ici aussi, si vous êtes sous Windows, il est tout de même possible de mettre en place un serveur web).</li>
+			<li>Un logiciel destiné à recevoir les requêtes HTTP et à fournir des réponses. Un des logiciels les plus « populaires » se nomme Apache (il équipe plus de la moitié de serveur web en activité dans le monde !), mais il en existe d'autres : nginx, lighttpd......(j'ai volontairement choisi d'évoquer uniquement les solutions « libres », mais vous devez savoir qu'il existe aussi des solutions « propriétaires », si ces 2 termes vous sont inconnus, il serait bon de rechercher leur signification).</li>
+		</ul>
+		<h4>Les langages côté serveur</h4>
+		<p>Il y a quelques années, le web était dit « statique » : le concepteur de site web écrivait son code HTML et ce code était simplement envoyé par le serveur au client. Les personnes qui consultaient le site avaient toutes le droit à la même page, le web était purement « consultatif » (nous étions encore très loin des « single page application » que nous verrons plus tard).</p>
+		<p>Les choses ont ensuite évolué : les serveurs sont aujourd'hui capables de générer eux même du code HTML. Les résultats qui s'afficheront à l'écran dépendront donc des demandes effectuées par l'utilisateur du site : le web est devenu dynamique.</p>
+		<p>Différents langages de programmation peuvent être utilisés « côté serveur » afin de permettre au serveur de générer lui même le code HTML à envoyer. Le plus utilisé encore aujourd'hui se nomme PHP (PHP Hypertext Preprocessor : c'est un acronyme récursif comme GNU qui signifie GNU's Not Unix). D'autres langages sont utilisables côté serveur (pour permettre la génération dynamique de code HTML), voici une (corrigée by PL) liste non exhaustive : Java, Python, ASP....</p>
+	</div>
+	</body>
+</html>

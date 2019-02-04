@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu avec p5.play</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu avec p5.play</span>
+					<span class="navbar-brand">Activité 2</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+              	<li><a href="./p5_play_a1.html">Activité 1</a></li>
+	            <li><a href="./p5_play_a3.html">Activité 3</a></li>
+	            <li><a href="./p5_play_a4.html">Activité 4</a></li>
+					<li><a href="./p5_play_a5.html">Activité 5</a></li>
+	            <li><a href="./p5_play_a6.html">Activité 6</a></li>
+	            <li><a href="./p5_play_a7.html">Activité 7</a></li>
+					<li><a href="./p5_play_a8.html">Activité 8</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          	<li><a href="/p5_play_a1.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="/p5_play_a3.html"><span class="fui-triangle-right-large"></a></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+    		<p>
+				Nous allons commencer par apprendre à afficher un sprite à l'écran. Mais qu'est-ce qu'un sprite ?
+			</p>
+			<p>D'après Wikipédia :</p>
+			<p><i>Sprite est un mot anglais possédant plusieurs significations. Il est notamment employé dans les domaines de l'infographie et du jeu vidéo, où sprite désigne une image en deux dimensions qui peut être déplacée par rapport au fond de l'écran.</i>
+			</p>
+			<p>Comme indiquez ci-dessus, un sprite est avant tout une image. Dans un premier temps il est donc nécessaire de télécharger une image.</p>
+    		<h4>À faire vous même 2.1</h4>
+			<p>placez l'image que vous pourrez télécharger <a href="asset/smiley.png" target="_blank">ici</a>, dans le dossier asset</p>
+			<hr>
+			<h4>À faire vous même 2.2</h4>
+			<p>
+				Saisissez le code suivant dans le fichier script.js et testez cet exemple
+			</p>
+			<pre><code class="javascript">
+var img;
+var smiley_sprite;
+function preload() {
+	img=loadImage("asset/smiley.png")
+}
+
+function setup() {
+    createCanvas(800,300);
+    smiley_sprite=createSprite(400,150);
+    smiley_sprite.addImage(img);
+}
+
+function draw() {
+	background(240,240,240);
+	drawSprites();
+}
+			</code></pre>
+			<hr>
+			<p>
+				Analysons le code ci-dessus :
+			</p>
+			<p>Nous retrouvons la structure déjà vue avec p5.js : fonctions <i>setup</i> et <i>draw</i> (si nécessaire, n'hésitez pas à reprendre les activités sur p5.js). Petite nouveauté : la fonction <i>preload</i> que nous utiliserons quand nous aurons
+			besoin de charger des images.</p>
+			<p>La méthode <i>loadImage</i> nous permet de charger une image. Cette image est placée dans la variable <i>img</i>.</p>
+			<p>La méthode <i>createSprite</i> permet de créer un sprite. Cette méthode prend en paramètres les coordonnées x et y du centre du sprite (nous avons placé le sprite au centre de notre canvas). Le sprite est placé dans la variable <i>smiley_sprite</i>.</p>
+			<p>La méthode <i>addImage</i> permet d'associer un sprite à une image. Cette méthode prend en paramètre une image.</p>
+			<p>La fonction <i>drawSprites</i> permet d'afficher tous les sprites présents. Notez que le <i>background(240,240,240)</i> placé dans la fonction <i>draw</i> permet d'effacer la fenêtre à chaque image. <i>drawSprites</i> affiche donc les sprites à chaque image.</p>
+			<h4>À faire vous même 2.3</h4>
+			<p>En modifiant le code vu dans le "À faire vous même 2.2", placez le sprite aux coordonnées (200,75).</p>
+			<hr>
+			<h4>À faire vous même 2.4</h4>
+			<p>Sachant que <i>smiley_sprite.position.x</i> correspond à la coordonnée x du sprite et que <i>smiley_sprite.position.y</i> correspond à la coordonnée y du sprite
+				(à condition que votre sprite soit "rangé" dans la variable <i>smiley_sprite</i> comme dans l'exemple ci-dessus), écrivez un programme permettant au sprite de traverser l'écran de gauche à droite.
+			</p>
+			<iframe src="p5_play/a2_4/index.html" width="830px" height="330px"></iframe>
+			<p>N.B : Pour revoir l'animation, il suffit de recharger la page (touche F5)</p>
+			<hr>
+			<p>p5.play propose la méthode "setVelocity" qui permet de donner à notre sprite une vitesse. Cette méthode prend 2 paramètres : la vitesse selon x et la vitesse selon y</p>
+			<h4>À faire vous même 2.5</h4>
+			<p>
+				Saisissez le code suivant dans le fichier script.js et testez cet exemple
+			</p>
+			<pre><code class="javascript">
+var img;
+var smiley_sprite;
+function preload() {
+	img=loadImage("asset/smiley.png")
+}
+
+function setup() {
+    createCanvas(800,300);
+    smiley_sprite=createSprite(0,150);
+    smiley_sprite.addImage(img);
+    smiley_sprite.setVelocity(2,0);
+}
+
+function draw() {
+	background(240,240,240);
+	drawSprites();
+}
+			</code></pre>
+			<hr>
+			<p>le <i>smiley_sprite.setVelocity(2,0)</i> donne une vitesse de 2 pixels par image à notre sprite</p>
+			<h4>À faire vous même 2.6</h4>
+			<p>Écrivez un programme permettant au sprite de traverser l'écran en diagonale.</p>
+			<iframe src="p5_play/a2_6/index.html" width="830px" height="330px"></iframe>
+			<p>N.B : Pour revoir l'animation, il suffit de recharger la page (touche F5)</p>
+    </div>
+	</body>
+</html>

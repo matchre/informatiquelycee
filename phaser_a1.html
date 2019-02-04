@@ -1,0 +1,212 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu avec Phaser</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu avec Phaser</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./phaser_intro.html">Introduction</a></li>
+								<li><a href="./phaser_a2.html">Activité 2</a></li>
+	              <li><a href="./phaser_a3.html">Activité 3</a></li>
+	              <li><a href="./phaser_a4.html">Activité 4</a></li>
+								<li><a href="./phaser_a5.html">Activité 5</a></li>
+	              <li><a href="./phaser_a6.html">Activité 6</a></li>
+	              <li><a href="./phaser_a7.html">Activité 7</a></li>
+								<li><a href="./phaser_a8.html">Activité 8</a></li>
+	              <li><a href="./phaser_a9.html">Activité 9</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="phaser_intro.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="phaser_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<h5>Phaser ? Qu'est ce que c'est ?</h5>
+			<p>
+				Phaser est une bibliothèque JavaScript développée par Richard Davey.
+			</p>
+			<p>
+				Elle permet une utilisation simplifiée de la balise HTML5 canvas (dessin, création de jeu,
+				manipulation des pixels d'une image....). Pour en savoir plus sur la balise canvas, n'hésitez pas à
+				consulter le <a href="https://developer.mozilla.org/fr/docs/Tutoriel_canvas" target="_blank">site de Mozilla</a>.
+			</p>
+			<p>
+				Phaser n'est pas un "logiciel", vous allez donc produire du code (en JavaScript). Votre code va
+				nécessairement être appelé par une page HTML.
+			</p>
+			<h4>À faire vous même 1.1</h4>
+			<p>
+				Dans un dossier "Phaser", que vous aurez créé au préalable dans votre dossier personnel, créez les dossiers et fichier suivants :
+			</p>
+			<img src="img/jeux2d_1_1.jpg">
+			<hr>
+			<h4>À faire vous même 1.2</h4>
+			<p>
+				Vous allez maintenant télécharger la bibliothèque phaser en vous rendant sur le site : <a href="https://github.com/photonstorm/phaser" target="_blank">https://github.com/photonstorm/phaser</a>
+			</p>
+			<p>
+				Une fois sur le site, cliquez sur le bouton "Download ZIP".
+			</p>
+			<img src="img/jeux2d_1_2.jpg">
+			<p>
+				"Dézipper" le fichier phaser-master.zip que vous venez de télécharger.
+			</p>
+			<p>
+				Vous devriez alors vous retrouver avec un dossier phaser-master qui contient les dossiers et fichiers suivants :
+			</p>
+			<img src="img/jeux2d_1_3.jpg">
+			<p>
+				Dans le dossier "build", vous devriez trouver le fichier "phaser.min.js". Placez ce fichier dans le dossier "lib" que vous avez créé dans le "À faire vous-même 1.1".
+			</p>
+			<hr>
+			<h4>À faire vous même 1.3</h4>
+			<p>
+				Afin d'avoir les différents éléments au centre de l'écran, nous allons créer un fichier "style.css" (ce fichier est à placer dans le dossier css que vous avez préalablement créé). Ce fichier est basique, mais vous pourrez évidemment l'enrichir comme bon vous semble.
+			</p>
+			<p>
+				style.css
+			</p>
+			<pre><code class="css">
+h1{
+    text-align:center;
+}
+#content{
+    margin:0 auto;
+    width:800px;
+}
+			</code></pre>
+			<hr>
+			<h4>À faire vous même 1.4</h4>
+			<p>
+				Créez un fichier (pour l'instant) vide que vous nommerez "script.js" et placez-le dans le dossier "javascript" que vous avez créé précédemment.
+			</p>
+			<hr>
+			<h4>À faire vous même 1.5</h4>
+			<p>
+				Intéressons-nous au contenu du fichier index.html :
+			</p>
+			<p>
+				Cette page HTML devra définir une balise div (qui "contiendra" la fenêtre du jeu) et lancer les scripts JavaScript ("phaser.min.js" et "script.js").
+			</p>
+			<p>
+				Voici le code HTML minimum nécessaire à la bonne utilisation Phaser :
+			</p>
+			<p>
+				index.html
+			</p>
+			<pre><code class="html">
+&lt!DOCTYPE html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+    &ltmeta charset="utf-8"&gt
+    &lttitle&gtCréer un jeu avec Phaser&lt/title&gt
+    &ltlink rel="stylesheet" href="css/style.css"&gt
+    &ltscript src="lib/phaser.min.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+    &lth1&gtPhaser&lt/h1&gt
+    &ltdiv id='content'&gt&lt/div&gt
+&lt/body&gt
+&ltscript src="javascript/script.js"&gt&lt/script&gt
+&lt/html&gt
+			</code></pre>
+			<p>
+				Quelques remarques sur ce code :
+			</p>
+			<ul>
+				<li>Le "DOCTYPE" vous montre que nous sommes bien en HTML5.</li>
+				<li>Nous "utilisons" bien le fichier "style.css" : "&ltlink rel="stylesheet" href="css/style.css"&gt" (remarquez que nous avons bien indiqué que notre fichier "style.css" se trouve dans le dossier "css" : "css/style.css").</li>
+				<li>Nous appelons bien les 2 fichiers JavaScript "&ltscript src="lib/phaser.min.js"&gt&lt/script&gt" et "&ltscript src="javascript/script.js"&gt".</li>
+				<li>Nous créons une balise div "&ltdiv id='content'&gt&lt/div&gt" qui contiendra la fenêtre de jeu.</li>
+			</ul>
+			<p>
+				La structure que nous venons de mettre en place (dossier "phaser") pourra être "copier-coller" à chaque fois que vous commencerez à coder un nouvel exemple. Dans la suite, seul le fichier "script.js" sera modifié.
+			</p>
+		<hr>
+			<h4>À faire vous même 1.6</h4>
+			<p>
+				Placez le code ci-dessous dans le fichier script.js et testez le programme en ouvrant le fichier index.html avec votre navigateur.
+			</p>
+			<pre><code class="javascript">
+var game = new Phaser.Game(800,600,Phaser.AUTO,'content',{preload: preload, create: create,update:update});
+function preload(){
+}
+function create(){
+}
+function update(){
+}
+			</code></pre>
+			<hr>
+			<p>
+				Comme vous pouvez le constater, il ne se passe pas grand-chose : le titre défini dans le fichier index.html (Phaser) est bien présent à l'écran. De plus nous avons un "beau" carré noir qui s'affiche juste en dessous de ce titre (si ce n'est pas le cas, il se pourrait que vous ayez fait une erreur quelque part, reprenez le processus depuis le début afin de vérifier que vous n'avez rien oublié).
+			</p>
+			<p>
+				Pourtant la structure de base d'un projet Phaser est déjà présente, reprenons le contenu du fichier script.js ligne par ligne :
+			</p>
+			<pre><code class="javascript">
+var game = new Phaser.Game(800,600,Phaser.AUTO,'content',{preload: preload, create: create,update:update});
+			</code></pre>
+			<p>
+				Nous définissons un objet game à l'aide du constructeur Phaser.Game. Ce constructeur prend 5 paramètres :
+			</p>
+			<ul>
+				<li>"800"  correspond à la largeur de fenêtre de jeu</li>
+				<li>"600" correspond à la hauteur de fenêtre de jeu</li>
+				<li>"Phaser.AUTO" il existe plusieurs méthodes d'affichage, nous "demandons" ici à Phaser d'en choisir une pour nous (il prendra la méthode la plus approprier à notre environnement), vous n'aurez sans doute jamais à modifier ce paramètre.</li>
+				<li>"'content'" correspond à l'identifiant (id) de la balise div que nous avons mise en place (voir le fichier index.html), je vous rappelle que c'est cette balise div qui va accueillir la "fenêtre de jeu".</li>
+				<li>"{preload: preload, create: create,update:update}" ce dernier paramètre est un objet JavaScript qui contient le nom des fonctions de bases utilisées dans Phaser, ici aussi, vous ne devriez pas avoir à modifier cet argument.</li>
+
+			</ul>
+			<p>
+				Nous définissons ensuite 3 fonctions qui sont, comme dit plus haut, les fonctions de base de Phaser :
+			</p>
+			<ul>
+				<li>"function preload" dans cette fonction nous nous occuperons des éléments devant être "chargés" avant le début du jeu, par exemple les images ou les sons.</li>
+				<li>"function create" tout les éléments du jeu seront créés dans cette fonction.</li>
+				<li>"function update" il existe un élément très important dans la création des jeux vidéo : le nombre d'images par seconde (Frame per second en anglais soit, FPS). En effet, un jeu vidéo est une suite d'images fixes affichées à une cadence plus ou moins élevée (comme le cinéma). Si la cadence d'affichage de ces images est supérieure ou égale à environ 30 images par seconde, cela donnera "l'illusion du mouvement" (pour le cinéma c'est 24 images par seconde). La fonction update sera appelée à chaque fois qu'une nouvelle image sera affichée. Par exemple si nous avons 30 images par seconde, la fonction update sera exécutée toutes les 0,033 seconde (1/30 = 0,033).</li>
+			</ul>
+			<p>
+				Il se peut que pour l'instant tout cela ne soit pas très clair pour vous, mais nous verrons dans la prochaine activité des exemples qui, je pense, clarifieront les choses.
+			</p>
+    </div>
+	</body>
+</html>

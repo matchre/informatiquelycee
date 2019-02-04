@@ -1,0 +1,194 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer des pages web avec p5js</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer des pages web avec p5js</span>
+					<span class="navbar-brand">Activité 3</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_dom_a1.html">Activité 1</a></li>
+                <li><a href="./p5_dom_a2.html">Activité 2</a></li>
+                <li><a href="./p5_dom_a4.html">Activité 4</a></li>
+                <li><a href="./p5_dom_a5.html">Activité 5</a></li>
+                <li><a href="./p5_dom_a6.html">Activité 6</a></li>
+                <li><a href="./p5_dom_a7.html">Activité 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="p5_dom_a2.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="p5_dom_a4.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+           Dans le "À faire vous-même 2.2", un clic de souris sur n'importe quel endroit de la fenêtre du navigateur entraine une augmentation du "compteur". Il est possible de créer des "événements" qui seront déclanchés uniquement en cas de clic sur certains éléments particuliers (comme les boutons par exemple).
+        </p>
+         <h4>À faire vous-même 3.1</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var para;
+var btn;
+var compt=0;
+function setup(){
+    noCanvas();
+    para=createP("Vous avez cliqué "+compt+" fois.");
+    btn=createButton("Cliquez ici!");
+    btn.mousePressed(changeTexte);
+}
+function draw(){
+
+}
+function changeTexte(){
+    compt=compt+1;
+    para.html("Vous avez cliqué "+compt+" fois.");
+}
+    </code></pre>
+    <p>Comme vous pouvez le constater, un clic ailleurs que sur le bouton ne modifie plus le texte. En revanche, un clic sur le bouton, entraîne un changement.</p>
+    <hr>
+    <p>Le principe est relativement simple. Le "btn.mousePressed(changeTexte);" permet de définir un "détecteur d'événement" (on parle de listener) qui sera lié à l'élément de type "button" btn. Ce listener prend un paramètre qui correspond au nom de la fonction à exécuter en cas de clic sur le bouton. Cette fonction qui sera exécutée seulement si l'événement défini au niveau du listener à lieu, s'appelle une fonction de "callback". Dans notre exemple, c'est la fonction "changeTexte" qui joue le rôle de fonction de "callback" pour l'événement "mousePressed" sur l'élément "btn".</p>
+    <p>Il existe beaucoup d'autres "listeners" ("mouseReleased", "mouseClicked", "mouseMoved", "mouseOver") que vous pourrez associer aux différents éléments de votre choix (bouton, div...). Pour en savoir plus sur ces "listeners", n'hésitez pas à consulter la <a href="http://p5js.org/reference/#/libraries/p5.dom" target="_blank">documentation officielle</a>.</p>
+    <p>Il est possible d'utiliser une balise "input" (fonction "createInput") pour que l'utilisateur puisse saisir un mot ou un nombre. La fonction "value" permet de récupérer la valeur qui a été saisie par l'utilisateur.</p>
+    <h4>À faire vous-même 3.2</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var inp;
+var btn;
+function setup(){
+    noCanvas();
+    createP("Entrez un mot et validez avec le bouton");
+    inp=createInput("");
+    btn=createButton("Valider");
+    btn.mousePressed(validation);
+    para=createP("");
+}
+function draw(){
+
+}
+function validation(){
+    para.html("Vous avez écrit le mot : "+inp.value());
+    inp.value("");
+}
+    </code></pre>
+    <p>La ligne "inp.value("");" permet d'effacer le champ de saisie (la fonction "value" sans paramètre permet de récupérer la valeur, avec paramètre, elle permet d'imposer une valeur. Avec un paramètre qui correspond à une chaîne de caractères vide (""), cela permet d'effacer le champ de saisie).</p>
+    <hr>
+    <h4>À faire vous-même 3.3</h4>
+    <p>Modifiez le code ci-dessus pour que les mots saisis par l'utilisateur s'affichent les uns en dessous des autres.</p>
+    <hr>
+    <p>Il existe aussi des "listeners" qui ne sont pas liés à une action de la souris : "changed" et "input"</p>
+    <p>Si vous utilisez le listener "changed" sur une balise de type "input" (à ne pas confondre avec le listener "input"), la fonction associée au listener sera éxecutée au moment où vous appuyerez sur la touche "Entrée"</p>
+    <h4>À faire vous-même 3.4</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var inp;
+var aff;
+function setup(){
+    noCanvas();
+    createP("Entrez un mot et validez en appuyant sur la touche Entrée");
+    inp=createInput("");
+    inp.changed(afficheMot)
+    aff=createP("");
+}
+function draw(){
+
+}
+function afficheMot(){
+    aff.html(inp.value());
+}
+    </code></pre>
+    <hr>
+    <p>Voici un exemple d'utilisation du listener "input" :</p>
+    <h4>À faire vous-même 3.5</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var inp;
+var aff;
+function setup(){
+    noCanvas();
+    createP("Entrez un mot");
+    inp=createInput("");
+    inp.input(afficheMot)
+    aff=createP("");
+}
+function draw(){
+
+}
+function afficheMot(){
+    aff.html(inp.value());
+}
+    </code></pre>
+    <hr>
+    <p>La fonction "createSlider" permet de créer un "curseur de contrôle". Cette fonction "createSlider" prend 3 paramètres :</p>
+    <ul>
+        <li>la valeur mini</li>
+        <li>la valeur maxi</li>
+        <li>la valeur par défaut</li>
+    </ul>
+    <p>Il est possible de récupérer la valeur indiquée par le curseur à n'importe quel moment, toujours à l'aide de la fonction "value".</p>
+    <h4>À faire vous-même 3.6</h4>
+        <p>Modifiez le fichier "script.js" comme suit (les fichiers "index.html" et "style.css" restent inchangés) :</p>
+        <p>script.js</p>
+        <pre><code class="javascript">
+var para;
+var curs;
+function setup(){
+    noCanvas();
+    createP("Bougez le curseur");
+    curs=createSlider(0,100,50);
+    para=createP("Valeur affichée : "+curs.value());
+}
+function draw(){
+    para.html("Valeur affichée : "+curs.value());
+}
+    </code></pre>
+        <hr>
+        <p>Il est évidemment possible de combiner les éléments "html" que nous venons de voir avec un "canvas" (surface de dessin) et même de "piloter" ce qu'affiche le "canvas" à l'aide d'éléments "html".</p>
+        <h4>À faire vous-même 3.7</h4>
+        <p>Créez un programme permettant d'afficher un disque. Le rayon de ce disque devra être "piloté" par un curseur. Le rayon minimum sera de 10 pixels, le rayon maximum sera de 100 pixels.</p>
+        <iframe src="./p5_dom/p5_dom_a3_5/index.html" width="600px" height="230px"></iframe>
+        <h4>À faire vous-même 3.8</h4>
+        <p>Créez un programme qui reprend l'exemple du "À faire vous-même 3.7" mais qui permet en plus de choisir la couleur du disque. Vous pourrez utiliser la fonction "createSelect". Vous trouverez des informations sur l'utilisation de cette fonction dans la documentation officielle <a href="http://p5js.org/reference/#/p5/createSelect" target="_blank">ici </a>(dans cette documentation, ne tenez pas compte du "sel.position(10, 10);", nous aborderons cette question dans la prochaine activité).</p>
+        <iframe src="./p5_dom/p5_dom_a3_6/index.html" width="600px" height="230px"></iframe>
+    </div>
+	</body>
+</html>

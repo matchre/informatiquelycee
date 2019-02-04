@@ -1,0 +1,193 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu ou une simulation 3D</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu ou une simulation 3D</span>
+					<span class="navbar-brand">Activité 3</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./bab_intro.html">Introduction</a></li>
+								<li><a href="./bab_a1.html">Activité 1</a></li>
+	              <li><a href="./bab_a2.html">Activité 2</a></li>
+	              <li><a href="./bab_a4.html">Activité 4</a></li>
+								<li><a href="./bab_a5.html">Activité 5</a></li>
+	              <li><a href="./bab_a6.html">Activité 6</a></li>
+	              <li><a href="./bab_a7.html">Activité 7</a></li>
+								<li><a href="./bab_a8.html">Activité 8</a></li>
+	              <li><a href="./bab_a9.html">Activité 9</a></li>
+								<li><a href="./bab_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="bab_a2.html"><span class="fui-triangle-left-large"></a></li>
+						<li><a href="bab_a4.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>Qui dit scène 3D, dit 3 coordonnées (x,y,z) pour les points. Vous n'avez sans doute pas l'habitude de "raisonner" dans l'espace (en 3D) et cela peut-être quelque peu déroutants au départ. Donc, pas "d'inquiétude si vous éprouvez des difficultés.</p>
+			<p>Pour indiquer une position dans l'espace, il est nécessaire de créer un objet de type "Vector3" (attention au faux ami, cet objet représente un point, pas un vecteur !) :</p>
+			<pre><code class="javascript">
+new BABYLON.Vector3(x,y,z)
+			</code></pre>
+			<p>avec, évidement, x,y,z, les coordonnées du point dans l'espace.</p>
+			<p>Pour vous aider, voici une représentation du repère utilisé dans Babylon.js :</p>
+			<img src="img/bab_3_1.png" alt="rep3D"/>
+			<p>Commençons le "peuplement" de notre scène :</p>
+			<h4>À faire vous même 3.1</h4>
+			<p>
+				Reprenez l'application "app_01", ouvrez, à l'aide d'un éditeur de texte le fichier script.js et saisisser le code ci-dessous dans ce fichier.
+			</p>
+			<p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("maCamera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.PointLight("pointLu", new BABYLON.Vector3(0, 0, 10), scene);
+var tore = BABYLON.Mesh.CreateTorus("torus", 5, 1, 50, scene, false);
+scene.activeCamera.attachControl(canvas);
+engine.runRenderLoop(function () {
+ scene.render();
+});
+			</code></pre>
+			<p>Tester cet exemple</p>
+			<hr>
+			<p>Analysons les différentes nouveautés :</p>
+			<p><strong>la caméra</strong></p>
+			<pre><code class="javascript">
+var camera = new BABYLON.ArcRotateCamera("maCamera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
+			</code></pre>
+			<p>Nous définissons ici la caméra qui filmera notre scène.</p>
+			<p>La caméra "ArcRotateCamera" est une caméra qui a la propriété de tourner autour du point qu'elle filme (cette rotation se fait à l'aide de la souris). La méthode "ArcRotateCamera" permet la création de ce type de caméra :</p>
+			<pre><code class="javascript">
+new BABYLON.ArcRotateCamera(nom, angle_alpha, angle_beta, rayon, point_visé, scene);
+			</code></pre>
+			<p>Passons en revu les différents paramètres de la méthode "ArcRotateCamera" :</p>
+			<ul>
+				<li>nom : nom choisi pour la caméra (exemple : "maCamera")</li>
+				<li>angle_alpha : position de la caméra (voir le schéma ci-dessous)</li>
+				<li>angle_beta :  position de la caméra (voir le schéma ci-dessous)</li>
+				<li>rayon : distance entre la caméra et le "point_visé"</li>
+				<li>point_visé : position du point à viser (exemple : new BABYLON.Vector3(0,0,0) : la caméra vise ici le centre de la scène)</li>
+				<li>scene :  nom de la scène à filmer (scène définie à l'aide de "new BABYLON.Scene(engine);")</li>
+			</ul>
+			<p>signification des angles alpha et béta</p>
+			<img src="img/bab_3_2.png" alt="angles"/>
+			<p>ATTENTION : les angles "alpha" et "beta" sont en radian et pas en degré (petit rappel : π radian => 180°)</p>
+			<p><strong>la lumière</strong></p>
+			<p>Il existe différents types d'éclairage, mais, dans cette activité nous n'en verrons qu'un, le "point lumineux" : la source de lumière est un point, la lumière se propage dans toutes les directions depuis ce point.</p>
+			<p>Pour créer ce point lumineux, il faut utiliser la méthode "PointLight" :</p>
+			<pre><code class="javascript">
+new BABYLON.PointLight(nom,position, scene)
+			</code></pre>
+			<p>signification des 3 arguments de la méthode "PointLight" :</p>
+			<ul>
+				<li>nom : nom choisi pour le point lumineux (exemple : "pointLu")</li>
+				<li>position : position du point lumineux (exemple : new BABYLON.Vector3(0,10,20)))</li>
+				<li>scene :  nom de la scène à éclairer</li>
+			</ul>
+			<p><strong>l'objet tore</strong></p>
+			<p>Babylon.js vous permet de dessiner 4 types de mesh (objet 3D) : des cubes, des sphères, des cylindres, des plans et des tores.
+			<p>Pour cette première scène,  nous allons dessiner un tore (pour les connaisseurs, c'est le donut d'Homer Simpson).</p>
+			<p>La méthode "CreateTorus" est utilisée pour dessiner notre tore :</p>
+			<pre><code class="javascript">
+BABYLON.Mesh.CreateTorus(nom,diamètre, épaisseur, détail, scene, modifiable);
+			</code></pre>
+			<ul>
+				<li>nom :  nom choisi pour le mesh (ce nom peut être utile, notamment pour rechercher un objet à l'aide de la méthode "getMeshByName") </li>
+				<li>diamètre : diamètre du tore</li>
+				<li>épaisseur : épaisseur du tore</li>
+				<li>détail : plus cette valeur est élevée, plus le tore sera "beau" (attention un "beau" tore demande plus de calcul et donc consomme plus de ressource CPU)</li>
+				<li>scene :  nom de la scène où notre tore sera dessiné</li>
+				<li>modifiable : le mesh sera-t-il modifié ? (mettre true ou false)</li>
+			</ul>
+			<p>Pour terminer cette analyse de l'app_01, la ligne</p>
+			<pre><code class="javascript">
+scene.activeCamera.attachControl(canvas);
+			</code></pre>
+			<p>permet à la caméra de tourner (modification des angles "alpha" et "beta") autour du "point_visé" (utilisation de la souris).</p>
+			<p>Math.PI correspond à la valeur de  π (3,14159..)</p>
+			<p>À la création de la scène, par défaut, le centre du tore a pour coordonnées (0,0,0). De plus, toujours par défaut, il se trouve dans le plan  (x,z).</p>
+			<p>Vous pouvez modifier les coordonnées du centre du tore, à l'aide de l'attribut position de l'objet de type Mesh, par exemple pour notre tore :
+			<pre><code class="javascript">
+tore.position=new BABYLON.Vector3(0, 5, 5)
+			</code></pre>
+			<p>Si vous désirez modifier une seule des trois coordonnées, vous pouvez utiliser, par exemple :</p>
+			<pre><code class="javascript">
+tore.position.z=5
+			</code></pre>
+			<p>Il est aussi possible de faire tourner le tore :</p>
+			<pre><code class="javascript">
+tore.rotation.x=Math.PI
+			</code></pre>
+			<p>provoque une rotation de  π autour de l'axe x</p>
+			<pre><code class="javascript">
+tore.rotation.y=Math.PI/2
+			</code></pre>
+			<p>provoque une rotation de  π/2 autour de l'axe y</p>
+			<pre><code class="javascript">
+tore.rotation.z=Math.PI/4
+			</code></pre>
+			<p>provoque une rotation de  π/4 autour de l'axe z</p>
+			<p>Il est aussi possible de modifier la taille d'un mesh avec les attributs scale.x, scale.y et scale.z, un exemple :</p>
+			<pre><code class="javascript">
+tore.scale.z=0.5
+			</code></pre>
+			<h4>À faire vous même 3.2</h4>
+			<p>Créer un nouvel exemple (app_02)</p>
+			<p>Reprener le code de l'app_01 et modifier les coordonnées du centre du tore. Modifier ensuite la taille du tore à l'aide de l'attribut "scale". Enfin, une fois ces transformations effectuées, modifier la position de l'éclairage et de la caméra comme bon vous semble.</p>
+			<p>ATTENTION : pour tout ce qui concerne la rotation, le tore possède ses propres axes x, y et z (on parle de repère local), se repère tourne en même temps que le tore, voici un exemple, qui, je l'espère, vous permettra de mieux appréhender cette notion de repère local.</p>
+			<p>Situation avec l'exemple app_01 (l'axe y pointe vers nous).</p>
+			<img src="img/bab_3_3.png"/>
+			<p>Si nous effectuons une rotation de 90°autour de l'axe x, nous verrons alors la tranche du tore verticalement.</p>
+			<img src="img/bab_3_4.png"/>
+			<p>Que se passe-t-il si ensuite nous effectuons une rotation autour de l'axe z encore de 90° ?
+			<p>Si l'on y prend garde, on pourrait répondre : "rien, car dans cette situation z est un axe de symétrie".</p>
+			<p>Faites le test vous-même, alors ?</p>
+			<p>le résultat :</p>
+			<img src="img/bab_3_5.png"/>
+			<p>Pourquoi n'obtient-on pas le résultat "attendu" ?</p>
+			<p>Au moment de la rotation de 90° autour de l'axe x, l'axe z du tore a lui-même effectué une rotation de 90°.</p>
+			<p>Si vous effectuez ensuite une rotation de 90 ° autour de l'axe z, il est donc logique de voir toujours la tranche du tore, mais cette fois-ci à l'horizontale.</p>
+    </div>
+	</body>
+</html>

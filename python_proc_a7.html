@@ -1,0 +1,339 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Processing et Python</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Processing et Python</span>
+					<span class="navbar-brand">Activité 7</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./python_proc_a1.html">Activité 1</a></li>
+	              <li><a href="./python_proc_a2.html">Activité 2</a></li>
+                  <li><a href="./python_proc_a3.html">Activité 3</a></li>
+	              <li><a href="./python_proc_a4.html">Activité 4</a></li>
+                  <li><a href="./python_proc_a5.html">Activité 5</a></li>
+                  <li><a href="./python_proc_a6.html">Activité 6</a></li>
+                  <li><a href="./python_proc_a8.html">Activité 8</a></li>
+                  <li><a href="./python_proc_a9.html">Activité 9</a></li>
+                  <li><a href="./python_proc_a10.html">Activité 10</a></li>
+                  <li><a href="./python_proc_a11.html">Activité 11</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="python_proc_a6.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+					Processing permet de travailler sur les images.
+			</p>
+			<h4>À faire vous-même 7.1</h4>
+			<p>
+				 Vous devez commencer par télécharger l'image <a href="asset/tux.jpg">tux.jpg</a>. Saisissez le code se trouvant ci-dessous. Enregistrez (Fichier -> Enregistrer) votre travail. Placez le fichier "tux.jpg" dans le même dossier que le fichier (xxxx.pyde) que vous venez d'enregistrer. Testez votre programme.
+			</p>
+			<pre><code class='python'>
+def setup():
+	size (300,300)
+	img=loadImage("tux.jpg")
+	image (img,0,0)
+def draw():
+	pass
+			</code></pre>
+			<hr>
+	<p>Analysons ce code :</p>
+			<pre><code class='python'>
+img=loadImage("tux.jpg")
+			</code></pre>
+			<p>nous chargeons l'image "tux.jpg" et plaçons cette image dans la variable "img" (nous déclarons cette variable "global" afin de pouvoir l'utiliser dans la fonction "draw").</p>
+			<pre><code class='python'>
+image (img,0,0)
+			</code></pre>
+			<p>nous utilisons la fonction "image" qui permet d'afficher l'image. Cette fonction prend 3 paramètres :</p>
+			<ul>
+					<li>"img" => nom de la variable qui contient l'image à afficher</li>
+					<li>0 => coordonnée x du coin supérieur gauche de l'image</li>
+					<li>0 => coordonnée y du coin supérieur gauche de l'image</li>
+			</ul>
+			<h4>À faire vous-même 7.2</h4>
+			<p>Créez un programme qui permettra de placer l'image "tux.jpg" (dimensions : 208x242) au milieu de la fenêtre (on prendra une fenêtre de 400x400).</p>
+			<hr>
+			<p>Il est possible de colorer votre image avec la fonction "tint". La fonction "tint" prend 3 paramètres : le canal rouge, le canal vert, le canal bleu</p>
+			<h4>À faire vous-même 7.3</h4>
+			<p>Saisissez, analysez et tester ce programme</p>
+			<pre><code class='python'>
+def setup():
+	size (300,300)
+	img=loadImage("tux.jpg")
+	tint(255,0,0)
+	image (img,0,0)
+def draw():
+	pass
+			</code></pre>
+			<h4>À faire vous-même 7.4</h4>
+			<p>Sachant que la fonction "noTint" (cette fonction ne prend aucun paramètre) permet d'annuler les effets de la fonction "tint", afficher, côte à côte 2 images : une normale et une colorée en vert.</p>
+			<hr>
+			<p>Il est aussi possible d'appliquer des filtres (comme avec un logiciel de retouche d'image (Gimp par exemple)). Nous n'allons pas passer en revue tous les filtres proposés par Processing.</p>
+			<p>Si vous voulez en savoir plus sur les filtres dans Processing, je vous invite à consulter la documentation officielle :
+					<a href="https://processing.org/reference/filter_.html" target="_blank">https://processing.org/reference/filter_.html</a>.</p>
+			<h4>À faire vous-même 7.5</h4>
+			<p>Saisissez, analysez et tester ce programme</p>
+			<pre><code class='python'>
+def setup():
+	size (500,300)
+	img=loadImage("tux.jpg")
+	image (img,0,0)
+	filter(BLUR,3)
+	image (img,209,0)
+def draw():
+	pass
+			</code></pre>
+			<hr>
+			<p>La fonction "filtre" prend ici 2 paramètres : le type de filtre (ici BLUR) et l'intensité du filtre (ici 3).</p>
+			<p>Vous aurez sans doute remarqué que le filtre s'applique aux images qui ont déjà été affichées dans la fenêtre. Ici, le filtre s'applique à la première image (coordonnées 0,0) et pas à la seconde (coordonnées 209,0).</p>
+			<p>
+					Avec Processing, il est aussi possible de travailler directement sur les pixels.
+			</p>
+			<p> Avant de rentrer dans le vif du sujet, vous devez savoir qu'il est possible de "ranger" une couleur directement dans une variable à l'aide de "color". "color" prend 3 paramètre : le canal rouge, le canal vert et le canal bleu.</p>
+			<h4>À faire vous-même 7.6</h4>
+			<p>
+				 Saisissez et testez ce programme :
+			</p>
+			<pre><code class='python'>
+def setup():
+	global maCouleur
+	size(200,200)
+	maCouleur=color(242,126,98)
+	fill(maCouleur)
+	ellipse(50,50,20,20)
+	text("Rouge : "+str(red(maCouleur)),100,50)
+	text("Vert : "+str(green(maCouleur)),100,100)
+	text("Bleu : "+str(blue(maCouleur)),100,150)
+def draw():
+	pass
+			</code></pre>
+			<hr>
+			<p>Rien de très complexe dans le programme ci-dessus :</p>
+			<ul>
+					<li>on attribue une couleur à la variable maCouleur à l'aide de la fonction "color" : "maCouleur=color(242,126,98)"</li>
+					<li>les fonctions "red", "green", "blue" retournent respectivement les valeurs liées aux canaux rouge, vert et bleu. Ces fonctions prennent en paramètre une variable de type "color" et retournent un "float" (d'où le "str" pour transformer le "float" en "string").</li>
+			</ul>
+			<p>Revenons maintenant à nos pixels.</p>
+			<p>Processing rend accessible une liste qui contient, pour chaque pixel, les informations pour le canal rouge, pour le canal vert et pour le canal bleu. Chaque élément de la liste correspond à un pixel et est de type "color".</p>
+			<p>Si vous avez une image de 100 par 100, vous obtiendrez une liste qui comportera 100*100=10000 éléments.</p>
+			<p>Raisonnons sur une image de 4 par 4 : </p>
+			<img src="img/procImg_a2_1.png">
+			<p>Chaque carré représente 1 pixel.</p>
+			<p>Processing nous fournira la liste suivant : {p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15}. p0,p1... étant de type "color"</p>
+			<p>Cette liste a pour noms "img.pixels" (si "img" est le nom de l'image). Avant de pouvoir utiliser cette liste, il est nécessaire d'utiliser la fonction "loadPixels()".</p>
+			<p>Pour récupérer les informations concernant le pixel de coordonnées (2,3) (sachant que le pixel "p0" a pour coordonnées (0,0)), il faudra écrire "img.pixels [14]"</p>
+			<h4>À faire vous-même 7.7</h4>
+			<p>Déterminez l'indice de position i dans le tableau "img.pixels" d'un pixel ayant pour coordonnées (x,y) si l'image "img" a pour largeur L (je rappelle que l'indice de position d'un tableau commence à 0).</p>
+			<hr>
+			<p>Il est possible de modifier la valeur d'un pixel à condition d'utiliser la fonction "updatePixels()" après la modification et avant d'afficher l'image.</p>
+			<h4>À faire vous-même 7.8</h4>
+			<p>
+				 Saisissez et testez ce programme :
+			</p>
+			<pre><code class='python'>
+def setup():
+	size (208,242)
+	img=loadImage("tux.jpg")
+	loadPixels()
+	couleur=color(0)
+	img.pixels[25272]=couleur #Pourquoi 25272 ?
+	updatePixels()
+	image (img,0,0)
+def draw():
+	pass
+			</code></pre>
+			<hr>
+			<h4>À faire vous-même 7.9</h4>
+			<p>Créez un programme qui remplacera tous les pixels blancs de l'image "tux.jpg" par des pixels rouges.</p>
+			<img src="img/procImg_a2_3.png">
+			<hr>
+			<h4>À faire vous-même 7.10</h4>
+		<p>Faites des recherches pour trouver une méthode qui permet de transformer une image couleur en une image en niveau de gris (souvent improprement appelée "noir et blanc", car une image "noir et blanc" est uniquement composée de pixel noir et de pixel blanc)</p>
+		<p>Attention, cette recherche doit exclure toutes les méthodes s'appuyant sur des logiciels tiers types Gimp,...</p>
+		<hr>
+		<h4>À faire vous-même 7.11</h4>
+		<p>À partir des recherches que vous venez de mener, écrire un programme avec Processing qui permettra de transformer l'image "tux.jpg" en une image en niveau de gris. Il est évidemment interdit d'utiliser le filtre proposé par Processing.</p>
+					<img src="img/procImg_a2_4.png">
+					<hr>
+					<h4>À faire vous-même 7.12</h4>
+		<p>Essayez d'écrire un programme qui permettra d'obtenir ceci :</p>
+					<canvas id="a2_8" class="proc" data-processing-sources="code/Img_a2_8.pde"></canvas>
+			<img src="./img/repeter.png" class="rep" onclick="startSketch_a2_8();">
+			<script type="application/javascript">
+					var processingInstance_a2_8;
+					function startSketch_a2_8() {
+							if (!processingInstance_a2_8) {
+									processingInstance_a2_8 = Processing.getInstanceById('a2_8');
+									processingInstance_a2_8 = Processing.getInstanceById('a2_8');
+							}
+							processingInstance_a2_8.setup();
+					}
+			</script>
+			<hr>
+			<p>La méthode "get" de la classe Image permet de sélectionner une partie d'une image. Cette méthode prend 3 paramètres : img.get(x,y,L,H)</p>
+			<img src="img/procImg_a2_5.png">
+			<p>avec H la hauteur de la nouvelle image et L la largeur de la nouvelle image.</p>
+			<h4>À faire vous-même 7.13</h4>
+			<p>
+				 Saisissez et testez ce programme :
+			</p>
+			<pre><code>
+def setup():
+	size(208,242)
+	background(0)
+	img=loadImage("tux.jpg")
+	img1=img.get(65,3,80,90)
+	image(img1,70,80)
+def draw():
+	pass
+			</code></pre>
+			<h4>À faire vous-même 7.14</h4>
+			<p>Créez un programme permettant d'obtenir ceci (déplacer le curseur de la souris dans la fenêtre ci-dessous) :</p>
+			<canvas id="a2_10" class="proc" data-processing-sources="code/Img_a2_10.pde"></canvas>
+			<hr>
+			<p>Pour terminer cette activité consacrée aux images, nous allons nous intéresser à l'animation des sprites.</p>
+			<p>Télécharger une archive contenant ces fichiers en cliquant <a><a href="asset/sonic.zip">ici</a></p>
+			<h4>À faire vous-même 7.15</h4>
+			<p>Saisissez, analysez et testez ce code</p>
+			<pre><code>
+def setup():
+	global tabIm,index,compt,img
+	size(200,200)
+	tabIm=[]
+	index=0
+	compt=0
+	img=loadImage("sonic_1.png");
+	for i in range(6):
+		tabIm.append(img.get(48*i,0,48,48))
+def draw():
+	global index,compt
+	background(255)
+	if compt==10:
+		compt=0
+		index=index+1
+		if index>5:
+			index=0
+	compt=compt+1
+	image(tabIm[index],75,75)
+			</code></pre>
+			<hr>
+			<p>L'analyse de l'exemple du "À faire vous-même 7.15" ne devrait pas vous posez de problème.</p>
+			<p>Les différentes images de "Sonic" sont "découpées" (à l'aide de la méthode "get") et placées dans la liste tabIm.
+			<pre><code>
+for i in range(6):
+	tabIm.append(img.get(48*i,0,48,48))
+			</code></pre>
+			<p>Il est important de comprendre les rôles des variables "index" et "compt" :</p>
+			<ul>
+					<li>"compt" permet de changer l'image de Sonic après "10 boucles draw" (si le changement d'image avait lieu à chaque tour de "boucle draw", l'animation serait beaucoup trop rapide). La variable "compt" permet de contrôler la vitesse de l'animation.</li>
+					<li>"index" permet de parcourir la liste tabIm (et donc d'afficher les différentes images de Sonic)</li>
+			</ul>
+			<p>Il est possible d'obtenir un code un peu plus "propre" en utilisant des fonctions :</p>
+			<h4>À faire vous-même 7.16</h4>
+			<p>Saisissez, analysez et testez ce code</p>
+			<pre><code>
+def setup():
+	global tabIm, index,compt
+	size(200,200)
+	index=0
+	compt=0
+	tabIm=creaAnim("sonic_1.png",6)
+def draw():
+	background(255)
+	anim(tabIm,7,75,75)
+def anim(tab,vitAnim,x,y):
+	global compt,index
+	if compt==vitAnim:
+		compt=0
+		index=index+1
+		if index==len(tab):
+			index=0
+	compt=compt+1;
+	image(tab[index],x,y)
+def creaAnim(nomImg,nbImage):
+	tabImg=[]
+	img=loadImage(nomImg)
+	for i in range(nbImage):
+		tabImg.append(img.get(48*i,0,48,48))
+	return tabImg
+			</code></pre>
+			<hr>
+			<p>Étudiez attentivement le code proposé dans le "À faire vous-même 7.16", plus particulièrement, intéressez-vous aux fonctions "creAnim" et "anim" (quels sont les paramètres de ces fonctions ? Que renvoient ces fonctions ? ...). Sinon, le principe reste identique à celui vu dans le "À faire vous-même 7.15".</p>
+			<p>Il est possible d'encore améliorer la gestion des animations en utilisant la programmation orientée objet et en créant une classe "SpriteAnim".</p>
+			<h4>À faire vous-même 7.17</h4>
+			<p>Saisissez, analysez et testez ce code</p>
+			<pre><code>
+class SpriteAnim:
+	def __init__(self,nomImg,nbImage,vitAnim):
+		self.index=0
+		self.compt=0
+		self.vit=vitAnim
+		self.nbIm=nbImage
+		self.img=loadImage(nomImg);
+		self.tabImg=[]
+		for i in range(nbImage):
+			self.tabImg.append(self.img.get(48*i,0,48,48))
+	def anim(self,x,y):
+		if self.compt==self.vit:
+			self.compt=0
+			self.index=self.index+1
+			if self.index==self.nbIm:
+				self.index=0
+		self.compt=self.compt+1
+		image(self.tabImg[self.index],x,y)
+def setup():
+	global an
+	size(200,200)
+	an=SpriteAnim("sonic_1.png",6,5)
+def draw():
+	background(255)
+	an.anim(75,25)
+			</code></pre>
+			<hr>
+			<p>Étudiez plus précisément la classe SpriteAnim (le constructeur et la méthode "anim").</p>
+			<h4>À faire vous-même 7.18</h4>
+			<p>Créez un programme permettant de déplacer Sonic à l'aide des flèches du clavier (droites et gauche). L'animation devra être adaptée à la situation (court vers la gauche, court vers la droite, attente en regardant vers la gauche, attente en regardant vers la droite). Sonic ne devra pas pouvoir sortir de l'écran.</p>
+		</div>
+	</body>
+</html>

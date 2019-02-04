@@ -1,0 +1,151 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>p5js et les données</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">p5js et les données</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./p5_AnDo_a2.html">Activité 2</a></li>
+                <li><a href="./p5_AnDo_a3.html">Activité 3</a></li>
+                <li><a href="./p5_AnDo_a4.html">Activité 4</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="p5_AnDo_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Nous allons en premier lieu étudier le format de données CSV (coma separated values). Les données sont stockées sous forme de table (on parle de "données tabulaires"), en simplifiant, on peut dire que les données sont "rangées" en ligne et en colonne (la première ligne est souvent appelée "entête" . Dans le format CSV, les colonnes sont séparées par des virgules (coma en anglais).</p>
+        <p>Voici un exemple du contenu d'un fichier CSV:</p>
+        <pre><code>
+nom,prenom,date_naissance
+Durand,Jean-Pierre,23/05/1985
+Dupont,Christophe,15/12/1967
+Terta,Henry,12/06/1978
+        </code></pre>
+        <p>Je pense qu'il est évident pour vous que nous avons ici 3 personnes :</p>
+        <ul>
+            <li>Jean-Pierre Durand qui est né le 23/05/1985</li>
+            <li>Christophe Dupont qui est né le 15/12/1967</li>
+            <li>Henry Terta qui est né le 12/06/1978</li>
+        </ul>
+        <p>Les tableurs, tels que "Calc" (Libre Office), sont capables de lire les fichiers au format CSV.</p>
+        <h4>À faire vous-même 1.1</h4>
+        <p>Après avoir téléchargé le fichier <a href="asset/ident.csv">ident.csv</a>, ouvrez ce dernier à l'aide d'un tableur.</p>
+        <hr>
+        <p>Vous devriez obtenir ceci :</p>
+        <img src="img/procAnDo_a1_1.png">
+        <p>La fonction "loadTable" permet de récuperer et d'extraire des données au format CSV.</p>
+        <pre><code class="javascript">
+table = loadTable("ident.csv","csv", "header");
+        </code></pre>
+        <p>La méthode "loadTable" récupère les données contenues dans le fichier "ident.csv". Le deuxième paramètre ("csv"), précise le format des données. Le troisième paramètre de cette méthode ("header"), indique que la première ligne du fichier "ident.csv" correpond à un entête (la première ligne ne contient pas de données, mais le "nom" des différentes colonnes).</p>
+        <p>La méthode "getRow" renvoie une "ligne" de la table. Cette méthode prend un paramètre, le numéro de la "ligne" à retourner.</p>
+        <pre><code class="javascript">
+table = loadTable("ident.csv","csv", "header");
+lig=table.getRow(0);
+        </code></pre>
+        <p>Dans le cas ci-dessus, la variable "lig" contiendra les données issues de la première "ligne" (hors entête), l'indice des "lignes" commence à zéro, comme pour les tableaux.</p>
+        <p>Maintenant que nous avons récupéré une "ligne", nous allons pouvoir en extraire les données :</p>
+        <p>Si les données sont de type "chaîne de caractères", il faudra utiliser la méthode "getString", si les données sont de type "nombre", il faudra utiliser la méthode "getNum".</p>
+        <p>Ces méthodes prennent pour paramètre l'intitulé de la colonne (entête).</p>
+         <p>Pour charger un fichier de type "csv" avec "loadTable", il est nécessaire d'utiliser une fonction "fournie" par p5js : "preload". Que se passerait-il si le programme exécutait une ligne contenant "lig=table.getRow(0);", alors que le fichier "ident.csv" est encore en cours de chargement ? Nous aurions une erreur. En effet la fonction "loadString" n'est pas "blocante" (cela signifie que la suite du programme est exécuté même si le chargement du fichier de type "csv" n'est pas terminé). Pour éviter tout problème, p5js nous propose donc la fonction "preload" qui devra contenir toutes les opérations à effectuer avant que la fonction "setup" soit exécutée. Il faudra utiliser cette fonction "preload" dès que vous avez besoin de charger des données (image, son, vidéo ou même un fichier texte...).</p>
+        <p>À cause d'un "bug" d'origine inconnue, il est nécessaire de placer le fichier ".csv" dans le même répertoire que les fichiers "index.html" et "script.js".</p>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Modifier le fichier "script.js" comme suit (index.html et style.css restent identiques)</p>
+        <pre><code class="javascript">
+var table;
+var nom;
+function preload(){
+    table = loadTable("ident.csv","csv","header");
+}
+function setup() {
+    createCanvas(800,100)
+    lig=table.getRow(0);
+    nom=lig.getString("nom");
+    text("Le nom situé dans la première colonne de la première ligne est "+nom,10,50);
+}
+function draw(){
+}
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 1.3</h4>
+        <p>Créez un programme permettant d'obtenir ceci (il faudra extraire les données du fichier ident.csv).</p>
+        <iframe src="./p5_AnDo/AnDo_a1_3/index.html" width="830px" height="130px"></iframe>
+        <hr>
+        <p>Les méthodes "getString", "getNum" peuvent aussi prendre en paramètre, notamment en cas d'absence d'entête, le numéro de colonne (la première colonne a pour indice 0) : dans notre exemple (ident.csv) "getString(1)" est équivalent à un "getString("prenom").</p>
+        <p>Il est possible de parcourir les lignes à l'aide d'une boucle :</p>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Créez un programme permettant d'obtenir ceci (il faudra extraire les données du fichier ident.csv et obligatoirement utiliser une boucle).</p>
+        <p>Pour vous aider : la méthode "getRowCount" renvoie le nombre le nombre de lignes d'une table (utilisation : "table.getRowCount()")</p>
+        <iframe src="./p5_AnDo/AnDo_a1_4/index.html" width="830px" height="130px"></iframe>
+        <hr>
+        <p>Il est possible de trouver sur le web des données beaucoup plus intéressantes à traiter que celles contenues dans le fichier "ident.csv". Par exemple, le site <a href="http://sql.sh/736-base-donnees-villes-francaises" target="_blank">sql.sh</a>, propose un fichier csv contenant des informations sur l'ensemble des communes françaises.</p>
+        <p>J'ai un peu modifié le fichier proposé (notamment en ajoutant un entête). Vous pouvez télécharger le fichier modifié <a href="asset/villes.csv">ici</a>.</p>
+        <h4>À faire vous-même 1.5</h4>
+        <p>Ouvrez le fichier villes.csv à l'aide d'un tableur.</p>
+        <hr>
+        <p>Comme vous pouvez le constater, nous avons 12 colonnes (et 36700 lignes si on ne compte pas l'entête !), voici la signification de ces colonnes :</p>
+        <ul>
+            <li>dep : numéro de département</li>
+            <li>nom : nom de la commune</li>
+            <li>cp : code postal</li>
+            <li>nb_hab_2010 : nombre d'habitants en 2010</li>
+            <li>nb_hab_1999 : nombre d'habitants en 1999</li>
+            <li>nb_hab_2012 : nombre d'habitants en 2012 (approximatif)</li>
+            <li>dens : densité de la population (habitants par kilomètre carré)</li>
+            <li>surf : superficie de la commune en kilomètre carré</li>
+            <li>long : longitude</li>
+            <li>lat : latitude</li>
+            <li>alt_min : altitude minimale de la commune (il manque des données pour certains territoires d'outre-mer)</li>
+            <li>alt_max : altitude maximale de la commune (il manque des données pour certains territoires d'outre-mer)</li>
+        </ul>
+        <h4>À faire vous-même 1.6</h4>
+        <p>Créez un programme permettant d'afficher toutes les communes dont l'altitude minimum est supérieure à 1500 m</p>
+        <hr>
+        <h4>À faire vous-même 1.7</h4>
+        <p>Créez un programme permettant d'afficher toutes les communes (de France métropolitaine) de plus de 5000 habitants (en 2010) ayant une altitude maximale inférieure à 10 m.</p>
+        <hr>
+        <p>Vous trouverez un grand nombre de données, diverses et variées, au format CSV sur le site gouvernemental <a href="https://www.data.gouv.fr/fr/datasets/?format=csv" target="_blank">data.gouv.fr</a>.</p>
+    </div>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Les images avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Les images avec Processing</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procImg_a2.html">Activité 2</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procImg_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+            Processing permet de travailler sur les images.
+        </p>
+        <h4>À faire vous-même 1.1</h4>
+        <p>
+           Vous devez commencer par télécharger l'image <a href="asset/tux.jpg">tux.jpg</a>. Saisissez le code se trouvant ci-dessous. Enregistrez (File -> Save) votre travail. Placez le fichier "tux.jpg" dans le même dossier que le fichier (xxxx.pde) que vous venez d'enregistrer. Testez votre programme.
+        </p>
+        <pre><code>
+PImage img;
+void setup(){
+  size (300,300);
+  img=loadImage("tux.jpg");
+}
+void draw(){
+  image (img,0,0);
+}
+        </code></pre>
+        <hr>
+		<p>Analysons ce code :</p>
+        <pre><code>
+PImage img;
+        </code></pre>
+        <p>cette ligne nous permet de créer un objet "img" de type "PImage" ("PImage" est une classe fournie par Processing).</p>
+        <pre><code>
+img=loadImage("tux.jpg");
+        </code></pre>
+        <p>nous chargeons l'image "tux.jpg" et plaçons cette image dans l'objet "img" que nous avons créé juste au-dessus.</p>
+        <pre><code>
+image (img,0,0);
+        </code></pre>
+        <p>nous utilisons la fonction "image" qui permet d'afficher l'image. Cette fonction prend 3 paramètres :</p>
+        <ul>
+            <li>"img" => nom de l'objet qui contient l'image à afficher</li>
+            <li>0 => coordonnée x du coin supérieur gauche de l'image</li>
+            <li>0 => coordonnée y du coin supérieur gauche de l'image</li>
+        </ul>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Créez un programme qui permettra de placer l'image "tux.jpg" (dimensions : 208x242) au milieu de la fenêtre (on prendra une fenêtre de 400x400).</p>
+        <hr>
+        <p>Il est possible de colorer votre image avec la fonction "tint". La fonction "tint" prend 3 paramètres : le canal rouge, le canal vert, le canal bleu</p>
+        <h4>À faire vous-même 1.3</h4>
+        <p>Saisissez, analysez et tester ce programme</p>
+        <pre><code>
+PImage img;
+void setup(){
+  size (300,300);
+  img=loadImage("tux.jpg");
+}
+void draw(){
+  tint(255,0,0);
+  image (img,0,0);
+}
+        </code></pre>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Sachant que la fonction "noTint" (cette fonction ne prend aucun paramètre) permet d'annuler les effets de la fonction "tint", afficher, côte à côte 2 images : une normale et une colorée en vert.</p>
+        <hr>
+        <p>Il est aussi possible d'appliquer des filtres (comme avec un logiciel de retouche d'image (Gimp par exemple)). Nous n'allons pas passer en revue tous les filtres proposés par Processing.</p>
+        <p>Si vous voulez en savoir plus sur les filtres dans Processing, je vous invite à consulter la documentation officielle :
+            <a href="https://processing.org/reference/filter_.html" target="_blank">https://processing.org/reference/filter_.html</a>.</p>
+        <h4>À faire vous-même 1.5</h4>
+        <p>Saisissez, analysez et tester ce programme</p>
+        <pre><code>
+PImage img;
+void setup(){
+  size (500,300);
+  img=loadImage("tux.jpg");
+}
+void draw(){
+  image (img,0,0);
+  filter(BLUR,3);
+  image (img,209,0);
+}
+        </code></pre>
+        <hr>
+        <p>La fonction "filtre" prend ici 2 paramètres : le type de filtre (ici BLUR) et l'intensité du filtre (ici 3).</p>
+        <p>Vous aurez sans doute remarqué que le filtre s'applique aux images qui ont déjà été affichées dans la fenêtre. Ici, le filtre s'applique à la première image (coordonnées 0,0) et pas à la seconde (coordonnées 209,0).</p>
+    </div>
+	</body>
+</html>

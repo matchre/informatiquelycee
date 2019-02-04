@@ -1,0 +1,249 @@
+
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>P5 : les bases</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">P5 : les bases</span>
+					<span class="navbar-brand">Activité 3</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./p5_base_a1.html">Activité 1</a></li>
+	              <li><a href="./p5_base_a2.html">Activité 2</a></li>
+                  <li><a href="./p5_base_a4.html">Activité 4</a></li>
+	              <li><a href="./p5_base_a5.html">Activité 5</a></li>
+                  <li><a href="./p5_base_a6.html">Activité 6</a></li>
+                  <li><a href="./p5_base_a7.html">Activité 7</a></li>
+                  <li><a href="./p5_base_a8.html">Activité 8</a></li>
+                  <li><a href="./p5_base_a9.html">Activité 9</a></li>
+                  <li><a href="./p5_base_a10.html">Activité 10</a></li>
+                  <li><a href="./p5_base_a11.html">Activité 11</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                <li><a href="p5_base_a2.html"><span class="fui-triangle-left-large"></a></li>
+              <li><a href="p5_base_a4.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+     <div class="container act">
+        <p>
+            Dans cette activité, nous allons découvrir d'autres fonctions qui vont nous permettre de dessiner différentes figures géométriques.
+        </p>
+        <p>La fonction "line" permet de dessiner une ligne. Cette fonction prend 4 paramètres : </p>
+        <pre><code>
+line(x1,y1,x2,y2);
+        </code></pre>
+        <p>avec :</p>
+        <ul>
+            <li>x1 coordonnée x du point de départ de la ligne</li>
+            <li>y1 coordonnée y du point de départ de la ligne</li>
+            <li>x2 coordonnée x du point d'arrivée de la ligne</li>
+            <li>y2 coordonnée y du point d'arrivée de la ligne</li>
+        </ul>
+        <h4>À faire vous-même 3.1</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+function setup(){
+    createCanvas(400,400);
+    background(240);
+    line(200,0,200,400);
+}
+function draw(){
+
+}
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 3.2</h4>
+        <p>Codez un programme permettant d'obtenir ceci :</p>
+        <img src="img/p5_base_a3_1.png">
+        <p>N.B. La fenêtre a pour dimension 200 par 200</p>
+        <hr>
+        <h4>À faire vous-même 3.3</h4>
+        <p>Codez un programme permettant d'obtenir ceci :</p>
+        <img src="img/p5_base_a3_2.png" alt="processing">
+        <p>N.B. La fenêtre a pour dimension 200 par 200</p>
+        <hr>
+        <p>
+            La fonction "ellipse" permet de dessiner des... ellipses. La fonction "ellipse" prend 4 paramètres.
+        </p>
+        <pre><code>
+ellipse(x,y,a,b);
+        </code></pre>
+        <p>avec :</p>
+        <img src="img/p5_base_a3_3.png" alt="processing">
+        <p>(x,y) les coordonnées du centre de l'ellipse, a la "largeur horizontale" et b la "largeur verticale".</p>
+        <h4>À faire vous-même 3.4</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+function setup(){
+    createCanvas(400,400);
+    background(240);
+    ellipse(200,200,100,50);
+}
+function draw(){
+
+}
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 3.5</h4>
+        <p>Codez un programme permettant d'obtenir un cercle au centre de la fenêtre.</p>
+        <hr>
+        <p>La fonction "triangle", permet d'obtenir un... triangle. Cette fonction prend 6 paramètres :</p>
+        <pre><code>
+triangle(x1,y1,x2,y2,x3,y3);
+        </code></pre>
+        <p>avec :</p>
+        <p>(x1,y1) les coordonnées du point 1, (x2,y2) les coordonnées du point 2 et (x3,y3) les coordonnées du point 3.</p>
+        <h4>À faire vous-même 3.6</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+function setup(){
+    createCanvas(400,400);
+    background(240);
+    triangle(100,100,150,200,220,150);
+}
+function draw(){
+
+}
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 3.7</h4>
+        <p>Codez un programme permettant d'afficher un triangle rectangle. La position et la taille du triangle devront être aléatoires.</p>
+				<p>Pour obtenir un nombre aléatoire, il faut utiliser la fonction "random" :</p>
+			<pre><code>
+random(20,50);
+			</code></pre>
+			<p>permet d'obtenir un aléatoire compris entre 20 et 50 (les 2 inclus).</p>
+			<pre><code>
+var x=random(10,15);
+			</code></pre>
+			<p>La valeur contenue dans la variable x sera comprise entre 10 et 15</p>
+        <hr>
+        <p>Pour afficher un quadrilatère, il faut utiliser la fonction "quad". Cette fonction prend 8 paramètres.</p>
+        <pre><code>
+quad(x1,y1,x2,y2,x3,y3,x4,y4);
+        </code></pre>
+        <p>Ces 8 paramètres sont les coordonnées des 4 points.</p>
+        <h4>À faire vous-même 3.8</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+function setup(){
+    createCanvas(400,400);
+    background(240);
+    quad(100,100,150,200,220,230,300,120);
+}
+function draw(){
+
+}
+        </code></pre>
+        <hr>
+        <p>La fonction "rect" permet de tracer des rectangles. Cette fonction prend 4 paramètres :</p>
+        <pre><code>
+rect(x,y,a,b);
+        </code></pre>
+        <p>(x,y) les coordonnées du coin supérieur-gauche, a la "largeur horizontale" et b la "largeur verticale".</p>
+        <h4>À faire vous-même 3.9</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+function setup(){
+    createCanvas(400,400);
+    background(240);
+    rect(200,200,100,60);
+}
+function draw(){
+
+}
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 3.10</h4>
+        <p>Codez un programme permettant d'afficher un carré de taille aléatoire. Le centre du carré devra se trouver au centre de la fenêtre</p>
+        <hr>
+        <p>La fonction "arc" permet de dessiner un "morceau d'ellipse". La fonction arc prend 6 paramètres.</p>
+        <pre><code>
+arc(x,y,a,b,angle_dep,angle_arr);
+        </code></pre>
+        <p>les 4 premiers paramètres sont les mêmes que pour la fonction "ellipse".</p>
+        <p>angle_dep correspond à "l'angle de départ" et angle_arr correspond à l'angle d'arrivée.</p>
+        <img src="img/p5_base_a3_4.png" alt="processing">
+        <p>Attention, les angles doivent être donnés en radian, si vous désirez exprimer vos angles en degrés, il faudra utiliser la fonction "radians" :</p>
+        <pre><code>
+angle_radian=radians(angle_degré);
+        </code></pre>
+        <p>Pour les angles, il faut considérer le sens horaire (et pas le sens anti-horaire comme le sens trigonométrique).</p>
+        <h4>À faire vous-même 3.11</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+function setup(){
+    createCanvas(400,400);
+    background(240);
+    arc(200,200,100,50,radians(45),radians(270));
+}
+function draw(){
+
+}
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 3.12</h4>
+        <p>Codez un programme permettant d'afficher ceci :</p>
+        <img src="img/p5_base_a3_5.png" alt="processing">
+        <hr>
+        <p>La dernière fonction de dessin est beaucoup plus complexe à utiliser. La fonction "bezier" permet de dessiner une courbe de Bésier. Si le coeur vous en dit, vous en apprendrez plus sur les courbes de Bézier <a href="https://fr.wikipedia.org/wiki/Courbe_de_B%C3%A9zier" target="_blank">ici</a> (je vous préviens, c'est très compliqué).</p>
+        <p>La fonction "bezier" prend 8 paramètres :</p>
+        <pre><code>
+bezier(x1,y1,x2,y2,x3,y3,x4,y4);
+        </code></pre>
+        <p>(x1,y1) et (x4,y4) sont les coordonnées des points situés aux 2 extrémités de la courbe de Bézier. (x2,y2) et (x3,y3) sont les coordonnées des 2 points de contrôles.</p>
+        <h4>À faire vous-même 3.13</h4>
+        <p>Saisissez et testez ce code</p>
+        <pre><code>
+function setup(){
+    createCanvas(400,400);
+    background(240);
+    bezier(100,100,250,50,220,230,250,120);
+}
+function draw(){
+
+}
+        </code></pre>
+        <hr>
+        <p>Si vous voulez essayez de comprendre le fonctionnement de cette fonction "bezier", le plus simple est de modifier les paramètres et observer le résultat après chaque modification.</p>
+		<iframe src="./p5/p5_a3/index.html" width="625px" height="525px"></iframe>
+    </div>
+	</body>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Programmer côté serveur : ExpressJS</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Programmer côté serveur : ExpressJS</span>
+					<span class="navbar-brand">Activité 6</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./node_intro.html">Introduction</a></li>
+                <li><a href="./node_a1.html">Activité 1</a></li>
+                <li><a href="./node_a2.html">Activité 2</a></li>
+                <li><a href="./node_a3.html">Activité 3</a></li>
+                <li><a href="./node_a4.html">Activité 4</a></li>
+								<li><a href="./node_a5.html">Activité 5</a></li>
+	              <li><a href="./node_a7.html">Activité 7</a></li>
+	              <li><a href="./node_a8.html">Activité 8</a></li>
+								<li><a href="./node_a9.html">Activité 9</a></li>
+	              <li><a href="./node_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="node_a5.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="node_a7.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>Il est possible d'utiliser une requête HTTP de type post afin d'envoyer des données vers le serveur (pour plus d'informations sur les requêtes HTTP de type post, consultez <a href="reseau_a1.html" target="_blank">ce document</a>.)</p>
+			<h4>À faire vous-même 6.1</h4>
+			<p>Créez une nouvelle application</p>
+			<p>Attention : dans cette nouvelle application, nous allons devoir utiliser un module supplémentaire : body-parser (voir les explications un peu plus bas)</p>
+			<p>Pour installer ce module, après avoir ouvert une console, placez-vous dans le répertoire de votre application (en théorie "express_a6_1") et tapez :</p>
+			<pre><code class="html">
+npm install body-parser
+			</code></pre>
+			<p>Vérifiez que le dossier "node_modules" contient bien le dossier "body-parser".</p>
+			<p>Saisissez, étudiez et testez cet exemple</p>
+			<p>index.html</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+ &ltmeta charset="UTF-8"&gt
+ &lttitle&gtAjax&lt/title&gt
+ &ltscript src="lib/jquery-2.1.4.min.js"&gt&lt/script&gt
+ &ltscript src="javascript/script.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+ &ltform id="monForm"&gt
+  &ltp&gtNom &ltinput type='text' id="nom"&gt&lt/p&gt
+  &ltp&gtPrénom &ltinput type='text' id="prenom"&gt&lt/p&gt
+  &ltinput type="submit" value="Valider" id="envoyer"&gt
+ &lt/form&gt
+ &ltdiv id="liste"&gt&lt/div&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>script.js</p>
+			<pre><code class="javascript">
+$(function(){
+function affiche (){
+ $.ajax({
+  type :'GET',
+  url : '/api/affiche',
+  success : function(data){
+   $('#liste').html('');
+   $('#liste').append('&lth1&gtListe des adhérents&lt/h1&gt');
+   for (var i=0;i&ltdata.length;i++){
+    $('#liste').append('&lth3&gtIdentifiant : n° '+(i+1)+'&lt/h3&gt');
+    $('#liste').append('&ltp&gtNom : '+data[i].nom+'&lt/p&gt');
+    $('#liste').append('&ltp&gtPrénom : '+data[i].prenom+'&lt/p&gt');
+   }
+  }
+ })
+}
+$('#monForm').on('submit',function(e){
+ e.preventDefault();
+ var nomForm=$('#nom').val();
+ var prenomForm=$('#prenom').val();
+ $.ajax({
+  type:'POST',
+  url:'/api/formulaire',
+  data:{nom:nomForm,prenom:prenomForm},
+  success:function(){
+   affiche();
+   $('#nom').val('');
+   $('#prenom').val('');
+  }
+ });
+})
+affiche();
+});
+			</code></pre>
+			<p>serveur.js</p>
+			<pre><code class="javascript">
+var ficheInfo=[];
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+app.use('/javascript', express.static(__dirname + '/javascript'));
+app.use('/lib', express.static(__dirname + '/lib'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.get('/', function (req, res) {
+ res.sendFile(__dirname + '/html/index.html');
+});
+app.get('/api/affiche', function(req, res) {
+ res.json(ficheInfo);
+});
+app.post('/api/formulaire', function(req,res) {
+ monPerso=req.body;
+ monPerso.id=1+ficheInfo.length
+ ficheInfo.push(monPerso);
+ res.send();
+});
+app.listen(8080);
+			</code></pre>
+			<hr>
+			<p>Quelques explications : </p>
+			<p>Dans le fichier index.html nous utilisons une balise form, pour plus d'explications, relire <a href="hbase_a1.html" target="_blank">ces activités</a>.</p>
+			<p>En ce qui concerne le fichier script.js :</p>
+			<p>Nous utilisons une méthode de type POST pour effectuer notre requête HTTP de soumission du formulaire au serveur. Deux choses sont à noter :</p>
+			<ul>
+				<li>"e.preventDefault();" =&gt la fonction de callback de notre événement 'submit' (qui correspond à la soumission (envoi) du formulaire au serveur) prend un paramètre « e » («function(e){ ...»). « e » est un objet comportant des informations sur l'événement qui a déclenché l’exécution de la fonction callback (ici la soumission du formulaire). Il faut savoir que par défaut, en cas de soumission d'un formulaire, l'envoi des données (la requête HTTP de type POST),  ne se fait pas par l'intermédiaire du JavaScript, mais directement depuis le "code HTML". Or, notre code côté serveur n'est pas conçu pour répondre à une requête HTTP en provenance du "code HTML". La ligne "e.preventDefault();" permet d'annuler ce comportement par défaut et interdit l'envoi de la requête HTTP depuis le "code HTML", notre requête HTTP sera bien envoyée depuis notre fichier JavaScript.</li>
+				<li>"data:{nom:nomForm,prenom:prenomForm}" =&gt l'attribut "data" permet d'envoyer des données vers le serveur, nous envoyons ici un objet JavaScript qui contient les données du formulaire rempli par l'utilisateur.</li>
+			</ul>
+			<p>fichier serveur.js</p>
+			<p>les lignes :</p>
+			<pre><code class="javascript">
+......
+var bodyParser = require('body-parser');
+......
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+......
+			</code></pre>
+			<p>sont indispensables à partir du moment où votre serveur reçoit du JSON (formulaire en provenance du client). Express utilise ce que l'on appelle un parseur (analyseur syntaxique en bon français) afin de pouvoir exploiter les données reçues.</p>
+			<pre><code class="javascript">
+app.post('/api/formulaire', function(req,res) {
+ monPerso=req.body;
+ monPerso.id=1+ficheInfo.length;
+ ficheInfo.push(monPerso);
+ res.send();
+});
+			</code></pre>
+			<p>Nous traitons une requête de type POST. La fonction anonyme est exécutée dès que le serveur reçoit une requête HTTP de type POST à l'URL '/api/formulaire'.</p>
+			<p>Contenu de la fonction anonyme :</p>
+			<pre><code class="javascript">
+monPerso=req.body;
+			</code></pre>
+			<p>req.body (attribut body de l'objet req) contient les données contenues dans le formulaire envoyé par le client. Plus généralement, il contient les données transportées par la requête HTTP de type POST.</p>
+			<p>Je vous laisse analyser les 2 lignes suivantes :</p>
+			<pre><code class="javascript">
+....
+monPerso.id=1+ficheInfo.length
+ficheInfo.push(monPerso);
+....
+			</code></pre>
+			<p>La dernière ligne :</p>
+			<pre><code class="javascript">
+res.send();
+			</code></pre>
+			<p>est très importante, car le client a fait une requête, il faut donc que le serveur réponde à cette requête. La réponse du serveur à un corps vide, mais cela n'a pas d'importance (il faut que le code 200 soit retourné au client : HTTP/1.1 200 OK).</p>
+			<p>Vous avez sans doute compris la technique employée dans ces exemples ("À faire vous-même 5.1" et "À faire vous-même 6.1") : le client envoie des "ordres" au serveur par l'intermédiaire des URL (1 "ordre" = 1 URL). Cette technique est très développée sur le web, on la dénomme REST.</p>
+			<p>De « grands acteurs » du web (Google, Facebook, twitter,....) fournissent ce que l'on appelle des API (Application Programming Interface), souvent basées sur REST, permettant aux développeurs de créer des applications capables d'interagir avec leurs serveurs. C'est comme cela que l'on voit fleurir, par exemple, des clients Twitter développés par des indépendants (Sobees, Tweeki,....).</p>
+		</div>
+	</body>
+</html>

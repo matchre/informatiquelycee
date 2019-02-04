@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- Auteur : Tom Niget @zdimension_ -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>L'hexadécimal'</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="./asset/conv_base_exemple.js"></script>
+    <style>
+	.imagediv {
+		width: 100%;
+		text-align: center;
+	}
+        .anecdote {
+	padding: 8px;
+    margin: 0 0 15px;
+    background-color: #fff;
+    border: 2px solid #e7e9ec;
+    border-radius: 6px;
+}
+	</style>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <span class="navbar-brand">Les systèmes de bases</span>
+				<span class="navbar-brand">Activité 2 - L'hexadécimal</span></div>
+		<div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./genindex.html">Retour au menu</a></li>
+				  <li><a href="./binaire_a1.html">Activité 1 - Le binaire</a></li>
+								<li><a><b>Activité 2 - L'hexadécimal</b></a></li>
+				  <li><a href="./binaire_a3.html">Activité 3 - La notion de base</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+		<li><a href="genindex.html"><span class="fui-home"></a></li>
+		<li><a href="binaire_a1.html"><span class="fui-triangle-left-large"></a></li>
+		<li><a href="binaire_a3.html"><span class="fui-triangle-right-large"></a></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+      <p>L'auteur de ce cours est Tom Niget, élève de seconde au lycée G Fichet de Bonneville.</p>
+      <h3>Activité 2 - L'hexadécimal</h3>
+      <p><a href="binaire_a1.html">Le binaire</a>, c'est bien pratique : on peut coder des nombres juste avec des 0 et des 1. 
+      C'est bien pour les signaux électriques et tout le bazar, mais dans la vie de tous les jours c'est pas bien facile d'utilisation.
+      On utilise couramment la base 10, autrement connue sous le nom de <b>système décimal</b> (déci = 10).
+      Cette base, vous la connaissez car c'est avec elle que vous comptez, plus précisément avec ses 10 chiffres ; 0, 1, 2, 3, 4, 5, 6, 7, 8 et ce bon vieux 9.
+      Le problème c'est qu'en informatique, tout est basé sur le binaire, et étant une base d'indice 2, c'est plus aisé d'encoder les informations sur un nombre multiple de 2.
+      On utilise donc souvent la base 16, appelé <b>système hexadécimal</b> (hexa = 6, déci = 10, 16 = 6 + 10) car 16 est un multiple de 2, et qu'il permet de représenter 8 bits avec seulement 2 chiffres.
+      Ça paraît simple, mais il y a un autre problème : en base 10, on utilise 10 chiffres. En base 2 (binaire) on utilise seulement 2 chiffres : 0 et 1. Mais du coup, en base 16, il faut 16 chiffres.
+      OK, 0 1 2 3 4 5 6 7 8 9.. quoi après ?
+      Les mathématiciens ont, comme souvent, fait au plus simple : on prend des lettres de l'alphabet.<br>
+      Ce qui donne :<br>
+      <code>0 1 2 3 4 5 6 7 8 9 A B C D E F</code>
+      On peut établir une liste de correspondances entre la base 10 et la base 16 (voire même la base 2) :
+      <table>
+	<tr>
+		<th>Binaire (base 2)</th>
+		<th>Décimal (base 10)</th>
+		<th>Hexadécimal (base 16)</th>
+	</tr>
+	<tr><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>1</td><td>1</td><td>1</td></tr>
+	<tr><td>10</td><td>2</td><td>2</td></tr>
+	<tr><td>11</td><td>3</td><td>3</td></tr>
+	<tr><td>100</td><td>4</td><td>4</td></tr>
+	<tr><td>101</td><td>5</td><td>5</td></tr>
+	<tr><td>110</td><td>6</td><td>6</td></tr>
+	<tr><td>111</td><td>7</td><td>7</td></tr>
+	<tr><td>1000</td><td>8</td><td>8</td></tr>
+	<tr><td>1001</td><td>9</td><td>9</td></tr>
+	<tr><td>1010</td><td>10</td><td>A</td></tr>
+	<tr><td>1011</td><td>11</td><td>B</td></tr>
+	<tr><td>1100</td><td>12</td><td>C</td></tr>
+	<tr><td>1101</td><td>13</td><td>D</td></tr>
+	<tr><td>1110</td><td>14</td><td>E</td></tr>
+	<tr><td>1111</td><td>15</td><td>F</td></tr>
+      </table>
+      <p>
+      <br>
+      Comme vous pouvez le voir, le plus grand chiffre en hexadécimal est $F$, et il correspond à $15$ en décimal et $1111$ en binaire : <b>F est donc encodé sur 4 bits ($F_{hex} = 1111_{bin}$, 4 chiffres binaires = 4 bits)</b>.<br>
+      Pour convertir un nombre décimal en hexadécimal, la méthode est similaire au binaire, sauf que cette fois on divise par 16.
+      </p>
+      <script>poser_conv_base(185, 16);</script>
+      <br><div class="anecdote"><a href="binaire_a3.html">➔ Activité 3 - La notion de base</a></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Animations avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Animations avec Processing</span>
+					<span class="navbar-brand">Activité 3</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procAn_a1.html">Activité 1</a></li>
+                <li><a href="./procAn_a2.html">Activité 2</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procAn_a2.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Dans cette activité, nous allons travailler sur le clavier.</p>
+        <p>
+           Processing propose 2 fonctions qui devront être complétées par le programmeur :
+        </p>
+        <ul>
+            <li>le code se trouvant dans la fonction "keyPressed" est exécuté une fois quand l'utilisateur enfonce une touche</li>
+            <li>le code se trouvant dans la fonction "keyReleased" est exécuté une fois quand une touche du clavier est relâchée</li>
+        </ul>
+        <p>Ces 2 fonctions ne prennent aucun paramètre et ne retournent aucune valeur.</p>
+        <h4>À faire vous-même 3.1</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+void setup(){
+  size(200,200);
+  fill(0);
+}
+void draw(){
+  background(255);
+  ellipse(100,100,50,50);
+}
+void keyPressed(){
+  fill(255);
+}
+void keyReleased(){
+  fill(0);
+}
+       </code></pre>
+        <hr>
+        <p>Attention : pour pouvoir utiliser les 2 fonctions que nous venons de voir, il faut que la fonction "draw" soit présente dans le programme (même si elle est vide)</p>
+        <p>Il est possible de détecter la touche qui a été frappée grâce à la variable "key". Cette variable "key" est de type char.</p>
+       <h4>À faire vous-même 3.2</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+void setup(){
+  size(200,200);
+}
+void draw(){
+}
+void keyPressed(){
+  println(key);
+}
+       </code></pre>
+        <hr>
+        <h4>À faire vous-même 3.3</h4>
+        <p>Créez un programme permettant d'afficher un carré incolore au centre de la fenêtre. En cas d'appui sur la touche r, le carré devient rouge, en cas d'appui sur la touche v, le carré devient vert et en cas d'appui sur la touche b, le carré devient bleu. Ce même carré redevient incolore dès que la touche est relâchée.</p>
+        <canvas id="a3_3" class="proc" data-processing-sources="code/An_a3_3.pde"></canvas>
+        <p>Il faut cliquer dans la fenêtre ci-dessus pour que cet exemple fonctionne.</p>
+        <hr>
+        <p>Il est aussi possible de détecter l'appui sur des touches qui ne sont pas des lettres ou des chiffres (par exemple, les "flèches", la touche "Entrée"...).</p>
+        <p>Voici un exemple simple qui vous explique comment procéder :</p>
+        <pre><code>
+void setup(){
+  size(200,200);
+}
+void draw(){
+}
+void keyPressed(){
+  if (key==CODED){
+    if (keyCode==UP){
+      println("haut");
+    }
+    if (keyCode==DOWN){
+      println("bas");
+    }
+    if (keyCode==LEFT){
+      println("gauche");
+    }
+    if (keyCode==RIGHT){
+      println("droite");
+    }
+  }
+}
+        </code></pre>
+        <p>Au moment de l'appui sur une touche, il faut de tester si "key" est égale à "CODED". Si c'est le cas, nous utilisons la variable "keyCode". En plus des "flèches" que nous venons de voir, voici quelques autres touches :</p>
+        <ul>
+            <li>"ALT" pour la touche du même nom</li>
+            <li>"CONTROL" pour la touche "Ctrl"</li>
+            <li>"SHIFT" pour la touche shift (touche au-dessus de la touche "Ctrl" gauche)</li>
+        </ul>
+        <p>Certaines touches ne sont pas des chiffres ou des lettres mais, pour autant, elles n'ont pas besoin de la méthode décrite ci-dessus. Leur code ascii suffit :</p>
+        <ul>
+            <li>pour tester la touche Entrée : "key==10"</li>
+            <li>pour tester la touche Espace : "key=="32"</li>
+        </ul>
+        <p>Voici un exemple :</p>
+        <pre><code>
+void setup(){
+  size(200,200);
+}
+void draw(){
+}
+void keyPressed(){
+  if (key==10){
+      println("touche Entrée");
+    }
+  if (key==32){
+      println("touche Espace");
+  }
+  if (key==27){
+    println("touche Echap");
+  }
+}
+        </code></pre>
+        <p>Attention, l'appui sur la touche "Echap" arrête l'application.</p>
+        <h4>À faire vous-même 3.4</h4>
+        <p>Créez un programme permettant d'afficher une "balle" noire (utilisation de la fonction "ellipse"). Cette balle pourra être déplacée à l'aide des flèches du clavier. La balle ne devra pas pouvoir sortir de la fenêtre.</p>
+        <canvas id="a3_4" class="proc" data-processing-sources="code/An_a3_4.pde"></canvas>
+        <p>Il faut cliquer dans la fenêtre ci-dessus pour que cet exemple fonctionne.</p>
+    </div>
+	</body>
+</html>

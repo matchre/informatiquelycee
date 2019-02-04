@@ -1,0 +1,221 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Visualiser des données avec D3</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Visualiser des données avec D3</span>
+					<span class="navbar-brand">Activité 12</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./d3_a1.html">Activité 1</a></li>
+	              <li><a href="./d3_a2.html">Activité 2</a></li>
+	              <li><a href="./d3_a3.html">Activité 3</a></li>
+                  <li><a href="./d3_a4.html">Activité 4</a></li>
+	              <li><a href="./d3_a5.html">Activité 5</a></li>
+	              <li><a href="./d3_a6.html">Activité 6</a></li>
+                  <li><a href="./d3_a7.html">Activité 7</a></li>
+	              <li><a href="./d3_a8.html">Activité 8</a></li>
+                  <li><a href="./d3_a9.html">Activité 9</a></li>
+                  <li><a href="./d3_a10.html">Activité 10</a></li>
+                  <li><a href="./d3_a11.html">Activité 11</a></li>
+                  <li><a href="./d3_a13.html">Activité 13</a></li>
+                  <li><a href="./d3_a14.html">Activité 14</a></li>
+                  <li><a href="./d3_a15.html">Activité 15</a></li>
+                  <li><a href="./d3_a16.html">Activité 16</a></li>
+                  <li><a href="./d3_a17.html">Activité 17</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="d3_a11.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="d3_a13.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+           <p>Jusqu'à maintenant les données étaient incluses dans le fichier <i>script.js</i>. Il est possible (et même recommandé) de placer ses données  dans un fichier à part.</p>
+            <p>D3 accepte de nombreux formats de fichiers de données : CSV, TSV, JSON...(si nécessaire, pour en savoir plus sur ces formats, consultez <a href="donnees_a0.html" target="_blank">ces activités</a>).</p>
+            <p>D3 propose des méthodes permettant de récupérer ces données :</p>
+            <ul>
+                <li>la méthode <i>d3.csv()</i> permet de récupérer des données au format CSV</li>
+                <li>la méthode <i>d3.tsv()</i> permet de récupérer des données au format TSV</li>
+                <li>la méthode <i>d3.json()</i> permet de récupérer des données au format JSON</li>
+            </ul>
+            <p>Dans tous les cas, ces méthodes acceptent deux paramètres : le chemin vers le fichier qui contient les données et une fonction anonyme.</p>
+            <p>La fonction anonyme est une fonction de callback, elle sera exécutée dès que les données seront "prêtes".</p>
+            <h4>À faire vous même 12.1</h4>
+            <p>Téléchargez le fichier <a href="asset/donnees.csv">donnees.csv</a></p>
+            <p>Ouvrez-le à l'aide d'un tableur ou d'un éditeur de texte.</p>
+            <hr>
+            <p>Dans la suite de cette activité, nous utiliserons le fichier <i>donnees.csv</i>, placez-le dans le même répertoire que le fichier <i>script.js</i></p>
+            <h4>À faire vous même 12.2</h4>
+            <p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+d3.csv("donnees.csv",function(data){
+    var para=body.selectAll("p").data(data);
+    para.enter()
+        .append("p")
+        .text(function(d,i){
+    return ("Le "+d.jour+" il y a eu "+d.nbre_visiteurs+" visiteurs")
+            });
+});
+            </code></pre>
+            <p>Analysez et testez ce code</p>
+            <hr>
+            <p>La fonction de callback (<i>d3.csv("donnees.csv",function(data)</i>) prend un paramètre : <i>data</i>, ce paramètre contient les "données" qui viennent d'être télécharger.</p>
+            <p>Dans la fonction  <i>.text(function(d,i)</i> le paramètre <i>d</i>, correspond à une ligne du fichier CSV (la première ligne correspond aux en tètes des colonnes). Il y a autant de balises &ltp&gl que de lignes dans le fichier CSV (à l'exception de la ligne qui contient les en tètes). <i>d.jour</i> permet de récupérer les données contenues dans la colonne qui a pour en-tète <i>jour</i> (même chose pour <i>d.nbre_visiteurs</i>).</p>
+            <p>Détaillons un la structure de <i>data</i>. Dans notre cas, nous avons :</p>
+            <pre><code class="javascript">
+[{"jour":"lundi,"nbre_visiteurs":15},{"jour":mardi,"nbre_visiteurs":34},{"jour":"mercredi,"nbre_visiteurs":27},{"jour":"jeudi","nbre_visiteurs":45},{"jour":"vendredi","nbre_visiteurs":24},{"jour":"samedi","nbre_visiteurs":54},{"jour":"dimanche","nbre_visiteurs":12}]
+            </code></pre>
+            <p>Comme vous pouvez le constater, nous avons un tableau d'objet JavaScript. Chaque objet du tableau correspond à une ligne du fichier CSV.</p>
+            <p>Dans les fonctions de callback le paramètre <i>d</i> correspond à un des objets du tableau, l'utilisation de la notation pointée (par exemple <i>d.nbre_visiteurs</i>) est donc logique.</p>
+            <h4>À faire vous même 12.3</h4>
+            <p>En vous aidant de ce qui vient d'être vu, complétez le programme suivant afin qu'il affiche le nombre total de visiteurs.</p>
+            <pre><code class="javascript">
+            var body=d3.select("body");
+d3.csv("donnees.csv", function(data) {
+	var somme=0;
+	for (i=0;i&ltdata.length;i++){
+		.....................
+	}
+	body.append("p").text("Il y a eu "+somme+" visiteurs");
+});
+            </code></pre>
+            <hr>
+            <p>Comme vous pouvez le constater, nous avons un léger problème puisque nous obtenons une concaténation à la place d'une somme.</p>
+            <p>Les valeurs issues du tableau <i>data</i> sont considérées comme des chaînes de caractères et pas comme des nombres. Nous allons voir un peu plus loin comment résoudre ce problème.</p>
+            <p>Dans l'exemple ci-dessus, nous avons utilisé une boucle "classique" pour parcourir tous les éléments du tableau, D3js propose une autre solution avec <i>data.forEach</i></p>
+            <h4>À faire vous même 12.4</h4>
+            <p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+d3.csv("donnees.csv", function(data) {
+	var somme=0;
+	data.forEach(function(d){
+			somme=somme+d.nbre_visiteurs;
+	});
+	body.append("p").text("Il y a eu "+somme+" visiteurs");
+});
+            </code></pre>
+            <p>Analysez et testez ce code</p>
+            <hr>
+            <p>Comme vous pouvez le constater, <i>forEach</i> est une méthode qui prend en paramètre une fonction anonyme. Cette fonction anonyme prend en paramètre <i>d</i> qui correspond à un élément du tableau <i>data</i>. <i>forEach</i> permet de boucler sur tous les éléments du tableau.</p>
+            <pre><code class="javascript">
+data.forEach(function(d){
+    somme=somme+d.nbre_visiteurs;
+});
+            </code></pre>
+            <p>est équivalent à </p>
+            <pre><code class="javascript">
+for (i=0;i&ltdata.length;i++){
+    somme=somme+data[i].nbre_visiteurs;
+}
+            </code></pre>
+            <p>Il nous reste à résoudre le problème de la concaténation (<i>d.nbre_visiteurs</i> est une chaîne de caractères est pas un nombre).</p>
+            <p>Ici aussi, D3js nous facilite la vie en proposant une "instruction" permettant de transformer "automatiquement" la chaîne de caractères en nombre (quand c'est possible évidemment) :</p>
+             <pre><code class="javascript">
+d.nbre_visiteurs= +d.nbre_visiteurs
+            </code></pre>
+            permet de transformer les chaînes de caractères en nombre dans tout le tableau data.
+            <h4>À faire vous même 12.5</h4>
+            <p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+d3.csv("donnees.csv", function(data) {
+	var somme=0;
+	data.forEach(function(d){
+            d.nbre_visiteurs= +d.nbre_visiteurs;
+			somme=somme+d.nbre_visiteurs;
+	});
+	body.append("p").text("Il y a eu "+somme+" visiteurs");
+});
+            </code></pre>
+            <p>Analysez et testez ce code</p>
+            <p>Comme vous pouvez le constater, tout fonctionne normalement.</p>
+            <hr>
+            <h4>À faire vous même 12.6</h4>
+            <p>En utilisant le fichier <a href="asset/donnees.csv">donnees.csv</a>, créez un programme permettant d'obtenir ceci :</p>
+            <iframe src="./D3/12_6/index.html" width="430px" height="430px"></iframe>
+            <p>Pour vous aider :</p>
+            <p>Vous pouvez vous appuyer sur ce qui a été fait dans l'activité 8 ("À faire vous-même 8.5")</p>
+            <p>Il est possible d'éviter d'avoir à écrire tous les jours de la semaine:</p>
+            <pre><code class="javascript">
+var echelleX=d3.scale.ordinal()
+    .domain(["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"])
+    .rangeBands([30, 370]);
+            </code></pre>
+            <p>en écrivant :</p>
+            <pre><code class="javascript">
+var echelleX=d3.scale.ordinal()
+    .rangeBands([30, 370]);
+.....
+.....
+.....
+.....
+echelleX.domain(data.map(function(d,i) { return d.jour; }));
+            </code></pre>
+            <p><i>data.map(function(d,i) { return d.jour; })</i> renvoie un tableau <i>["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]</i></p>
+            <p>De la même façon, comme vous ne connaissez pas forcément la valeur maximum, il est possible de remplacer :</p>
+            <pre><code class="javascript">
+var echelleY=d3.scale.linear()
+    .domain([0,54])
+    .range([370,30]);
+            </code></pre>
+            <p>par :</p>
+            <pre><code class="javascript">
+var echelleY=d3.scale.linear()
+    .range([370,30]);
+.....
+.....
+.....
+.....
+echelleY.domain([0, d3.max(data, function(d,i) { return d.nbre_visiteurs; })]);
+            </code></pre>
+            <p><i>d3.max(data, function(d,i) { return d.nbre_visiteurs; })</i> est équivalent à <i>.domain([0,30])</i>. La méthode <i>d3.max</i> renvoie la valeur maxi.</p>
+            <hr>
+            <p>Comme déjà dit plus haut, il est aussi possible de travailler avec des données aux formats TSV ou JSON, le principe est exactement le même.</p>
+    </div>
+	</body>
+</html>

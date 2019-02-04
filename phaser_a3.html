@@ -1,0 +1,114 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu avec Phaser</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu avec Phaser</span>
+					<span class="navbar-brand">Activité 3</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./phaser_intro.html">Introduction</a></li>
+								<li><a href="./phaser_a1.html">Activité 1</a></li>
+	              <li><a href="./phaser_a2.html">Activité 2</a></li>
+	              <li><a href="./phaser_a4.html">Activité 4</a></li>
+								<li><a href="./phaser_a5.html">Activité 5</a></li>
+	              <li><a href="./phaser_a6.html">Activité 6</a></li>
+	              <li><a href="./phaser_a7.html">Activité 7</a></li>
+								<li><a href="./phaser_a8.html">Activité 8</a></li>
+	              <li><a href="./phaser_a9.html">Activité 9</a></li>
+
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="phaser_a2.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="phaser_a4.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Pour l'instant, tout cela est un peu "statique". Dans cette activité, nous allons donc apprendre à déplacer notre sprite. Dans un premier temps le sprite va traverser l'écran de gauche à droite.
+			</p>
+			<p>
+				Comment déplacer le sprite ?
+			</p>
+			<h4>À faire vous même 3.1</h4>
+			<p>
+				Écrire un programme permettant de déplacer le sprite horizontalement de la gauche vers la droite.
+			</p>
+			<p>
+				Pour vous aider :
+			</p>
+			<p>
+				Déplacer le sprite, c'est modifier ses coordonnées à chaque nouvelle image. Par exemple, la coordonnée x du sprite peut augmenter de 2 pixels à chaque image.
+			</p>
+			<hr>
+			<p>
+				L'exemple du "À faire vous même 3.1" étant relativement difficile et tellement important pour la suite qu’exceptionnellement je vous donne ci-dessous la solution :
+			</p>
+			<pre><code class="javascript">
+var game = new Phaser.Game(800,600,Phaser.AUTO,'content',{preload: preload, create: create,update:update});
+function preload(){
+    game.load.image('smiley','asset/smiley.png');
+}
+function create(){
+    monSprite=game.add.sprite(0,0,'smiley');
+    monSprite.anchor.setTo (0.5,0.5) ;
+    monSprite.x=10;
+    monSprite.y=300;
+}
+function update(){
+    monSprite.x=monSprite.x+2;
+}
+			</code></pre>
+			<h4>À faire vous même 3.2</h4>
+			<p>
+				Modifier le programme pour que le sprite donne l'impression de rouler.
+			</p>
+			<hr>
+			<h4>À faire vous même 3.3</h3>
+			<p>
+				Modifier le programme pour que le sprite ne disparaisse pas quand il arrive au bord de la fenêtre de jeu. Il doit "rebondir" sur les bords.
+			</p>
+			<h4>À faire vous même 3.4</h3>
+			<p>
+				Le smiley doit maintenant se déplacer en "diagonale" (modification des coordonnées x et de y). Il doit toujours "rebondir" sur le  bord de la fenêtre de jeu (de façon réaliste).
+			</p>
+    </div>
+	</body>
+</html>

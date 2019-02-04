@@ -1,0 +1,162 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Créer un jeu ou une simulation 3D</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Créer un jeu ou une simulation 3D</span>
+					<span class="navbar-brand">Activité 8</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./bab_intro.html">Introduction</a></li>
+								<li><a href="./bab_a1.html">Activité 1</a></li>
+	              <li><a href="./bab_a2.html">Activité 2</a></li>
+	              <li><a href="./bab_a3.html">Activité 3</a></li>
+								<li><a href="./bab_a4.html">Activité 4</a></li>
+	              <li><a href="./bab_a5.html">Activité 5</a></li>
+	              <li><a href="./bab_a6.html">Activité 6</a></li>
+								<li><a href="./bab_a7.html">Activité 7</a></li>
+	              <li><a href="./bab_a9.html">Activité 9</a></li>
+								<li><a href="./bab_a10.html">Activité 10</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="bab_a7.html"><span class="fui-triangle-left-large"></a></li>
+						<li><a href="bab_a9.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+					<p>
+						Pourquoi arrivez-vous à distinguer un bout de bois et un morceau de métal du premier coup d’œil ?
+					</p>
+					<p>
+						Parce qu'ils n'ont pas la même couleur bien sûr, mais surtout parce qu'ils ne renvoient pas la lumière de la même façon.
+					</p>
+					<p>
+						Un peu de "théorie" : quand vous éclairez un objet (non transparent), cet objet va :
+					</p>
+					<ul>
+						<li>diffuser la lumière</li>
+						<li>réfléchir la lumière</li>
+					</ul>
+					<p>
+						réflexion de la lumière :
+					</p>
+					<img src="img/bab_8_1.jpg">
+					<p>
+						Un rayon lumineux qui arrive sur la surface d'un objet provoque la réémission d'un rayon dans une seule direction.
+					</p>
+					<p>
+						diffusion de la lumière :
+					</p>
+					<img src="img/bab_8_2.jpg">
+					<p>
+						Un rayon lumineux qui arrive sur la surface d'un objet provoque la réémission de rayons lumineux dans toutes les directions.
+					</p>
+					<p>
+						Dans de nombreux cas, les deux phénomènes cohabitent. Mais, par exemple, dans le cas du bois, la réflexion est presque totalement absente.
+					</p>
+					<p>
+						En revanche pour le métal, la réflexion domine souvent : plus la surface est lisse, plus elle est importante (une surface métallique parfaitement lisse donnera.....un miroir). Dans le cas de la réflexion, on utilise l'expression "spéculaire".
+					</p>
+					<p>BabylonJS permet de créer ses propres matériaux et de choisir la proportion de réflexion et de diffusion. Vous allez pouvoir choisir la couleur de la lumière diffusée et la couleur de la lumière réfléchie.</p>
+					<p>Définissons un matériau</p>
+					<pre><code class="javascript">
+var materiau = new BABYLON.StandardMaterial(nom, scene);
+					</code></pre>
+					<p>Une fois le matériau défini, vous allez pouvoir lui donner une couleur (ou plutôt des couleurs) :</p>
+					<p>couleur de la lumière réfléchie :</p>
+					<pre><code class="javascript">
+materiau.specularColor = new BABYLON.Color3(Rouge, Vert, bleu)
+					</code></pre>
+					<p>couleur de la lumière diffusée :</p>
+					<pre><code class="javascript">
+materiau.diffuseColor = new BABYLON.Color3(Rouge, Vert, bleu)
+					</code></pre>
+					<p>Pour définir une couleur (avec "BABYLON.Color3") il faut renseigner le canal rouge, le canal vert et le canal bleu. Pour plus d'informations sur la notion de synthèse additive (RVB), vous pouvez consulter (http://fr.wikipedia.org/wiki/Synth%C3%A8se_additive). Les valeurs "Rouge", "Vert" et "Bleu" sont, dans BabylonJS, comprises entre 0 et 1 (Color3(1,1,1) donnera du blanc).</p>
+					<p>Il est possible de choisir la "proportion" de lumière réfléchie, pour un matériau donné, en utilisant l'attribut "materiau.specularPower" .</p>
+					<p>l reste ensuite à associer le matériau nouvellement créé à un objet (attribut "material" du mesh) : mesh.material= materiau</p>
+					<h4>À faire vous même 8.1</h4>
+					<p>Créer une nouvelle application (app_09)</p>
+					<p>script.js</p>
+			<pre><code class="javascript">
+var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+var scene = new BABYLON.Scene(engine);
+var camera = new BABYLON.ArcRotateCamera("maCamera", 0, Math.PI/2, 15, new BABYLON.Vector3(0, 0, 0), scene);
+var light = new BABYLON.PointLight("pointLumineux1", new BABYLON.Vector3(0, 0, 10), scene);
+var tore = BABYLON.Mesh.CreateTorus("torus", 4, 1, 50, scene, false);
+var cyl=BABYLON.Mesh.CreateCylinder("nom", 7, 5, 5, 50, scene, false);
+tore.rotation.z = Math.PI/2;
+tore.position.z=2;
+var materiau = new BABYLON.StandardMaterial("mat1", scene);
+materiau.specularColor = new BABYLON.Color3(0.5, 0,0);
+materiau.diffuseColor = new BABYLON.Color3(0,0,0.5);
+materiau.specularPower=20;
+cyl.material=materiau;
+tore.material=materiau;
+scene.activeCamera.attachControl(canvas);
+engine.runRenderLoop(function () {
+ scene.render();
+});
+			</code></pre>
+			<p>Tester l'application app_09 et modifiez ensuite certains paramètres ("materiau.specularPower" par exemple) afin de mieux appréhender les notions vu ci-dessus. Testez plus particulièrement le cas où l'on a :
+			<pre><code class="javascript">
+materiau.diffuseColor = new BABYLON.Color3(0,0,0)
+			</code></pre>
+			<p>et</p>
+			<pre><code class="javascript">
+materiau.specularColor = new BABYLON.Color3(0.8,0.8,0.8)
+			</code></pre>
+			<p>N'avez-vous pas la légère impression que notre mug à quelque chose de métallique ? Augmentez la valeur de "specularPower", quelle est votre impression ?</p>
+			<hr>
+			<p>Tout cela est bien complexe. Certaines parties d'un objet peuvent "briller" et d'autres non. La couleur de la lumière renvoyée par les parties qui brillent sera plutôt gérée par le "specularColor" et les parties mates (non brillante)  seront plutôt gérées par "diffuseColor".  La position de la caméra et de l'éclairage ont aussi une grande importance (surtout dans le cas de la réflexion puisque la lumière est réfléchie dans une seule direction).</p>
+			<p>Au niveau du matériau, vous pouvez aussi jouer sur d'autres facteurs :</p>
+			<p>Ambiant color : la "couleur ambiante" est la couleur d'un objet quand celui-ci se trouve dans l'ombre (quand il n'est pas directement éclairé. Pour définir cette "couleur ambiante" :</p>
+			<pre><code class="javascript">
+materiau.ambientColor  = new BABYLON.Color3(r,v,b);
+			</code></pre>
+			<p>Emissive color : la "couleur émissive" est la couleur de la lumière émise par un objet quand ce dernier émet sa propre lumière (en absence de toute autre source de lumière). Pour définir cette "couleur émissive" :</p>
+			<pre><code class="javascript">
+materiau.emissiveColor  = new BABYLON.Color3(r,v,b);
+			</code></pre>
+			<h4>À faire vous même 8.2</h4>
+			<p>Modifier l'app_09 en ajoutant une "ambientColor" et une "emissiveColor". N'hésiter pas à tester différentes couleurs</p>
+		</div>
+	</body>
+</html>

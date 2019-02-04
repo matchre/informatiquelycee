@@ -1,0 +1,165 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>POO en Python</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">POO en Python</span>
+					<span class="navbar-brand">Activité 3</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+	              <li><a href="./poo_a1.html">Activité 1</a></li>
+	              <li><a href="./poo_a2.html">Activité 2</a></li>
+								<li><a href="./poo_a4.html">Activité 4</a></li>
+	              <li><a href="./poo_a5.html">Activité 5</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="poo_a2.html"><span class="fui-triangle-left-large"></a></li>
+            <li><a href="poo_a4.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Comme expliqué dans l'activité 1, une instance de classe possède des attributs (variables) et des méthodes (fonctions). Commençons par les attributs :
+			</p>
+			<p>
+				Nous allons associer un attribut vie à notre classe personnage (chaque instance aura un attribut vie, quand la valeur de vie deviendra nulle, le personnage sera mort !)
+			</p>
+			<p>
+				Ces attributs s'utilisent comme des variables, l'attribut vie pour Bilbo sera noté</p>
+			</p>
+			<pre><code class='python'>
+bilbo.vie
+			</code></pre>
+			<p>
+				de la même façon l'attribut vie de l'instance Gollum sera noté
+			</p>
+			<pre><code class='python'>
+gollum.vie
+			</code></pre>
+			<h4>À faire vous même 3.1</h4>
+			<p>
+				Saisissez, analysez et testez ce code
+			</p>
+			<pre><code class='python'>
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Défini une classe personnage
+class personnage(object):
+    pass
+# on crée une instance de la classe personnage nommée Gollum
+gollum=personnage()
+# On donne 20 points de vie à Gollum en créant un attribut (variable dans une classe) vie pour #l'instance Gollum
+gollum.vie=20
+# on créé une autre instance de la classe personnage nommée Bilbo
+bilbo=personnage()
+# On donne 20 points de vie à Bilbo
+bilbo.vie=20
+#affichage du nombre de points de vie pour Bilbo
+print ('Bilbo a '+str(bilbo.vie)+' points de vie')
+#affichage du nombre de points de vie pour Gollum
+print ('Gollum a '+str(gollum.vie)+' points de vie')
+print ('Bilbo est blessé par Gollum')
+#Bilbo est blessé, il perd un point de vie
+bilbo.vie=bilbo.vie-1
+#on affiche de nouveau les points de vie
+print ('Bilbo a '+str(bilbo.vie)+' points de vie')
+print ('Gollum a '+str(gollum.vie)+' points de vie')
+			</code></pre>
+		<hr>
+      <p>
+				Tout ceci est bien beau, mais pas très « propre », et cette façon de programmer ferait dresser les cheveux sur la tête de n'importe quel programmeur chevronné !
+			</p>
+			<p>En effet, nous ne respectons pas un principe de base de la POO : l'encapsulation</p>
+			<p>Il ne faut pas oublier que notre classe doit être « enfermée dans une caisse » pour que l'utilisateur puisse l'utiliser facilement sans se préoccuper de ce qui se passe à l'intérieur, or, ici, ce n'est pas vraiment le cas.</p>
+			<p>En effet, les attributs (gollum.vie et bilbo.vie), font partie de la classe et devraient donc être enfermés dans la caisse ! Que font-ils en dehors de la définition de la classe alors ?</p>
+			<p>Pour résoudre ce problème, nous allons définir les attributs, dans la classe, à l'aide d'une méthode (une méthode est une fonction définie dans une classe) d'initialisation des attributs.</p>
+			<p>Cette méthode est définie dans le code source par la ligne (le mot self est obligatoirement le premier argument, quelque soit la méthode).
+			<pre><code class='python'>
+def __init__ (self)
+			</code></pre>
+			<p>(le mot self est obligatoirement le premier argument, quelque soit la méthode).</p>
+			<p>Nous retrouvons ce mot self lors de la définition des attributs (la définition des attributs sera de la forme :</p>
+			<pre><code class='python'>
+self.vie=20
+			</code></pre>
+			<p>La présence de ce mot self est assez compliquée à expliquer. En gros, le mot self représente l'instance. Quand vous définissez une instance de classe (bilbo ou gollum) le nom de votre instance va remplacer le mot self.</p>
+			<p>Dans le code source nous allons avoir :</p>
+			<pre><code class='python'>
+Class personnage(object):
+ def __init__ (self):
+  self.vie=20
+#fin de la classe
+			</code></pre>
+			<p>Ensuite lors de la création de l'instance gollum, python va automatiquement remplacer self par gollum et ainsi créer un attribut gollum.vie qui aura pour valeur de départ la valeur donnée à self.vie dans la méthode __init__</p>
+			<p>Il se passera exactement la même chose au moment de la création de l'instance bilbo, on aura automatiquement la création de l'attribut bilbo.vie.</p>
+			<h4>À faire vous même 3.2</h4>
+			<p>
+				Saisissez, analysez et testez ce code
+			</p>
+			<pre><code class='python'>
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Défini une classe personnage
+class personnage(object):
+    # on définit la méthode qui va initialiser les attributs
+    def __init__(self):
+        self.vie=20
+    # fin __init
+#fin class
+# on crée une instance de la classe personnage nommée Gollum
+gollum=personnage()
+# on créé une autre instance de la classe personnage nommée Bilbo
+bilbo=personnage()
+#affichage du nombre de points de vie pour Bilbo
+print ('Bilbo a '+str(bilbo.vie)+' points de vie')
+#affichage du nombre de points de vie pour Gollum
+print ('Gollum a '+str(gollum.vie)+' points de vie')
+print ('Bilbo est blessé par Gollum')
+#Bilbo est blessé, il perd un point de vie
+bilbo.vie=bilbo.vie-1
+#on affiche de nouveau les points de vie
+print ('Bilbo a '+str(bilbo.vie)+' points de vie')
+print ('Gollum a '+str(gollum.vie)+' points de vie')
+			</code></pre>
+		<hr>
+		<p>Le résultat de l'exemple 3.2 est évidemment identique au résultat de l'exemple 3.1. Mais cette fois nous n'avons pas défini l'attribut gollum.vie=20 et bilbo.vie=20 en dehors de la classe, nous avons utilisé une méthode __init__.</p>
+    </div>
+	</body>
+</html>

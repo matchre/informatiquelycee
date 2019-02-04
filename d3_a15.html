@@ -1,0 +1,152 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Visualiser des données avec D3</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Visualiser des données avec D3</span>
+					<span class="navbar-brand">Activité 15</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./d3_a1.html">Activité 1</a></li>
+	              <li><a href="./d3_a2.html">Activité 2</a></li>
+	              <li><a href="./d3_a3.html">Activité 3</a></li>
+                  <li><a href="./d3_a4.html">Activité 4</a></li>
+	              <li><a href="./d3_a5.html">Activité 5</a></li>
+	              <li><a href="./d3_a6.html">Activité 6</a></li>
+                  <li><a href="./d3_a7.html">Activité 7</a></li>
+	              <li><a href="./d3_a8.html">Activité 8</a></li>
+                  <li><a href="./d3_a9.html">Activité 9</a></li>
+                  <li><a href="./d3_a10.html">Activité 10</a></li>
+                  <li><a href="./d3_a11.html">Activité 11</a></li>
+                  <li><a href="./d3_a12.html">Activité 12</a></li>
+                  <li><a href="./d3_a13.html">Activité 13</a></li>
+                  <li><a href="./d3_a14.html">Activité 14</a></li>
+                  <li><a href="./d3_a16.html">Activité 16</a></li>
+                  <li><a href="./d3_a17.html">Activité 17</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="d3_a14.html"><span class="fui-triangle-left-large"></a></li>
+                <li><a href="d3_a16.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+            <p>Cette activité sera basée sur un exemple proposé par le site <a href="http://www.datavis.fr/index.php#d3js" target="_blank">http://www.datavis.fr/</a>.</p>
+           <p>D3js permet d'exploiter les données contenues dans les fichiers de type GeoJSON (voir <a href="donnees_a3.html" target="_blank">cette activité</a> pour plus d'informations sur le geoJSON).</p>
+            <p>Dans cette activité, nous allons utiliser les données fournies par un fichier de type geoJSON afin de construire une carte de France.</p>
+            <h4>À faire vous même 15.1</h4>
+            <p>Commencez par télécharger le fichier <a href="asset/departments.json" target="_blank">departments.json</a></p>
+            <p>Ouvrez ensuite ce fichier à l'aide d'un éditeur de texte.</p>
+            <p>Attention : dans la suite de cette activité, le fichier "departments.json" devra être placé dans le même dossier que le fichier "script.js".</p>
+            <hr>
+            <p>Vous devriez obtenir quelque chose qui ressemble à ceci :</p>
+            <img src="img/d3_a15_1.png" alt="departements.json"/>
+            <p>Comme vous pouvez le constater, nous avons quelques informations sur chaque département ("CODE_DEPT", "NOM_DEPT"...), mais nous avons surtout une série de couples de valeurs ("[5.8,45.84]"). Ces couples de valeurs sont des coordonnées (longitude, latitude). Chaque couple de coordonnées correspond à un point et l'ensemble de ces points permettent de dessiner les contours des départements.</p>
+             <h4>À faire vous même 15.2</h4>
+            <p>
+				script.js
+			</p>
+			<pre><code class="javascript">
+var body=d3.select("body");
+var svg=body.append("svg");
+svg.attr({"width":"600px","height":"600px"});
+var path = d3.geo.path();
+var projection = d3.geo.conicConformal()
+    .center([2.454071, 46.279229])
+    .scale(3000)
+    .translate([300,300]);
+path.projection(projection);
+d3.json("departments.json", function(geoJSON) {
+    var map=svg.selectAll("path").data(geoJSON.features)
+    map.enter()
+        .append("path")
+        .attr("fill","white")
+        .attr("stroke","black")
+        .attr("d", path);
+});
+            </code></pre>
+            <p>Analysez et testez ce code</p>
+            <hr>
+            <p>Vous devriez obtenir ceci :</p>
+            <iframe src="./D3/15_2/index.html" width="630px" height="630px"></iframe>
+            <p>Quelques commentaires sur le programme ci-dessus :</p>
+            <p>D3js propose une méthode permettant d'exploiter facilement les coordonnées en créant un "path" SVG : <i>var path = d3.geo.path();</i></p>
+            <p>Qui dit carte, dit projection, pour en savoir sur cette notion de projection, vous pouvez consulter l'article de Wikipédia <a href="https://fr.wikipedia.org/wiki/Projection_cartographique" target="_blank">ici</a>.</p>
+            <p>D3js propose différents types de projection (pour en savoir plus sur les projections proposées par D3js, voir <a href="https://github.com/mbostock/d3/wiki/Geo-Projections" target="_blank">ici</a></p>
+            <p>Nous utilisons ici la projection <i>conicConformal</i></p>
+            <pre><code class="javascript">
+var projection = d3.geo.conicConformal()
+    .center([2.454071, 46.279229])
+    .scale(3000)
+    .translate([300,300]);
+path.projection(projection);
+            </code></pre>
+            <ul>
+                <li><i>.center([2.454071, 46.279229])</i> permet de centrer la carte sur le point de coordonnées (2.454071, 46.279229)</i> (longitude, latitude)</li>
+                <li><i>.scale(3000)</i> donne le facteur de zoom</li>
+                <li><i>.translate([300,300])</i> permet d'avoir le centre de la carte au centre de notre fenêtre.</li>
+            </ul>
+            <p>La suite est classique :</p>
+            <ul>
+                <li>nous utilisons le fichier "departments.json" : <i>d3.json("departments.json", function(geoJSON)...</i></li>
+                <li>Dans le fichier "departments.json" nous utilisons l'attribut "features" qui correspond à un tableau contenant toutes les données nécessaires au tracé des départements (et donc de la carte de France) : <i>var map=svg.selectAll("path").data(geoJSON.features)</i></li>
+                <li>nous créons autant de "path" SVG qu'il y a de départements grâce à la méthode <i>enter</i> de D3js</li>
+            </ul>
+            <h4>À faire vous même 15.3</h4>
+            <p>Modifiez le programme vu dans le "À faire vous même 15.2" en faisant varier le facteur de zoom (<i>scale</i>) et le centre de la carte (<i>center</i>).</p>
+            <hr>
+            <h4>À faire vous même 15.4</h4>
+            <p>En repartant de l'exemple du "À faire vous même 15.2", écrivez un programme permettant d'obtenir ceci (passez le curseur de la souris sur la carte) :</p>
+            <iframe src="./D3/15_4/index.html" width="630px" height="630px"></iframe>
+            <hr>
+            <p>Il est possible de "pousser" l'interactivité plus loin :</p>
+            <h4>À faire vous même 15.5</h4>
+            <p>En vous inspirant des explications fournies sur le site <a href="http://www.datavis.fr/index.php#d3js" target="_blank">http://www.datavis.fr/</a>, créez une carte où des informations sur les départements s'afficheront en les "survolant" avec le curseur de la souris :</p>
+            <iframe src="./D3/15_5/index.html" width="830px" height="630px"></iframe>
+            <p>Cette activité est difficile, n'hésitez pas à poser des questions</p>
+            <hr>
+            <p>Le site <a href="https://github.com/gregoiredavid/france-geojson" target="_blank">https://github.com/gregoiredavid/france-geojson/</a> propose un grand nombre de fichier geoJSON (contours des régions (anciennes versions), des départements, des communes...</p>
+            <p>Nous allons utiliser ces données pour construire une carte des communes de Haute-Savoie</p>
+            <h4>À faire vous même 15.6</h4>
+            <p>Après avoir téléchargé l'archive (en cliquant sur le bouton "Download ZIP"), sélectionnez le fichier approprié afin d'écrire un programme permettant d'obtenir ceci :</p>
+            <iframe src="./D3/15_6/index.html" width="830px" height="630px"></iframe>
+
+    </div>
+	</body>
+</html>

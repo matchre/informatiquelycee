@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Programmation orientée objet avec Processing</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Programmation orientée objet avec Processing</span>
+					<span class="navbar-brand">Correction "À faire vous-même 5.1"</span>
+        </div>
+    </nav>
+    <div class="container act">
+      <pre><code class='python'>
+class Balle(object):
+	def __init__(self):
+		self.posX=10+random(180)
+		self.posY=10+random(180)
+		self.depX=-5+random(5)
+		self.depY=-5+random(5)
+		while self.depX==0 or self.depY==0:
+			self.depX=-5+random(5)
+			self.depY=-5+random(5)
+		self.r=random(255)
+		self.v=random(255)
+		self.b=random(255)
+	def afficheBalle(self):
+		fill(self.r,self.v,self.b)
+		ellipse(self.posX,self.posY,20,20)
+	def depBalle (self):
+		if self.posX<10 or self.posX>190:
+			self.depX=-self.depX
+		if self.posY<10 or self.posY>190:
+			self.depY=-self.depY
+		self.posX=self.posX+self.depX
+		self.posY=self.posY+self.depY
+l=[]
+for i in range(100):
+	b=Balle()
+	l.append(b)
+def setup():
+	size(200,200)
+	noStroke()
+	fill(0)
+def draw():
+	background(255)
+	for b in l:
+		b.depBalle()
+		b.afficheBalle()
+			</code></pre>
+    </div>
+	</body>
+</html>

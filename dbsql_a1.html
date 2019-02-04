@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Initiation aux bases de données relationnelles</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Initiation aux bases de données relationnelles</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./dbsql_a2.html">Activité 2</a></li>
+	              <li><a href="./dbsql_a3.html">Activité 3</a></li>
+	              <li><a href="./dbsql_a4.html">Activité 4</a></li>
+                  <li><a href="./dbsql_a5.html">Activité 5</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="dbsql_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>
+            Le stockage des données est devenu, au fil des années, un enjeu fondamental de l'industrie du numérique. Nous allons, dans cette série d'activités, nous initier à l'utilisation d'une base de données.
+        </p>
+        <p>Les sites de commerce en ligne, les réseaux sociaux,... ont besoin de stocker une grande quantité de données (les articles de site de commerce, les messages postés sur les réseaux sociaux...).</p>
+        <p>Il est important que vous compreniez, dès à présent, que beaucoup de données transitant sur internet sont stockées sur des serveurs (pour en savoir plus sur la notion de serveur voir le texte consacré aux réseaux <a href="./reseau_a1.html" target="_blank">ici</a>), "bien au chaud" en attendant d'être réutilisées.</p>
+        <p>Le stockage et le traitement massifs des données sont souvent regroupés sous le terme "big data". Si vous voulez en savoir plus sur le "big data", je vous conseille la lecture de l'article Wikipedia consacré à ce sujet <a href="http://fr.wikipedia.org/wiki/Big_data" target="_blank">ici</a>.
+        <p>
+            Mais où sont stockées les données sur un serveur ?
+        </p>
+        <p>La mémoire vive (RAM) est la première réponse qui pourrait nous venir à l'esprit, mais que deviendraient les données en cas d'extinction de l'ordinateur ? Elles seraient tout simplement perdues !</p>
+        <p>Le stockage en RAM ne peut donc être que provisoire.</p>
+        <p>La solution est d'utiliser une mémoire dite de masse qui n'a pas besoin d'être alimentée en électricité pour conserver les données : les disques durs, les clés usb, les cartes SD sont des mémoires de masse (la capacité de stockage est aussi beaucoup plus importante que la RAM, « en contrepartie », la mémoire de masse est plus lente (lecture/écriture) que la mémoire vive).</p>
+        <p>Ok, nous allons donc stocker nos données sur le disque dur au lieu de simplement les garder en mémoire, mais sous quelle forme ?</p>
+        <p>Il est tout à fait possible d'écrire les données à conserver dans un fichier qui sera stocké sur le disque dur. Cette solution qui a le mérite de la simplicité peut montrer rapidement ses limites, notamment quand la structure des données devient complexe.</p>
+        <p>Nous allons donc utiliser un système extrêmement répandu : la base de données.</p>
+        <p>Les données seront tout de même stockées dans des fichiers qui se trouveront sur un disque dur, mais la base de données va organiser toutes ses données d'une manière extrêmement complexe, ce qui permettra à l'utilisateur de lire ou d'écrire des données (on parle d'entrées) de façon simple et rapide. Il n'est pas nécessaire de comprendre le fonctionnement interne de la base de données pour l'utiliser (heureusement !).</p>
+        <p>Il existe beaucoup de systèmes de base de données différents : MySQL, Oracle, Microsoft SQL server......toutes ces bases de données ont un point commun : elles sont  de type SQL (le SQL est un langage utilisé pour effectuer des opérations sur une base de données (création, lecture, écriture...)). On parle aussi de bases de données relationnelles.</p>
+        <p>Dans cette série d'activités, nous allons travailler sur ces bases de données relationnelles.</p>
+    </div>
+	</body>
+</html>

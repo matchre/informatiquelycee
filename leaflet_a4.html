@@ -1,0 +1,209 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Afficher des cartes avec Leaflet</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Afficher des cartes avec Leaflet</span>
+					<span class="navbar-brand">Activité 4</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="./leaflet_a1.html">Activité 1</a></li>
+	              <li><a href="./leaflet_a2.html">Activité 2</a></li>
+	              <li><a href="./leaflet_a3.html">Activité 3</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="./leaflet_a3.html"><span class="fui-triangle-left-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Leaflet propose des fonctions spéciales qui permettent de gérer les événements produits par l'utilisateur (clic souris, passage du curseur de la souris sur un marker,...). Ces fonctions qui aident à gérer les événements s'appellent des "listeners" ("écouteurs" en français).</p>
+        <p>Pour créer un "listener" pour l'événement "clic sur la carte", il suffit d'utiliser une structure du type : </p>
+        <pre><code class="javascript">
+map.on('click',clicSurCarte)
+        </code></pre>
+        <ul>
+            <li>"map" correspond à l'objet qui est "surveillé"</li>
+            <li>"click" correspond au type d'événement (ici clic de souris)</li>
+            <li>"clicSurCarte" est le nom de la fonction qui sera exécutée si l'événement surveillé est déclenché par l'utilisateur (ici donc un "clic de souris sur la carte"). Ce type de fonction est appelée fonction de "callback".</li>
+        </ul>
+        <h4>À faire vous-même 4.1</h4>
+        <p>À l'aide d'un éditeur de texte, saisissez le code suivant dans le fichier "script.js" puis testez cet exemple.</p>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var map = L.map('map');
+var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+map.setView([47.0, 3.0], 6);
+map.addLayer(osm);
+map.on('click',clicSurCarte);
+function clicSurCarte(){
+    alert("Vous avez cliqué sur la carte");
+}
+        </code></pre>
+        <hr>
+        <p>
+            La fonction de "callback" peut prendre un paramètre "event" qui nous donnera des informations sur l'événement.
+        </p>
+        <h4>À faire vous-même 4.2</h4>
+        <p>À l'aide d'un éditeur de texte, saisissez le code suivant dans le fichier "script.js" puis testez cet exemple.</p>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var map = L.map('map');
+var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+map.setView([47.0, 3.0], 6);
+map.addLayer(osm);
+map.on('click',clicSurCarte);
+function clicSurCarte(event){
+    var latlong=event.latlng
+    alert("Vous avez cliqué sur la carte à la position : "+latlong);
+}
+        </code></pre>
+        <hr>
+        <p>"event.latlng" renvoie un objet de type "LatLng" qui contient la latitude et la longitude d'un point (ici la latitude et la longitude du point situé sous le curseur de la souris au moment du clic).</p>
+        <p>Il est possible d'utiliser directement l'objet de type "LatLng" à la place du tableau "[latitude, longitude]" que nous avons utilisé pour la création de markers et de pop-up.</p>
+        <p>Un objet de type "LatLng" possède 2 attributs : "lat" et "lng". Dans l'exemple ci-dessus un "latlong.lat" renverra la latitude et "latlong.lng" renverra la longitude</p>
+        <h4>À faire vous-même 4.3</h4>
+        <p>Créez un programme qui permettra de placer un marker à la position du curseur de la souris au moment du clic.</p>
+        <hr>
+        <p>Il est possible de définir un événement sur un marker (ou un pop-up) :</p>
+        <pre><code class="javascript">
+marker.on('click',clicMarker);
+        </code></pre>
+        <p>Le principe est exactement le même que précédemment, sauf que l'événement sera déclenché uniquement en cas de clic sur le marker "marker".</p>
+        <p>Il est possible d'utiliser une boucle pour attribuer des listeners à différents markers.</p>
+        <h4>À faire vous-même 4.4</h4>
+        <p>À l'aide d'un éditeur de texte, saisissez le code suivant dans le fichier "script.js" puis testez cet exemple.</p>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tabCoord=[[46.079722, 6.401389],[45,6],[47.466702,0.7],[43.787222,-1.403056],[46.53972,2.43028]]
+var map = L.map('map');
+var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib='Map data © OpenStreetMap contributors';
+var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+map.setView([47.0, 3.0], 6);
+map.addLayer(osm);
+for (i=0;i&lttabCoord.length;i++){
+    var marker = L.marker(tabCoord[i]);
+    marker.on('click',clicMarker);
+    marker.addTo(map);
+}
+function clicMarker(){
+    alert("Vous avez cliqué sur un marker");
+}
+        </code></pre>
+        <hr>
+        <p>Dans l'exemple ci-dessus, la fonction "clicMarker" est exécutée uniquement en cas de clic sur un marker.</p>
+        <p>Le mot-clé "this" représente le marker qui a réellement "subi" le clic :</p>
+        <h4>À faire vous-même 4.4</h4>
+        <p>À l'aide d'un éditeur de texte, saisissez le code suivant dans le fichier "script.js" puis testez cet exemple.</p>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var tabCoord=[[46.079722, 6.401389],[45,6],[47.466702,0.7],[43.787222,-1.403056],[46.53972,2.43028]]
+var map = L.map('map');
+var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib='Map data © OpenStreetMap contributors';
+var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+map.setView([47.0, 3.0], 6);
+map.addLayer(osm);
+for (i=0;i&lttabCoord.length;i++){
+    var marker = L.marker(tabCoord[i]);
+    marker.on('click',clicMarker);
+    marker.addTo(map);
+}
+function clicMarker(event){
+    alert ("Vous allez supprimer le marker situé aux coordonnées : "+event.latlng);
+    map.removeLayer(this);
+}
+        </code></pre>
+        <hr>
+         <p>Il existe beaucoup d'autres "événements" que l'on peut surveiller. Pour avoir une liste exhaustive des événements, consultez la <a href="http://leafletjs.com/reference.html#map-events" target="_blank">documentation officielle</a>.</p>
+        <h4>À faire vous-même 4.5</h4>
+        <p>Créez un programme qui permettra de placer un marker à la position du curseur de la souris au moment du "doubleclic" et qui permettra d'effacer un marker en cas de "doubleclic" sur ce dernier.</p>
+        <hr>
+        <p>Il est aussi possible d'associer des événements avec les figures géométriques :</p>
+        <h4>À faire vous-même 4.6</h4>
+        <p>À l'aide d'un éditeur de texte, saisissez le code suivant dans le fichier "script.js" puis testez cet exemple.</p>
+        <p>
+            script.js
+        </p>
+        <pre><code class="javascript">
+var map = L.map('map');
+var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib='Map data © OpenStreetMap contributors';
+var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
+map.setView([47.0, 3.0], 6);
+map.addLayer(osm);
+var poly=L.polygon([[44,0],[44.7,1],[45.3,1.33],[46,2.5],[46.9,0]]);
+poly.on('mouseover',polyIn);
+poly.on('mouseout',polyOut);
+poly.on('click',polyErase)
+poly.addTo(map);
+
+function polyIn(){
+    poly.setStyle({color:"#ff0000", weight:3, fillColor:"#00ff00"});
+}
+function polyOut(){
+    poly.setStyle({fillColor:"#0000ff"});
+}
+function polyErase(){
+    map.removeLayer(this);
+}
+        </code></pre>
+        <hr>
+        <p>Nous venons juste d'entrevoir les possibilités offertes par leaflet. Pour en apprendre plus :</p>
+        <ul>
+            <li>n'hésitez pas à consulter la documentation officielle qui est très bien faite : <a href="http://leafletjs.com/reference.html" target="_blank">voir ici</a></li>
+            <li>voici un tutoriel en français sur leaflet : <a href="http://blog.netapsys.fr/open-street-map-partie-2-integration-dune-carte-avec-leaflet/" target="_blank">voir ici</a>.</li>
+            <li>un livre en ligne consacré à Leaflet : <a href="https://leanpub.com/leaflet-tips-and-tricks/read" target="_blank">voir ici</a></li>
+        </ul>
+    </div>
+	</body>
+</html>

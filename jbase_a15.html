@@ -1,0 +1,132 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript : les bases</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">JavaScript : les bases</span>
+					<span class="navbar-brand">Activité 15</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./jbase_intro.html">Introduction</a></li>
+	              <li><a href="./jbase_a1.html">Activité 1</a></li>
+	              <li><a href="./jbase_a2.html">Activité 2</a></li>
+	              <li><a href="./jbase_a3.html">Activité 3</a></li>
+	              <li><a href="./jbase_a4.html">Activité 4</a></li>
+								<li><a href="./jbase_a5.html">Activité 5</a></li>
+	              <li><a href="./jbase_a6.html">Activité 6</a></li>
+	              <li><a href="./jbase_a7.html">Activité 7</a></li>
+	              <li><a href="./jbase_a8.html">Activité 8</a></li>
+								<li><a href="./jbase_a9.html">Activité 9</a></li>
+	              <li><a href="./jbase_a10.html">Activité 10</a></li>
+	              <li><a href="./jbase_a11.html">Activité 11</a></li>
+								<li><a href="./jbase_a12.html">Activité 12</a></li>
+	              <li><a href="./jbase_a13.html">Activité 13</a></li>
+								<li><a href="./jbase_a14.html">Activité 15</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+						<li><a href="jbase_a14.html"><span class="fui-triangle-left-large"></a></li>
+
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				JSFIDDLE est un très bel outil, mais il ne peut pas être utilisé pour la réalisation d'une vraie application web.
+			</p>
+			<h4>À faire vous même 15.1</h4>
+			<p>
+				Nous allons créer un fichier qui contiendra du HTML (xxxxx.html)(voir les activités consacrées au HTML5 et
+				au CSS3 pour plus d'informations).
+			</p>
+			<p>
+				À l'aide d'un éditeur de texte (Scite par exemple si vous êtes sous un système GNU/linux), créer ce nouveau fichier.
+			</p>
+			<p>
+				Sauvegardez-le en précisant son nom, par exemple index.html.
+			</p>
+			<p>
+				Écrivez le code suivant dans votre éditeur de texte (sans oublier de sauvegarder quand vous avez terminé) :
+			</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+ &ltmeta charset="utf-8"&gt
+ &lttitle&gtVoici mon site&lt/title&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>Si vous avez déjà eu l'occasion d'étudier le HTML, vous reconnaîtrez la structure d'un fichier HTML. Ce fichier est la "brique" de base d'un "site internet".</p>
+			<p>C'est à partir de ce fichier que nous "appellerons" un fichier javascript afin de l'exécuter.</p>
+			<p>
+				À l'aide d'un éditeur de texte, créez un fichier JavaScript xxxx.js : par exemple monJS.js
+			</p>
+			<pre><code class="javascript">
+alert ('Le JavaScript fonctionne');
+			</code></pre>
+			<p>
+				Il nous faut ensuite associer ce fichier à notre page HTML, modifiez votre code HTML en ajoutant la ligne suivante
+				&ltscript src="monJS.js"&gt&lt/script&gt :
+			</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+&lthead&gt
+ &ltmeta charset="utf-8"&gt
+ &lttitle&gtVoici mon site&lt/title&gt
+ &ltscript src="monJS.js"&gt&lt/script&gt
+&lt/head&gt
+&ltbody&gt
+&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>
+				Testez votre code à l'aide d'un navigateur web (Firefox ou Chrome) en “double-cliquant” sur le fichier index.html
+			</p>
+			<p>
+				Dans tous les exemples que nous venons de voir, les fichiers index.html et monJS.js se trouvent au même niveau dans l'arborescence des fichiers. Il est souvent utile de placer les fichiers JavaScript dans un dossier “JavaScript”. Il faudra alors modifier le code HTML en conséquence :
+			</p>
+			<pre><code class="html">
+&ltscript src="JavaScript/monJS.js"&gt&lt/script&gt
+			</code></pre>
+	</body>
+</html>

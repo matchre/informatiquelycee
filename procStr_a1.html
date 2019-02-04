@@ -1,0 +1,142 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Traitement des chaînes de caractères</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+    <script src="libProc/processing.min.js"></script>
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-92673245-1', 'auto');
+			  ga('send', 'pageview');
+			</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Traitement des chaînes de caractères</span>
+					<span class="navbar-brand">Activité 1</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="./Fixed Top Navbar Example for Bootstrap_files/Fixed Top Navbar Example for Bootstrap.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="./procStr_a2.html">Activité 2</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="procStr_a2.html"><span class="fui-triangle-right-large"></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container act">
+        <p>Processing (et donc Java), nous donne un grand nombre d'outils permettant de travailler sur des chaînes de caractères.</p>
+        <p>Les chaînes de caractères sont des instances de la classe String. Cette classe possède un grand nombre de méthodes, nous allons commencer par voir les plus courantes :</p>
+        <p>Il est fondamental de bien comprendre qu'une chaîne de caractères se manipule comme un tableau : le premier caractère d'une chaîne a l'indice 0, le deuxième caractère à l'indice 1,....</p>
+        <p>Il est possible de connaitre le nombre de caractères présents dans une chaîne à l'aide de la méthode <i>length</i>.</p>
+        <h4>À faire vous-même 1.1</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String msg="Bonjour le monde !";
+int nb=msg.length();
+println("La chaîne '"+msg+"' est constituée de "+nb+" caractères");
+        </code></pre>
+        <p>Attention : comme vous pouvez le constater, le caractère "espace" est comptabilisé.</p>
+        <hr>
+        <p>La méthode <i>charAt</i> retourne le caractère situé à l'index qui a été passé en paramètre :</p>
+        <h4>À faire vous-même 1.2</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String msg="Bonjour le monde !";
+int i=3;
+char l=msg.charAt(i);
+println("Le "+(i+1)+"e caractère de la chaîne '"+msg+"' est un "+l);
+        </code></pre>
+        <p>Attention : une fois de plus, le premier caractère a pour indice 0, donc, l'indice 3 correspond bien au 4e caractère.</p>
+        <hr>
+        <p>Pour comparer 2 chaînes de caractères, il est nécessaire d'utiliser la méthode "equals" (le classique "==" ne fonctionnera pas). La méthode renvoie <i>true</i> si les 2 chaînes sont identiques.</p>
+        <h4>À faire vous-même 1.3</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String msg1="Bonjour le monde !";
+String msg2="Bonjour le monde";
+if (msg1.equals(msg2)){
+    println("les chaînes sont identiques");
+}
+else {
+    println("les chaînes sont différentes");
+}
+        </code></pre>
+        <hr>
+        <p>La méthode <i>toUpperCase</i> permet de convertir tous les caractères d'une chaîne en majuscules. La méthode <i>toLowerCase</i> permet de convertir tous les caractères d'une chaîne en minuscules.</p>
+        <h4>À faire vous-même 1.4</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String msg="Bonjour le monde !";
+println ("Tous les caractères sont en minuscule : "+msg.toLowerCase());
+println ("Tous les caractères sont en majuscule : "+msg.toUpperCase());
+        </code></pre>
+        <hr>
+        <p>La méthode <i>substring</i> permet de retourner une partie d'une chaîne de caractères. Elle peut prendre un ou deux paramètres :</p>
+        <pre><code>
+maChaine.substring(index_deb);
+        </code></pre>
+        <p>ou</p>
+        <pre><code>
+maChaine.substring(index_deb, index_fin);
+        </code></pre>
+        <p>Si "index_fin" n'est pas précisé, la méthode retourne une chaîne composée des caractères situés entre "index_deb" et la fin de la chaîne. Si "index_fin" est renseigné, la méthode retourne une chaîne composée des caractères situés entre "index_deb" et "index_fin".</p>
+        <h4>À faire vous-même 1.5</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String msg="Bonjour le monde !";
+int i=10;
+println ("Caractères à partir de l'index "+i+ " jusqu'à la fin de la chaîne : "+msg.substring(i));
+i = 0;
+int j=7;
+println ("Caractères de l'indice "+i+" à l'indice "+str(j-1)+" : "+msg.substring(i,j));
+        </code></pre>
+        <p>Attention : comme vous pouvez le constater le caractère situé à l'indice "index_fin" est exclu.</p>
+        <hr>
+        <p>La méthode <i>indexOf</i> permet de recherche un motif de caractères (une suite de caractères) dans une chaîne. Si ce motif est trouvé, la méthode <i>indexOf</i> renvoie l'indice de position du premier caractère du motif.</p>
+        <h4>À faire vous-même 1.6</h4>
+        <p>Saisissez, analysez et testez ce code</p>
+        <pre><code>
+String msg="Bonjour le monde !";
+String motif="jour";
+int i=msg.indexOf(motif);
+println("le début du motif '"+motif+"' se situe à l'index "+i);
+        </code></pre>
+        <hr>
+        <h4>À faire vous-même 1.7</h4>
+        <p>Écrivez un programme qui permettra de donner l'indice de position du motif "on".</p>
+        <hr>
+        <p>Comme vous l'avez peut-être remarqué, le motif "on" est présent à 2 endroits (dans "bonjour" et dans "monde"). La méthode <i>indexOf</i> renvoie l'indice de position du premier motif rencontré, le second est ignoré.</p>
+        <h4>À faire vous-même 1.8</h4>
+        <p>Écrivez un programme qui vous permettra de répondre à la question suivante : que renvoie la méthode <i>indexOf</i> dans le cas où le motif recherché n'est pas présent dans la chaîne ?</p>
+        <hr>
+    </div>
+	</body>
+</html>
