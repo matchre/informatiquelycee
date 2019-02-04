@@ -12,6 +12,6 @@ job2_deploy_all_prod:
   tags:
     - prod
   script:
-    - cd /appli/informatiquelycee 
-    - git pull
+    - rm -rf /appli/informatiquelycee/*
+    - cp -R . /appli/informatiquelycee/
   when: manual
