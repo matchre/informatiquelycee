@@ -1,0 +1,17 @@
+job1_deploy_all_qualif:
+  stage: deploy
+  tags: 
+    - qualif
+  script:
+    - rm -rf /appli/informatiquelycee/*
+    - cp -R . /appli/informatiquelycee/
+  only:
+    - master
+job2_deploy_all_prod:
+  stage: deploy
+  tags:
+    - prod
+  script:
+    - rm -rf /appli/informatiquelycee/*
+    - cp -R . /appli/informatiquelycee/
+  when: manual
