@@ -3,8 +3,8 @@ job1_deploy_all_qualif:
   tags: 
     - qualif
   script:
-    - rm -rf /appli/informatiquelycee
-    - cp -R . /appli/informatiquelycee
+    - rm -rf /appli/informatiquelycee/web
+    - cp -R . /appli/informatiquelycee/web
   only:
     - master
 job2_deploy_all_prod:
@@ -12,6 +12,6 @@ job2_deploy_all_prod:
   tags:
     - prod
   script:
-    - rm -rf /appli/informatiquelycee
-    - cp -R . /appli/informatiquelycee
+    - rm -rf /appli/informatiquelycee/web
+    - cp -R . /appli/informatiquelycee/web
   when: manual
