@@ -1,0 +1,108 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Simulation réseau</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Internet</span>
+					<span class="navbar-brand">Simulation réseau</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+		<p>
+			Après la théorie, passons maintenant à la pratique. Il est un peu difficile de mettre en place un réseau pour effectuer quelques tests. À la place nous allons utiliser un simulateur
+			de réseau. Il existe différents types de simulateurs : du plus simple au plus "professionnel". Nous allons utiliser un simulateur relativement simple à prendre en main, mais suffisamment performant : <a href="http://www.lernsoftware-filius.de/Herunterladen" target="_blank">Filius</a>
+			(la page web est en allemand, mais le logiciel est disponible en anglais).
+		</p>
+		<p>
+			Avant de visionner une petite vidéo qui devrait vous aider à prendre en main Filius, quelques petites indications
+		</p>
+		<p>
+			Nous allons utiliser deux commandes dans la vidéo :
+		</p>
+		<ul>
+			<li>
+				"ipconfig" qui permet de connaitre la configuration réseau de la machine sur laquelle est exécutée cette commande ("ipconfig" est une véritable commande sous Windows de Microsoft, sous les systèmes de type Unix (Linux ou macOS par exemple), la commande équivalente est "ifconfig")
+			</li>
+			<li>
+				"ping" qui permet d'envoyer des paquets de données d'une machine A vers une machine B. Si la commande est exécutée sur la machine A, le "ping" devra être suivi par l'adresse IP de la machine B (par exemple, si l'adresse IP de B est "192.168.0.2", on aura "ping 192.168.0.2")
+			</li>
+		</ul>
+		<p>
+			Autre chose à retenir, vous allez peut-être apercevoir dans cette vidéo un "netmask" (masque de réseau en français), vous devez juste savoir que :
+		</p>
+		<ul>
+			<li>
+				pour un réseau de classe A, on a un netmask qui est "255.0.0.0"
+			</li>
+			<li>
+				pour un réseau de classe B, on a un netmask qui est "255.255.0.0"
+			</li>
+			<li>
+				pour un réseau de classe C, on a un netmask qui est "255.255.255.0"
+			</li>
+		</ul>
+		<p>
+			Vous pouvez maintenant visionner la vidéo (n'hésitez pas à aller sur YouTube pour un meilleur confort de lecture).
+		</p>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/nzuRSOwdF5I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<h4>À faire vous-même 1</h4>
+		<p>
+			En utilisant le logiciel Filius, créez un réseau de 4 machines (M1, M2, M3 et M4). L'adresse IP de la machine M1 est "192.168.1.1", choisissez les adresses IP des machines M2, M3 et M4.
+		</p>
+		<p>
+			Effectuez un "ping" de la machine M2 vers la machine M4.
+		</p>
+		<hr />
+		<p>
+		Dans la vidéo ci-dessous, nous allons utiliser la commande "traceroute" : la commande "traceroute" permet de suivre le chemin qu'un paquet de données va suivre pour aller d'une machine à l'autre.
+		</p>
+		<p>
+			Vous pouvez maintenant visionner la vidéo (n'hésitez pas à aller sur YouTube pour un meilleur confort de lecture).
+		</p>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/xyK6ThdQeR0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<h4>À faire vous-même 2</h4>
+		<p>
+			En utilisant le logiciel Filius, créez 3 réseaux de 2 machines chacun. Ces 3 réseaux seront reliés par un routeur. Après avoir effectué toutes les opérations de configuration nécessaires, effectuez un ping entre deux machines de deux réseaux différents.
+		</p>
+		<hr />
+		<h4>À faire vous-même 3</h4>
+		<p>
+			Nous allons maintenant travailler sur un réseau plus complexe :
+		</p>
+		<div class="centrer">
+			<img src="img/DiagRes.png" width="800px" alt="reseau"/>
+		</div>
+		<p>
+			À l'aide du logiciel Filius, ouvrez le fichier <a href="asset/snt_sim_res.fls">snt_sim_res.fls</a>.
+		</p>
+		<p>
+			Faites un "traceroute" entre l'ordinateur M14 et l'ordinateur M9 (n'oubliez pas de faire un "ipconfig" sur la machine M9 afin d'obtenir son adresse IP). Notez le chemin parcouru pour aller de la machine M14 à la machine M9 (remarquez au passage que le réseau R6 à des adresses IP de classe B et que cela ne pose aucun problème).
+		</p>
+		<p>
+			Supprimez le câble réseau qui relie le routeur F au routeur E (simulation de panne), refaites un "traceroute" entre M14 et M9. Que constatez-vous ?
+		</p>
+		<hr />
+</div>
+
+</html>

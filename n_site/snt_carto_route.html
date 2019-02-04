@@ -1,0 +1,133 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Calculs d'itinéaires</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Cartographie</span>
+					<span class="navbar-brand">Calculs d'itinéaires</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Comme vous avez pu le constater quand vous avez travaillé sur Open Street Map, il est possible de définir les voies de communication (principalement les routes). La base de données
+				OSM contient donc les routes (enfin, la plupart des routes...). En utilisant ces données, il est possible de développer des outils capables de calculer des itinéraires routiers
+				(comme le propose tous les logiciels "GPS" : Waze, ViaMichelin, Mappy...) : vous renseignez votre lieu de départ, votre lieu d'arrivée puis le logiciel calcule votre itinéraire.
+				Ce calcul d'itinéraire repose sur des algorithmes relativement complexes, par exemple l'algorithme de Dijkstra qui permet d'obtenir le plus court chemin entre deux points. Sans entrer dans les détails,
+				l'algorithme de Dijkstra travaille sur des graphes (chaque ville est un sommet du graphe et chaque route est une arête du graphe),
+				 si cela vous intéresse, pour en savoir plus, vous pouvez visionner cette <a href="https://www.youtube.com/watch?v=JPeCmKFrKio" target="_blank">vidéo</a>.
+			</p>
+			<p>
+				La bibliothèque Python <a href="https://github.com/MKuranowski/pyroutelib3" target="_blank">pyroutelib3</a> propose des "outils" pour calculer des itinéraires à partir des données d'Open Street Map.
+			</p>
+			<h4>À faire vous-même 1</h4>
+			<p>
+				Créez un dossier, nommé "itin". Enregistrez ensuite le fichier <a href="asset/pyroutelib3.py" target="_blank">pyroutelib3.py</a> (clic droit, "Enregistrer sous") dans ce dossier "itin".
+			</p>
+			<hr />
+			<h4>À faire vous-même 2</h4>
+			<p>
+				En utilisant le logiciel spyder, saisir le code ci-dessous. Enregistrez le fichier contenant ce code dans le dossier "itin". Testez ensuite ce programme.
+			</p>
+			<pre><code class="python">
+from pyroutelib3 import Router
+router = Router("car")
+depart = router.findNode(46.078025, 6.409053)
+arrivee = router.findNode(46.193253,  6.234158)
+status, route = router.doRoute(depart, arrivee)
+if status == 'success':
+    routeLatLons = list(map(router.nodeLatLon, route))
+			</code></pre>
+			<p>
+				Une fois l'exécution du programme terminée (cela peut prendre quelques minutes), à l'aide de l'"explorateur de variables" de spyder, visionnez le contenu de la variable "routeLatLons". Comme vous pouvez le constater, cette variable contient une liste
+				de couples de valeurs (latitude, longitude). Cette liste contient donc les coordonnées des différents points par lesquels il faut passer pour se rendre du point de départ jusqu'au point d'arrivée (en passant bien évidemment par les routes définies dans Open Street Map).
+			</p>
+			<hr />
+			<p>
+				Quelques explications sur le programme proposé dans le "À faire vous-même 2" :
+			</p>
+			<ul>
+				<li>
+					Nous commençons par importer la bibliothèque "pyroutelib3" avec la première ligne "from pyroutelib3 import Router"
+				</li>
+				<li>
+					La deuxième ligne permet de définir le véhicule qui sera utilisé pour effectuer le trajet. Dans notre cas, nous utilisons une voiture ("car"), mais il est possible de
+					choisir d'autres moyens de transport : cycle, foot, horse, tram, train
+				</li>
+				<li>
+					Les 2 lignes suivantes permettent de définir le point de départ et le point d'arrivée. Nous avons "router.findNode(latitude, longitude)", il suffit de renseigner la latitude et la longitude du lieu.
+				</li>
+				<li>
+					La ligne "status, route = router.doRoute(depart, arrivee)" permet d'effectuer le calcul de l'itinéraire.
+				</li>
+				<li>
+					La dernière ligne est exécutée uniquement si le calcul est mené à son terme ("if" de la ligne précédente). La variable "routeLatLons" contient la liste des coordonnées des points de cheminement (points qui constituent le chemin entre le point de départ et le point d'arrivée)
+				</li>
+			</ul>
+			<h4>À faire vous-même 3</h4>
+			<p>
+				Modifiez le programme du "À faire vous-même 2", pour calculer le trajet entre deux villes de votre choix avec le moyen de transport de votre choix.
+			</p>
+			<hr />
+			<p>
+				Avoir une liste de coordonnées, c'est déjà pas mal, mais cette liste n'est pas très exploitable telle quelle. Nous allons donc utiliser ce que nous avons déjà vu précédemment sur la création de cartes.
+			</p>
+			<h4>À faire vous-même 4</h4>
+			<p>
+				Testez le programme ci-dessous (une fois le programme Python exécuté, ouvrez avec un navigateur web le fichier "maCarte.html").
+			</p>
+			<pre><code class="python">
+from pyroutelib3 import Router
+import folium
+
+router = Router("car")
+depart = router.findNode(46.078025, 6.409053)
+arrivee = router.findNode(46.193253,  6.234158)
+status, route = router.doRoute(depart, arrivee)
+if status == 'success':
+    routeLatLons = list(map(router.nodeLatLon, route))
+
+c= folium.Map(location=[46.078025, 6.409053],zoom_start=10)
+for coord in routeLatLons:
+    coord=list(coord)
+    folium.Marker(coord).add_to(c)
+c.save('maCarte.html')
+			</code></pre>
+			<hr />
+			<p>
+				Le programme ci-dessous ne devrait pas vous poser trop de problèmes. Seule nouveauté, la boucle "for" :
+			</p>
+			<pre><code class="python">
+for coord in routeLatLons:
+    coord=list(coord)
+    folium.Marker(coord).add_to(c)
+			</code></pre>
+			<p>
+				qui permet de parcourir la liste de coordonnées (contenue dans la variable "routeLatLons") et d'ajouter un marqueur pour chaque couple de coordonnées.
+			</p>
+			<h4>À faire vous-même 5</h4>
+			<p>
+				Modifiez le programme du "À faire vous-même 4" pour qu'apparaisse sur une carte un itinéraire de votre choix (en définissant le point de départ, le point d'arrivée et le type de véhicule).
+			</p>
+		</div>
+</html>

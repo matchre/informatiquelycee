@@ -1,0 +1,443 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML et CSS</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Le Web</span>
+					<span class="navbar-brand">Introduction au HTML et au CSS</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Nous allons nous intéresser à un acteur fondamental du développement web, le couple HTML+CSS (Hyper Text Markup Langage et Cascading Style Sheets).
+			</p>
+			<p>
+				Dans un premier temps, nous allons exclusivement nous intéresser au HTML. Qu'est-ce que le HTML, voici la définition que nous en donne Wikipedia :
+			</p>
+			<p>
+				<i>L’Hypertext Markup Language, généralement abrégé HTML, est le format de données conçu pour représenter les pages web. C’est un langage de balisage permettant d’écrire de l’hypertexte, d’où son nom. HTML permet également de structurer sémantiquement et de mettre en forme le contenu des pages, d’inclure des ressources multimédias, dont des images, des formulaires de saisie, et des programmes informatiques. Il permet de créer des documents interopérables avec des équipements très variés de manière conforme aux exigences de l’accessibilité du web. Il est souvent utilisé conjointement avec des langages de programmation (JavaScript) et des formats de présentation (feuilles de style en cascade).</i>
+			</p>
+			<p>
+				Pour l'instant, nous allons retenir deux éléments de cette définition «conçu pour représenter les pages web» et «un langage de balisage».
+			</p>
+			<p>
+				Grâce au HTML vous allez pouvoir, dans votre navigateur (Firefox, Chrome, Opera,....), afficher du texte, afficher des images, proposer des hyperliens (liens vers d'autres pages web), afficher des formulaires et même maintenant afficher des vidéos (grâce à la dernière version du HTML, l'HTML5).
+			</p>
+			<p>
+				HTML n'est pas un langage de programmation (comme le Python par exemple), ici, pas question de conditions, de boucles....c'est un langage de description.
+			</p>
+			<p>
+				Pour aborder le HTML, nous allons, dans un premier temps utiliser le site jsfiddle.net.
+			<p>
+				Après avoir lancé votre navigateur web, tapez <a href="http://jsfiddle.net/" target="_blank">http://jsfiddle.net/</a> dans la barre d'adresse.
+			</p>
+			<p>
+				Vous devriez voir apparaître ceci :
+			</p>
+			<img  src="img/jsfiddle.png" class="img-responsive" alt="jsfiddle">
+			<p>
+				Nous allons pour l'instant uniquement utiliser la fenêtre « HTML » et la fenêtre « Result ».
+			</p>
+			<h4>À faire vous-même 1</h4>
+			<p>
+				Écrivez le code HTML suivant :
+			</p>
+			<pre><code class="html">
+&lth1&gtHello World! Ceci est un titre&lt/h1&gt
+&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt. Avez-vous bien compris ?&lt/p&gt
+			</code></pre>
+			<p>
+				Qu'est-ce qui s'affiche dans la fenêtre ?
+			</p>
+			<hr>
+			<p>
+				Comme déjà évoqué ci-dessus, en HTML tout est une histoire de balise que l'on ouvre et que l'on ferme.
+				Une balise ouvrante est de la forme &ltnom_de_la_balise&gt, les balises fermantes sont de la forme &lt/nom_de_la_balise&gt.
+			</p>
+			<p>
+				En observant attentivement le code, vous devriez forcément remarquer que toute balise ouverte doit être refermée à un moment ou un autre. La balise ouvrante et la balise fermante peuvent être sur la même ligne ou pas, cela n'a aucune espèce d'importance, la seule question à se poser ici est : ai-je bien refermé toutes les balises que j'ai ouvertes ?
+			</p>
+			<p>
+				Enfin pour terminer avec les généralités sur les balises, il est important de savoir qu'une structure du type :
+			</p>
+			<p>
+				&ltbalise1&gt<br/>
+				&ltbalise2&gt<br/>
+				&lt/balise1&gt<br/>
+				&lt/balise2&gt<br/>
+			</p>
+			<p>
+				est interdite, la balise2 a été ouverte après la balise1, elle devra donc être refermée avant la balise1.
+			</p>
+			<p>
+				En revanche, l'enchaînement suivant est correct :
+			</p>
+			<p>
+				&ltbalise1&gt<br/>
+				&ltbalise2&gt<br/>
+				&lt/balise2&gt<br/>
+				&lt/balise1&gt<br/>
+			</p>
+			<p>
+				Notez que dans notre exemple nous respectons bien cette règle « d'imbrication » des balises avec la balise &ltp&gt et la balise &ltstrong&gt.
+			</p>
+			<p>
+				Il est important de comprendre que chaque balise a une signification qu'il faut bien respecter (on parle de la sémantique des balises).
+				Par exemple le texte situé entre la balise ouvrante et fermante &lth1&gt est obligatoirement un titre important (il existe des balises &lth2&gt, &lth3&gt......qui sont aussi des titres, mais des titres moins importants (sous-titre)).
+				La balise &ltp&gt permet de définir des paragraphes, enfin, la balise &ltstrong&gt permet de mettre en évidence un élément important.
+			</p>
+			<p>
+				Vous devez aussi savoir qu'il existe des balises qui sont à la fois ouvrantes et fermantes (&ltbalise/&gt) :
+				un exemple, la balise permettant de sauter une ligne, la balise &ltbr/&gt (balise qu'il faut d'ailleurs éviter d'utiliser par différentes raisons que nous n'aborderons pas ici).
+			</p>
+			<p>
+				Il est possible d'ajouter des éléments à une balise ouvrante, on parle d'attribut. Une balise peut contenir plusieurs attributs :
+			</p>
+			<p>
+				&ltma_balise attribut_1= "valeur_1" attribut_2="valeur_2"&gt
+			</p>
+			<p>
+				Il existe beaucoup d'attributs différents, nous allons nous contenter de 2 exemples avec l'attribut id (id pour identifiant) et class. Nous verrons l’intérêt de ces attributs dans l'activité suivante.
+			</p>
+			<h4>À faire vous-même 2</h4>
+			<p>
+				Écrivez le code HTML suivant :
+			</p>
+			<pre><code class="html">
+&lth1&gtCeci est un titre&lt/h1&gt
+&lth2 class="titre_1"&gtCeci est un sous titre&lt/h2&gt
+&ltp id="para_1"&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt. Avez-vous bien compris ?&lt/p&gt
+			</code></pre>
+			<p>
+				Qu'est-ce qui s'affiche dans la fenêtre ?
+			</p>
+			<hr />
+			<p>
+				Le HTML n'a pas été conçu pour gérer la mise en page (c'est possible, mais c'est une mauvaise pratique).
+				Le HTML s'occupe uniquement du contenu et de la sémantique,
+				pour tout ce qui concerne la mise en page et l'aspect « décoratif » (on parle du « style » de la page), on utilisera le CSS (Cascading Style Sheets).
+			</p>
+			<p>
+				Dans JSFIDDLE, il est possible d'écrire du CSS dans la fenêtre en haut à gauche.
+			</p>
+			<h4>À faire vous-même 3</h4>
+			<p>
+				Écrivez le code HTML suivant :
+			</p>
+			<pre><code class="html">
+&lth1&gtCeci est un titre&lt/h1&gt
+&lth2&gtCeci est un sous titre&lt/h2&gt
+&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt. Avez-vous bien compris ?&lt/p&gt
+			</code></pre>
+			<p>
+				Écrivez le code CSS suivant :
+			</p>
+			<pre><code class="css">
+h1
+{
+	text-align: center;
+	background-color: red;
+}
+h2
+{
+	font-family: Verdana;
+	font-style: italic;
+	color: green;
+}
+			</code></pre>
+			<p>
+				Qu'est-ce qui s'affiche dans la fenêtre ?
+			</p>
+			<hr>
+			<p>
+				Dans l'exemple du "À faire vous-même 3", les propriétés « text-align » et «background-color» seront appliquées au contenu de toutes les balises de type h1 (avec respectivement les valeurs «center» et «red»).....
+			</p>
+			<h4>À faire vous-même 4</h4>
+			<p>
+				Écrivez le code HTML suivant :
+			</p>
+			<pre><code class="html">
+&lth1&gtCeci est un titre&lt/h1&gt
+&lth2&gtCeci est un sous titre&lt/h2&gt
+&ltp id="para_1"&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt. Avez-vous bien compris ?&lt/p&gt
+			</code></pre>
+			<p>
+				Écrivez le code CSS suivant :
+			</p>
+			<pre><code class="css">
+#para_1
+{
+	font-style: italic;
+	color: green;
+}
+			</code></pre>
+			<p>
+				Qu'est-ce qui s'affiche dans la fenêtre ? Que remarquez-vous ?
+			</p>
+			<p>
+				Il est donc possible de cibler un paragraphe et pas un autre en utilisant l'id du paragraphe (en CSS l'id se traduisant par le signe #).
+			</p>
+			<p>
+				Il est aussi possible d'utiliser l'attribut class à la place de l'id. Dans le CSS on utilisera le point . à la place du  #.
+			</p>
+			<p>
+				La différence entre "id" et "class" n'est pas très importante.
+			</p>
+			<p>
+				L'attribut "class" permet de donner le même nom à plusieurs reprises dans une même page.
+			</p>
+			<p>
+				Si nous avions eu un 3e paragraphe, nous aurions pu avoir :&ltp class="para_1"&gtVoici un 3e paragraphe&lt/p&gt,
+				mais nous n'aurions pas pu avoir : &ltp id="para_1"&gt Voici un 3e paragraphe &lt/p&gt, car le nom para_1 a déjà été utilisé pour le 1er paragraphe.
+			</p>
+			<p>
+				JSFIDDLE est un très bel outil, mais il ne peut pas être utilisé pour la réalisation d'un vrai site internet (ou d'une vraie application web).
+			</p>
+			<p>
+				Nous allons créer 2 fichiers : un fichier qui contiendra du HTML (index.html) et un fichier qui contiendra du CSS (style.css).
+			</p>
+			<h4>À faire vous-même 5</h4>
+			<p>
+				À l'aide d'un éditeur de texte, créer un nouveau fichier.
+			</p>
+			<p>
+				Sauvegardez-le en précisant son nom, par exemple "index.html".
+			</p>
+			<p>
+				Écrivez le code suivant dans votre éditeur de texte (sans oublier de sauvegarder quand vous avez terminé) :
+			</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+	&lthead&gt
+		&ltmeta charset="utf-8"&gt
+		&lttitle&gtVoici mon site&lt/title&gt
+	&lt/head&gt
+	&ltbody&gt
+		&lth1&gtHello World! Ceci est un titre&lt/h1&gt
+		&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt. Avez-vous bien compris ?&lt/p&gt
+	&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>
+				Testez votre code à l'aide d'un navigateur web (Firefox ou Chrome) en “double-cliquant” sur le fichier index.html
+			</p>
+			<hr>
+			<p>
+				Dans l'exemple du "À faire vous-même 5", vous reconnaissez le code se trouvant entre les balises &ltbody&gt :
+			</p>
+			<p>
+				&ltbody&gt<br/>
+				......<br/>
+				&lt/body&gt
+			</p>
+			<p>
+				Tout votre code HTML devra se trouver entre ces 2 balises.
+			</p>
+			<p>
+				Le reste des balises devraient vous êtes inconnues. Passons-les en revue :
+			</p>
+			<p>
+				La première ligne (&lt!doctype html&gt) permet d'indiquer au navigateur que nous utiliserons la dernière version du HTML, le fameux HTML5.
+			</p>
+			<p>
+				La balise &lthtml&gt est obligatoire, l'attribut lang="fr" permet d'indiquer au navigateur que nous utiliserons le français pour écrire notre page.
+			</p>
+			<p>
+				Les balises &lthead&gt...&lt/head&gt délimitent  ce que l'on appelle l'en-tête. L'en-tête contient, dans notre exemple, 2 balises :
+				la balise &ltmeta charset="utf-8"&gt qui permet de définir l'encodage des caractères (utf-8) et la balise &lttitle&gt qui définit le titre de la page (attention ce titre ne s'affiche pas dans le navigateur, ne pas confondre avec la balise &lth1&gt).
+			</p>
+			<h4>À faire vous-même 6</h4>
+			<p>
+				Toujours à l'aide d'un éditeur de texte, vous allez créer un fichier qui va contenir le CSS de notre page (par exemple style.css).
+				Complétez ce fichier à l'aide du code suivant :
+			</p>
+			<pre><code class="css">
+h1
+{
+	text-align: center;
+	background-color: red;
+}
+p
+{
+	font-family: Verdana;
+	font-style: italic;
+	color: green;
+}
+			</code></pre>
+			<p>
+				Pour l'instant notre CSS ne sera pas appliqué à notre page, pour ce faire, il faut modifier notre code HTML en ajoutant une ligne qui va permettre d'associer notre code CSS à notre page.
+			</p>
+			<p>
+				Modifiez le code HTML avec la ligne suivante &ltlink rel="stylesheet" href="style.css"&gt :
+			</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+	&lthead&gt
+		&ltmeta charset="utf-8"&gt
+		&lttitle&gtVoici mon site&lt/title&gt
+		&ltlink rel="stylesheet" href="style.css"&gt
+	&lt/head&gt
+	&ltbody&gt
+		&lth1&gtHello World! Ceci est un titre&lt/h1&gt
+		&ltp&gtCeci est un &ltstrong&gtparagraphe&lt/strong&gt. Avez-vous bien compris ?&lt/p&gt
+	&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>
+				Testez votre code à l'aide d'un navigateur web en “double-cliquant” sur le fichier index.html
+			</p>
+			<hr>
+			<p>
+				Dans l'exemple que nous venons de voir, les fichiers "index.html" et "style.css" se trouvent dans le même dossier. Il est souvent utile de placer les fichiers CSS dans un dossier “CSS”. Il faudra alors modifier le code HTML en conséquence :
+			</p>
+			<pre><code class="html">
+&ltlink rel="stylesheet" href="CSS/style.css"&gt
+			</code></pre>
+			<p>
+				Pour terminer, voici quelques balises très utilisées :
+			</p>
+			<h5>La balise a</h5>
+			<pre><code class="html">
+&lta href="mon_autre_page.html"&gtCliquez ici pour vous rendre sur mon autre page&lt/a&gt
+			</code></pre>
+			<p>
+				La balise a permet de créer des liens hypertextes, ce sont ces liens hypertextes qui vous permettent de "voyager" entre les pages d'un site ou entre les sites. Les liens hypertextes sont par défaut soulignés et de couleur bleue (modifiable grâce au CSS). La balise a possède un attribut href qui a pour valeur le chemin du fichier que l'on cherche à atteindre ou l'adresse du site cible (exemple :   &lta href="http://www.google.fr"&gtCliquez ici pour vous rendre sur google.fr&lt/a&gt). Entre la balise ouvrante et fermante, on trouve le texte qui s'affichera à l'écran (c'est ce texte qui est souligné et de couleur bleue).La balise peut sans problème se trouver en plein milieu d'un paragraphe.
+			</p>
+			<h5>La balise image</h5>
+			<p>
+				Comme vous devez déjà vous en douter, la balise image sert à insérer des......images :
+			</p>
+			<pre><code data-trim contenteditable>
+&ltimg src="mon_image.jpg" alt="avion"/&gt
+			</code></pre>
+			<p>
+				la balise img est à la fois ouvrante et fermante comme la balise br. Elle possède 2 attributs :
+			</p>
+			<ul>
+				<li>src qui doit être égal au nom du fichier image (ou au chemin si le fichier image se trouve dans un autre dossier).</li>
+				<li>alt qui doit être égal à une description de votre image (cet attribut est utilisé notamment par les systèmes de description des pages web utilisées par les non-voyants), il faut donc systématiquement renseigner cet attribut.</li>
+
+			</ul>
+			<h5>Les balises form, input et button</h5>
+			<p>
+				Les formulaires sont des éléments importants des sites internet, ils permettent à l'utilisateur de transmettre des informations. Un formulaire devra être délimité par une balise form (même si ce n'est pas une obligation) :
+			</p>
+			<p>
+				&ltform&gt<br/>
+				....<br/>
+				&lt/form&gt
+			</p>
+			<p>
+				Il existe différentes balises permettant de construire un formulaire, notamment la balise input. Cette balise possède un attribut type qui lui permet de jouer des rôles très différents.
+			</p>
+			<p>
+				La balise button nous sera aussi d'une grande utilité.
+			</p>
+			<h4>À faire vous-même 7</h4>
+			<p>
+				Créez un fichier html contenant le code suivant :
+			</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+	&lthead&gt
+		&ltmeta charset="utf-8"&gt
+		&lttitle&gtVoici mon site&lt/title&gt
+	&lt/head&gt
+	&ltbody&gt
+		&ltform&gt
+			&ltp&gtvoici un champ de texte : &ltinput type="text"/&gt&lt/p&gt
+			&ltp&gtvoici une checkbox &ltinput type="checkbox"/&gt&lt/p&gt
+			&ltbutton&gtCliquez ici !&lt/button&gt
+		&lt/form&gt
+	&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>
+				Testez votre code à l'aide d'un navigateur web en “double-cliquant” sur le fichier html que vous venez de créer.
+			</p>
+			<h5>Les balises div et span</h5>
+			<p>
+				Ces 2 balises sont très utilisées (surtout la balise div). Pourtant, il faudrait, autant que possible, les éviter, pourquoi ?
+			</p>
+			<p>
+				Parce qu'elles n'ont aucune signification particulière, ce sont des balises  dites “génériques”.
+			</p>
+			<p>
+				À quoi servent-elles alors ?
+			</p>
+			<p>
+				À organiser la page, à regrouper plusieurs balises dans une même entité.
+			</p>
+			<p>
+				Pourquoi 2 balises génériques ?
+			</p>
+			<p>
+				Parce que div est une balise de type “block” et que span est une balise de type “inline” !
+			</p>
+			<p>
+				Sans vouloir trop entrer dans les détails, il faut bien comprendre que l'ordre des balises dans le code HTML a une grande importance. Les balises sont affichées les unes après les autres, on parle du flux normal de la page.
+			</p>
+			<p>
+				C'est ici qu'entrent en jeu les balises de type "block" et les balises de type "inline".
+			</p>
+			<ul>
+				<li>Les contenus des balises de type "block" (p, div,h1,...) se placent sur la page web les uns en dessous des autres.</li>
+				<li>Les contenus des balises de type "inline" (strong, img, span, a) se placent sur la page web les uns à côté des autres.</li>
+			</ul>
+			<p>
+				Cela revient à dire qu'une balise de type “block” prend toute la largeur de la page alors qu'une balise de type “inline” prend juste la largeur qui lui est nécessaire.
+			</p>
+			<h4>À faire vous-même 8</h4>
+			<p>
+				Créez un fichier html contenant le code suivant :
+			</p>
+			<pre><code data-trim contenteditable>
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+	&lthead&gt
+		&ltmeta charset="utf-8"&gt
+		&lttitle&gtVoici mon site&lt/title&gt
+	&lt/head&gt
+	&ltbody&gt
+		&ltdiv&gtdiv est une balise de type "block"&lt/div&gt
+		&ltp&gtla balise p est une autre balise de type block&lt/p&gt
+		&ltspan&gtEn revanche, span est une balise de type "inline"&lt/span&gt
+		&lta href="www.google.fr"&gtEt voici une autre balise de type "inline"&lt/a&gt
+		&lth1&gth1 est bien une balise de type "block"&lt/h1&gt
+		&ltspan&gtla malheureuse balise span est "obligée" de se placer en dessous&lt/span&gt
+	&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>Testez ce code</p>
+			<hr>
+			<h4>À faire vous-même 9</h4>
+			<p>
+				Élaborez une page HTML en utilisant les balises vues ci-dessus.
+			</p>
+		</div>
+	</body>
+</html>

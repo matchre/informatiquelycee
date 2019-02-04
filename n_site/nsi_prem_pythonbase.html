@@ -1,0 +1,699 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Python : les bases</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Python : les bases</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<h3>Programmer un ordinateur, c'est quoi ?</h3>
+			<p>
+				Programmer, c'est créer des programmes (suite d'instructions données à l'ordinateur) ! Un ordinateur sans programme ne sait rien faire.
+				Il existe différents langages qui permettent de programmer un ordinateur, mais le seul directement utilisable par le processeur est le langage machine (suite de 1 et de 0). Aujourd'hui (presque) plus personne ne programme en langage machine (trop compliqué).
+			</p>
+			<p>
+				Les informaticiens utilisent des instructions (mots souvent en anglais) en lieu et place de la suite de 0 et de 1. Ces instructions, une fois écrites par le programmeur, sont « traduites » en langage machine. Un programme spécialisé assure cette traduction. Ce système de traduction s'appellera interpréteur ou bien compilateur, suivant la méthode utilisée pour effectuer la traduction.
+			<p>
+				Il existe 2 grandes familles de langages de programmation :
+			</p>
+			<ul>
+				<li>Les langages de bas niveau sont très complexes à utiliser, car très éloignés du langage naturel, on dit que ce sont des langages « proches de la machine », en contrepartie ils permettent de faire des programmes très rapides à l'exécution. L'assembleur est le langage de bas niveau.
+					Certains "morceaux" de programmes sont écrits en assembleur encore aujourd'hui.
+				</li>
+				<li>
+					Les langages de haut niveau sont eux plus "faciles" à utiliser, car plus proches du langage naturel (exemple : si a=3 alors b=c).
+					Exemples de langages de haut niveau : C, C++ , Java, Python...
+				</li>
+			</ul>
+			<p>
+				En NSI, notre langage de prédilection sera Python.
+			</p>
+			<p>
+				Pour écrire nos programmes, nous utiliserons le logiciel Spyder.
+			</p>
+			<h3>Prise en main de Spyder</h3>
+			<p>Une fois Spyder lancé, vous devriez obtenir quelque chose qui ressemble à cela :</p>
+			<img src="img/nsi_spyder.png">
+			<p>Spyder se divise en plusieurs fenêtres, deux fenêtres vont principalement nous intéresser : la fenêtre "éditeur" et la fenêtre "console".</p>
+			<h4>À faire vous-même 1</h4>
+			<p>Dans la fenêtre "éditeur", saisissez le programme suivante :</p>
+			<pre><code class='python'>
+print("hello world !")
+			</code></pre>
+			<p>Cliquez sur le "triangle vert" afin d'exécuter le programme qui vient d'être saisi.</p>
+			<img src="img/nsi_spyder_2.png">
+			<p>
+				Spyder va vous demander d'enregistrer le programme,
+				enregistrez-le dans un dossier qui vous servira de dossier de travail
+			</p>
+			<p>Vous devez voir le message "hello world !" apparaître dans la console</p>
+			<img src="img/nsi_spyder_3.png">
+			<hr>
+			<h3>Notion de variable</h3>
+			<p>
+				Définition du mot ordinateur d'après "Le Petit Larousse" :
+			</p>
+			<p>
+			<cite>
+				"Machine automatique de traitement de l'information, obéissant à des programmes formés par des suites d'opérations arithmétiques et logiques."
+			</cite>
+			</p>
+			<p>
+				Qui dit "traitement de l'information", dit donc données à manipuler. Un programme "passe" donc son temps à traiter des données. Pour pouvoir traiter ces données, l'ordinateur doit les ranger dans sa mémoire (RAM - Random Access Memory).
+				La RAM se compose de cases dans lesquelles nous allons ranger ces données (une donnée dans une case).
+				Chaque case a une adresse (ce qui permet au processeur de savoir où sont rangées les données).
+			</p>
+			<p>
+				Alors, qu'est-ce qu'une variable ?
+			</p>
+			<p>
+				Eh bien, c'est une petite information (une donnée) temporaire que l'on stocke dans une case de la RAM.
+				On dit qu'elle est "variable", car c'est une valeur qui peut changer pendant le déroulement du programme.
+			</p>
+			<p>
+				Une variable est constituée de 2 choses :
+			</p>
+			<ul>
+				<li>
+					Elle a une valeur : c'est la donnée qu'elle "stocke" (par exemple le nombre entier 5)
+				</li>
+				<li>
+					Elle a un nom : c'est ce qui permet de la reconnaître. Nous n'aurons pas à retenir l'adresse de mémoire, nous allons juste indiquer des noms de variables à la place.
+				</li>
+			</ul>
+			<pre><code class='python'>
+i = 12
+			</code></pre>
+			<p>Grâce à cette ligne, nous avons défini une variable qui porte le nom i et qui "contient" le nombre entier 12. Plus précisément, nous dirons que la variable i référence le nombre entier 12.</p>
+			<h4>À faire vous-même 2</h4>
+			<p>Dans la partie "éditeur" de Spyder, saisissez le code suivant :</p>
+			<pre><code class='python'>
+point_de_vie = 15
+			</code></pre>
+			<img src="img/nsi_spyder_4.png">
+			<p>
+				Après avoir exécuté le programme en cliquant sur le triangle vert, il est possible de connaitre la valeur référencée par une variable en utilisant la partie "console" de Spyder.
+			</p>
+			<p>
+				Dans le cas qui nous intéresse ici, tapez "point_de_vie" dans la console
+			</p>
+			<img src="img/nsi_spyder_5.png">
+			<p>
+				Après avoir appuyé sur la touche "Entrée", vous devriez voir la valeur référencée par la variable "point_de_vie" s'afficher dans la console.
+			</p>
+			<img src="img/nsi_spyder_6.png">
+			<p>
+				N.B. : Dans la suite la procédure sera toujours la même :
+			</p>
+			<ul>
+				<li>
+					Vous utiliserez la partie "éditeur" pour saisir votre programme
+				</li>
+				<li>
+					vous utiliserez la partie "console" pour afficher la valeur référencée par une variable
+				</li>
+			</ul>
+			<hr>
+			<h4>À faire vous-même 3</h4>
+			<p>
+				Écrire un programme dans lequel on attribue la valeur 12 à la variable "point_de_force". La valeur référencée par la variable "point_de_force" devra ensuite être affichée dans la console.
+			</p>
+			<hr>
+			<p>
+				Nous venons de voir qu'une variable peut référencer un nombre entier, mais elle peut aussi référencer un nombre à virgule :
+			</p>
+			<pre><code class='python'>
+i = 5.2
+			</code></pre>
+			<p>
+				Prenez bien garde, nous utilisons un point à la place d'une virgule (convention anglo-saxonne).
+			</p>
+			<p>
+				Une variable peut donc référencer plusieurs types d'entités (pour l'instant nous n'en avons vu que deux, mais nous en verrons d'autres plus loin) : les nombres entiers ("integer" en anglais, abrégé en "int") et les nombres à virgule ("float" en anglais).
+				Il est possible de connaitre le type de l'entité référencé par une variable à l'aide de l'instruction "type".
+			</p>
+			<h4>À faire vous-même 4</h4>
+			<p>
+				<p>Testez le programme suivant :</p>
+			</p>
+			<pre><code class='python'>
+a = 5.2
+b = 12
+			</code></pre>
+			<p>
+				tapez "type(a)" puis "type(b)" dans la console
+			</p>
+			<img src="img/nsi_spyder_7.png">
+			<p>
+				Comme vous pouvez le constater, le type de la grandeur référencée par la variable a et le type de la grandeur référencée par la variable b s'affichent dans la console
+			</p>
+			<hr/>
+			<h3>Un peu de calculs</h3>
+			<p>
+				Un ordinateur est bien évidemment capable d'effectuer des opérations mathématiques (arithmétiques).
+			</p>
+			<p>
+				Les signes utilisés sont classiques : +, - , * (multiplication), / (division), // (division euclidienne) ou encore % (modulo : reste d'une division euclidienne).
+			</p>
+			<p>
+				Il est tout à fait possible d'effectuer des opérations directement avec des nombres, mais il est aussi possible d'utiliser des variables.
+			</p>
+			<h4>À faire vous-même 5</h4>
+			<p>
+				Essayez d'écrire un programme qui additionnera le contenu de 2 variables (nom des variables : a et b). Le résultat de cette opération devra être référencé par une troisième variable nommée "resultat" (atention pas d'accent dans les noms de variable).
+
+				Testez votre programme en utilisant la console pour vérifier la valeur référencée par la variable "resultat".
+			</p>
+			<hr>
+			<h4>À faire vous-même 6</h4>
+			<p>D'après vous, que fait ce programme ?</p>
+			<pre><code class='python'>
+a = 11
+a = a + 1
+			</code></pre>
+			<p>Vérifiez votre réponse en exécutant le Programme (utilisation dans console pour déterminer la valeur référencée par la variable "a" à la fin du programme)</p>
+			<hr>
+			<p>
+				Détaillons ce qui se passe dans le "À faire vous-même 6":
+			</p>
+			<ul>
+				<li>nous créons une variable "a" qui référence l'entier 11</li>
+				<li>nous affichons à l'écran la valeur référencée par "a" (c'est-à-dire 11)</li>
+			</ul>
+			<p>La suite est un peu plus complexe, mais très importante à comprendre.
+				Il va falloir lire la ligne "a = a + 1" de droite à gauche, décortiquons cette ligne :</p>
+			<ul>
+				<li>"a + 1" : nous prenons la valeur actuelle de a (c'est-à-dire 11) et nous ajoutons 1 à 11, à droite de l'égalité nous avons donc maintenant la valeur 12</li>
+				<li>nous attribuons la valeur qui vient d'être calculée à la variable "a"</li>
+				<li>nous affichons à l'écran la nouvelle valeur référencée par "a"</li>
+			</ul>
+			<p>Ce raisonnement peut être généralisé pour éviter des erreurs parfois difficiles à corriger : dans une égalité, commencer toujours par évaluer l'expression se trouvant à droite du signe égal.</p>
+			<h3>exposant, racine carrée, fonctions trigonométriques</h3>
+			<p>Il est aussi possible d'effectuer des calculs plus complexes en utilisant par exemple des exposants, des racines carrées, des fonctions trigonométriques...</p>
+			<p>Pour utiliser ces fonctions mathématiques plus avancées, il est nécessaire d'ajouter une ligne au début de votre programme :</p>
+			<pre><code class='python'>
+import math
+			</code></pre>
+			<p>Cette ligne permet d'importer (et donc d'utiliser) le module "math" (ce module contient toutes les fonctions mathématiques "classiques").</p>
+			<p>Voici quelques exemples :</p>
+			<ul>
+				<li>math.pow(x,a) permet de calculer x à la puissance a</li>
+				<li>math.cos(x) permet de calculer le cosinus de l'angle x (l'angle x doit être en radian) (nous avons la même chose pour le sinus ou la tangente)</li>
+				<li>math.sqrt(x) permet de calculer la racine carrée de x</li>
+			</ul>
+			<p>Si vous avez besoin d'autres fonctions mathématiques, je vous invite à consulter la documentation de Python : <a href="https://docs.python.org/3/library/math.html" target="_blank">https://docs.python.org/3/library/math.html</a>
+			<h4>À faire vous-même 7</h4>
+			<p>Quelles sont les valeurs référencées par les variables "d", "e" et "f" après l'exécution du programme suivant :</p>
+			<pre><code class='python'>
+import math
+a = 5
+b = 16
+c = 3.14 / 2
+d = math.pow(a,2)
+e = math.sqrt(b)
+f = math.sin(c)
+			</code></pre>
+			<hr>
+			<p>
+				À noter qu'il est tout à fait possible de "mélanger" des nombres entiers et des nombres à virgules ("3.14 / 2") dans une opération.
+			</p>
+			<h4>À faire vous-même 8</h4>
+			<p>
+				Écrire un programme permettant de répondre à la question suivante : "Quel est le type du résultat d'une addition d'un integer et d'un float ?"
+			</p>
+			<hr />
+			<h3>chaînes de caractères</h3>
+			<p>
+				Les variables peuvent aussi référencer des suites de caractères, que l'on appelle "chaîne de caractères".
+			</p>
+			<h4>À faire vous-même 9</h4>
+			<p>Tester le code suivant :</p>
+			<pre><code class='python'>
+ma_chaine = "Bonjour le monde !"
+			</code></pre>
+			<p>
+				Vérifiez que la variable "ma_chaine" référence la chaîne de caractères "Bonjour le monde !"
+			</p>
+			<hr>
+			<h3>Le signe + et les chaînes de caractères</h3>
+			<p>
+				L'utilisation du signe + ne se limite pas à l'addition. Il est aussi utilisé pour la <strong>concaténation</strong>.
+			</p>
+			<p>D'après Wikipédia :</p>
+			<p>
+				<cite>
+					« Le terme concaténation (substantif féminin), du latin cum («avec») et catena(«chaîne, liaison»), désigne l'action de mettre bout à bout au moins deux chaînes. »
+				</cite>
+			</p>
+			<p>
+				Comme vous avez pu le deviner en lisant la définition ci-dessus, la concaténation va concerner les chaînes de caractères.
+			</p>
+			<h4>À faire vous-même 10</h4>
+			<p>Quelle est la chaîne de caractère référencée par la variable "mon_expression" après l'exécution du programme ci-dessous ? Validez votre réponse en testant ce programme.</p>
+			<pre><code class='python'>
+a = "Hello"
+b = "World"
+mon_expression = a + b
+			</code></pre>
+			<hr>
+			<h3>chaînes de caractères et variables</h3>
+			<p>
+				Il est aussi possible de concaténer une chaîne de caractères et une ou plusieurs variables :
+			</p>
+			<h4>À faire vous-même 11</h4>
+			<p>Testez le code suivant :</p>
+			<pre><code class='python'>
+ma_chaine_1 = "Bonjour "
+ma_chaine_2 = "le "
+res = ma_chaine_1 + ma_chaine_2 + "monde!"
+			</code></pre>
+			<hr />
+			<p>
+				Les 2 variables "ma_chaine_1" et "ma_chaine_2" référencent 2 chaînes de caractères, nous avons donc bien ici une concaténation.
+			</p>
+			<p>
+				Mais que se passe-t-il si la variable référence un nombre (entier ou flottant) ?
+			</p>
+			<h4>À faire vous-même 12</h4>
+			<p>Testez le code suivant :</p>
+			<pre><code class='python'>
+mon_nombre = 5
+res = "Nombre de personnes : " + mon_nombre
+			</code></pre>
+			<p>
+				Comme vous pouvez le constater, nous avons droit à une erreur. En effet, il n'est pas possible de concaténer une chaîne de caractères et un nombre.
+			</p>
+			<p>
+				Python nous offre 2 solutions :
+			</p>
+			<ul>
+				<li>
+					l'utilisation de la méthode "str"
+				</li>
+				<li>
+					l'utilisation des "fstring"
+				</li>
+			</ul>
+			<p>
+				La méthode (nous verrons plus loin la notion de méthode) "str" permet de transformer un nombre en chaîne de caractères (si la transformation n'est pas possible, nous aurons une erreur)
+			</p>
+			<h4>À faire vous-même 13</h4>
+			<p>Testez le code suivant :</p>
+			<pre><code class='python'>
+mon_nombre = 5
+mon_nombre = str(mon_nombre)
+			</code></pre>
+			<p>
+				Quel est le type de la valeur référencée par la variable "mon_nombre" après l'exécution du programme ci-dessus ?
+			</p>
+			<hr />
+			<h4>À faire vous-même 14</h4>
+			<p>Testez le code suivant :</p>
+			<pre><code class='python'>
+mon_nombre = 5
+res = "Nombre de personnes : "  + str(mon_nombre)
+			</code></pre>
+			<p>
+				Tout fonctionne, car maintenant nous avons bien une concaténation entre 2 chaînes de caractères.
+			</p>
+			<hr />
+			<p>
+				Les "fstring" (nouveauté de Python 3.5), permettent de résoudre ce problème de combinaison variable-chaîne de caractères.
+			</p>
+			<h4>À faire vous-même 15</h4>
+			<p>Testez le code suivant :</p>
+			<pre><code class='python'>
+mon_nombre = 5
+res = f"Nombre de personnes : {mon_nombre}"
+			</code></pre>
+			<p>
+				Notez la présence du "f" juste avant le guillemet et des accolades qui encadrent le nom de la variable. Il est possible, dans une même chaîne de caractères d'avoir plusieurs noms de variable.
+			</p>
+			<h3>Les fonctions</h3>
+			<p>
+				Les fonctions permettent de décomposer un programme complexe en une série de sous-programmes plus simples.
+				De plus, les fonctions sont réutilisables : si nous disposons d'une fonction capable de calculer une racine carrée, par exemple, nous pouvons l'utiliser un peu partout dans notre programme sans avoir à la réécrire à chaque fois (on parle de factorisation du code)
+			</p>
+			<p>La notion de fonction en informatique est comparable à la notion de fonction en mathématiques.</p>
+			<img src="./img/nsi_python_2.png"/>
+			<p>Si nous avons y = 3x+2, pour une valeur donnée de x, nous aurons une valeur de y.</p>
+			<p>Exemple : x=4 donc y= 14 (y = 3.4+2=14, attention ici le point correspond au signe "multiplié").</p>
+			<p>La fonction en informatique est basée sur la même idée :</p>
+			<img src="./img/nsi_python_3.png"/>
+			<p>Voici la syntaxe employée en Python pour définir une fonction :</p>
+			<pre><code>
+def nom_de_la_fonction(parametre):
+	instruction_1
+	instruction_2
+	return y
+suite programme
+			</code></pre>
+			<p>La fonction renvoie la valeur contenue dans la variable y.</p>
+			<p>
+				ATTENTION : Notez bien la présence du décalage entre la première ligne et les lignes suivantes. Ce décalage est appelé indentation, l'indentation permet de définir un bloc de code.
+				Dans l'exemple ci-dessus, l'indentation nous permet de savoir que "instruction_1", "instruction_2" et "return y" constituent un bloc de code, ce bloc correspond au contenu de la fonction.
+				"suite programme" ne fait pas partie de la fonction, car il n'est pas indenté. Pour indenter du code, il y a 2 solutions : mettre 4 espaces ou utiliser une tabulation. En Python il est conseillé d'utiliser les 4 espaces, mais ce n'est pas une obligation. Une chose est sûre, une
+				fois que vous avez choisi une méthode, n'en changé surtout pas au cours d'un même programme !
+			</p>
+			<p>Codons notre exemple (y=3x+2) en créant une fonction "ma_fonction" :</p>
+			<pre><code class='python'>
+def ma_fonction(x):
+	y = 3 * x + 2
+	return y
+			</code></pre>
+			<p>Pour "utiliser" la fonction "ma_fonction", il suffit d'écrire : ma_fonction (4) (dans ce cas précis, notre fonction renverra le nombre 14).</p>
+			<h4>À faire vous-même 16</h4>
+			<p>
+				Testez le programme suivant (quelle est la valeur référencée par la variable "solution" après l'exécution du programme) :
+			</p>
+			<pre><code class='python'>
+def ma_fonction(x):
+	y = 3 * x + 2
+	return y
+solution = ma_fonction(4)
+			</code></pre>
+			<p>
+				Il faut savoir qu'au moment de l'exécution de votre programme le code "ma_fonction(4)" sera systématiquement
+				remplacé par la valeur renvoyée par la fonction (toujours dans notre exemple le "ma_fonction(4)" sera remplacé par le nombre 14).
+			</p>
+			<hr>
+			<h4>À faire vous-même 17</h4>
+			<p>Codez en Python la fonction y = x<sup>2</sup>+2x+10</p>
+			<hr>
+			<p>
+				Il est possible d'écrire une fonction dans l'éditeur :
+			</p>
+			<img src="img/nsi_spyder_8.png">
+			<p>
+				et d'utiliser la console (après exécution du programme) pour obtenir la valeur renvoyée par une fonction
+			</p>
+			<img src="img/nsi_spyder_9.png">
+			<p>Il est possible de faire passer plusieurs paramètres à une fonction.</p>
+			<h4>À faire vous-même 15</h4>
+			<p>Quel est le résultat renvoyé par la fonction ci-dessous si l'on saisit dans la console "une_autre_fonction(5, 3)"</p>
+			<pre><code class='python'>
+def une_autre_fonction(x, b):
+	y = 3 * x + b
+	return y
+			</code></pre>
+			<p>Les paramètres peuvent être des chaînes de caractères (ainsi que la valeur retournée)</p>
+			<h4>À faire vous-même 18</h4>
+			<p>Quel est le résultat attendu après l'exécution du programme ci-dessous et la saisie dans la console de "dit_bonjour("toto", 14)" ?</p>
+			<pre><code class='python'>
+def dit_bonjour(nom, age):
+	phrase = f"Bonjour {nom}, vous avez {age} ans."
+	return phrase
+			</code></pre>
+			<p>Attention : remarquez bien les guillemets autour du paramètre "toto" (c'est une chaîne de caractères)</p>
+			<hr>
+			<p>Les paramètres ne sont pas obligatoires.</p>
+			<h4>À faire vous-même 19</h4>
+			<p>Testez la fonction suivante :</p>
+			<pre><code class='python'>
+def ma_fon():
+	return "voici une fonction qui ne sert à rien"
+			</code></pre>
+			<hr>
+			<p>Il faut aussi savoir qu'une fonction ne renvoie pas forcément de valeur (le mot clé return n'est pas obligatoire). Mais si elle ne renvoie pas de valeur, que fait-elle ? Elle peut faire plein de choses, par exemple elle peut tout simplement afficher une chaîne de caractères à l'aide d'un "print". Sachez que dans certains langages, on utilise les termes méthode ou procédure pour qualifier une fonction "qui ne renvoie rien".</p>
+			<h4>À faire vous-même 20</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+def dit_bonjour(nom, age):
+	phrase = f"Bonjour {nom}, vous avez {age} ans."
+	print(phrase)
+			</code></pre>
+			<p>Testez la fonction "dit_bonjour" à l'aide de la console (avec par exemple un "dit_bonjour("toto", 14)")</p>
+			<hr>
+			<h3>les expressions et les booléens</h3>
+			<p>
+				Si quelqu'un vous dit que "4 est égal à 5", vous lui répondez quoi ? "c'est faux". Si maintenant la même personne vous dit que "7 est égal à 7", vous lui répondrez bien évidemment que "c'est vrai".
+			</p>
+			<p>En Python, ces deux «affirmations» ("4 est égal à 5" et "7 est égal à 7") s'écriront "4 == 5" et "7 == 7" (notez bien le double signe égal).</p>
+			<h4>À faire vous-même 21</h4>
+			<p>Dans la console, tapez :</p>
+			<pre><code class='python'>
+4 == 5
+			</code></pre>
+			<hr>
+			<p>
+				En Python, "4 == 5" est appelé une expression, une expression est soit vraie ("True"), soit fausse ("False").
+ 			</p>
+			<p>
+				Pour l'instant nous avons vu deux grands types de données : les nombres (entier ou flottant)
+				et les chaînes de caractères, il existe un troisième type tout aussi important que les deux premiers : les booléens. Un booléen est un type de données qui ne peut prendre que deux valeurs : vrai ("True") ou faux ("False").
+				Une expression (comme par exemple "4 == 5") est soit True, soit False.
+			</p>
+			<p>
+				ATTENTION : notez le double égal "==" qui permet de distinguer une expression et une affectation (référencement d'une valeur par une variable). Le fait de confondre le "simple égal" et le "double égal" est une erreur classique qu'il faut éviter.
+			</p>
+			<h4>À faire vous-même 22</h4>
+			<p>
+				Soit le programme suivant :
+			</p>
+			<pre><code class='python'>
+a = 4
+b = 7
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme si vous saisissez dans la console "a==b" ?</p>
+			<hr>
+			<p>Il est possible d'utiliser aussi l'opérateur "différent de" !=</p>
+			<h4>À faire vous-même 23</h4>
+			<p>
+				Soit le programme suivant :
+			</p>
+			<pre><code class='python'>
+a = 4
+b = 7
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme si vous saisissez dans la console "a!=b" ?</p>
+			<hr>
+			<p>Notez aussi l'existence des opérateurs :</p>
+			<ul>
+				<li>"strictement inférieur à" &lt</li>
+				<li>"strictement supérieur à" &gt</li>
+				<li>"inférieur ou égal à" &lt= </li>
+				<li>"supérieur ou égal à" &gt=</li>
+			</ul>
+			<p>À chaque fois ces opérateurs sont True (vrai) ou False (faux).</p>
+			<h4>À faire vous-même 24</h4>
+			<p>
+				Soit le programme suivant :
+			</p>
+			<pre><code class='python'>
+a = 4
+b = 7
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme si vous saisissez dans la console "a&ltb" ?</p>
+			<hr>
+			<h3>Les conditions</h3>
+			<p>
+				Nous allons maintenant étudier une structure fondamentale en programmation le « si ...... alors.......sinon........».
+			</p>
+			<p>L'idée de base est la suivante :</p>
+			<pre><code>
+si expression:
+	suite_instruction1
+sinon:
+	suite_instruction2
+			</code></pre>
+			<p>Si "expression" est True alors "suite_instruction1" est exécuté et "suite_instruction2" est ignoré.</p>
+			<p>Sinon (sous-entendu que "expression" est False) "suite_instruction2" est exécuté et "suite_instruction1" est ignoré.</p>
+			<p>Notez l'indentation «suite_instruction1» et de « suite_instruction2»</p>
+			<h4>À faire vous-même 25</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+a = 4
+b = 7
+if a &lt b:
+	print("Je suis toto.");
+	print("Je n'aime pas titi.")
+else:
+	print("Je suis titi.")
+	print("Je n'aime pas toto.")
+print("En revanche, j'aime le Python.")
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme ?</p>
+			<p>Vérifiez votre hypothèse en testant le programme.</p>
+			<hr>
+			<h4>À faire vous-même 26</h4>
+			<p>
+				Écrire une fonction qui prend en paramètre un age. Si age est supérieur ou égal à 18 ans, la fonction devra renvoyer la chaîne de caractères "Bonjour, vous êtes majeur.". Si age est inférieur à 18 ans, la fonction devra renvoyer "Bonjour, tu es mineur."
+			</p>
+			<hr>
+			<h4>À faire vous-même 27</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+def annonce(num, prov, dest):
+	if dest != "0":
+		msg = f"le train n° {num} en provenance de {prov} et à destination de {dest}, entre en gare."
+	else:
+		msg = f"le train n° {num} en provenance de {prov} entre en gare. Ce train est terminus Triffouillis-les-Oies."
+	return msg
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme si vous saisissez dans la console "annonce("4557", "Paris", "Marseille")" ? Et si vous saisissez dans la console "annonce("5768", "Bonneville", "0")" ?  Vérifiez votre réponse en testant ce programme.</p>
+			<hr>
+			<h4>À faire vous-même 28</h4>
+			<p>Vous êtes gérant d'un magasin et vous désirez écrire un programme Python qui calculera automatiquement le montant de la facture des clients. Tout client qui achète au moins 5 fois le même article se voit octroyer une remise de 5 % (uniquement sur le montant de l'achat de cet article). Afin de simplifier le problème, on considère qu'un client n'achète qu'un seul type d'article.
+				Écrire une fonction qui prend en paramètre le prix unitaire de l'article et le nombre d'articles achetés. Cette fonction doit renvoyer le montant de la facture.</p>
+			<hr>
+			<h3>Le "ou" et le "et"</h3>
+			<p>Un if peut contenir plusieurs conditions, nous aurons alors une structure de la forme :</p>
+			<pre><code>
+si expression1 op_logique expression2:
+	suite_instruction1
+sinon:
+	suite_instruction2
+			</code></pre>
+			<p>« op_logique » étant un opérateur logique.</p>
+			<p>Nous allons étudier 2 opérateurs logiques : le "ou" (noté en Python "or") et le "et" (noté en Python "and").</p>
+			<p>Par exemple (expression1 or expression2) est vrai si expression1 est vraie et expression2 est vraie.</p>
+			<p>Autre exemple (expression1 and expression2) est faux si expression1 est vraie et expression2 est faux.</p>
+			<p>Les résultats peuvent être regroupés dans ce que l'on appelle une table de vérité :</p>
+			<table>
+				<caption>table de vérité pour le "ou"</caption>
+				<tr>
+					<th>expression1</th>
+					<th>expression2</th>
+					<th>expression1 or expression2</th>
+				</tr>
+				<tr>
+					<td>vrai</td>
+					<td>vrai</td>
+					<td>vrai</td>
+				</tr>
+				<tr>
+					<td>vrai</td>
+					<td>faux</td>
+					<td>vrai</td>
+				</tr>
+				<tr>
+					<td>faux</td>
+					<td>vrai</td>
+					<td>vrai</td>
+				</tr>
+				<tr>
+					<td>faux</td>
+					<td>faux</td>
+					<td>faux</td>
+				</tr>
+			</table>
+			<table>
+				<caption>table de vérité pour le "et"</caption>
+				<tr>
+					<th>expression1</th>
+					<th>expression2</th>
+					<th>expression1 and expression2</th>
+				</tr>
+				<tr>
+					<td>vrai</td>
+					<td>vrai</td>
+					<td>vrai</td>
+				</tr>
+				<tr>
+					<td>vrai</td>
+					<td>faux</td>
+					<td>faux</td>
+				</tr>
+				<tr>
+					<td>faux</td>
+					<td>vrai</td>
+					<td>faux</td>
+				</tr>
+				<tr>
+					<td>faux</td>
+					<td>faux</td>
+					<td>faux</td>
+				</tr>
+			</table>
+			<h4>À faire vous-même 29</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+a = 5
+b = 10
+if a &gt 5 and b == 10:
+	print ("Toto")
+else:
+	print("Titi")
+if a &gt 5 or b == 10:
+	print ("Tata")
+else:
+	print("Tutu")
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme ? Vérifiez votre réponse en testant ce programme.</p>
+			<hr>
+			<h3>La boucle while</h3>
+			<p>
+				La notion de boucle est fondamentale en informatique. Une boucle permet d'exécuter plusieurs fois des instructions qui ne sont présentes qu'une seule fois dans le code.
+			</p>
+			<p>La structure de la boucle while est la suivante :</p>
+			<pre><code>
+while expression:
+	instruction1
+	instruction2
+suite programme
+			</code></pre>
+			<p>Tant que l'expression s'évalue à "True", les instructions à l'intérieur du bloc (partie indentée) seront exécutées.</p>
+			<h4>À faire vous-même 30</h4>
+			<p>Soit le programme suivant :</p>
+			<pre><code class='python'>
+i = 0
+while i &lt 10:
+	print(f"i vaut : {i}")
+	i = i + 1
+print("C'est terminé.")
+			</code></pre>
+			<p>Quel est le résultat attendu après l'exécution de ce programme ?
+				Vérifiez votre réponse en testant le programme</p>
+			<hr>
+			<h4>À faire vous-même 31</h4>
+			<p>
+				 permettant de créer "un générateur automatique de punition" :
+			</p>
+			<p>Écrire une fonction qui prendra 2 paramètres : une chaîne de caractère et un nombre entier</p>
+			<p>Par exemple :</p>
+			<p>Si on passe comme paramètres à notre fonction : "Je ne dois pas discuter en classe" et 3</p>
+			<p>La fonction devra permettre d'afficher :</p>
+			<p>Je ne dois pas discuter en classe</p>
+			<p>Je ne dois pas discuter en classe</p>
+			<p>Je ne dois pas discuter en classe</p>
+			<hr>
+			<h4>À faire vous-même 32</h4>
+			<p>
+				Écrire une fonction permettant d'afficher une table de multiplication.
+				Cette fonction devra prendre en paramètre la table désirée.
+			</p>
+			<p>
+				Par exemple si l'on passe le paramètre 3 à la fonction, la fonction devra permettre d'afficher :
+			</p>
+			<p>1 x 3 = 3</p>
+			<p>2 x 3 = 6</p>
+			<p>...</p>
+			<p>...</p>
+			<p>10 x 3 = 30</p>
+			<hr>
+		</div>
+	</body>
+</html>

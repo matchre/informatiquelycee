@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>TCP/IP</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Internet</span>
+					<span class="navbar-brand">Protocoles TCP et IP</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+		<p>
+			Sur internet l'échange de données entre deux ordinateurs est basé sur deux protocoles : le protocole IP et le protocole TCP. Mais qu'est-ce qu'un protocole ?
+		</p>
+		<p>
+			Selon Wikipedia, dans le cas général : On nomme protocole les conventions qui facilitent une communication sans faire directement partie du sujet de la communication elle-même.
+			En électronique et en informatique (toujours selon Wikipedia) : un protocole de communication est un ensemble de contraintes permettant d'établir une communication entre deux entités (dans le cas qui nous intéresse 2 ordinateurs).
+		<p>
+			Il existe de nombreux protocoles qui permettent à deux ordinateurs de communiquer entre eux. Parmi ces nombreux protocoles, nous allons en étudier deux qui ont une importance fondamentale dans le fonctionnement d'internet :
+			le protocole IP et le protocole TCP (d'un point de vue technique, les protocoles TCP et IP sont au coeur d'internet. Ils sont tellement liés entre eux que l'on parle souvent de protocole TCP/IP).
+		</p>
+		<p>
+			Quand un ordinateur A "désire" envoyer des données à un ordinateur B, après quelques opérations qui ne seront pas abordées ici,
+			l'ordinateur A "utilise" le protocole TCP pour mettre en forme les données à envoyer.
+		</p>
+		<p>
+			Ensuite le protocole IP prend le relai et utilise les données mises en forme par le protocole TCP afin de créer des paquets des données.
+			Après quelques autres opérations qui ne seront non plus évoquées ici, les paquets de données pourront commencer leur voyage sur le réseau jusqu'à l'ordinateur B.
+			Il est important de bien comprendre que le protocole IP "encapsule" les données issues du protocole TCP afin de constituer des paquets de données.
+		</p>
+		<div class="centrer">
+		<img src="img/TCP_IP_1.jpg" />
+		</div>
+		<p>
+			Une fois arrivées à destination (ordinateur B), les données sont "désencapsulées" : on récupère les données TCP contenues dans les paquets afin de pouvoir les utiliser.
+		</p>
+		<div class="centrer">
+		<img src="img/TCP_IP_2.jpg" />
+		</div>
+		<p>
+			Le protocole IP s'occupe uniquement de faire arriver à destination les paquets en utilisant l'adresse IP de l'ordinateur de destination. Les adresses IP de l'ordinateur de départ (ordinateur A) et de l'ordinateur destination (ordinateur B) sont ajoutées aux paquets de données.
+		</p>
+		<div class="centrer">
+		<img src="img/TCP_IP_3.jpg" />
+		</div>
+		<p>
+			Le protocole TCP permet de s'assurer qu'un paquet est bien arrivé à destination. En effet quand l'ordinateur B reçoit un paquet de données en provenance de l'ordinateur A,
+			l'ordinateur B envoie un accusé de réception à l'ordinateur A (un peu dans le genre "OK, j'ai bien reçu le paquet"). Si l'ordinateur A ne reçoit pas cet accusé de réception en provenance de B, après un temps prédéfini, l'ordinateur A renverra le paquet de données vers l'ordinateur B.
+			L'envoi de donner se faisant rarement en une seule fois, l'ordinateur A, après avoir envoyé à l'ordinateur B un paquet de données, attendra l'accusé de réception en provenance de B avant d'envoyer le paquet de données suivant.
+		</p>
+		<p>
+			Nous pouvons donc résumer le processus d'envoi d'un paquet de données comme suit :
+		</p>
+		<div class="centrer">
+		<img src="img/TCP_IP_4.png" />
+		</div>
+		<p>Une fois l'accusé de réception reçu par l'ordinateur A, ce dernier envoi un deuxième paquet vers B, et ainsi de suite...(jusqu'au moment où toutes les données auront été transmises) </p>
+		<p>
+			À noter qu'il existe aussi le protocole UDP qui ressemble beaucoup au protocole TCP. La grande différence entre UDP et TCP est que le protocole UDP ne gère pas les accusés de réception. Les échanges de données avec UDP sont donc moins fiables qu'avec TCP (un paquet "perdu" est définitivement "perdu" et ne sera pas renvoyé) mais beaucoup plus rapides (puisqu' il n'y a pas d'accusé de réception à transmettre).
+			UDP est donc très souvent utilisé pour les échanges de données qui doivent être rapides, mais où la perte d'un paquet de données de temps en temps n'est pas un gros problème (par exemple le streaming vidéo).
+		</p>
+		<p>Téléchargement de cette page pour une utilisation sans ordinateur :</p>
+		<a href="pdf/snt_internet_tcpip.pdf" target="_blank"><img src="img/tel_pdf.png"/></a>
+		<a href="pdf/snt_internet_tcpip.odt" target="_blank"><img src="img/odt.jpg"/></a>
+</div>
+
+</html>

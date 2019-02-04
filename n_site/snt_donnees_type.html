@@ -1,0 +1,224 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Différents types de données structurées</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Les données structurées et leur traitement</span>
+					<span class="navbar-brand">Différents types de données structurées</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+		<p>On trouve énormément de données sur internet. Une partie de ces données sont publiques, par exemple le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a> récence un grand nombre de données publiques. Ces données sont librement réutilisables.
+		</p>
+		<h4>À faire vous-même 1</h4>
+		<p>Afin de découvrir ce qu'est "l'open data", allez sur le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a>. En haut et à gauche de la page d'acceuil, cliquez sur "Découvrir L’OpenData". Résumez en quelques lignes ce que vous aurez appris en lisant cette page.</p>
+		<hr>
+		<h4>À faire vous-même 2</h4>
+		<p>Explorez pendant quelques minutes le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a>. Recherchez les données "Opérations coordonnées par les CROSS" à l'aide du moteur de recherche proposé par le site</p>
+		<p>Vous pouvez constater que ces données sont au format csv.</p>
+		<hr>
+		<p>Le format csv est très courant sur internet, nous allons l'étudier en premier.</p>
+		<p>Voici ce que nous dit Wikipédia sur le format CSV :</p>
+		<p><i>Comma-separated values, connu sous le sigle CSV, est un format informatique ouvert représentant des données tabulaires sous forme de valeurs séparées par des virgules.</i></p>
+		<p><i>Un fichier CSV est un fichier texte, par opposition aux formats dits « binaires ». Chaque ligne du texte correspond à une ligne du tableau et les virgules correspondent aux séparations entre les colonnes. Les portions de texte séparées par une virgule correspondent ainsi aux contenus des cellules du tableau.</i></p>
+		<p>Voici un exemple du contenu d'un fichier CSV :</p>
+		<pre><code>
+nom,prenom,date_naissance
+Durand,Jean-Pierre,23/05/1985
+Dupont,Christophe,15/12/1967
+Terta,Henry,12/06/1978
+		</code></pre>
+		<p>Je pense qu'il est évident pour vous que nous avons ici 3 personnes :</p>
+		<ul>
+				<li>Jean-Pierre Durand qui est né le 23/05/1985</li>
+				<li>Christophe Dupont qui est né le 15/12/1967</li>
+				<li>Henry Terta qui est né le 12/06/1978</li>
+		</ul>
+		<p>
+			"nom", "prenom" et "date_naissance" sont appelés des descripteurs  alors que, par exemple, "Durand", "Dupont" et "Terta" sont les valeurs du descripteur "nom".
+		</p>
+		<h4>À faire vous-même 3</h4>
+		<p>
+			Donnez les différentes valeurs du descripteur "date_naissance"
+		</p>
+		<p>ATTENTION :</p>
+		<p>La virgule est un standard pour les données anglo-saxonnes, mais pas pour les données aux normes françaises. En effet, en français, la virgule est le séparateur des chiffres décimaux. Il serait impossible de  différencier les virgules des décimaux et les virgules de séparation des informations. C’est pourquoi on utilise un autre séparateur : le point-virgule (;). Dans certains cas cela peut engendrer quelques problèmes, vous devrez donc rester vigilants sur le type de séparateur utilisé.</p>
+		<p></p>
+		<p>Les tableurs, tels que "Calc" (Libre Office), sont normalement capables de lire les fichiers au format CSV. J'ai précisé "normalement" car certains tableurs gèrent mal le séparateur CSV "point-virgule" et le séparateur des chiffres décimaux "virgule".</p>
+		<h4>À faire vous-même 4</h4>
+		<p>Après avoir téléchargé le fichier <a href="asset/ident_pointVirgule.csv">ident_pointVirgule.csv</a>, ouvrez ce dernier à l'aide d'un tableur.</p>
+		<p>Si par hasard votre tableur ne gère pas correctement le fichier avec le séparateur "point-virgule", voici une version "séparateur virgule" du fichier : <a href="asset/ident_virgule.csv">ident_virgule.csv</a>
+		</p>
+		<p>Dans la suite, gardez toujours cet éventuel problème à l'esprit (surtout avec des données "made in France")</p>
+		<hr>
+		<p>Vous devriez obtenir ceci :</p>
+		<div class="centrer">
+		<img src="img/snt_donnee_1.png">
+		</div>
+		<p>Vous pouvez constater que les données sont bien "rangées" dans un tableau avec des lignes et des colonnes (voilà pourquoi on parle de données tabulaires.</p>
+		<p>Il est possible de trouver sur le web des données beaucoup plus intéressantes à traiter que celles contenues dans le fichier "ident_pointVirgule.csv" (ou "ident_virgule.csv"). Par exemple, le site <a href="http://sql.sh/736-base-donnees-villes-francaises" target="_blank">sql.sh</a>, propose un fichier csv contenant des informations sur l'ensemble des communes françaises.</p>
+		<h4>À faire vous-même 5</h4>
+		<p>Ouvrez le fichier <a href="asset/villes_point_virgule.csv">ville_point_virgule.csv</a> à l'aide d'un tableur (c’est une version légèrement modifiée de celle disponible sur le site sql.sh, j’y ai notamment ajouté des entêtes). En cas de problème avec votre tableur, voici une version "séparateur virgule" : <a href="asset/villes_virgule.csv">ville_virgule.csv</a> (attention le séparateur "décimal" est ici le point)</p>
+		<hr>
+		<p>Comme vous pouvez le constater, nous avons 12 colonnes (et 36700 lignes si on ne compte pas l'entête !), voici la signification de ces colonnes :</p>
+		<ul>
+				<li>dep : numéro de département</li>
+				<li>nom : nom de la commune</li>
+				<li>cp : code postal</li>
+				<li>nb_hab_2010 : nombre d'habitants en 2010</li>
+				<li>nb_hab_1999 : nombre d'habitants en 1999</li>
+				<li>nb_hab_2012 : nombre d'habitants en 2012 (approximatif)</li>
+				<li>dens : densité de la population (habitants par kilomètre carré)</li>
+				<li>surf : superficie de la commune en kilomètre carré</li>
+				<li>long : longitude</li>
+				<li>lat : latitude</li>
+				<li>alt_min : altitude minimale de la commune (il manque des données pour certains territoires d'outre-mer)</li>
+				<li>alt_max : altitude maximale de la commune (il manque des données pour certains territoires d'outre-mer)</li>
+		</ul>
+		<h4>À faire vous-même 6</h4>
+		<p>En vous aidant du fichier ouvert dans le "À faire vous-même 4", déterminez l'altitude maximale et l'altitude minimale de votre commune.</p>
+		<p>Autre format de données très courant sur le "web", le JSON (JavaScript Object Notation). Le JSON fonctionne avec un système de paire clé/valeur.</p>
+		<p>Un "objet" est encadré par des accolades :</p>
+		<pre><code>
+{cle_1 : val_1, cle_2 : val_2, cle_3 : val_3}
+		</code></pre>
+		<p>souvent, pour une question de lisibilité, on écrira :</p>
+		<pre><code>
+{
+cle_1 : val_1,
+cle_2 : val_2,
+cle_3 : val_3
+}
+		</code></pre>
+		<p>Un fichier au format JSON peut regrouper un grand nombre d'objets :</p>
+		<pre><code class="javascript">
+[{
+"nom" : "Durand",
+"prenom" : "Jean-Pierre",
+"date_naissance" : "23/05/1985"
+},
+{
+"nom" : "Dupont",
+"prenom" : "Christophe",
+"date_naissance" : "15/12/1967"
+},
+{
+"nom" : "Terta",
+"prenom" : "Henry",
+"date_naissance" : "12/06/1978"
+}]
+		</code></pre>
+		<p>Ci-dessus, nous avons une liste (délimité par [  ]) contenant des objets.</p>
+		<p>La "valeur" d'une paire "clé/valeur" peut être une liste  :</p>
+		<pre><code class="javascript">
+{
+"nom" : "Durand",
+"prenom" : "Jean-Pierre",
+"date_naissance" : "23/05/1985"
+"sport" : ["tennis", "football", "pétanque"]
+}
+		</code></pre>
+		<p>ou même un autre objet :</p>
+		<pre><code class="javascript">
+{
+"nom" : "Durand",
+"prenom" : "Jean-Pierre",
+"date_naissance" : "23/05/1985"
+"adresse" : {"num":6, "rue":"impasse du rossignol", "ville":"Nogent-le-Rotrou", "cp":"28400"}
+}
+		 </code></pre>
+		<p>Comme vous pouvez le constater, il est possible d'obtenir des structures de données très complexes avec le format JSON.</p>
+		<h4>À faire vous-même 7</h4>
+		<p>Téléchargez le fichier <a href="asset/ident.json">ident.json</a> et ouvrez-le à l'aide d'un éditeur de texte.</p>
+		<hr>
+		<p>De nombreux sites web proposent des services basés sur des API (Application Programming Interface). Ces sites sont capables de fournir des données aux formats JSON sur "simple demande". Souvent, ces "demandes" sont effectuées par l'intermédiaire d'une url (si vous avez besoin de vous rafraichir la mémoire à propos de la notion d'url, n'hésitez pas à reconsulter ce <a href="snt_web_url.html" target="_blank">document</a>).</p>
+		<p>Nous allons illustrer ce propos en utilisant l'API d'un site qui fournit des informations météo au format JSON. Vous trouverez ce site à l'adresse suivante : <a href="http://openweathermap.org/api" target="_blank">openweathermap.org/api</a></p>
+		<p>Pour profiter de ce service, il est nécessaire d'obtenir une clé (API key). Cette clé vous sera fournie par votre enseignant.</p>
+		<h4>À faire vous-même 8</h4>
+		<p>Ouvrez votre navigateur préféré et copiez-collez l'url suivante dans la barre d'adresse du navigateur :</p>
+		<pre><code>
+http://api.openweathermap.org/data/2.5/weather?q=bonneville,fr&lang=fr&units=metric&APPID=XXXXXXXXXXXXX
+		</code></pre>
+		<p>ATTENTION : il faut remplacer les "X" par la clé (API key) qui vous aura été fournie</p>
+		<hr>
+		<p>Au lieu d'obtenir, comme d'habitude, une page web, vous devriez obtenir uniquement quelque chose qui ressemblera à ceci :</p>
+		<pre><code>
+{"coord":{"lon":6.41,"lat":46.08},"weather":[{"id":800,"main":"Clear","description":"ciel dégagé","icon":"01d"}],"base":"stations","main":{"temp":12.31,"pressure":1026,"humidity":58,"temp_min":11,"temp_max":14},"visibility":10000,"wind":{"speed":2.6,"deg":200},"clouds":{"all":0},"dt":1540373400,"sys":{"type":1,"id":5570,"message":0.0046,"country":"FR","sunrise":1540361039,"sunset":1540398737},"id":3031679,"name":"Bonneville","cod":200}
+		</code></pre>
+		<p>Comme les données sont réactualisées relativement souvent, vous n'obtiendrez pas la même chose que moi !</p>
+		<p>Avec une simple url, le site open weather renvoie des informations météo sous forme de données JSON.</p>
+		<p>Détaillons l'url :</p>
+		<pre><code>
+http://api.openweathermap.org/data/2.5/weather
+		</code></pre>
+		<p>Cette partie de l'url ne changera pas (sauf si vous désirez autre chose que les conditions météo actuelles, à ce moment-là, il faudra remplacer "weather" par autre chose (consulter le site open weather pour plus d'informations)).</p>
+		<pre><code>
+?q=bonneville,fr&lang=fr&units=metric&APPID=XXXXXXXXXXXXX
+		</code></pre>
+		<p>À partir du point d'interrogation, vous devez renseigner les différents paramètres qui permettront à open weather de vous renvoyer les bonnes informations. Ces paramètres sont séparés par le caractère "&".</p>
+		<ul>
+				<li>"q=bonneville,fr" le paramètre "q" correspond au nom de la ville suivi du pays (fr dans notre cas)</li>
+				<li>"lang=fr" la langue utilisée sera le français</li>
+				<li>"units=metric" on désire avoir les longueurs en mètres (et les vitesses en mètre par seconde).</li>
+				<li>"APPID" correspond à l'API key</li>
+		</ul>
+		<p>Il est possible de construire des requêtes beaucoup plus complexes, encore une fois, veuillez consulter le site open weather pour plus d'informations.</p>
+		<p>Intéressons-nous maintenant aux données JSON renvoyées (nous n'allons pas tout détailler) :</p>
+		<ul>
+				<li>"coord":{"lon":6.41,"lat":46.08} latitude et longitude du lieu</li>
+				<li>"weather":[{"id":800,"main":"Clear","description":"ensoleillé","icon":"01d"}] "weather" correspond à un tableau qui contient un seul objet.</li>
+				<li>"main":{"temp":17.35,"pressure":1016,"humidity":59,"temp_min":16,"temp_max":19} "main" correspond à un objet qui contient différents types d'informations</li>
+				<li>"dt":1443975257 "dt" nous donne l'heure et la date de diffusion du bulletin au format "timestamp" (voir en bas de cette page pour plus d'informations sur le format "timestamp")</li>
+				<li>"sunrise":1443937018,"sunset":144397849 : respectivement heure de lever et de coucher du soleil au format timestamp</li>
+		</ul>
+		<p>Dernier format de données que nous verrons aujourd'hui le geoJSON. Le geoJSON est un format (<a href="http://geojson.org/" target="_blank">http://geojson.org/</a>) qui permet d'encoder des données à "caractère géographique". Voici ce que dit Wikipédia à propos de ce format :</p>
+		<blockquote>GeoJSON (de l'anglais Geographic JSON, signifiant littéralement JSON géographique) est un format ouvert d'encodage d'ensemble de données géospatiales simples utilisant la norme JSON (JavaScript Object Notation). Il permet de décrire des données de type point, ligne, chaîne de caractères, polygone, ainsi que des ensembles et sous-ensembles de ces types de données et d'y ajouter des attributs d'information qui ne sont pas spatiale. Le format GeoJSON, contrairement à la majorité des standards de systèmes d'informations géographiques, n'est pas écrit par l'Open Geospatial Consortium, mais par un groupe de travail de développeurs au travers d'internet.</blockquote>
+		<p>Comme indiqué dans Wikipédia, le geoJSON est avant tout du JSON, nous retrouverons donc les mêmes caractéristiques que le JSON (système de clé/valeur).</p>
+		<h4>À faire vous-même 9</h4>
+		<p>Dans la barre d'adresse de votre navigateur, tapez l'adresse suivante :</p>
+		<pre><code>
+http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson
+		</code></pre>
+		<p>Vous devriez obtenir quelque chose ressemblant à ceci :</p>
+		<pre><code class="javascript">
+			{"type":"FeatureCollection","metadata":{"generated":1540378300000,"url":"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson","title":"USGS Earthquakes","status":200,"api":"1.5.8","count":11084},"features":[{"type":"Feature","properties":{"mag":1.2,"place":"50km WSW of Beatty, Nevada","time":1540376291890,"updated":1540376429010,"tz":-480,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/nn00662538","detail":"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=nn00662538&format=geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"automatic","tsunami":0,"sig":22,"net":"nn","code":"00662538","ids":",nn00662538,","sources":",nn,","types":",geoserve,origin,phase-data,","nst":25,"dmin":0.206,"rms":0.14,"gap":193.7,"magType":"ml","type":"earthquake","title":"M 1.2 - 50km WSW of Beatty, Nevada"},"geometry":{"type":"Point","coordinates":[-117.2687,36.701,6.1]},"id":"nn00662538"},
+			{"type":"Feature","properties":{"mag":0.33,"place":"26km ENE of Coso Junction, CA","time":1540375448150,"updated":1540375659789,"tz":-480,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/ci37402802","detail":"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ci37402802&format=geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"automatic","tsunami":0,"sig":2,"net":"ci","code":"37402802","ids":",ci37402802,","sources":",ci,","types":",geoserve,nearby-cities,origin,phase-data,scitech-link,","nst":8,"dmin":0.09902,"rms":0.08,"gap":87,"magType":"ml","type":"earthquake","title":"M 0.3 - 26km ENE of Coso Junction, CA"},"geometry":{"type":"Point","coordinates":[-117.6603333,36.0935,3.59]},"id":"ci37402802"},
+			{"type":"Feature","properties":{"mag":4,"place":"129km W of Aksu, China","time":1540375112280,"updated":1540376596040,"tz":480,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/us1000hgfr","detail":"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us1000hgfr&format=geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"reviewed","tsunami":0,"sig":246,"net":"us","code":"1000hgfr","ids":",us1000hgfr,","sources":",us,","types":",geoserve,origin,phase-data,","nst":null,"dmin":1.028,"rms":1.2,"gap":76,"magType":"mb","type":"earthquake","title":"M 4.0 - 129km W of Aksu, China"},"geometry":{"type":"Point","coordinates":[78.7329,40.9744,10]},"id":"us1000hgfr"},
+			{"type":"Feature","properties":{"mag":2.7,"place":"74km SW of Kaktovik, Alaska","time":1540374704504,"updated":1540375574040,"tz":-540,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/ak20289736","detail":"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ak20289736&format=geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"automatic","tsunami":0,"sig":112,"net":"ak","code":"20289736","ids":",ak20289736,us1000hgfn,","sources":",ak,us,","types":",geoserve,origin,phase-data,","nst":null,"dmin":null,"rms":0.93,"gap":null,"magType":"ml","type":"earthquake","title":"M 2.7 - 74km SW of Kaktovik, Alaska"},"geometry":{"type":"Point","coordinates":[-145.039,69.6714,11.9]},"id":"ak20289736"},
+			{"type":"Feature","properties":{"mag":2.1,"place":"102km S of King Salmon, Alaska","time":1540374255100,"updated":1540374574201,"tz":-540,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/ak20289733","detail":"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ak20289733&format=geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"automatic","tsunami":0,"sig":68,"net":"ak","code":"20289733","ids":",ak20289733,","sources":",ak,","types":",geoserve,origin,","nst":null,"dmin":null,"rms":0.51,"gap":null,"magType":"ml","type":"earthquake","title":"M 2.1 - 102km S of King Salmon, Alaska"},"geometry":{"type":"Point","coordinates":[-156.5171,57.7691,139.9]},"id":"ak20289733"},
+			{"type":"Feature","properties":{"mag":0.31,"place":"6km NW of The Geysers, CA","time":1540374181920,"updated":1540375082963,"tz":-480,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/nc73101451","detail":"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=nc73101451&format=geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"automatic","tsunami":0,"sig":1,"net":"nc","code":"73101451","ids":",nc73101451,","sources":",nc,","types":",geoserve,nearby-cities,origin,phase-data,scitech-link,","nst":12,"dmin":0.009156,"rms":0.04,"gap":74,"magType":"md","type":"earthquake","title":"M 0.3 - 6km NW of The Geysers, CA"},"geometry":{"type":"Point","coordinates":[-122.8178329,38.8111649,2.38]},"id":"nc73101451"},
+			{"type":"Feature","properties":{"mag":0.9,"place":"8km NNE of Borrego Springs, CA","time":1540372372650,"updated":1540372593471,"tz":-480,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/ci37402794","detail":"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ci37402794&format=geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"automatic","tsunami":0,"sig":12,"net":"ci","code":"37402794","ids":",ci37402794,","sources":",ci,","types":",geoserve,nearby-cities,origin,phase-data,scitech-link,","nst":30,"dmin":0.08412,"rms":0.23,"gap":123,"magType":"ml","type":"earthquake","title":"M 0.9 - 8km NNE of Borrego Springs, CA"},"geometry":{"type":"Point","coordinates":[-116.3416667,33.3238333,9.83]},"id":"ci37402794"},
+			...
+		 </code></pre>
+		<hr>
+		<p>Le site "earthquake.usgs.gov", comme le site "http://openweathermap.org/", propose une API qui renvoie des données à partir d'une simple url. Le site "earthquake.usgs.gov" renvoie des données au format geoJSON (c'est donc du JSON), ces données contiennent des informations sur les tremblements de terre détectés dans le monde sur une période de 30 jours. Le site vous propose différentes options pour la requête, vous trouverez une description complète de ces options <a href="http://earthquake.usgs.gov/fdsnws/event/1/" target="_blank">ici</a></p>
+		<h4>À faire vous-même 10</h4>
+		<p>En vous aidant de la documentation présente sur le site <a href="http://earthquake.usgs.gov/fdsnws/event/1/" target="_blank">http://earthquake.usgs.gov</a>, écrivez une requête sous forme d'url qui permettra d'obtenir des données (au format geoJSON) sur les tremblements de terre, d'une magnitude supérieure à 5, ayant eu lieu ces 30 derniers jours partout dans le monde.</p>
+		<p>Testez votre requête en la copiant dans la barre d'adresse de votre navigateur. Une fois les données obtenues, étudiez-les afin de comprendre la structure de ces données.</p>
+		<p>ATTENTION : les dates et les heures sont fournies au format "timestamp". Le "timestamp" désigne le nombre de secondes écoulé depuis le 1er janvier 1970 à minuit UTC précise. Au lieu de donner une date et une heure pour un événement donné, il est possible de donner son "timestamp". Par exemple, au lieu de dire l'événement A à eu lieu le 24 octobre 2018 à 13h 11 minutes et 10 secondes, on pourra dire que l'événement A à pour "timestamp"
+			1540379470 (durée qui s'est écoulé en seconde entre le 1er janvier 1970 à minuit UTC et le 24 octobre 2018 à 13h 11 minutes et 10 secondes). Vous trouverez un convertisseur de timestamp sur ce <a href="http://www.timestamp.fr/?">site</a>. Attention, dans le JSON renvoyé par le site "earthquake.usgs.gov"
+			le timestamp est donné en milliseconde, il est donc nécessaire de diviser par 1000 la valeur que vous allez trouver dans le JSON (et garder uniquement la partie entière du résultat de votre division).
+		<hr>
+		</div>
+</html>

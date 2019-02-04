@@ -1,0 +1,156 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Réseaux sociaux et graphes</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Les réseaux sociaux</span>
+					<span class="navbar-brand">Réseaux sociaux et graphes</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Imaginez un réseau social ayant 6 abonnés (A, B, C, D, E et F) où :
+			</p>
+			<ul>
+				<li>
+					A est ami avec B, C et D
+				</li>
+				<li>
+					B est ami avec A et D
+				</li>
+				<li>
+					C est ami avec A, E et D
+				</li>
+				<li>
+					D est ami avec tous les autres abonnés
+				</li>
+				<li>
+					E est ami avec C, D et F
+				</li>
+				<li>
+					F est ami avec E et D
+				</li>
+			</ul>
+			<p>
+				La description de ce réseau social, malgré son faible nombre d'abonnés, est déjà quelque peu rébarbative, alors imaginez cette même description avec un réseau social comportant des millions d'abonnés !
+			</p>
+			<p>
+				Il existe un moyen plus "visuel" pour représenter ce réseau social : on peut représenter chaque abonné par un cercle (avec le nom de l'abonné situé dans le cercle) et chaque relation "X est ami avec Y" par un segment de droite reliant X et Y ("X est ami avec Y" et "Y est ami avec X" étant représenté par le même segment de droite).
+			</p>
+			<p>
+				Voici ce que cela donne avec le réseau social décrit ci-dessus :
+			</p>
+			<div class="centrer">
+				<img src="img/graphe.png" alt="graphe 1"/>
+				<figcaption>graphe 1</figcaption>
+			</div>
+			<p>
+				Ce genre de figure s'appelle un graphe. Les graphes sont des objets mathématiques très utilisés, notamment en informatique. Les cercles sont appelés des sommets et les segments de droites des arêtes.
+			</p>
+			<h4>À faire vous-même 1</h4>
+			<p>
+				Construisez un graphe de réseau social à partir des informations suivantes :
+			</p>
+			<ul>
+				<li>
+					A est ami avec B et E
+				</li>
+				<li>
+					B est ami avec A et C
+				</li>
+				<li>
+					C est ami avec B,F et D
+				</li>
+				<li>
+					D est ami avec C,F et E
+				</li>
+				<li>
+					E est ami avec A,D et F
+				</li>
+				<li>
+					F est ami avec C, D et E
+				</li>
+			</ul>
+			<hr />
+			<p>
+				Voici quelques définitions sur les graphes :
+			</p>
+			<p>
+			<strong>chaîne : </strong>Dans un graphe, une chaîne reliant un sommet x à un sommet y est définie par une suite finie d'arêtes consécutives, reliant x à y.
+			</p>
+			<p>
+				exemple : Dans le graphe donné ci-dessus (graphe 1), A-D-E-C est une chaîne
+			</p>
+			<p>
+				<strong>distance entre 2 sommets : </strong> La distance entre deux sommets d'un graphe est le nombre minimum d'arêtes d'une chaîne allant de l'un à l'autre.
+			</p>
+			<p>
+				exemple : La distance entre le sommet A (graphe 1) et le sommet F est de 2 (chaîne A-D-F). ATTENTION : on parle bien du nombre minimum d'arêtes, A-D-E-F est aussi une chaîne entre A et F mais dans ce cas, nous avons 3 arêtes.
+			</p>
+			<p>
+				<strong>écartement : </strong>L'écartement d'un sommet est la distance maximale existant entre ce sommet et les autres sommets du graphe.
+			</p>
+			<p>
+				exemple 1 : Toujours dans le graphe 1 : distance (A-B) = 1 ; distance (A-C) = 1 ; distance (A-D) = 1 ; distance (A-E) = 2 ; distance (A-F) = 2 ;
+				nous pouvons donc dire que la distance maximale existant entre le sommet A et les autres sommets du graphe est de 2 (distance (A-E) et distance (A-F)). Nous pouvons donc dire que l'écartement de A est de 2.
+			</p>
+			<p>
+				exemple 2 : distance (D-A) = 1 ; distance (D-B) = 1 ; distance (D-C) = 1 ; distance (D-E) = 1 ; distance (D-F) = 1 ; nous pouvons donc dire que l'écartement de D est de 1.
+			</p>
+			<p>
+				<strong>centre : </strong> On appelle centre d'un graphe, le sommet d'écartement minimal
+(le centre n'est pas nécessairement unique).
+			</p>
+			<p>
+				exemple : Dans le graphe 1 tous les sommets ont un écartement de 2 à l'exception du sommet D qui a un écartement de 1, nous pouvons donc affirmer que le centre du graphe 1 est le sommet D
+			</p>
+			<p>
+				<strong>rayon</strong> : On appelle rayon d'un graphe G, l'écartement d'un centre de G.
+			</p>
+			<p>
+				exemple : D a un écartement de 1, c'est le centre du graphe 1, nous pouvons donc dire que le rayon du graphe 1 est de 1.
+			</p>
+			<p>
+				<strong>diamètre : </strong>On appelle diamètre d'un graphe G, la distance maximale entre deux sommets du graphe G.
+			</p>
+			<p>
+				exemple : Dans le graphe 1 la distance maximale entre 2 sommets est de 2, nous pouvons donc dire que le diamètre du graphe est de 2.
+			</p>
+			<h4>À faire vous-même 2</h4>
+			<p>
+				Soit le graphe suivant :
+			</p>
+			<div class="centrer">
+				<img src="img/graphe2.png" alt="graphe 2"/>
+				<figcaption>graphe 2</figcaption>
+			</div>
+			<p>
+				Déterminez le (ou les) centre(s) du graphe 2, en déduire le rayon du graphe 2. Déterminez le diamètre du graphe 2.
+			</p>
+			<p>Téléchargement de cette page pour une utilisation sans ordinateur :</p>
+			<a href="pdf/snt_rs_graphe.pdf" target="_blank"><img src="img/tel_pdf.png"/></a>
+			<a href="pdf/snt_rs_graphe.odt" target="_blank"><img src="img/odt.jpg"/></a>
+		</div>
+	</body>
+</html>

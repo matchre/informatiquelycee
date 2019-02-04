@@ -1,0 +1,222 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Notion de nombre flottant</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Notion de nombre flottant</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+				<p>
+					Nous avons vu comment sont représentés les entiers relatifs au sein d'un ordinateur. Nous allons maintenant voir comment sont représentés les nombres réels, appelés ici nombres flottants.
+				</p>
+				<h3>
+					Représentation de la partie décimale d'un nombre
+				</h3>
+				<p>
+					Partons tout de suite sur un exemple : comment représenter 5,1875 en binaire ?
+				</p>
+				<p>
+					Il nous faut déjà représenter 5, ça, pas de problème : 101
+				</p>
+				<p>
+					Comment représenter le ",1875" ?
+				</p>
+				<ul>
+					<li>
+						on multiplie 0,1875 par 2 : 0,1875 x 2 = 0,375. On obtient 0,375 que l'on écrira 0 + 0,375
+					</li>
+					<li>
+						on multiplie 0,375 par 2 : 0,375 x 2 = 0,75. On obtient 0,75 que l'on écrira 0 + 0,75
+					</li>
+					<li>
+						on multiplie 0,75 par 2 : 0,75 x 2 = 1,5. On obtient 1,5 que l'on écrira 1 + 0,5 (quand le résultat de la multiplication par 2 est supérieur à 1, on garde uniquement la partie décimale)
+					</li>
+					<li>
+						on multiplie 0,5 par 2 : 0,5 x 2 = 1,0. On obtient 1,0 que l'on écrira 1 + 0,0 (la partie décimale est à 0, on arrête le processus)
+					</li>
+				</ul>
+				<p>
+					On obtient une succession de "a + 0,b" ("0 + 0,375", "0 + 0,75", "1 + 0,5" et "1 + 0,0"). Il suffit maintenant de "prendre" tous les "a" (dans l'ordre de leur obtention) afin d'obtenir la partie décimale de notre nombre : 0011
+				</p>
+				<p>
+					Nous avons (101,0011)<sub>2</sub> qui est la représentation binaire de (5,1875)<sub>10</sub>
+				</p>
+				<h4>À faire vous-même 1</h4>
+				<p>Trouvez la représentation binaire de (4,125)<sub>10</sub></p>
+				<hr>
+				<p>
+					Il est possible de retrouver une représentation décimale en base 10 à partir d'une représentation en binaire.
+				</p>
+				<p>
+					Partons de (100,0101)<sub>2</sub>
+				</p>
+				<p>
+					Pas de problème pour la partie entière, nous obtenons "4". Pour la partie décimale nous devons écrire : 0 x 2<sup>-1</sup> + 1 x 2<sup>-2</sup> + 0 x 2<sup>-3</sup> + 1 x 2<sup>-4</sup> = 0,3125. Nous avons donc (4,3125)<sub>10</sub>
+				</p>
+				<h4>À faire vous-même 2</h4>
+				<p>Trouvez la représentation décimale de (100,001)<sub>2</sub></p>
+				<hr>
+				<h4>À faire vous-même 3</h4>
+				<p>Trouvez la représentation binaire de (0,1)<sub>10</sub></p>
+				<p>
+					Que remarquez-vous ?
+				</p>
+				<hr>
+				<p>
+					Dans l'exemple ci-dessus, nous remarquons que le processus de "conversion" ne s'arrête pas, nous obtenons : "0,000110001100011...", le schéma "00011" se répète à "l'infini". Cette caractéristique est très importante, nous aurons l'occasion de revenir là-dessus plus tard.
+				</p>
+				<p>
+					En base dix, il est possible d'écrire les très grands nombres et les très petits nombres grâce aux "puissances de dix" (exemples "6,02.10<sup>23</sup>" ou "6,67.10<sup>-11</sup>").
+					Il est possible de faire exactement la même chose avec une représentation binaire, puisque nous sommes en base 2, nous utiliserons des "puissances de deux" à la place des "puissances dix" (exemple "101,1101.2<sup>10</sup>").
+				</p>
+				<p>
+					Pour passer d'une écriture sans "puissance de deux" à une écriture avec "puissance de deux", il suffit décaler la virgule : "1101,1001 = 1,011001.2<sup>11</sup>" pour passer de "1101,1001" à "1,1011001" nous avons décalé la virgule de 3 rangs vers la gauche d'où le "2<sup>11</sup>" (attention de ne pas oublier que nous
+					travaillons en base 2 le "11" correspond bien à un décalage de 3 rangs de la virgule).
+				</p>
+				<p>
+					Si l'on désire décaler la virgule vers la gauche, il va être nécessaire d'utiliser des "puissances de deux négatives" "0,0110 = 1,10.2<sup>-10</sup>", nous décalons la virgule de 2 rangs vers la droite, d'où le "-10"
+				</p>
+				<h3>
+					Représentation des flottants dans un ordinateur
+				</h3>
+				<p>
+					La norme IEEE 754 est la norme la plus employée pour la représentation des nombres à virgule flottante dans le domaine informatique. La première version de cette norme date de 1985.
+				</p>
+				<p>
+					Nous allons étudier deux formats associés à cette norme : le format dit "simple précision" et le format dit "double précision". Le format "simple précision" utilise 32 bits pour écrire un nombre flottant alors que le format "double précision" utilise 64 bits. Dans la suite nous travaillerons principalement sur le format 32 bits.
+				</p>
+				<p>
+					Que cela soit en simple précision ou en double précision, la norme IEEE754 utilise :
+				</p>
+				<ul>
+					<li>
+						1 bit de signe (1 si le nombre est négatif et 0 si le nombre est positif)
+					</li>
+					<li>
+						des bits consacrés à l'exposant (8 bits pour la simple précision et 11 bits pour la double précision)
+					</li>
+					<li>
+						des bits consacrés à la mantisse (23 bits pour la simple précision et 52 bits pour la double précision)
+					</li>
+				</ul>
+				<img src="img/nsi_flot.png">
+				<p>
+					Nous pouvons vérifier que l'on a bien 1 + 8 + 23 = 32 bits pour la simple précision et 1 + 11 + 52 = 64 bits pour la double précision.
+				</p>
+				<p>
+					Pour écrire un nombre flottant en respectant la norme IEEE754, il est nécessaire de commencer par écrire le nombre sous la forme 1,XXXXX.2<sup>e</sup>(avec e l'exposant), il faut obligatoirement qu'il y ait un seul chiffre à gauche de la virgule et il faut que ce chiffre soit un "1". Par exemple le nombre "1010,11001" devra être écrit "1,01011001.2<sup>11</sup>".
+					Autre exemple, "0,00001001" devra être écrit "1,001.2<sup>-101</sup>".
+				</p>
+				<p>
+					La partie "XXXXXX" de "1,XXXXX.2<sup>e</sup>" constitue la mantisse (dans notre exemple "1010,11001" la mantisse est "01011001"). Comme la mantisse comporte 23 bits en simple précision, il faudra compléter avec le nombre de zéro nécessaire afin d'atteindre les 23 bits (si nous avons "01011001", il faudra ajouter 23 - 8 = 15 zéros à droite, ce qui donnera en fin de compte "01011001000000000000000" )
+				</p>
+				<p>
+					Notre première intuition serait de dire que la partie "exposant" correspond simplement au "e" de "1,XXXXX.2<sup>e</sup>" (dans notre exemple "1010,11001", nous aurions "11"). En faite, c'est un peu plus compliqué que cela. En effet, comment représenter les exposants négatifs ? Aucun bit pour le signe de l'exposant n'a été prévu dans le norme IEEE754, une autre solution a été choisie :
+				</p>
+				<p>
+					Pour le format simple précision, 8 bits sont consacrés à l'exposant, il est donc possible de représenter 256 valeurs, nous allons pouvoir représenter des exposants
+					compris entre (-126)<sub>10</sub> et (+127)<sub>10</sub> (les valeurs -127 et +128 sont des valeurs réservées, nous n'aborderons pas ce sujet ici).
+					Pour avoir des valeurs uniquement positives, il va falloir procéder à un décalage : ajouter systématiquement 127 à la valeur de l'exposant.
+					Prenons tout de suite un exemple (dans la suite, afin de simplifier les choses nous commencerons par écrire les exposants en base 10 avant de les passer en base 2 une fois le décalage effectué) :
+				</p>
+				<p>
+					Repartons de "1010,11001" qui nous donne 1,01011001.2<sup>3</sup>, effectuons le décalage en ajoutant 127 à 3 : "1,01011001.2<sup>130</sup>", soit en passant l'exposant en base 2 : "1,01011001.2<sup>10000010</sup>".
+					Ce qui nous donne donc pour "1010,11001" une mantisse "01011001000000000000000" (en ajoutant les zéros nécessaires à droite pour avoir 23 bits) et un exposant "10000010" (même si ce n'est pas le cas ici, il peut être nécessaire d'ajouter des zéros pour arriver à 8 bits, ATTENTION, ces zéros devront être rajoutés à gauche).
+				</p>
+				<p>
+					À noter que pour le format double précision le décalage est de 1023 (il faut systématiquement ajouter 1023 à l'exposant afin d'obtenir uniquement des valeurs positives)
+				</p>
+				<p>
+					Nous sommes maintenant prêts à écrire notre premier nombre au format simple précision :
+				</p>
+				<p>
+					Soit le nombre "-10,125" en base 10 représentons-le au format simple précision :
+				</p>
+				<ul>
+					<li>
+						nous avons (10)<sub>10</sub> = (1010)<sub>2</sub> et (0,125)<sub>10</sub> = (0,001)<sub>2</sub> soit (10,125)<sub>10</sub> = (1010,001)<sub>2</sub>
+					</li>
+					<li>
+						Décalons la virgule : 1010,001 = 1,010001.2<sup>3</sup>, soit avec le décalage de l'exposant 1,010001.2<sup>130</sup>, en écrivant l'exposant en base 2, nous obtenons 1,010001.2<sup>10000010</sup>
+					</li>
+					<li>
+						Nous avons donc : notre bit de signe = 1 (nombre négatif), nos 8 bits d'exposant = 10000010 et nos 23 bits de mantisse = 01000100000000000000000
+					</li>
+					<li>
+						Soit en "collant" tous les "morceaux" : 11000001001000100000000000000000
+					</li>
+				</ul>
+				<p>
+					Cette écriture étant un peu pénible, il est possible d'écrire ce nombre en hexadécimal : C1220000
+				</p>
+				<h4>À faire vous-même 4</h4>
+				<p>
+					Déterminez la représentation au format simple précision de (0,25)<sub>10</sub> en binaire et en hexadécimal.
+				</p>
+				<hr />
+				<p>
+					Il est aussi possible de passer d'une représentation au format IEEE 754 à une représentation "classique" en base 10
+				</p>
+				<p>
+					Soit le nombre flottant au format simple précision : 00111110100000000000000000000000, nous pouvons déjà dire que ce nombre est positif (bit de signe à 0). Les 8 bits suivants (01111101) nous donnent
+					l'exposant décalé : (01111101)<sub>2</sub> = (125)<sub>10</sub>, soit une fois le décalage supprimé, 125 - 127 = -2. Les 23 bits suivants (la mantisse) sont uniquement des zéros, ce qui nous donne en fin de compte : 1,000.2<sup>-2</sup>.
+					Ce qui donne, en base 10 également (1,000.2<sup>-2</sup>)<sub>10</sub> soit (0,25)<sub>10</sub>.
+				</p>
+				<h4>À faire vous-même 5</h4>
+				<p>
+					Déterminez la représentation au format simple précision de (0,1)<sub>10</sub> en binaire.
+				</p>
+				<p>
+					Nous avons ici un problème : comme déjà évoqué plus haut, nous nous retrouvons avec une "conversion" qui ne s'arrête jamais (le schéma "00011" se répète à "l'infini"), problème, en simple précision, la mantisse est limitée à 23 bits.
+				</p>
+				<p>
+					Vous devriez donc obtenir : 00111101110001100011000110001100
+				</p>
+				<hr />
+				<h4>À faire vous-même 6</h4>
+				<p>
+					Soit le nombre flottant au format simple précision : 00111101110001100011000110001100. Trouvez la représentation en base 10 de ce nombre.
+				</p>
+				<p>
+					La réponse à la question posée ci-dessus est (0,09677419)<sub>10</sub>, or, en toute logique, nous devrions trouver (0,1)<sub>10</sub>. Cette "légère" erreur est logique quand on y réfléchit un peu.
+					N'oubliez qu'à cause de la limitation de la mantisse à 23 bits, nous avons dû "tronquer" notre résultat (de toutes les façons, même avec une mantisse beaucoup plus grande, on aurait aussi eu le problème, car le schéma "00011" se répète à l'infini).
+					Cette représentation avec un nombre limité de bits des nombres flottants est un problème classique en informatique. Cela peut entrainer des erreurs d'arrondi dans les calculs qui peuvent être très gênants si on n'y prend pas garde :
+				</p>
+				<h4>À faire vous-même 7</h4>
+				<p>
+					À l'aide de Spyder, tapez dans la console : 0.1+0.2
+				</p>
+				<p>
+					En toute logique, nous devrions trouver 0.3 et pourtant la console affiche 0.30000000000000004. Ce problème est directement lié à la limitation du nombre de bits utilisé pour représenter les nombres flottants évoquée ci-dessus. Il existe des "astuces" pour éviter ce genre d'inconvénient, mais ce sujet ne sera pas abordé ici.
+				</p>
+				<hr />
+				<h4>À faire vous-même 8</h4>
+				<p>
+					Déterminez la représentation au format simple précision d'un tiers (1/3) en binaire et en hexadécimal.
+				</p>
+		</div>
+	</body>
+</html>
