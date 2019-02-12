@@ -217,6 +217,9 @@
       <p>
       <br>
       Comme vous pouvez le voir, le plus grand chiffre en hexadécimal est $F$, et il correspond à $15$ en décimal et $1111$ en binaire : <b>F est donc encodé sur 4 bits ($F_{hex} = 1111_{bin}$, 4 chiffres binaires = 4 bits)</b>.</p>
+			<p> Pour convertir un nombre binaire en base 16, on regroupe les bits 4 à 4, chaque groupe donnant un chiffre hexadécimal. À l'inverse, passer d'un numbre hexadécimal à sa représentation binaire
+		se fait en remplaçant chaque chiffre pour son équivalent sur 4 bits. Ainsi, $11011001_2 = 1101\ 1001_2 = D9_{16}$, tandis que $7F_{16} = 0111\ 1111_2 = 01111111_2$.
+		Attention, si le nombre binaire de départ n'a pas un nombre de bits multiple de 4, il faut ajouter des zéros en tête (ce qui ne change pas sa valeur) afin de pouvoir les regrouper 4 par 4. </p>
 			<h4>À faire vous-même 4</h4>
 			<p>Convertir $101111011001_2$ en base 16</p>
 			<hr>
