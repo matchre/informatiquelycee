@@ -33,37 +33,34 @@
 			Étudions l'adresse qui se trouve dans la barre d'adresse de votre navigateur web :
 		</p>
 		<p>
-			http://www.ac-grenoble.fr/disciplines/informatiquelycee/n_site/snt_internet_dns.html
+			https://pixees.fr/informatiquelycee/n_site/snt_internet_dns.html
 		</p>
 		<p>
 			Cette adresse peut-être décomposée en quatre parties :
 		</p>
 		<ul>
 			<li>
-				la partie "http" (HyperText Transfert Protocol) sera étudiée dans le module web
+				la partie "https" (HyperText Transfert Protocol) sera étudiée dans le module web
 			</li>
 			<li>
-				la partie "www" (World Wide Web) sera étudiée dans le module "Le web"
+				"pixees.fr" est la partie qui va nous intéresser ici, "fr" est une extension du nom de domaine et "pixees" est un nom de domaine
 			</li>
 			<li>
-				"ac-grenoble.fr" est la partie qui va nous intéresser ici, "fr" est une extension du nom de domaine et "ac-grenoble" est un nom de domaine
-			</li>
-			<li>
-				la partie "/disciplines/informatiquelycee/n_site/snt_internet_dns.html" désigne l'emplacement de la page HTML "snt_internet_dns.html", nous reviendrons aussi là-dessus dans le module "le web"
+				la partie "informatiquelycee/n_site/snt_internet_dns.html" désigne l'emplacement de la page HTML "snt_internet_dns.html", nous reviendrons aussi là-dessus dans le module "le web"
 			</li>
 		</ul>
 		<p>
-			Sans trop rentrer dans les détails, "ac-grenoble.fr" désigne une machine sur un réseau (dans ce cas, sur le réseau "World Wide Web", mais ce n'est pas ce qui nous intéresse ici).
+			Sans trop rentrer dans les détails, "pixees.fr" désigne une machine sur un réseau.
 		</p>
 		<p>
-			Étrange...jusqu'à présent nous avons vu que c'est une adresse IP qui permet de reconnaitre une machine sur un réseau, pas une combinaison du genre "a.b" avec a un nom de domaine et b une extension du nom de domaine (cette combinaison est appelée "adresse symbolique") comme dans "ac-grenoble.fr".
+			Étrange...jusqu'à présent nous avons vu que c'est une adresse IP qui permet de reconnaitre une machine sur un réseau, pas une combinaison du genre "a.b" avec a un nom de domaine et b une extension du nom de domaine (cette combinaison est appelée "adresse symbolique") comme dans "pixees.fr".
 		</p>
 		<p>
-			Rassurerez-vous, en fin de compte, c'est bien une adresse IP qui permet d'indentifier une machine sur un réseau, mais étant donné que pour un humain il est beaucoup plus facile de retenir "ac-grenoble.fr" que de retenir l'adresse IP 193.54.149.86, un service dénommé DNS (Domain Name Server) permet de traduire les adresses IP (exemple "193.54.149.86") en adresse symbolique (exemple "ac-grenoble.fr") et vis versa.
+			Rassurerez-vous, en fin de compte, c'est bien une adresse IP qui permet d'indentifier une machine sur un réseau, mais étant donné que pour un humain il est beaucoup plus facile de retenir "pixees.fr" que de retenir l'adresse IP 128.93.162.163, un service dénommé DNS (Domain Name Server) permet de traduire les adresses IP (exemple "128.93.162.163") en adresse symbolique (exemple "pixees.fr") et vis versa.
 		</p>
 		<h4>À faire vous-même 1</h4>
 		<p>
-			Dans la barre d'adresse de votre navigateur, tapez "http://193.54.149.86/disciplines/informatiquelycee/n_site/snt_internet_dns.html".
+			Dans la barre d'adresse de votre navigateur, tapez "http://128.93.162.163/informatiquelycee/n_site/snt_internet_dns.html".
 		</p>
 		<p>
 			Comme vous pouvez le constater, cela fonctionne parfaitement, adresse IP ou adresse symbolique : même résultat !
@@ -71,7 +68,7 @@
 		<h4>À faire vous-même 2</h4>
 		<p>
 			Sur votre ordinateur, ouvrez une console (si vous ne savez pas comment faire, demandez de l'aide à votre enseignant).
-			Dans la console, nous allons faire un "ping", comme nous avons appris à le faire avec le simulateur Filius, mais au lieu de taper : ping "une adresse IP", vous allez taper : "ping ac-grenoble.fr"
+			Dans la console, nous allons faire un "ping", comme nous avons appris à le faire avec le simulateur Filius, mais au lieu de taper : ping "une adresse IP", vous allez taper : "ping pixees.fr"
 		</p>
 		<hr />
 		<p>
@@ -81,33 +78,21 @@
 			<img src="img/dns_ping.png" width="800px" alt="reseau"/>
 		</div>
 		<p>
-			Comme vous pouvez le constater, l'adresse IP de la machine "ac-grenoble.fr" est bien 193.54.149.86
+			Comme vous pouvez le constater, l'adresse IP de la machine "pixees.fr" est bien 128.93.162.163
 		</p>
 		<p>
-			Pour certaines adresses publiques, Il est possible d'effectuer ce genre de traduction sur un site web :  <a href="https://www.whois.com/whois/" target="_blank">https://www.whois.com/whois/</a>
-		</p>
-		<h4>À faire vous-même 3</h4>
-		<p>
-
+			Pour certaines adresses publiques, Il est possible d'effectuer ce genre de traduction sur un site web :  <a href="https://whoer.net/fr/checkwhois" target="_blank">https://whoer.net/fr/checkwhois</a>
 		</p>
 		<h4>À faire vous-même 3</h4>
 		<p>
-			Utilisez le site <a href="https://www.whois.com/whois/" target="_blank">https://www.whois.com/whois/</a> afin de recueillir des informations sur la machine "ac-grenoble.fr"
+			Utilisez le site <a href="https://whoer.net/fr/checkwhois" target="_blank">https://whoer.net/fr/checkwhois</a> afin de recueillir des informations sur la machine "pixees.fr"
 		</p>
 		<hr />
 		<p>
-			Comme vous pouvez le constater, le site <a href="https://www.whois.com/whois/" target="_blank">whois</a> fournit énormément d'informations
+			Comme vous pouvez le constater, le site <a href="https://whoer.net/fr/checkwhois" target="_blank">checkwhois</a> fournit énormément d'informations (n'hésitez pas à cliquer sur "montrer" en bas de page)
 		</p>
 		<p>
-			Si vous êtes attentif, vous avez sans doute remarqué que les adresses IP fournies par le site <a href="https://www.whois.com/whois/" target="_blank">whois</a> ne correspondent pas à l'adresse trouvée ci-dessus à l'aide du "ping" !?
-		</p>
-		<h4>À faire vous-même 4</h4>
-		<p>
-			Toujours en utilisant le site <a href="https://www.whois.com/whois/" target="_blank">whois</a>, entrez cette fois-ci l'adresse IP "193.54.149.86".
-		</p>
-		<hr />
-		<p>
-			Comme vous pouvez le constater, nous tombons bien sur le site du rectorat de Grenoble ! Les adresses IP sont différentes simplement parce que certains sites utilisent plusieurs adresses IP, on parle d'alias, mais cela dépasse le cadre de cette activité.
+			Toutes ces informations peuvent être utilisées par exemple pour vérifier l'origine d'un site (en cas de doute sur les contenus d'un site,...)
 		</p>
 		</div>
 	</body>
