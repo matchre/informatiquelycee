@@ -33,19 +33,29 @@
 				Comme vous avez pu le constater quand vous avez travaillé sur Open Street Map, il est possible de définir les voies de communication (principalement les routes). La base de données
 				OSM contient donc les routes (enfin, la plupart des routes...). En utilisant ces données, il est possible de développer des outils capables de calculer des itinéraires routiers
 				(comme le propose tous les logiciels "GPS" : Waze, ViaMichelin, Mappy...) : vous renseignez votre lieu de départ, votre lieu d'arrivée puis le logiciel calcule votre itinéraire.
-				Ce calcul d'itinéraire repose sur des algorithmes relativement complexes, par exemple l'algorithme de Dijkstra qui permet d'obtenir le plus court chemin entre deux points. Sans entrer dans les détails,
-				l'algorithme de Dijkstra travaille sur des graphes (chaque ville est un sommet du graphe et chaque route est une arête du graphe),
-				 si cela vous intéresse, pour en savoir plus, vous pouvez visionner cette <a href="https://www.youtube.com/watch?v=JPeCmKFrKio" target="_blank">vidéo</a>.
+				Ce calcul d'itinéraire repose sur des algorithmes relativement complexes, par exemple l'algorithme de Dijkstra qui permet d'obtenir le plus court chemin entre deux points.
 			</p>
+			<h4>À faire vous-même 1</h4>
+			<p>
+				Sans entrer dans les détails, l'algorithme de Dijkstra travaille sur des graphes (chaque ville est un sommet du graphe et chaque route est une arête du graphe),
+				visionnez cette vidéo pour en savoir plus.
+			</p>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/JPeCmKFrKio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<hr />
+			<h4>À faire vous-même 2</h4>
+			<p>
+				Expliquez en quelques lignes le principe de l'algorithme de Dijkstra.
+			</p>
+			<hr />
 			<p>
 				La bibliothèque Python <a href="https://github.com/MKuranowski/pyroutelib3" target="_blank">pyroutelib3</a> propose des "outils" pour calculer des itinéraires à partir des données d'Open Street Map.
 			</p>
-			<h4>À faire vous-même 1</h4>
+			<h4>À faire vous-même 3</h4>
 			<p>
 				Créez un dossier, nommé "itin". Enregistrez ensuite le fichier <a href="asset/pyroutelib3.py" target="_blank">pyroutelib3.py</a> (clic droit, "Enregistrer sous") dans ce dossier "itin".
 			</p>
 			<hr />
-			<h4>À faire vous-même 2</h4>
+			<h4>À faire vous-même 4</h4>
 			<p>
 				En utilisant le logiciel spyder, saisir le code ci-dessous. Enregistrez le fichier contenant ce code dans le dossier "itin". Testez ensuite ce programme.
 			</p>
@@ -84,7 +94,7 @@ if status == 'success':
 					La dernière ligne est exécutée uniquement si le calcul est mené à son terme ("if" de la ligne précédente). La variable "routeLatLons" contient la liste des coordonnées des points de cheminement (points qui constituent le chemin entre le point de départ et le point d'arrivée)
 				</li>
 			</ul>
-			<h4>À faire vous-même 3</h4>
+			<h4>À faire vous-même 5</h4>
 			<p>
 				Modifiez le programme du "À faire vous-même 2", pour calculer le trajet entre deux villes de votre choix avec le moyen de transport de votre choix.
 			</p>
@@ -92,7 +102,7 @@ if status == 'success':
 			<p>
 				Avoir une liste de coordonnées, c'est déjà pas mal, mais cette liste n'est pas très exploitable telle quelle. Nous allons donc utiliser ce que nous avons déjà vu précédemment sur la création de cartes.
 			</p>
-			<h4>À faire vous-même 4</h4>
+			<h4>À faire vous-même 6</h4>
 			<p>
 				Testez le programme ci-dessous (une fois le programme Python exécuté, ouvrez avec un navigateur web le fichier "maCarte.html").
 			</p>
@@ -125,9 +135,9 @@ for coord in routeLatLons:
 			<p>
 				qui permet de parcourir la liste de coordonnées (contenue dans la variable "routeLatLons") et d'ajouter un marqueur pour chaque couple de coordonnées.
 			</p>
-			<h4>À faire vous-même 5</h4>
+			<h4>À faire vous-même 7</h4>
 			<p>
-				Modifiez le programme du "À faire vous-même 4" pour qu'apparaisse sur une carte un itinéraire de votre choix (en définissant le point de départ, le point d'arrivée et le type de véhicule).
+				Modifiez le programme du "À faire vous-même 6" pour qu'apparaisse sur une carte un itinéraire de votre choix (en définissant le point de départ, le point d'arrivée et le type de véhicule).
 			</p>
 		</div>
 </html>
