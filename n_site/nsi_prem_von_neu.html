@@ -382,7 +382,7 @@
 			</p>
 			<ul>
 				<li>
-					les instructions arithmétiques (addition, soustraction, multiplication...). Par exemple, on peut avoir une instruction qui ressemble à "additionne la valeur contenue dans le registre R1 et la valeur située à l'adresse mémoire 789, range le résultat dans le registre R1"
+					les instructions arithmétiques (addition, soustraction, multiplication...). Par exemple, on peut avoir une instruction qui ressemble à "additionne la valeur contenue dans le registre R1 et le nombre 789 et range le résultat dans le registre R0"
 					(l'adresse mémoire est donnée en base 10 pour souci de simplicité, n'oubliez pas qu'en interne elle est codée en binaire)
 				</li>
 				<li>
@@ -405,58 +405,133 @@
 					l'opérande est une valeur immédiate : l'opération est effectuée directement sur la valeur donnée dans l'opérande
 				</li>
 				<li>
-					l'opérande est un registre du CPU : l'opération est effectuée sur la valeur située dans un des registres (R1, R2,...), l'opérande indique de quel registre il s'agit
+					l'opérande est un registre du CPU : l'opération est effectuée sur la valeur située dans un des registres (R0,R1, R2,...), l'opérande indique de quel registre il s'agit
 				</li>
 				<li>
 					l'opérande est une donnée située en mémoire vive : l'opération est effectuée sur la valeur située en mémoire vive à l'adresse XXXXX. Cette adresse est indiquée dans l'opérande.
 				</li>
 			</ol>
 			<p>
-				Quand on considère l'instruction machine : "additionne la valeur 3 et la valeur située dans le registre R2 , range le résultat dans le registre R2", nous avons 2 valeurs : le "3" (qui est une valeur immédiate, nous sommes dans le cas n°1) et "la valeur située dans le registre R2" (nous sommes dans le cas n°2)
+				Quand on considère l'instruction machine : "additionne le nombre 125 et la valeur située dans le registre R2 , range le résultat dans le registre R1", nous avons 2 valeurs : le "nombre 125" (qui est une valeur immédiate, nous sommes dans le cas n°1) et "la valeur située dans le registre R2" (nous sommes dans le cas n°2)
 			</p>
 			<p>
-				Quand on considère l'instruction machine : "additionne la valeur située dans le registre R2 et la valeur située à l'adresse mémoire 789, range le résultat dans le registre R2", nous avons 2 valeurs : "la valeur située à l'adresse mémoire 789" (nous sommes dans le cas n°3) et "la valeur située dans le registre R2" (nous sommes toujours dans le cas n°2)
+				Quand on considère l'instruction machine : "prendre la valeur située dans le registre R1 et la placer à l'adresse mémoire 512", nous avons 2 valeurs : "à l'adresse mémoire 512" (nous sommes dans le cas n°3) et "la valeur située dans le registre R1" (nous sommes toujours dans le cas n°2)
 			</p>
 			<p>
-				Évidemment le microprocesseur est incapable d'interpréter "additionne la valeur située dans le registre R2 et la valeur située à l'adresse mémoire 789, range le résultat dans le registre R2" tout cela doit être codé sous forme binaire.
+				Évidemment le microprocesseur est incapable d'interpréter la phrase "additionne le nombre 125 et la valeur située dans le registre R2 , range le résultat dans le registre R1" tout cela doit être codé sous forme binaire.
 			</p>
 			<p>
 				Un programme en langage machine est donc une suite très très longue de "1" et de "0", ce qui vous en conviendrez est quelque peu rébarbatif à programmer : sur les dizaines de milliers de "1" et de "0" qui composent un programme en langage machine de taille modeste, une seule erreur, et votre programme ne fonctionne pas...imaginer la difficulté pour retrouver l'erreur !
-				Bref programmer en langage machine est extrêmement difficile, pour pallier cette difficulté, les informaticiens ont remplacé les codes binaires abscons par des symboles mnémoniques (plus facile à retenir qu'une suite de "1" et de "0"). Nous avons toujours des instructions machines du genre "additionne la valeur 3 et la valeur située dans le registre R2, range le résultat dans le registre R2", mais au lieu d'écrire "0010111100000001",
-				nous pourrons écrire "ADD Rg2 R0 R1" (le "Rg2" signifie que l'on utilise 2 registres dans cette opération). Dans les 2 cas, la signification est identique : "additionne la valeur située dans le registre R0 avec la valeur située dans le registre R1 et place le résultat dans le registre R0".
+				Bref programmer en langage machine est extrêmement difficile, pour pallier cette difficulté, les informaticiens ont remplacé les codes binaires abscons par des symboles mnémoniques (plus facile à retenir qu'une suite de "1" et de "0"). Nous avons toujours des instructions machines du genre "additionne le nombre 125 et la valeur située dans le registre R2 , range le résultat dans le registre R1", mais au lieu d'écrire "11100010100000100001000001111101",
+				nous pourrons écrire "ADD R1,R2,#125". Dans les 2 cas, la signification est identique : "additionne le nombre 125 et la valeur située dans le registre R2 , range le résultat dans le registre R1".
 			</p>
 			<p>
-				Le processeur est uniquement capable d'interpréter le langage machine, un programme appelé "assembleur" assure donc le passage de "ADD Rg2 R0 R1" à "0010111100000001". Par extension, on dit que l'on programme en assembleur quand on écrit des programmes avec ces symboles mnémoniques à la place de suites de "0" et de "1". Aujourd'hui plus personne n'écrit de programme directement en langage machine, en revanche l'écriture de programme en assembleur est encore chose relativement courante.
+				Le processeur est uniquement capable d'interpréter le langage machine, un programme appelé "assembleur" assure donc le passage de "ADD R1,R2,#125" à "11100010100000100001000001111101". Par extension, on dit que l'on programme en assembleur quand on écrit des programmes avec ces symboles mnémoniques à la place de suites de "0" et de "1". Aujourd'hui plus personne n'écrit de programme directement en langage machine, en revanche l'écriture de programme en assembleur est encore chose relativement courante.
 			</p>
 			<p>
 				Il n'est pas question d'apprendre à programmer en assembleur dans ce cours, mais voici tout de même quelques exemples d'instructions en assembleur :
 			</p>
-			<ul>
-				<li>
-					LOAD D R1 387 : place la valeur stockée à l'adresse mémoire 387 dans le registre R1 (par souci de simplification, nous continuons à utiliser des adresses mémoire codées en base 10), le "D" signifie que le "387" est une adresse en mémoire vive.
-				</li>
-				<li>
-					LOAD Im R1 487 : place le nombre 487 dans le registre R1, le "Im" signifie "Immédiat" : 487 doit être considérée comme un nombre et pas comme une adresse mémoire.
-				</li>
-				<li>
-					STORE D R1 478 : place le contenu du registre R1 en mémoire vive à l'adresse "478"
-				</li>
-				<li>
-					SWAP Rg2 R1 R2 : le contenu du registre R1 et le contenu du registre R2 sont échangés. Comme déjà dit plus haut, le Rg2 signifie que l'on utilise 2 registres dans cette opération
-				</li>
-				<li>
-					ADD Im R0 254 : additionne le nombre 254 (valeur immédiate) et le contenu du registre R0, place le résultat dans le registre R0
-				</li>
-				<li>
-					ADD Im R0 254 : additionne le nombre 254 (valeur immédiate) et le contenu du registre R0, place le résultat dans le registre R0
-				</li>
-				<li>
-					JMP 478 : nous avons une structure de rupture de séquence, la prochaine instruction à exécuter se situe en mémoire vive à l'adresse 478
-				</li>
-				<li>
-					JMPZ 897 : si le contenu du registre R1 est nul alors la prochaine instruction à exécuter se trouve à l'adresse mémoire 897 (sinon l'exécution du programme se continue normalement)
-				</li>
-			</ul>
+			<pre><code class="plaintext">
+LDR R1,78
+			</code></pre>
+			<p>
+				Place la valeur stockée à l'adresse mémoire 78 dans le registre R1 (par souci de simplification, nous continuons à utiliser des adresses mémoire codées en base 10)
+			</p>
+			<pre><code class="plaintext">
+STR R3,125
+			</code></pre>
+			<p>
+				Place la valeur stockée dans le registre R3 en mémoire vive à l'adresse 125
+			</p>
+			<pre><code class="plaintext">
+ADD R1,R0,#128
+			</code></pre>
+			<p>
+				Additionne le nombre 128 (une valeur immédiate est identifiée grâce au symbole #) et la valeur stockée dans le registre R0, place le résultat dans le registre R1
+			</p>
+			<pre><code class="plaintext">
+ADD R0,R1,R2
+			</code></pre>
+			<p>
+				 Additionne la valeur stockée dans le registre R1 et la valeur stockée dans le registre R2, place le résultat dans le registre R0
+			</p>
+			<pre><code class="plaintext">
+SUB R1,R0,#128
+			</code></pre>
+			<p>
+				 Soustrait le nombre 128 de la valeur stockée dans le registre R0, place le résultat dans le registre R1
+			</p>
+			<pre><code class="plaintext">
+SUB R0,R1,R2
+			</code></pre>
+			<p>
+				 Soustrait la valeur stockée dans le registre R2 de la valeur stockée dans le registre R1, place le résultat dans le registre R0
+			</p>
+			<pre><code class="plaintext">
+MOV R1, #23
+			</code></pre>
+			<p>
+				 Place le nombre 23 dans le registre R1
+			</p>
+			<pre><code class="plaintext">
+MOV R0, R3
+			</code></pre>
+			<p>
+				 Place la valeur stockée dans le registre R3 dans le registre R0
+			</p>
+			<pre><code class="plaintext">
+B 45
+			</code></pre>
+			<p>
+				 Nous avons une structure de rupture de séquence, la prochaine instruction à exécuter se situe en mémoire vive à l'adresse 45
+			</p>
+			<pre><code class="plaintext">
+CMP R0, #23
+			</code></pre>
+			<p>
+				 Compare la valeur stockée dans le registre R0 et le nombre 23. Cette instruction CMP doit précéder une instruction de branchement conditionnel BEQ, BNE, BGT, BLT (voir ci-dessous)
+			</p>
+			<pre><code class="plaintext">
+CMP R0, R1
+			</code></pre>
+			<p>
+				 Compare la valeur stockée dans le registre R0 et la valeur stockée dans le registre R1.
+			</p>
+			<pre><code class="plaintext">
+CMP R0, #23
+BEQ 78
+			</code></pre>
+			<p>
+				 La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre R0 est égale à 23
+			</p>
+			<pre><code class="plaintext">
+CMP R0, #23
+BNE 78
+			</code></pre>
+			<p>
+				 La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre R0 n'est pas égale à 23
+			</p>
+			<pre><code class="plaintext">
+CMP R0, #23
+BGT 78
+			</code></pre>
+			<p>
+				 La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre R0 est plus grand que 23
+			</p>
+			<pre><code class="plaintext">
+CMP R0, #23
+BLT 78
+			</code></pre>
+			<p>
+				 La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre R0 est plus petit que 23
+			</p>
+			<pre><code class="plaintext">
+HALT
+			</code></pre>
+			<p>
+				 Arrête l'exécution du programme
+			</p>
+			<hr />
 			<p>
 				Encore une fois, il n'est pas question d'apprendre à programmer en assembleur, les instructions ci-dessus sont uniquement des exemples.
 			</p>
@@ -464,23 +539,22 @@
 			<p>
 				Expliquez brièvement (sur le même modèle que les exemples ci-dessus), les instructions suivantes :
 			</p>
-			<ul>
-				<li>
-					ADD Im R1 745
-				</li>
-				<li>
-					STORE D R2 423
-				</li>
-				<li>
-					JMP 8899
-				</li>
-				<li>
-					LOAD D R0 7785
-				</li>
-				<li>
-					ADD Rg2 R1 R2
-				</li>
-			</ul>
+			<pre><code class="plaintext">
+ADD R0, R1, #42
+			</code></pre>
+			<pre><code class="plaintext">
+LDR R5,98
+			</code></pre>
+			<pre><code class="plaintext">
+CMP R4, #18
+BGT 77
+			</code></pre>
+			<pre><code class="plaintext">
+STR R0,15
+			</code></pre>
+			<pre><code class="plaintext">
+B 100
+			</code></pre>
 			<hr />
 			<h4>À faire vous-même 3</h4>
 			<p>
@@ -488,19 +562,78 @@
 			</p>
 			<ul>
 				<li>
-					additionne la valeur stockée dans le registre R0 et la valeur stockée dans le registre R1, le résultat est stocké dans le registre R1
+					Additionne la valeur stockée dans le registre R0 et la valeur stockée dans le registre R1, le résultat est stocké dans le registre R5
 				</li>
 				<li>
-					place la valeur stockée à l'adresse mémoire 878 dans le registre R0
+					Place la valeur stockée à l'adresse mémoire 878 dans le registre R0
 				</li>
 				<li>
-					place le contenu du registre R0 en mémoire vive à l'adresse "124"
+					Place le contenu du registre R0 en mémoire vive à l'adresse 124
 				</li>
 				<li>
 					la prochaine instruction à exécuter se situe en mémoire vive à l'adresse 478
 				</li>
+				<p>
+					Si la valeur stockée dans le registre R0 est égale 42 alors la prochaine instruction à exécuter se situe à l'adresse mémoire 85
+				</p>
 			</ul>
 			<hr />
+			<p>
+				En faite, les instructions assembleur B, BEQ, BNE, BGT et BLT n'utilisent pas directement l'adresse mémoire de la prochaine instruction à exécuter, mais des "labels". Un label correspond à une adresse en mémoire vive (c'est l'assembleur qui fera la traduction "label"->"adresse mémoire"). L'utilisation d'un label évite donc d'avoir à manipuler des adresses mémoires en binaire ou en hexadécimale.
+				Voici un exemple qui montre comment utiliser un label :
+			</p>
+			<pre><code class="plaintext">
+   CMP R4, #18
+   BGT monLabel
+   MOV R0,#14
+   HALT
+monLabel:
+   MOV R0,#18
+   HALT
+			</code></pre>
+			<p>
+				Dans l'exemple ci-dessus, nous avons choisi "monLabel" comme nom de label. La ligne "MOV R0,#18" a pour label "monLabel" car elle est située juste après la ligne "monLabel:". Concrètement, voici ce qui se passe avec ce programme :
+				si la valeur stockée dans le registre R4 est supérieure à 18 on place le nombre 18 dans le registre R0 sinon on place le nombre 14 dans le registre R0. ATTENTION : la présence du "HALT" juste après la ligne "MOV R0,#14" est indispensable, car sinon, la ligne "MOV R0,#18" sera aussi exécutée (même si la valeur stockée dans le registre R4 est inférieure à 18 )
+			</p>
+			<h4>À faire vous-même 4</h4>
+			<p>
+				Voici un programme Python très simple :
+			</p>
+			<pre><code class="python">
+x = 4
+y = 8
+if x == 10:
+	y = 9
+else :
+	x=x+1
+z=6
+			</code></pre>
+			<p>
+				et voici maintenant voici son équivalent en assembleur :
+			</p>
+			<pre><code class="plaintext">
+   MOV R0, #4
+   STR R0,30
+   MOV R0, #8
+   STR R0,75
+   LDR R0,30
+   CMP R0, #10
+   BNE else
+   MOV R0, #9
+   STR R0,75
+   B endif
+else:
+   LDR R0,30
+   ADD R0, R0, #1
+   STR R0,30
+endif:
+   MOV R0, #6
+   STR R0,23
+   HALT
+			</code></pre>
+			<p>
+				Après avoir analysé très attentivement le programme en assembleur ci-dessus, vous essaierez d'établir une correspondance entre les lignes du programme en Python et les lignes du programme en assembleur. À quoi sert la ligne "B endif" ? À quoi correspondent les adresses mémoires 23, 75 et 30 ?
+			</p>
 			<p>
 				Comme vous avez pu le constater dans les exemples ci-dessus, les données et les instructions sont stockées en mémoire vive, les données et les instructions se partagent la mémoire vive (il n'y a pas une mémoire pour les instructions et une mémoire différente pour les données). C'est John von Neumann (mathématicien et physicien américano-hongrois 1903-1957)
 				qui a eu l'idée en 1945 d'utiliser une structure de stockage unique pour les données et les instructions, voilà pourquoi on parle d'architecture de von Neumann.
