@@ -1,0 +1,191 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Introduction au réseau</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Introduction au réseau</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Il est possible de faire communiquer deux ordinateurs en les reliant par un simple câble. On dit alors que ces deux ordinateurs sont en réseau.
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_introReseau_1.png" alt="reseau"/>
+				<figcaption>2 ordinateurs en réseau</figcaption>
+			</div>
+			<p>
+				Dans la plupart des cas, le câble reliant les 2 ordinateurs est un câble Ethernet. Ce type de câble possède à ses 2 extrémités des prises RJ45 (il existe d'autres types de câbles qui permettent de mettre 2 ordinateurs en réseau, mais l'utilisation de câbles Ethernet est tellement
+				majoritaire que nous ne nous intéresserons pas aux autres types de câbles).
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_introReseau_2.jpg" alt="cable ethernet"/>
+				<figcaption>câble Ethernet avec prises RJ45</figcaption>
+			</div>
+			<p>
+				Un ordinateur relié à un réseau doit posséder une carte réseau, on identifie cette carte réseau de type Ethernet grâce à la prise RJ45 femelle située souvent à l'arrière de l'ordinateur.
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_introReseau_3.jpg" alt="carte réseau"/>
+				<figcaption>carte réseau de type Ethernet</figcaption>
+			</div>
+			<p>
+				Relier 2 ordinateurs peut avoir un intérêt, mais dans la plupart des cas, un réseau sera constitué d'un plus grand nombre d'ordinateurs. Dans ce cas, il est nécessaire d'utiliser un commutateur réseau, souvent appelé switch (même en français). Un switch est constitué de plusieurs prises RJ45.
+			</p>
+			<div class="centrer">
+				<img src="img/switch.png" alt="switch"/>
+				<figcaption>plusieurs switchs</figcaption>
+			</div>
+			<p>
+				Comme nous le montre la photo ci-dessus, il existe des switchs de différentes tailles, certains switchs possèdent 8 prises RJ45 alors que d'autres peuvent en posséder 24.
+			</p>
+			<p>
+				Chaque ordinateur doit être relié au switch par l'intermédiaire d'un câble Ethernet.
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_introReseau_4.png" alt="réseau"/>
+				<figcaption>réseau de 4 ordinateurs</figcaption>
+			</div>
+			<p>
+				Dans l'exemple du schéma ci-dessus, les ordinateurs A, B, C et D sont en réseau, chaque ordinateur peut communiquer avec les 3 autres.
+			</p>
+			<p>
+				Les switchs ayant un nombre de prises RJ45 limité, il peut être nécessaire d'utiliser plusieurs switchs dans un même réseau.
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_introReseau_5.png" alt="réseau"/>
+				<figcaption>réseau de 6 ordinateurs</figcaption>
+			</div>
+			<p>
+				Dans l'exemple du schéma ci-dessus, les ordinateurs A, B, C, D et E sont en réseau. A, B et C sont reliés à un switch, D et E sont reliés à un autre switch. Les 2 switchs étant reliés ensemble.
+			</p>
+			<p>
+				Depuis le début nous avons uniquement parlé de réseaux filaires (les différents composants du réseau sont reliés par des câbles), il est aussi possible de mettre plusieurs machines en réseau grâce à des technologies sans fil (utilisation des ondes radio pour
+				transmettre l'information entre les différents composants du réseau), par exemple, le wifi (il existe d'autres technologies sans fil que le wifi, mais elles ne seront abordées ici).
+				Chaque ordinateur appartenant au réseau sans fil devra posséder une carte réseau wifi (aujourd'hui tous les ordinateurs portables vendus sont par défaut équipés d'une telle carte).
+				Il sera nécessaire d'utiliser un concentrateur wifi (équivalent du switch en filaire) si l'on désire mettre en réseau plus de deux ordinateurs.
+			</p>
+			<p>
+				Maintenant que nos ordinateurs sont reliés par l'intermédiaire d'un switch (ou d'un concentrateur wifi), imaginons que l'ordinateur A "souhaite" entrer en communication avec l'ordinateur C. Quand vous désirez communiquer avec quelqu'un par voie postale, il est nécessaire d'écrire l'adresse
+				de cette personne sur une enveloppe, à chaque habitation correspond donc une adresse postale. Et bien c'est un peu la même chose pour les ordinateurs en réseau, chaque machine possède une adresse. Pendant très longtemps il a existé différentes technologies de réseau et donc différents types d'adresse.
+				Aujourd'hui, on trouve presque exclusivement qu'un seul type d'adresse : les adresses IP (nous étudierons donc uniquement ce type d'adresse).
+			</p>
+			<p>Les adresses IP sont de la forme : "a.b.c.d", avec a, b, c et d compris entre 0 et 255 (a, b, c et d sont codés sur 1 octet). Voici un exemple d'adresse IP : 192.168.0.1</p>
+			<p>
+				Une partie de l’adresse IP permet d’identifier le réseau auquel appartient la machine et l’autre partie de l’adresse IP permet d’identifier la machine sur ce réseau.
+			</p>
+			<p>Exemple : Soit un ordinateur A ayant pour adresse IP 192.168.2.1 Dans cette adresse IP  "192.168.2" permet
+				d’identifier le réseau (on dit que la machine A appartient au réseau ayant pour adresse 192.168.2.0, pour trouver l'adresse réseau il suffit de remplacer la partie "machine" de cette adresse IP par un ou des 0) et "1" permet d’identifier la machine sur le réseau.
+			</p>
+			<p>
+				Toutes les machines appartenant au même réseau devront posséder la même adresse réseau (sinon elles ne pourront pas communiquer ensemble, même si elles sont bien physiquement reliées).
+			</p>
+			<p>
+				Prenons 2 exemples, soit 2 machines A et B en réseau :
+			</p>
+			<ul>
+				<li>
+					la machine A a pour adresse IP 192.168.2.5 et la machine B a pour adresse IP 192.168.2.8. Les 3 premiers octets sont bien identiques ("192.168.2"), A et B ont donc la même adresse réseau "192.168.2.0". Ces 2 machines pourront donc communiquer ensemble
+				</li>
+				<li>
+					la machine A a pour adresse IP 192.168.2.5 et la machine B a pour adresse IP 192.168.3.8. Les 3 premiers octets ne sont pas identiques ("192.168.2" pour A et "192.168.3" pour B), A et B n'ont pas la même adresse réseau ("192.168.2.0" pour A et "192.168.3.0" pour B). Ces 2 machines ne pourront donc pas communiquer ensemble
+				</li>
+			</ul>
+			<p>Attention, les adresses IP (a.b.c.d) n’ont forcément pas les parties a, b et c consacrées à l’identification du réseau et la partie d consacrées à l’identification des machines sur le réseau. Il y a de nombreuses années, les adresses ont été découpées en trois classes :</p>
+			<ul>
+					<li>Certaines adresses ont les parties a, b et c consacrées à l’identification du réseau et la partie d consacrée à l’identification des machines sur le réseau (on parle d'adresse IP de classe C)</li>
+					<li>Certaines adresses ont la partie a et b consacrées à l’identification du réseau et les parties c et d consacrées à l’identification des machines sur le réseau (on parle d'adresse IP de classe B)</li>
+					<li>Certaines adresses ont la partie a consacrée à l’identification du réseau et les parties b, c et d consacrées à l’identification des machines sur le réseau (on parle d'adresse IP de classe A)</li>
+			</ul>
+			<p>Nous avons donc :</p>
+			<ul>
+					<li>Réseau de classe A : adresse réseau : a.0.0.0 (avec a qui doit être compris entre 1 et 126)</li>
+					<li>Réseau de classe B : adresse réseau : a.b.0.0 (avec a qui doit être compris entre 128 et 191)</li>
+					<li>Réseau de classe C : adresse réseau : a.b.c.0 (avec a qui doit être compris entre 192 et 223)</li>
+			</ul>
+			<p>Cette partition étant peu flexible, elle a progressivement été remplacée par un découpage plus fin où la séparation réseaux/machine peut se trouver à l'intérieur d'une partie, dépendant de ce que l’on appelle le « masque de sous-réseau », mais cette notion ne sera pas abordée ici.</p>
+			<p>
+				Remarque : vous avez sans doute remarqué que l'on passe de "126" pour la "fin" des réseaux de classe A à "128" pour le "début" des réseaux de classe B, le "127" est réservé et ne peut être utilisé (nous aurons l'occasion de revenir là-dessus plus tard).  
+			</p>
+			<h4>À faire vous-même 1</h4>
+			<p>
+				Déterminer les adresses réseaux à partir des adresses IP suivantes :
+			</p>
+			<ul>
+				<li>
+					147.12.1.24
+				</li>
+				<li>
+					192.168.2.45
+				</li>
+				<li>
+					5.23.65.87
+				</li>
+			</ul>
+			<h4>À faire vous-même 2</h4>
+			<p>
+				Soit 2 machines A et B connectées à un switch, dites dans quels cas ces 2 machines pourront communiquer ensemble :
+			</p>
+			<ul>
+				<li>
+					adresse IP de A : 172.23.4.7 ; adresse IP de B : 172.23.5.8
+				</li>
+				<li>
+					adresse IP de A : 24.2.8.127 ; adresse IP de B : 24.23.5.52
+				</li>
+				<li>
+					adresse IP de A : 193.28.7.2 ; adresse IP de B : 193.28.8.3
+				</li>
+			</ul>
+			<p>
+				Il est à noter que certaines adresses IP ne sont pas disponibles :
+			</p>
+			<ul>
+				<li>
+					une adresse réseau ne peut pas être attribuée à une machine, par exemple aucune machine ne pourra avoir l'adresse IP 192.168.1.0 ou encore l'adresse IP 25.0.0.0
+				</li>
+				<li>
+					les adresses IP qui ont tous les octets de la partie "machines" de l'adresse IP à 255 ne sont pas utilisables (ce sont des adresses de broadcast qui permettent d'envoyer des données vers toutes les machines d'un réseau), exemples : 192.167.24.255, 172.28.255.255 ou encore 4.255.255.255 sont des adresses de broadcast
+				</li>
+			</ul>
+			<h4>À faire vous-même 3</h4>
+			<p>
+				Combien de machines peut-on trouver au maximum :
+			</p>
+			<ul>
+				<li>
+					dans un réseau de classe A ?
+				</li>
+				<li>
+					dans un réseau de classe B ?
+				</li>
+				<li>
+					dans un réseau de classe C ?
+				</li>
+			</ul>
+
+		</div>
+	</body>
+</html>
