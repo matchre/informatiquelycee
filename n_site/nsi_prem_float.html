@@ -86,7 +86,7 @@
 				</p>
 				<hr>
 				<p>
-					Dans l'exemple ci-dessus, nous remarquons que le processus de "conversion" ne s'arrête pas, nous obtenons : "0,000110001100011...", le schéma "00011" se répète à "l'infini". Cette caractéristique est très importante, nous aurons l'occasion de revenir là-dessus plus tard.
+					Dans l'exemple ci-dessus, nous remarquons que le processus de "conversion" ne s'arrête pas, nous obtenons : "0,0001100110011...", le schéma "0011" se répète à "l'infini". Cette caractéristique est très importante, nous aurons l'occasion de revenir là-dessus plus tard.
 				</p>
 				<p>
 					En base dix, il est possible d'écrire les très grands nombres et les très petits nombres grâce aux "puissances de dix" (exemples "6,02.10<sup>23</sup>" ou "6,67.10<sup>-11</sup>").
@@ -190,19 +190,19 @@
 					Déterminez la représentation au format simple précision de (0,1)<sub>10</sub> en binaire.
 				</p>
 				<p>
-					Nous avons ici un problème : comme déjà évoqué plus haut, nous nous retrouvons avec une "conversion" qui ne s'arrête jamais (le schéma "00011" se répète à "l'infini"), problème, en simple précision, la mantisse est limitée à 23 bits.
+					Nous avons ici un problème : comme déjà évoqué plus haut, nous nous retrouvons avec une "conversion" qui ne s'arrête jamais (le schéma "0011" se répète à "l'infini"), problème, en simple précision, la mantisse est limitée à 23 bits.
 				</p>
 				<p>
-					Vous devriez donc obtenir : 00111101110001100011000110001100
+					Vous devriez donc obtenir : 00111101110011001100110011001100
 				</p>
 				<hr />
 				<h4>À faire vous-même 6</h4>
 				<p>
-					Soit le nombre flottant au format simple précision : 00111101110001100011000110001100. Trouvez la représentation en base 10 de ce nombre.
+					Soit le nombre flottant au format simple précision : 00111101110011001100110011001100. Trouvez la représentation en base 10 de ce nombre.
 				</p>
 				<p>
-					La réponse à la question posée ci-dessus est (0,09677419)<sub>10</sub>, or, en toute logique, nous devrions trouver (0,1)<sub>10</sub>. Cette "légère" erreur est logique quand on y réfléchit un peu.
-					N'oubliez qu'à cause de la limitation de la mantisse à 23 bits, nous avons dû "tronquer" notre résultat (de toutes les façons, même avec une mantisse beaucoup plus grande, on aurait aussi eu le problème, car le schéma "00011" se répète à l'infini).
+					La réponse à la question posée ci-dessus est (0,099999994)<sub>10</sub>, or, en toute logique, nous devrions trouver (0,1)<sub>10</sub>. Cette "légère" erreur est logique quand on y réfléchit un peu.
+					N'oubliez qu'à cause de la limitation de la mantisse à 23 bits, nous avons dû "tronquer" notre résultat (de toutes les façons, même avec une mantisse beaucoup plus grande, on aurait aussi eu le problème, car le schéma "0011" se répète à l'infini).
 					Cette représentation avec un nombre limité de bits des nombres flottants est un problème classique en informatique. Cela peut entrainer des erreurs d'arrondi dans les calculs qui peuvent être très gênants si on n'y prend pas garde :
 				</p>
 				<h4>À faire vous-même 7</h4>
