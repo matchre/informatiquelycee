@@ -1,0 +1,376 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Le langage C</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Le langage C</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+		<p>
+			Jusqu'à présent, nous avons surtout utilisé le langage de programmation Python. Il existe beaucoup d'autres langages de programmation : Java, C++, Ruby, PHP, JavaScript...
+			Tous ces langages sont différents, mais ils ont aussi des points communs, on peut même dire qu'ils ont plus de points communs que de différences.
+			Afin d'entrer un peu dans les détails, nous allons nous intéresser à un langage qui tient une place à part dans l'histoire de l'informatique, le langage C. Le but n'est pas de faire
+			de vous des "programmeurs C", mais de vous montrer que même si le langage Python et le langage C ont des différences, ils ont aussi de nombreux points communs.
+		</p>
+		<p>
+			Le langage C a été créé par Dennis Ritchie (1941-2011) et Ken Thompson (1943- ) en 1972. Le langage C est une évolution du langage B (langage B a été créé par Ken Thompson à la fin des années 60). Le langage C est encore très utilisé aujourd'hui (dans le top 10 des langages de programmation les plus utilisés), par exemple, le noyau du système d'exploitation Linux est écrit en C. Tout informaticien qui se respecte doit avoir, un jour ou l'autre (au moins pendant ses études), écrit des programmes en C.
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_langC.jpeg" alt="Dennis Ritchie et Ken Thompson"/>
+			<figcaption>Ken Thompson et Dennis Ritchie</figcaption>
+		</div>
+		<p>
+			Le C est un langage compilé, c'est-à-dire qu'un programme appelé "compilateur" transforme le code source (le code écrit par le programmeur) en langage machine. Cette opération, appelée "compilation", doit être
+			effectuée à chaque fois que le programmeur modifie le code source, comme cette phase de compilation peut prendre des dizaines de minutes pour de très gros programmes. Il existe une autre méthode pour passer
+			du code source au langage machine : l'interprétation. En simplifiant à l'extrême, l'interpréteur assure une traduction "à la volée" des instructions. (une ligne est traduite en langage machine puis immédiatement exécutée), alors
+			que dans le cas de la compilation l'ensemble du code source est transformé en langage machine avant le début de l'exécution du programme. Les langages compilés (comme le langage C) sont réputés plus rapides à l'exécution que les langages interprétés.
+			Il existe une troisième voie qui a le vent en poupe : le code source est compilé en pseudocode (appelé bytecode) qui n'est pas encore du langage machine, mais s'en rapproche par rapport au code source de départ. Ce bytecode est ensuite interprété (l'interprétation est beaucoup plus rapide que pour des langages 100% interprétés). Python utilise cette technique.
+		</p>
+		<p>
+			Nous allons écrire quelques programmes en langage C, mais afin de faciliter cette première approche, nous n'allons pas directement manipuler un compilateur, nous allons utiliser un "service en ligne qui s'occupe de tout" (compilation puis exécution du code machine) : <a href="https://repl.it/languages/c" target="_blank">Online C compiler, Online C IDE</a>
+		</p>
+		<p>
+			Vous devriez avoir quelque chose qui ressemble à cela :
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_langC_1.png" width="800px" alt="compilateur online"/>
+		</div>
+		<p>
+			Vous pouvez constater la présence du programme suivant :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int main(void) {
+	printf("Hello World\n");
+	return 0;
+}
+		</code></pre>
+		<h4>À faire vous-même 1</h4>
+		<p>
+			Cliquez sur le bouton "play" afin de compiler puis d'exécuter le programme ci-dessus.
+		</p>
+		<hr />
+		<p>
+			La première ligne du programme :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+		</code></pre>
+		<p>
+			n'est pas une instruction à proprement parlé, c'est une "directives de préprocesseur", cette ligne est lue au début de la phase de compilation. Nous aurons l'occasion de revenir sur cette ligne plus tard, pour le moment, vous devez juste savoir que cette ligne est obligatoire
+			si vous voulez utiliser "printf" (voir quelques lignes plus loin).
+		</p>
+		<p>
+			Le programme commence réellement avec la ligne :
+		</p>
+		<pre><code class='c'>
+int main(void) {
+		</code></pre>
+		<p>
+			Nous avons ici une fonction (équivalent à un "def main():" en Python), comme vous l'avez sans doute déjà compris, tout le code compris entre l'accolade ouvrante "{" et l'accolade fermante "}" constitue la fonction nommée "main".
+			Voici donc une première différence avec Python, le code constituant une fonction n'est pas défini grâce à une indentation, mais grâce à des accolades (vous remarquerez que l'on utilise tout de même une indentation, mais cette
+			dernière n'est pas obligatoire en C mais seulement fortement conseillée afin de rendre le code plus lisible).
+		</p>
+		<p>
+			Le "int" situé avant le nom de la fonction ("main" dans cet exemple), signifie que la fonction doit renvoyer un entier. Le "void" situé entre parenthèses signifie que notre fonction ne prend aucun paramètre. Nous aurons l'occasion de revenir
+			sur ce "int" et ce "void" un peu plus loin.
+		</p>
+		<p>
+			La ligne :
+		</p>
+		<pre><code class='c'>
+printf("Hello World\n");
+		</code></pre>
+		<p>
+			permet d'afficher le message "Hello World" dans la console (le "\n" permet de passer à la ligne suivante).
+		</p>
+		<p>
+			Le
+		</p>
+		<p>
+			<pre><code class='c'>
+return 0;
+			</code></pre>
+		</p>
+		<p>
+			permet de renvoyer l'entier 0. Pourquoi renvoie-t-on 0 ? Tout simplement pour signifier que la fonction "main" a bien été exécutée jusqu'au bout. Si cette fonction renvoie autre chose que 0 cela signifiera qu'il y a eu un problème lors de
+			l'exécution de cette dernière.
+		</p>
+		<p>
+			Vous avez dû remarquer que la plupart des lignes se terminent par un point-virgule. Ce point virgule indique au compilateur que la ligne est terminée, il est obligatoire.
+		</p>
+		<h4>À faire vous-même 2</h4>
+		<p>
+			Testez le programme suivant :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int main(void) {
+	printf("Hello World\n")
+	return 0;
+}
+		</code></pre>
+		<p>
+			Vous devriez avoir une erreur durant la phase de compilation :
+		</p>
+		<pre><code>
+exit status 1
+main.c:4:24: error: expected ';' after expression
+printf("Hello World\n")
+                       ^
+                       ;
+1 error generated.
+		</code></pre>
+		<p>
+			La première ligne ("exit status 1") vous indique que la fonction "main" n'a pas renvoyée l'entier 0 : il y a donc eu un problème lors de la compilation.
+		</p>
+		<p>
+			Le message d'erreur qui suit est très explicite puisqu'il indique clairement qu'il manque un point-virgule à la fin de la ligne "printf("Hello World\n")"
+		</p>
+		<p>
+			Le programme Python permettant d'obtenir le même résultat que le programme du "À faire vous-même 1" est très simple puisqu'il est constitué d'une seule ligne
+		</p>
+		<pre><code class='python'>
+print("Hello World")
+		</code></pre>
+		<p>
+			En C, c'est un petit plus complexe, car la fonction "main" est obligatoire. En effet, au moment de l'exécution du programme, le système recherche la fonction "main" afin d'exécuter les instructions qui se trouvent "à l'intérieur" de cette fonction (le nom "main" est obligatoire).
+		</p>
+		<h4>À faire vous-même 3</h4>
+		<p>
+			Testez le programme suivant :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+printf("Hello World\n");
+		</code></pre>
+		<p>
+			Vous pouvez constater que ce programme ne fonctionne pas : pas de fonction "main", pas d'exécution possible.
+		</p>
+		<p>
+			Il est bien sûr possible d'utiliser des variables en C :
+		</p>
+		<h4>À faire vous-même 4</h4>
+		<p>
+			Analysez et testez le programme suivant :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int main(void) {
+	int i;
+	i=15;
+	printf("La valeur de i est %d\n",i);
+	return 0;
+}
+		</code></pre>
+		<hr />
+		<p>
+			Voici le programme équivalent en Python :
+		</p>
+		<pre><code class='python'>
+i=15
+print(f"La valeur de i est {i}")
+		</code></pre>
+		<p>
+			Dans le programme en C, on s'attardera particulièrement sur la ligne :
+		</p>
+		<pre><code class='c'>
+int i;
+		</code></pre>
+		<p>
+			Cette ligne permet de déclarer la variable "i" et de préciser que cette variable "i" "contiendra" un nombre de type entier (cette variable sera de type entier). En C, cette déclaration est obligatoire, afin de, au moment de la compilation, réserver la place nécessaire en mémoire pour la valeur "contenue" dans la variable "i".
+			Dans notre cas, le compilateur réservera pour "i", une certaine quantité de mémoire (la quantité de mémoire nécessaire pour "accueillir" un entier).
+		</p>
+		<p>
+			Il existe d'autres types de variables en C : "long", "float", "char"... mais, encore une fois, notre but n'étant pas d'apprendre à programmer en C, nous en resterons là.
+		</p>
+		<p>
+			En Python les variables ont aussi un type, mais le typage est dit dynamique : une variable peut changer de type au cours de l'exécution d'un programme, il n'est donc pas nécessaire de déclarer le type d'une variable en Python (le système s'occupe de définir le type d'une variable par lui-même).
+		</p>
+		<p>
+			Intéressons-nous maintenant aux boucles en C :
+		</p>
+		<h4>À faire vous-même 5</h4>
+		<p>
+			Analysez et testez le programme suivant :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int main(void) {
+	int i;
+	i=0;
+	while (i&lt10){
+	    printf("La valeur de i est %d\n",i);
+	    i=i+1;
+	}
+	return 0;
+}
+		</code></pre>
+		<hr />
+		<p>
+			Le programme équivalent en Python :
+		</p>
+		<pre><code class='python'>
+i=0
+while i&lt10:
+    print(f"La valeur de i est {i}")
+    i=i+1
+		</code></pre>
+		<p>
+			Comme vous pouvez le constater, les 2 programmes diffèrent peu, on retrouve les accolades qui définissent le début et la fin de la boucle.
+		</p>
+		<p>
+			Les conditions en C :
+		</p>
+		<h4>À faire vous-même 6</h4>
+		<p>
+			Analysez et testez le programme suivant :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int main(void) {
+	int i;
+	i=19;
+	if (i&lt18){
+	    printf("Vous êtes mineur");
+	}
+	else {
+	    printf("Vous êtes majeur");
+	}
+	return 0;
+}
+		</code></pre>
+		<hr />
+		<p>
+			Encore quelques différences avec le même programme en Python, mais rien de très complexe.
+		</p>
+		<p>
+			Nous avons déjà eu l'occasion de parler des fonctions en C avec la fonction "main", il est bien évidemment possible d'écrire d'autres fonctions en C.
+		</p>
+		<h4>À faire vous-même 7</h4>
+		<p>
+			Voici un programme Python :
+		</p>
+		<pre><code class='python'>
+def somme(x,y):
+    s=x+y
+    return s
+a=5
+b=4
+res=somme(a,b)
+print(f"La somme de {a} et de {b} vaut {res}")
+	</code></pre>
+		<p>
+			Analysez et testez son équivalent en C :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int somme(int x, int y){
+	int s;
+	s=x+y;
+	return s;
+}
+
+int main(void) {
+	int res;
+	int a;
+	int b;
+	a=5;
+	b=4;
+	res=somme(a,b);
+	printf("La somme de %d et de %d vaut %d\n",a,b,res);
+	return 0;
+}
+
+		</code></pre>
+		<hr />
+		<p>
+			Nous constatons comme pour la fonction "main" qu'il est nécessaire d'indiquer le type de la valeur renvoyée par la fonction (ici "int" car notre fonction "somme" renvoie bien un entier).
+			À la différence de notre fonction "main", la fonction "somme" prend deux paramètres : x et y (tous les deux de type entier). Il est nécessaire d'indiquer le type des paramètres, ici "int" pour x et y.
+			Si vous omettez le type d'un paramètre, vous aurez le droit à une erreur au moment de la compilation.
+		</p>
+		<p>
+			Vous avez sans doute remarqué que la fonction "somme" se trouve dans le code avant la fonction "main", si vous placez la fonction "somme" après la fonction "main" cela ne fonctionnera pas, car le compilateur ne "comprendra" pas la ligne
+			"res=somme(a,b);", en effet à ce stade le compilateur n'aura pas encore "rencontré" une fonction dénommée "somme". Cependant, il est tout de même possible de placer la fonction "somme" après la fonction "main" à condition de fournir au compilateur le prototype de la fonction "somme".
+			Le prototype d'une fonction permet "d'annoncer" au compilateur qu'une fonction X renvoyant une valeur d'un certain type et qui possède un (ou des) paramètre(s) d'un certain type va être définie "un peu plus loin" dans le programme.
+		</p>
+		<h4>À faire vous-même 8</h4>
+		<p>
+			Analysez et testez le programme suivant :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int somme(int x, int y);
+
+int main(void) {
+	int res;
+	int a;
+	int b;
+	a=5;
+	b=4;
+	res=somme(a,b);
+	printf("La somme de %d et de %d vaut %d\n",a,b,res);
+	return 0;
+}
+int somme(int x, int y){
+	int s;
+	s=x+y;
+	return s;
+}
+		</code></pre>
+		<hr />
+		<p>
+			La ligne
+		</p>
+		<pre><code class='c'>
+int somme(int x, int y);
+		</code></pre>
+		<p>
+			correspond au prototype de la fonction "somme". À noter qu'il est aussi possible d'omettre les noms des paramètres au niveau du prototype et d'uniquement indiquer le type des arguments : "int somme(int, int);"
+		</p>
+		<p>
+			L'utilisation des prototypes est une "bonne pratique" de programmation, il est donc très vivement recommandé d'utiliser les prototypes en C.
+		</p>
+		<p>
+			Quand les programmes C comportent de nombreuses fonctions, il est judicieux de placer les prototypes des fonctions dans un fichier à part. Ces fichiers portent l'extension "h" (exemple : "stdio.h"), ils sont appelés "header" ("en tête" en français).
+			Le "#include &ltstdio.h&gt" indique au compilateur qu'il doit inclure dans le fichier courant les prototypes se trouvant dans le fichier "stdio.h".
+			Dans nos exemples, nous utilisons la fonction système "printf", le fichier "stdio.h" contient le prototype de cette fonction "printf", d'où le "#include &ltstdio.h&gt" présent dans tous les exemples.
+		</p>
+		<p>
+			On pourrait penser que toutes les contraintes imposées par le C par rapport au Python (indiquer le type des variables, le type des paramètres d'une fonction, le type de la valeur renvoyée par une fonction) est un handicape pour le programmeur. En faite, pas du tout, car
+			ces exigences obligent le programmeur a une plus grande rigueur et permettent de détecter beaucoup plus facilement certaines erreurs. Certains programmeurs n'aiment pas programmer en Python parce qu'ils le trouvent trop "laxiste" avec le type des variables.
+		</p>
+	</div>
+	</body>
+</html>
