@@ -1,0 +1,102 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Les données structurées au format CSV</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Les données structurées au format CSV</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+		<p>On trouve énormément de données sur internet. Une partie de ces données sont publiques, par exemple le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a> récence un grand nombre de données publiques. Ces données sont librement réutilisables.
+		</p>
+		<h4>À faire vous-même 1</h4>
+		<p>Afin de découvrir ce qu'est "l'open data", allez sur le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a>. En haut et à gauche de la page d'acceuil, cliquez sur "Découvrez L’OpenData". Résumez en quelques lignes ce que vous aurez appris en lisant cette page.</p>
+		<hr>
+		<h4>À faire vous-même 2</h4>
+		<p>Explorez pendant quelques minutes le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a>. Recherchez les données "Opérations coordonnées par les CROSS" à l'aide du moteur de recherche proposé par le site</p>
+		<p>Vous pouvez constater que ces données sont au format CSV</p>
+		<hr>
+		<p>Le format CSV est très courant sur internet.</p>
+		<p>Voici ce que nous dit Wikipédia sur le format CSV :</p>
+		<p><i>Comma-separated values, connu sous le sigle CSV, est un format informatique ouvert représentant des données tabulaires sous forme de valeurs séparées par des virgules.</i></p>
+		<p><i>Un fichier CSV est un fichier texte, par opposition aux formats dits « binaires ». Chaque ligne du texte correspond à une ligne du tableau et les virgules correspondent aux séparations entre les colonnes. Les portions de texte séparées par une virgule correspondent ainsi aux contenus des cellules du tableau.</i></p>
+		<p>Voici un exemple du contenu d'un fichier CSV :</p>
+		<pre><code>
+nom,prenom,date_naissance
+Durand,Jean-Pierre,23/05/1985
+Dupont,Christophe,15/12/1967
+Terta,Henry,12/06/1978
+		</code></pre>
+		<p>Je pense qu'il est évident pour vous que nous avons ici 3 personnes :</p>
+		<ul>
+				<li>Jean-Pierre Durand qui est né le 23/05/1985</li>
+				<li>Christophe Dupont qui est né le 15/12/1967</li>
+				<li>Henry Terta qui est né le 12/06/1978</li>
+		</ul>
+		<p>
+			"nom", "prenom" et "date_naissance" sont appelés des descripteurs  alors que, par exemple, "Durand", "Dupont" et "Terta" sont les valeurs du descripteur "nom".
+		</p>
+		<h4>À faire vous-même 3</h4>
+		<p>
+			Donnez les différentes valeurs du descripteur "date_naissance"
+		</p>
+		<p>ATTENTION :</p>
+		<p>La virgule est un standard pour les données anglo-saxonnes, mais pas pour les données aux normes françaises. En effet, en français, la virgule est le séparateur des chiffres décimaux. Il serait impossible de  différencier les virgules des décimaux et les virgules de séparation des informations. C’est pourquoi on utilise un autre séparateur : le point-virgule (;). Dans certains cas cela peut engendrer quelques problèmes, vous devrez donc rester vigilants sur le type de séparateur utilisé.</p>
+		<p></p>
+		<p>Les tableurs, tels que "Calc" (Libre Office), sont normalement capables de lire les fichiers au format CSV. J'ai précisé "normalement" car certains tableurs gèrent mal le séparateur CSV "point-virgule" et le séparateur des chiffres décimaux "virgule".</p>
+		<h4>À faire vous-même 4</h4>
+		<p>Après avoir téléchargé le fichier <a href="asset/ident_pointVirgule.csv">ident_pointVirgule.csv</a>, ouvrez ce dernier à l'aide d'un tableur.</p>
+		<p>Si par hasard votre tableur ne gère pas correctement le fichier avec le séparateur "point-virgule", voici une version "séparateur virgule" du fichier : <a href="asset/ident_virgule.csv">ident_virgule.csv</a>
+		</p>
+		<p>Dans la suite, gardez toujours cet éventuel problème à l'esprit (surtout avec des données "made in France")</p>
+		<hr>
+		<p>Vous devriez obtenir ceci :</p>
+		<div class="centrer">
+		<img src="img/snt_donnee_1.png">
+		</div>
+		<p>Vous pouvez constater que les données sont bien "rangées" dans un tableau avec des lignes et des colonnes (voilà pourquoi on parle de données tabulaires.</p>
+		<p>Il est possible de trouver sur le web des données beaucoup plus intéressantes à traiter que celles contenues dans le fichier "ident_pointVirgule.csv" (ou "ident_virgule.csv"). Par exemple, le site <a href="http://sql.sh/736-base-donnees-villes-francaises" target="_blank">sql.sh</a>, propose un fichier csv contenant des informations sur l'ensemble des communes françaises.</p>
+		<h4>À faire vous-même 5</h4>
+		<p>Ouvrez le fichier <a href="asset/villes_point_virgule.csv">ville_point_virgule.csv</a> à l'aide d'un tableur (c’est une version légèrement modifiée de celle disponible sur le site sql.sh, j’y ai notamment ajouté des entêtes). En cas de problème avec votre tableur, voici une version "séparateur virgule" : <a href="asset/villes_virgule.csv">ville_virgule.csv</a> (attention le séparateur "décimal" est ici le point)</p>
+		<hr>
+		<p>Comme vous pouvez le constater, nous avons 12 colonnes (et 36700 lignes si on ne compte pas l'entête !), voici la signification de ces colonnes :</p>
+		<ul>
+				<li>dep : numéro de département</li>
+				<li>nom : nom de la commune</li>
+				<li>cp : code postal</li>
+				<li>nb_hab_2010 : nombre d'habitants en 2010</li>
+				<li>nb_hab_1999 : nombre d'habitants en 1999</li>
+				<li>nb_hab_2012 : nombre d'habitants en 2012 (approximatif)</li>
+				<li>dens : densité de la population (habitants par kilomètre carré)</li>
+				<li>surf : superficie de la commune en kilomètre carré</li>
+				<li>long : longitude</li>
+				<li>lat : latitude</li>
+				<li>alt_min : altitude minimale de la commune (il manque des données pour certains territoires d'outre-mer)</li>
+				<li>alt_max : altitude maximale de la commune (il manque des données pour certains territoires d'outre-mer)</li>
+		</ul>
+		<h4>À faire vous-même 6</h4>
+		<p>En vous aidant du fichier ouvert dans le "À faire vous-même 4", déterminez l'altitude maximale et l'altitude minimale de votre commune.</p>
+		</div>
+</html>
