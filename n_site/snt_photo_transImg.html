@@ -230,6 +230,8 @@ for y in range(hauteur_image):
         r,v,b=img.getpixel((x,y))
         if b&lt200:
             n_b=255-b
+        else :
+            n_b=b
         img.putpixel((x,y),(r,v,n_b))
 img.show()
 		</code></pre>
