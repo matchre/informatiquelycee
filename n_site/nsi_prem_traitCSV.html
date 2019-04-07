@@ -45,7 +45,7 @@
 		<hr />
 		<h4>À faire vous-même 2</h4>
 		<p>
-			Dans la partie "Editeur de texte" de Spyder, saisissez le code Python suivant :
+			Dans la partie "Éditeur de texte" de Spyder, saisissez le code Python suivant :
 		</p>
 		<pre><code class="python">
 import pandas
@@ -68,7 +68,7 @@ iden=pandas.read_csv("ident_virgule.csv")
 		</ul>
 		<h4>À faire vous-même 3</h4>
 		<p>
-			Dans spyder cliquez sur le triangle vert qui permet d'exécuter le programme que vous venez de saisir. Placez ensuite le curseur de la souris dans la console de spyder juste à côté d'un "In [X]" (avec X égal à 1, 2, 3..., selon les cas, dans l'exemple ci-dessous nous avons "In [3]").
+			Exécutez le programme que vous venez de saisir. Placez ensuite le curseur de la souris dans la console de spyder juste à côté d'un "In [X]" (avec X égal à 1, 2, 3..., selon les cas, dans l'exemple ci-dessous nous avons "In [3]").
 			Tapez alors "iden"
 		</p>
 		<p>
@@ -216,7 +216,7 @@ nom_alt=info_villes.loc[info_villes["alt_min"]>1500,["nom","alt_min"]]
 		</p>
 		<h4>À faire vous-même 11</h4>
 		<p>
-			En vous inspirant de ce qui a été fait au "À faire vous-même 11", écrivez un programme qui permettra d'avoir les villes qui ont une densité d'habitant inférieure à 50 (dans le tableau ainsi créé, on aura 3 colonnes : le nom de la ville, la densité de la population et l'altitude minimum)
+			En vous inspirant de ce qui a été fait au "À faire vous-même 10", écrivez un programme qui permettra d'avoir les villes qui ont une densité d'habitant inférieure à 50 (dans le tableau ainsi créé, on aura 3 colonnes : le nom de la ville, la densité de la population et l'altitude minimum)
 		</p>
 		<hr />
 		<p>
@@ -310,6 +310,123 @@ tri_alt_min=info_villes.sort_values(by=["alt_min"], ascending=False)
 		<p>
 			Écrivez un programme permettant de répondre à la question suivante : quelle est la ville ayant la densité de population la plus forte ?
 		</p>
-		
+		<hr />
+		<p>
+			Il est possible de fusionner 2 tableaux de données qui ont une colonne commune :
+		</p>
+		<p>
+			Afin de travailler sur cette fusion, nous allons travailler avec 2 fichiers au format CSV : <a href="asset/fiches_client.csv" target="_blank">fiches_client.csv</a> et <a href="fiches_com.csv" target="_blank">fiches_com.csv</a>.
+		</p>
+		<h4>À faire vous-même 19</h4>
+		<p>
+			Après avoir téléchargé les 2 fichiers ci-dessus, testez le code suivant :
+		</p>
+		<pre><code class="python">
+import pandas
+client=pandas.read_csv("fiches_client.csv")
+commande=pandas.read_csv("fiches_com.csv")
+		</code></pre>
+		<p>
+			Utilisez l'explorateur de variables de Spyder afin d'afficher le contenu des variables "client" et "commande"
+		</p>
+		<hr />
+		<p>
+			Vous devriez normalement obtenir pour "client" :
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_prem_traitCSV_1.png" />
+		</div>
+		<p>
+			et pour "commande" :
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_prem_traitCSV_2.png" />
+		</div>
+		<p>
+			Rien de bien complexe, nous avons un tableau qui référence les clients (nom, prénom, ville), chaque client possède un numéro de client. Le deuxième tableau référence des commandes :
+			pour chaque commande, nous avons un numéro de commande, une date et le numéro du client qui a passé la commande, ce numéro de client correspond évidemment au numéro de client que l'on trouve dans le premier tableau.
+		</p>
+		<p>
+			Sachant que nous avons deux colonnes contenant les mêmes types d'information (numéros de client), nous allons pouvoir fusionner les deux tableaux en un seul :
+		</p>
+		<h4>À faire vous-même 20</h4>
+		<p>
+			Testez le code suivant :
+		</p>
+		<pre><code class="python">
+import pandas
+client=pandas.read_csv("fiches_client.csv")
+commande=pandas.read_csv("fiches_com.csv")
+cl_com=pandas.merge(client, commande)
+		</code></pre>
+		<p>
+			Utilisez l'explorateur de variables de Spyder afin d'afficher le contenu de la variable "cl_com"
+		</p>
+		<hr />
+		<p>
+			Vous devriez obtenir ceci :
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_prem_traitCSV_3.png" />
+		</div>
+		<p>
+			Prenons l'exemple de Mme Julie Gabriaux qui habite à Bordeaux (n° de client 2454) et de la commande effectuée le 02/02/2012 par le client ayant le n° 2454 (commande n° 45). La cliente qui a passé cette commande n° 45 est bien Mme Gabriaux, nous avons une ligne dans notre tableau "cl-com" :
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_prem_traitCSV_4.png" />
+		</div>
+		<p>
+			Nous avons bien fusionné les 2 tableaux "client" et "commande" en un seul tableau "cl_com" qui regroupe les informations pour chaque commande. Quand on effectue ce genre de fusion, on dit souvent que l'on effectue une jointure.
+		</p>
+		<p>
+			Il faut prendre garde à l'ordre des arguments de la fonction "merge" :
+		</p>
+		<h4>À faire vous-même 21</h4>
+		<p>
+			Testez le code suivant :
+		</p>
+		<pre><code class="python">
+import pandas
+client=pandas.read_csv("fiches_client.csv")
+commande=pandas.read_csv("fiches_com.csv")
+com_cl=pandas.merge(commande, client)
+		</code></pre>
+		<p>
+			Utilisez l'explorateur de variables de Spyder afin d'afficher le contenu de la variable "com_cl"
+		</p>
+		<hr />
+		<p>
+			Vous devriez obtenir ceci :
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_prem_traitCSV_5.png" />
+		</div>
+		<p>
+			Comme vous pouvez le constater, l'ordre des colonnes est différent. Il faudra donc être attentif à l'ordre des paramètres de la fonction "merge".
+		</p>
+		<p>
+			Remarque : On trouve Mme Ila Neufville sur 2 lignes, car elle a passé 2 commandes.
+		</p>
+		<h4>À faire vous-même 22</h4>
+		<p>
+			Vous avez peut-être remarqué que Mme Élodie Gaulin (n° de client 895) bien que présente dans le tableau "client", est absente du tableau "com_cl" (ou "cl_com"). Pourquoi d'après vous ?
+		</p>
+		<hr />
+		<h4>À faire vous-même 23</h4>
+		<p>
+			De la même manière, aucun trace de la commande n° 1324 du 01/02/2017 dans le tableau "com_cl" (ou "cl_com"), pourquoi d'après vous ?
+		</p>
+		<hr />
+		<p>
+			Comme nous venons de le voir ci-dessus, il faut que l'élément qui permet la jointure (ici un numéro de client) soit présent dans les 2 tableaux : dans nos exemples vous avez sans doute remarqué que :
+		</p>
+		<ul>
+			<li>
+				Mme Gaulin n'a pas passé de commande, son numéro de client est absent du tableau "commande", d'où son absence du tableau "com_cl" (ou "cl_com"). À noter que nous avons 2 autres clientes qui n'ont jamais passé de commande.
+			</li>
+			<li>
+				Le client qui a passé la commande n°1324 (n° client 4444) est absent du tableau "client", d'où, ici aussi, son absence du tableau "com_cl" (ou "cl_com")
+			</li>
+		</ul>
 		</div>
 </html>
