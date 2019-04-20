@@ -1,0 +1,341 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Formulaire d'une page Web</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Formulaire d'une page Web</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Comme déjà évoqué dans la partie consacrée au modèle <a href="nsi_prem_clsv.html" target="_blank">client-serveur</a>, un serveur Web (aussi appelé serveur HTTP) permet de répondre à une requête HTTP
+				effectuée par un client (très souvent un navigateur Web). Nous allons travailler avec le serveur Web qui est installé sur votre ordinateur. Nous allons donc avoir une configuration
+				un peu particulière puisque le client et le serveur vont se trouver sur la même machine. Cette configuration est classique lorsque l'on désire effectuer de simples tests.
+				Nous aurons donc 2 logiciels sur le même ordinateur : le client (navigateur Web) et le serveur (serveur Web), ces 2 logiciels vont communiquer en utilisant le <a href="nsi_prem_http.html" target="_blank">protocole HTTP</a>. Le serveur Web que nous allons utiliser se nomme "Apache",
+				c'est un des serveur Web le plus utilisé au monde. Apache a déjà été installé et configuré sur votre ordinateur.
+			</p>
+			<p>
+				Nous allons commencer par un cas très simple où le serveur va renvoyer au client une simple page HTML statique (ne pas hésiter à consulter la partie consacrée au modèle <a href="nsi_prem_clsv.html" target="_blank">client-serveur</a> pour plus de précision sur ce terme "statique").
+				Le serveur Web Apache a été configuré pour qu'il envoie vers le client une page HTML située dans un répertoire nommé "www", ce répertoire "www" devant se trouver dans votre répertoire personnel.
+			</p>
+			<h4>À faire vous-même 1</h4>
+			<p>
+				Créez dans votre répertoire personnel un répertoire nommé "www".
+			</p>
+			<hr />
+			<h4>À faire vous-même 2</h4>
+			<p>
+				Créez un fichier "index.html", placez ce fichier "index.html" dans le répertoire "www" tout nouvellement créé.
+			</p>
+			<hr />
+			<h4>À faire vous-même 3</h4>
+			<p>
+				Copiez le code HTML ci-dessous dans le fichier "index.html" que vous venez de créer
+			</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+	&lthead&gt
+		&ltmeta charset="utf-8"&gt
+		&lttitle&gtUtilisation d'Apache&lt/title&gt
+	&lt/head&gt
+	&ltbody&gt
+		&ltp&gtLe serveur Apache fonctionne parfaitement&lt/p&gt
+	&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<hr />
+			<h4>À faire vous-même 4</h4>
+			<p>
+				Ouvrez votre navigateur Web et tapez dans la barre d'adresse "localhost".
+			</p>
+			<p>
+				Vous devriez voir votre page Web s'afficher.
+			</p>
+			<hr />
+			<p>
+				Une petite explication s'impose à propos du "localhost" : comme nous l'avons déjà dit, notre serveur et notre client se trouvent sur la même machine, avec le "localhost", on indique
+				au navigateur que le serveur Web se trouve sur le même ordinateur que lui (on parle de machine locale). Dans un cas normal, la barre d'adresse devrait être renseignée avec l'adresse du serveur Web.
+			</p>
+			<p>
+				Pour l'instant, comme déjà dit plus haut, notre site est statique : la page reste identique, quelles que soient les actions des visiteurs.
+				Pour avoir un site dynamique, nous allons exécuter, côté serveur, un programme qui va créer de toute pièce une page HTML, cette page HTML sera ensuite envoyée au client par l'intermédiaire du serveur Web.
+				Il existe différents langages de programmation qui permettent de générer des pages HTML à la volée : Python, Java, Ruby...
+				Dans notre cas, nous allons utiliser le PHP (PHP est un acronyme récursif puisqu'il signifie : PHP Hypertext Preprocessor).
+				Le PHP est un langage très utilisé même si dans le monde professionnel Java, Python, Ruby,... sont préférés au PHP.
+				Il est très important de bien comprendre les processus mis en oeuvre :
+			</p>
+			<ul>
+				<li>
+					le client (le navigateur Web) envoie une requête HTTP vers un serveur Web
+				</li>
+				<li>
+					en fonction de la requête reçue le serveur "fabrique" une page HTML grâce à l'exécution d'un programme écrit en PHP (ou en Python, Java...)
+				</li>
+				<li>
+					le serveur Web envoie la page nouvellement créée au client
+				</li>
+				<li>
+					une fois reçue, la page HTML est affichée dans le navigateur Web
+				</li>
+			</ul>
+			<p>
+				Le langage PHP est déjà installé sur l'ordinateur que vous utilisez actuellement, nous allons donc pouvoir écrire notre premier programme en PHP.
+				Notez qu'il n'est pas question ici d'apprendre à programmer en PHP, mais juste d'avoir un premier contact avec ce langage (et avec cette notion de Web dynamique)
+			</p>
+			<h4>À faire vous-même 5</h4>
+			<p>
+				Après avoir supprimé le fichier "index.html" préalablement créé dans le répertoire "www",
+				créez un fichier "index.php", toujours dans le répertoire "www".
+			</p>
+			<hr />
+			<h4>À faire vous-même 6</h4>
+			<p>
+					Copiez le code PHP ci-dessous dans le fichier "index.php" que vous venez de créer
+			</p>
+			<pre><code class="php">
+&lt?php
+$heure = date("H:i");
+echo '&lth1&gtBienvenue sur mon site&lt/h1&gt
+      &ltp&gtIl est '.$heure.'&lt/p&gt';
+?&gt
+			</code></pre>
+			<hr />
+			<h4>À faire vous-même 7</h4>
+			<p>
+				Ouvrez votre navigateur Web et tapez dans la barre d'adresse "localhost".
+			</p>
+			<hr />
+			<p>
+				Vous devriez avoir une page HTML qui vous donne l'heure, si vous actualisez la page, vous pourrez remarquer
+				que bien évidemment l'heure évolue. Nous avons donc bien une page dynamique : le serveur PHP crée la page Web au moment où elle est demandée.
+				À chaque fois que vous actualisez la page, la page HTML est générée de nouveau.
+			</p>
+			<p>
+				Vous aurez sans doute remarqué que l'extension ".html" a été remplacée par ".php". Au moment de la requête, le programme contenu dans ce fichier a été exécuté et la page HTML a été générée.
+				Dans les 2 cas, le fichier se nomme "index", pourquoi ? Par défaut, le serveur prend en compte un fichier nommé "index" ("index.php" ou "index.html" selon les cas).
+				Si vous voulez nommer votre fichier autrement, il faudra modifier ce que vous avez saisi dans la barre d'adresse de votre navigateur : si par exemple vous voulez nommer votre fichier "toto.html" (ou "toto.php"), il faudra saisir dans la barre
+				d'adresse du navigateur "localhost/toto.html" (ou "localhost/toto.php").
+			</p>
+			<p>
+				Quelques remarques sur le programme PHP ci-dessus :
+			</p>
+			<ul>
+				<li>
+					"$heure = date("H:i");", "$heure" est une variable (en PHP les variables commencent par un "$"), cette variable "contient" une chaîne de caractères qui correspond à l'heure courante
+				</li>
+				<li>
+					l'instruction "echo" permet d'afficher la chaîne de caractères qui suit l'instruction. Dans notre cas, la chaîne de caractères est "&lth1&gtBienvenue sur mon site&lt/h1&gt
+					      &ltp&gtIl est '.$heure.'&lt/p&gt" ce qui correspond à du HTML à l'exception de "$heure" qui permet d'afficher le contenu de la variable "$heure".
+								La page Web générée contiendra le code HTML et le contenu de la variable "$heure".
+								Le point "." est, en PHP, l'opérateur de concaténation (alors que par exemple en Python, l'opérateur de concaténation est le "+")
+				</li>
+			</ul>
+			<p>Si un client effectue une requête à 18h23, le serveur enverra au client le code HTML ci-dessous :</p>
+			<pre><code class="html">
+&lth1&gtBienvenue sur mon site&lt/h1&gt
+&ltp&gtIl est 18h23&lt/p&gt
+			</code></pre>
+			<p>
+				Nous allons maintenant nous intéresser à la gestion des formulaires.
+			</p>
+			<h4>À faire vous-même 8</h4>
+			<p>
+				Après avoir supprimé tout le contenu de votre dossier "www", créez dans ce même dossier un fichier "index.html" et un fichier "trait_form.php"
+			</p>
+			<hr />
+			<h4>À faire vous-même 9</h4>
+			<p>
+					Copiez le code HTML ci-dessous dans le fichier "index.html" que vous venez de créer :
+			</p>
+			<pre><code class="html">
+&lt!doctype html&gt
+&lthtml lang="fr"&gt
+	&lthead&gt
+		&ltmeta charset="utf-8"&gt
+		&lttitle&gtLe formulaire&lt/title&gt
+	&lt/head&gt
+	&ltbody&gt
+		&ltform action="trait_form.php" method="post"&gt
+				&ltlabel&gtNom&lt/label&gt : &ltinput type="text" name="nom" /&gt
+				&ltlabel&gtPrénom&lt/label&gt : &ltinput type="text" name="prenom" /&gt
+				&ltinput type="submit" value="Envoyer" /&gt
+		&lt/form&gt
+	&lt/body&gt
+&lt/html&gt
+			</code></pre>
+			<p>
+					Copiez le code PHP ci-dessous dans le fichier "trait_form.php" que vous venez de créer :
+			</p>
+			<pre><code class="php">
+&lt?php
+    $n=$_POST['nom'];
+    $p=$_POST['prenom'];
+    echo "&ltp&gtBonjour ".$p." ".$n.", j'espère que vous allez bien.&lt/p&gt";
+?&gt
+			</code></pre>
+			<hr />
+			<h4>À faire vous-même 10</h4>
+			<p>
+					Ouvrez votre navigateur Web et tapez dans la barre d'adresse "localhost". Une fois la page Web affichée dans votre navigateur, remplissez le formulaire proposé et validez en cliquant sur le bouton "Envoyer"
+			</p>
+			<hr />
+			<p>
+				Analysons le code HTML ci-dessus :
+			</p>
+			<p>
+				Nous utilisons la balise "form" afin de mettre en place un formulaire sur notre page :
+			</p>
+			<pre><code class="html">
+&ltform action="trait_form.php" method="post"&gt
+			</code></pre>
+			<p>
+				Nous avons 2 attributs "action" et "method". L'attribut "action="trait_form.php"" indique que le client enverra une requête HTTP vers le serveur en cas de clic sur le bouton "Envoyer". Pour répondre à cette requête du client, le serveur devra exécuter le programme PHP contenu dans le
+				fichier "trait_form.php". Le "method="post"" nous indique que la méthode utilisée pour effectuer cette requête HTTP est une méthode "POST" (cette notion de méthode a déjà été vu dans la partie consacrée au <a href="nsi_prem_http.html" target="_blank">protocole HTTP</a>)
+			</p>
+			<p>
+				Au niveau des 2 balises "input" permettant de saisir le nom et le prénom :
+			</p>
+			<pre><code class="html">
+&ltlabel&gtNom&lt/label&gt : &ltinput type="text" name="nom" /&gt
+&ltlabel&gtPrénom&lt/label&gt : &ltinput type="text" name="prenom" /&gt
+			</code></pre>
+			<p>
+				L'attribut "name" nous intéresse particulièrement dans ces 2 balises. Dans la première balise nous avons "name="nom"" et dans la deuxième balise, nous avons "name="prenom"". Nous aurons l'occasion de revenir sur le rôle de cet attribut "name" ci-dessous.
+			</p>
+			<p>
+				Intéressons-nous maintenant au code contenu dans le fichier "trait_form.php" :
+			</p>
+			<p>
+				La ligne
+			</p>
+			<pre><code class="php">
+$n=$_POST['nom'];
+			</code></pre>
+			<p>
+				permet d'attribuer à la variable "$n" la chaîne de caractères qui a été saisie par l'utilisateur dans le formulaire : balise "input" ayant l'attribut "name="nom"". Le "nom" de "$_POST['nom']" est directement lié au "nom" de l'attribut "name="nom"". Le principe est le même pour la variable "$p" :
+				 le "prenom" de "$_POST['prenom']" est directement lié au "prenom" de l'attribut "name="prenom"". Un ""$_POST['toto']"" contiendra la chaîne de caractères saisie par l'utilisateur dans le champ correspondant à une balise "input" possédant un attribut "name="toto"".
+			</p>
+			<p>
+				La dernière ligne :
+			</p>
+			<pre><code class="php">
+echo "&ltp&gtBonjour ".$p." ".$n.", j'espère que vous allez bien.&lt/p&gt";
+			</code></pre>
+			<p>
+				ne devrait pas vous poser de problème.
+			</p>
+			<p>
+				Nous avons vu qu'un clic sur le bouton "Envoyer" déclenche une requête HTTP vers le serveur et que les informations saisies dans le formulaire sont envoyées vers le serveur (puisqu'il est possible de récupérer ces informations au niveau du code PHP : une fois de plus, le code PHP est uniquement exécuté du côté serveur). Mais comment ces informations transitent-elles entre le client et le serveur ? La réponse est simple : cela dépend de la méthode utilisée par la requête HTTP.
+			</p>
+			<p>
+				Dans l'exemple ci-dessus, nous utilisons la méthode "POST" ("method="post"").
+			</p>
+				<h4>À faire vous-même 11</h4>
+				<p>
+						Ouvrez votre navigateur Web et tapez dans la barre d'adresse "localhost". Une fois la page Web affichée dans votre navigateur, Saisissez "Sophie" pour le prénom et "Martin" pour le nom puis validez en cliquant sur le bouton "Envoyer". Une fois que vous avez cliqué sur le bouton "Envoyer", observez attentivement la barre d'adresse de votre navigateur. Vous devriez obtenir quelque chose qui ressemble à cela :
+				</p>
+				<div class="centrer">
+					<img src="img/nsi_prem_php_1.png" alt="barre d'adresse POST"/>
+			 </div>
+				<hr />
+				<p>
+					Dans la barre d'adresse, rien de spécial à signaler, on constate que le fichier "trait_form.php" a bien été utilisé.
+				</p>
+				<p>
+					Il est possible d'utiliser une méthode HTTP "GET" à la place de la méthode "POST" :
+				</p>
+				<h4>À faire vous-même 12</h4>
+				<p>
+					Modifiez les fichiers "index.html" et "trait_form.php" comme suit :
+				</p>
+				<p>
+					index.html
+				</p>
+				<pre><code class="html">
+	&lt!doctype html&gt
+	&lthtml lang="fr"&gt
+		&lthead&gt
+			&ltmeta charset="utf-8"&gt
+			&lttitle&gtLe formulaire&lt/title&gt
+		&lt/head&gt
+		&ltbody&gt
+			&ltform action="trait_form.php" method="get"&gt
+					&ltlabel&gtNom&lt/label&gt : &ltinput type="text" name="nom" /&gt
+					&ltlabel&gtPrénom&lt/label&gt : &ltinput type="text" name="prenom" /&gt
+					&ltinput type="submit" value="Envoyer" /&gt
+			&lt/form&gt
+		&lt/body&gt
+	&lt/html&gt
+				</code></pre>
+				<p>
+					trait_form.php
+				</p>
+				<pre><code class="php">
+	&lt?php
+	    $n=$_GET['nom'];
+	    $p=$_GET['prenom'];
+	    echo "&ltp&gtBonjour ".$p." ".$n.", j'espère que vous allez bien.&lt/p&gt";
+	?&gt
+				</code></pre>
+				<hr />
+				<p>
+					Les différences sont minimes : dans le fichier "index.html" nous avons un "method="get"" à la place d'un "method="post"".
+					 Dans le fichier "trait_form.php" nous avons des "$_GET" à la place des "$_POST".
+				</p>
+				<h4>À faire vous-même 13</h4>
+				<p>
+						Ouvrez votre navigateur Web et tapez dans la barre d'adresse "localhost". Une fois la page Web affichée dans votre navigateur, Saisissez "Sophie" pour le prénom et "Martin" pour le nom puis validez en cliquant sur le bouton "Envoyer". Une fois que vous avez cliqué sur le bouton "Envoyer", observez attentivement la barre d'adresse de votre navigateur. Vous devriez obtenir quelque chose qui ressemble à cela :
+				</p>
+				<div class="centrer">
+					<img src="img/nsi_prem_php_2.png" alt="barre d'adresse POST"/>
+			 </div>
+			 <p>
+				Vous avez du remarquer que cette fois-ci, les informations du formulaire sont transmises au serveur par l'intermédiaire de l'url :  localhost/trait_form.php?nom=Martin&prenom=Sophie
+			 </p>
+			 <hr />
+			 <p>
+				Dans le cas de l'utilisation d'une méthode "POST" les données issues d'un formulaire sont envoyées au serveur sans être directement visibles, alors que dans le cas de l'utilisation d'une méthode "GET", les données sont visibles (et accessibles) puisqu'elles sont envoyées par l'intermédiaire de l'url.
+			 </p>
+			 <p>
+				Les données envoyées par l'intermédiaire d'une méthode "GET" peuvent être modifiées directement dans l'url :
+			 </p>
+			 <h4>À faire vous-même 14</h4>
+			 <p>
+					 Ouvrez votre navigateur Web et tapez dans la barre d'adresse "localhost". Une fois la page Web affichée dans votre navigateur, Saisissez "Sophie" pour le prénom et "Martin" pour le nom puis validez en cliquant sur le bouton "Envoyer". Une fois que le message "Bonjour Sophie Martin, j'espère que vous allez bien." apparait, modifier l'url : passez de "localhost/trait_form.php?nom=Martin&prenom=Sophie" à "localhost/trait_form.php?nom=Martin&prenom=Jean-Pierre", validez votre modification en appuyant sur la touche "Entrée".
+			 </p>
+			 <hr />
+			 <p>
+				 Comme vous pouvez le constater, la page a bien été modifiée : "Bonjour Jean-Pierre Martin, j'espère que vous allez bien."
+			 </p>
+			 <p>
+				Même si dans notre cas cette opération de modification d'url est inoffensive, vous devez bien vous douter que dans des situations plus complexes, une telle modification pourrait entrainer des conséquences plus problématiques (piratage). Il faut donc éviter d'utiliser la méthode "GET" pour transmettre les données issues d'un formulaire vers un serveur.
+			 </p>
+			 <p>
+				Il est important de bien comprendre que la méthode "POST" n'offre pas non plus une sécurité absolue puisque toute personne ayant un bagage technique minimum sera capable de lire les données transmises à l'aide de la méthode "POST" en analysant la requête HTTP, même si ces données ne sont pas directement visibles dans l'url. Seule l'utilisation du protocole sécurisé HTTPS garantit un transfert sécurisé des données entre le client et le serveur (les données sont chiffrées et donc illisibles pour une personne ne possédant pas la clé de déchiffrement).
+			 </p>
+		</div>
+	</body>
+</html>
