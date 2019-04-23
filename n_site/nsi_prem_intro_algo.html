@@ -106,7 +106,7 @@ tant que i&lt=longueur(t) et que tr==FAUX:
   fin si
   i=i+1
 fin tant que
-affiche(tr)
+renvoyer la valeur de tr
 FIN
 			</code></pre>
 			<p>
@@ -121,7 +121,7 @@ FIN
 					(alors que dans la plupart des langages de programmation le premier élément d'un tableau a pour indice 0). Il faut donc faire attention à cela lorsque l'on veut implémenter un algorithme.
 				</li>
 				<li>
-					Dans l'algorithme ci-dessus, on part du principe qu'il existe une fonction "longueur" qui prend en paramètre un tableau et qui renvoie le nombre d'éléments présents dans ce tableau, et une fonction "affiche" qui permet d'afficher une chaîne de caractères, un nombre ou un booléen.
+					Dans l'algorithme ci-dessus, on part du principe qu'il existe une fonction "longueur" qui prend en paramètre un tableau et qui renvoie le nombre d'éléments présents dans ce tableau.
 					Vous noterez que déterminer le nombre d'éléments présents dans un tableau n'est pas vraiment une "opération élémentaire", pourtant ici, on considère l'utilisation de "longueur" comme une opération élémentaire ! Il arrive relativement souvent que l'on s'autorise ce genre de liberté quand on écrit un algorithme.
 				</li>
 			</ul>
@@ -174,7 +174,7 @@ j fois      si t[i]==x:
            fin si
 j fois     i=i+1
         fin tant que
-1 fois  affiche(tr)
+1 fois  renvoyer la valeur de tr
 FIN
 			</code></pre>
 			<p>
@@ -198,7 +198,7 @@ n fois      si t[i]==x:
            fin si
 n fois     i=i+1
         fin tant que
-1 fois  affiche(tr)
+1 fois  renvoyer la valeur de tr
 FIN
 			</code></pre>
 			<p>
