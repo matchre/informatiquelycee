@@ -98,13 +98,13 @@ x : nombre entier
 tr : booléen (VRAI ou FAUX)
 i : nombre entier
 DEBUT
-tr = FAUX
-i=1
+tr ← FAUX
+i ← 1
 tant que i&lt=longueur(t) et que tr==FAUX:
   si t[i]==x:
-    tr=VRAI
+    tr ← VRAI
   fin si
-  i=i+1
+  i ← i+1
 fin tant que
 renvoyer la valeur de tr
 FIN
@@ -166,13 +166,13 @@ x : nombre entier
 tr : booléen (VRAI ou FAUX)
 i : nombre entier
 DEBUT
-1 fois   tr = FAUX
-1 fois   i=1
+1 fois   tr ← FAUX
+1 fois   i ← 1
 j+1 fois tant que i&lt=longueur(t) et que tr==FAUX:
 j fois      si t[i]==x:
-1 fois       tr=VRAI
+1 fois       tr ← VRAI
            fin si
-j fois     i=i+1
+j fois     i ← i+1
         fin tant que
 1 fois  renvoyer la valeur de tr
 FIN
@@ -190,13 +190,13 @@ x : nombre entier
 tr : booléen (VRAI ou FAUX)
 i : nombre entier
 DEBUT
-1 fois   tr = FAUX
-1 fois   i=1
+1 fois   tr ← FAUX
+1 fois   i ← 1
 n+1 fois tant que i&lt=longueur(t) et que tr==FAUX:
 n fois      si t[i]==x:
-0 fois       tr=VRAI
+0 fois       tr ← VRAI
            fin si
-n fois     i=i+1
+n fois     i ← i+1
         fin tant que
 1 fois  renvoyer la valeur de tr
 FIN
