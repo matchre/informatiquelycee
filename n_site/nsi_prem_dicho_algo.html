@@ -1,0 +1,191 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Recherche dichotomique</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Recherche dichotomique</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Nous avons déjà eu l'occasion d'étudier un algorithme de recherche d'un entier dans un tableau. Dans le pire des cas (l'entier recherché n'est pas dans le tableau), l'algorithme parcourt l'ensemble du tableau, nous avions donc une complexité O(n).
+				Est-on obligé de parcourir l'ensemble du tableau pour vérifier qu'un entier x ne se trouve pas dans un tableau t ? A priori oui, sauf si le tableau t est trié !
+			</p>
+			<p>
+				Agorithme de recherche dichotomique
+			</p>
+
+			<pre style="color:white; background-color:black;"><code >
+VARIABLE
+t : tableau d'entiers trié
+mil : nombre entier
+fin : nombre entier
+deb : nombre entier
+x : nombre entier // x : l'entier recherché
+tr : booléen
+DEBUT
+tr ← FAUX
+deb ← 1
+fin ← longueur(t)
+tant que tr == FAUX et que deb ⩽ fin :
+ mil ← partie_entière((deb+fin)/2)
+ si t[mil] == x :
+  tr = vrai
+ sinon :
+  si x &gt t[mil] :
+   deb ← mil+1
+  sinon :
+   fin ← mil-1
+  fin si
+ fin si
+fin tant que
+renvoyer la valeur de tr
+FIN
+			</code></pre>
+			<h4>À faire vous-même 1</h4>
+			<p>
+				Étudier attentivement l'analyse effectuée ci-dessous :
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_algo_dicho_1.png" alt="dicho"/>
+			</div>
+			<hr />
+			<p>
+				On peut résumer le principe de fonctionnement de l'algorithme de recherche dichotomique par le schéma suivant :
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_algo_dicho_2.png" alt="dicho"/>
+				<figcaption>schéma 1</figcaption>
+			</div>
+			<p>
+				Il est aussi possible de représenter le principe de l'algorithme de recherche dichotomique avec le schéma suivant :
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_algo_dicho_3.png" alt="dicho"/>
+				<figcaption>schéma 2</figcaption>
+			</div>
+			<p>
+				L'idée est donc de définir le milieu du tableau (variable "mil") et de couper le tableau en 2, on se retrouve avec 2 tableaux. On garde uniquement le tableau qui peut contenir la valeur recherchée.
+				On recommence le processus jusqu'au moment où l'on "tombe" sur la valeur recherchée ou que l'on se retrouve avec un tableau contenant un seul élément : si l'élément unique du tableau n'est pas l'élément recherché, l'algorithme renvoie FAUX.
+			</p>
+			<h4>À faire vous-même 2</h4>
+			<p>
+				Reproduire l'analyse effectuée au "À faire vous-même 1" avec t = [5, 7, 12, 14, 23, 27, 35, 40, 41, 45] et x = 9
+			</p>
+			<p>
+				Représentez le principe de fonctionnement de l'algorithme (pour le cas t = [5, 7, 12, 14, 23, 27, 35, 40, 41, 45] et x = 9) à l'aide d'un schéma (le même type que le schéma 2)
+			</p>
+			<hr />
+			<h4>À faire vous-même 3</h4>
+			<p>
+				Reproduire l'analyse effectuée au "À faire vous-même 1" avec t = [5, 7, 12, 14, 23, 27, 35, 40, 41, 45] et x = 40
+			</p>
+			<p>
+				Représentez le principe de fonctionnement de l'algorithme (pour le cas t = [5, 7, 12, 14, 23, 27, 35, 40, 41, 45] et x = 40) à l'aide d'un schéma (le même type que le schéma 2)
+			</p>
+			<hr />
+			<h4>Complexité</h4>
+			<p>
+				Pour étudier la complexité, nous allons nous intéresser à la boucle : au niveau de la boucle, combien doit-on effectuer d'itérations pour un tableau de taille n dans le cas le plus défavorable (l'entier x n'est pas dans le tableau t) ?
+			</p>
+			<p>
+				Sachant qu'à chaque itération de la boucle on divise le tableau en 2, cela revient donc à se demander combien de fois faut-il diviser le tableau en 2 pour obtenir, à la fin, un tableau comportant un seul entier ? Autrement dit, combien de fois faut-il diviser n par 2 pour obtenir 1 ?
+			</p>
+			<p>
+				Mathématiquement cela se traduit par l'équation $\frac{n}{2^a}=1$ avec a le nombre de fois qu'il faut diviser n par 2 pour obtenir 1. Il faut donc trouver a !
+			</p>
+			<p>
+				A ce stade il est nécessaire d'introduire une nouvelle notion mathématique : le "logarithme base 2" noté $log_2$. Par définition $log_2(2^x)=x$
+			</p>
+			<p>
+				Nous avons donc :
+			</p>
+			<p>
+				$\frac{n}{2^a}=1$ => $n=2^a$ => $log_2(n)=log_2(2^a)=a$, nous avons donc $a=log_2(n)$
+			</p>
+			<p>
+				Nous pouvons donc dire que la complexité en temps dans le pire des cas de l'algorithme de recherche dichotomique est $O(log_2(n))$
+			</p>
+			<p>
+				Afin de pouvoir comparer l'efficacité des différents algorithmes, voici une représentation graphique des fonctions $y=x$ (en rouge), $y=x^2$ (en bleu) et $y=log_2(x)$ (en vert)
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_algo_dicho_4.png" alt="dicho"/>
+			</div>
+			<p>
+				Comme vous pouvez le constater l'algorithme de recherche dichotomique est plus efficace que l'algorithme de recherche qui consiste à parcourir l'ensemble du tableau, car $x>log_2(x)$ quelque soit $x$.
+				Cependant, il ne faut pas perdre de vu que dans le cas de la recherche dichotomique, il est nécessaire d'avoir un tableau trié, si au départ le tableau n'est pas trié, il faut rajouter la durée du tri.
+			</p>
+			<p>
+				Pour terminer, nous allons démontrer que cet algorithme se termine dans tous les cas (on ne peut pas "tomber dans une boucle infinie") :
+			</p>
+			<p>
+				Nous avons les variables "fin" et "deb". Définissons fin<sub>i</sub> et deb<sub>i</sub> avec i qui correspond à la ième itération de la boucle : deb<sub>0</sub> correspond à la valeur de la variable "deb" avant la première
+				itération de la boucle (nous avons donc deb<sub>0</sub> = 0). Même chose pour fin<sub>i</sub> (nous avons donc fin<sub>0</sub> = n). À la fin de la première itération de la boucle, nous aurons fin<sub>1</sub> et deb<sub>1</sub>...
+				Par exemple, dans l'exemple traité au "À faire vous-même 1", nous avons : deb<sub>0</sub> = 0, fin<sub>0</sub> = 10, deb<sub>1</sub> = 6, fin<sub>1</sub> = 10, deb<sub>2</sub> = 6, fin<sub>2</sub> = 7, deb<sub>3</sub> = 7, fin<sub>3</sub> = 7.
+			</p>
+			<p>
+				On définit aussi m<sub>i</sub> = (deb<sub>i</sub> + fin<sub>i</sub>) / 2.
+			</p>
+			<p>
+				Partons du principe que nous sommes à la k ième itération (i=k), nous avons plusieurs cas à considérer :
+			</p>
+			<ul>
+				<li>
+					si deb<sub>k</sub> &gt fin<sub>k</sub> ou si t[m<sub>k</sub>] = x, l'algorithme se termine, car on "n'entre pas" dans la boucle.
+				</li>
+				<li>
+					si deb<sub>k</sub> ⩽ fin<sub>k</sub> et si x &lt t[m<sub>k</sub>], on "entre" dans la boucle : deb<sub>k+1</sub> = deb<sub>k</sub> et fin<sub>k+1</sub> = m<sub>k</sub> - 1. On a alors fin<sub>k+1</sub> - deb<sub>k+1</sub> &lt fin<sub>k</sub> - deb<sub>k</sub>
+				</li>
+				<li>
+					si deb<sub>k</sub> ⩽ fin<sub>k</sub> et si x &gt t[m<sub>k</sub>], on "entre" dans la boucle : deb<sub>k+1</sub> = m<sub>k</sub> + 1 et fin<sub>k+1</sub> = fin<sub>k</sub>. On a alors fin<sub>k+1</sub> - deb<sub>k+1</sub> &lt fin<sub>k</sub> - deb<sub>k</sub>
+				</li>
+			</ul>
+			<p>
+				Quel que soit le cas, nous avons fin<sub>k+1</sub> - deb<sub>k+1</sub> &lt fin<sub>k</sub> - deb<sub>k</sub>, nous pouvons donc dire que fin<sub>i</sub> - deb<sub>i</sub> est strictement décroissante.
+				Il existe donc un entier p tel que :
+			</p>
+			<ul>
+				<li>
+					soit deb<sub>p</sub> &gt fin<sub>p</sub>, dans ce cas l'algorithme va se terminer, car on "n'entre pas" dans la boucle et l'algorithme renvoie FAUX.
+				</li>
+				<li>
+					soit x = t[m<sub>p</sub>] avec m<sub>p</sub> = (deb<sub>p</sub> + fin<sub>p</sub>) / 2, dans ce cas l'algorithme va se terminer, car on "n'entre pas" dans la boucle et l'algorithme renvoie VRAI.
+				</li>
+			</ul>
+			<p>
+				Nous venons démontrer que l'algorithme se termine à un moment ou à un autre. Pour effectuer cette démonstration nous avons utilisé le fait que fin<sub>i</sub> - deb<sub>i</sub> est strictement décroissante. "fin<sub>i</sub> - deb<sub>i</sub>" est appelé un "variant" de boucle. Un variant de boucle
+				est une grandeur qui, comme son nom l'indique, varie à chaque itération, cette variation fait qu'à un moment ou à un autre, l'algorithme finira par s'arrêter.
+			</p>
+		</div>
+	</body>
+</html>
