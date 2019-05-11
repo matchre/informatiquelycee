@@ -1,0 +1,310 @@
+<!doctype html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Algorithme des k plus proches voisins</title>
+		<link rel="stylesheet" href="css/css/vendor/bootstrap.min.css">
+		<link rel="stylesheet" href="css/css/flat-ui.min.css">
+		<link rel="stylesheet" href="highlight/styles/tomorrow-night.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    <script src="./css/js/vendor/jquery.min.js"></script>
+    <script src="./css/js/flat-ui.min.js"></script>
+		<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">NSI première</span>
+					<span class="navbar-brand">Algorithme des k plus proches voisins</span>
+        </div>
+      </div>
+    </nav>
+    <div class="container act">
+			<p>
+				Nous allons maintenant travailler sur un algorithme d'apprentissage automatique, souvent appelé, même en français, algorithme de machine learning. L'idée est d'utiliser un grand nombre de données
+				afin "d'apprendre à la machine" à résoudre un certain type de problème (nous verrons un exemple un peu plus loin).
+			</p>
+			<p>
+				Cette idée d'apprentissage automatique ne date pas d'hier, puisque le terme de machine learning a été utilisé pour la première fois par l'informaticien américain Arthur Samuel en 1959.
+				Pourquoi le machine learning est tant "à la mode" depuis quelques années ? Simplement parce que le nerf de la guerre dans les algorithmes de machine learning est la qualité et la quantité des données
+				(les données qui permettront à la machine d'apprendre à résoudre un problème), or, avec le développement d'internet, il est relativement simple de trouver des données sur n'importe quel sujet (on parle de "big data").
+				À noter aussi l'importance des stratégies mises en place par les GAFAM (Google, Apple, Facebook, Amazon et Microsoft) afin de récupérer un grand nombre de données concernant leurs clients.
+				Ces données sont très souvent utilisées pour "nourrir" des algorithmes de machine learning (comment, d'après vous, Amazon arrive à proposer à ces clients des "suggestions d'achats" souvent très pertinentes ?)
+			</p>
+			<p>
+				Nous allons étudier un algorithme d'apprentissage assez simple à appréhender : l'algorithme des "k plus proches voisins" (en anglais "k nearest neighbors" : knn)
+			</p>
+			<p>
+				Afin de travailler sur un exemple, nous allons utiliser un jeu de données relativement connu dans le monde du machine learning : le jeu de données "iris".
+			</p>
+			<p>
+				En 1936, Edgar Anderson a collecté des données sur 3 espèces d'iris : "iris setosa", "iris virginica" et "iris versicolor"
+			</p>
+			<div class="centrer">
+				<img src="img/iris_setosa.jpeg" alt="dicho"/>
+				<figcaption>iris setosa</figcaption>
+			</div>
+			<div class="centrer">
+				<img src="img/iris_virginica.jpeg" alt="dicho"/>
+				<figcaption>iris virginica</figcaption>
+			</div>
+			<div class="centrer">
+				<img src="img/iris_versicolor.jpeg" alt="dicho"/>
+				<figcaption>iris versicolor</figcaption>
+			</div>
+			<p>
+				Pour chaque iris étudié, Anderson a mesuré (en cm) :
+			</p>
+			<ul>
+				<li>
+					la largeur des sépales
+				</li>
+				<li>
+					la longueur des sépales
+				</li>
+				<li>
+					la largeur des pétales
+				</li>
+				<li>
+					la longueur des pétales
+				</li>
+			</ul>
+			<p>
+				Par souci simplification, nous nous intéresserons uniquement à la largeur et à la longueur des pétales.
+			</p>
+			<p>
+				Pour chaque iris mesuré, Anderson a aussi noté l'espèce ("iris setosa", "iris virginica" ou "iris versicolor")
+			</p>
+			<p>
+				Vous trouverez 50 de ces mesures dans le fichier <a href="asset/iris.csv">iris.csv</a>
+			</p>
+			<p>
+				En résumé, vous trouverez dans ce fichier :
+			</p>
+			<ul>
+				<li>
+					la longueur des pétales
+				</li>
+				<li>
+					la largeur des pétales
+				</li>
+				<li>
+					l'espèce de l'iris (au lieu d'utiliser les noms des espèces, on utilisera des chiffres : 0 pour "iris setosa", 1 pour "iris virginica" et 2 pour "iris versicolor")
+				</li>
+			</ul>
+			<div class="centrer">
+				<img src="img/nsi_prem_knn_1.png" alt="iris"/>
+				<figcaption>extrait du jeu de données "iris"</figcaption>
+			</div>
+			<p>
+				Vous devez savoir que ce jeu de données a, aujourd'hui, un intérêt purement pédagogique. En effet, il est exclusivement utilisé par des personnes désirant s'initier aux algorithmes de machine learning.
+			</p>
+			<p>
+				Avant d'entrer dans le vif du sujet (algorithme knn), nous allons chercher à obtenir une représentation graphique des données contenues dans le fichier <a href="asset/iris.csv">iris.csv</a>
+			</p>
+			<h4>À faire vous-même 1</h4>
+			<p>Après avoir placé le fichier <a href="asset/iris.csv">iris.csv</a> dans le même répertoire que votre fichier Python, étudiez et testez le code suivant :</p>
+			<pre><code class='python'>
+import pandas
+import matplotlib.pyplot as plt
+iris=pandas.read_csv("iris_0_1_2_petal.csv")
+x=iris.loc[:,"petal_length"]
+y=iris.loc[:,"petal_width"]
+lab=iris.loc[:,"species"]
+plt.scatter(x[lab == 0], y[lab == 0], color='g', label='setosa')
+plt.scatter(x[lab == 1], y[lab == 1], color='r', label='virginica')
+plt.scatter(x[lab == 2], y[lab == 2], color='b', label='versicolor')
+plt.legend()
+plt.show()
+			</code></pre>
+			<hr />
+			<p>
+				Quelques mots sur le programme ci-dessus :
+			</p>
+			<ul>
+				<li>
+					La partie "Pandas" ne devrait pas vous poser de problèmes : x correspond à la longueur des pétales, correspond à la largeur des pétales et lab correspond à l'espèce d'iris (0,1 ou 2)
+				</li>
+				<li>
+					Nous utilisons ensuite la bibliothèque matplotlib qui permet de tracer des graphiques très facilement. "plt.scatter" permet de tracer des points, le "x[lab == 0]" permet de considérer uniquement l'espèce "iris setosa" (lab==0).
+					Le premier "plt.scatter" permet de tracer les points correspondant à l'espèce "iris setosa", ces points seront vert (color='g'), le deuxième "plt.scatter" permet de tracer les points correspondant à l'espèce "iris virginica", ces points seront rouge (color='r'),
+					 enfin le troisième "plt.scatter" permet de tracer les points correspondant à l'espèce "iris versicolor", ces points seront bleu (color='b'). Nous aurons en abscisse la longueur du pétale et en ordonnée la largeur du pétale.
+				</li>
+			</ul>
+			<p>
+				Vous devriez normalement obtenir ceci :
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_knn_2.png" alt="iris"/>
+			</div>
+			<p>
+				Nous obtenons des "nuages" de points, on remarque ces points sont regroupés par espèces d'iris (sauf pour "iris virginica" et "iris versicolor", les points ont un peu tendance à se mélanger).
+			</p>
+			<p>
+				Imaginez maintenant qu'au cours d'une promenade vous trouviez un iris, n'étant pas un spécialiste, il ne vous est pas vraiment possible de déterminer l'espèce.
+				 En revanche, vous êtes capables de mesurer la longueur et la largeur des pétales de cet iris. Partons du principe qu'un pétale fasse 0,5 cm de large et 2 cm de long. Plaçons cette nouvelle donnée sur notre graphique
+				 (il nous suffit d'ajouter la ligne "plt.scatter(2.0, 0.5, color='k')", le nouveau point va apparaitre en noir (color='k')) :
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_knn_3.png" alt="iris"/>
+			</div>
+			<p>
+				Je pense que le résultat est sans appel : il y a de fortes chances que votre iris soit de l'espèce "iris setosa".
+			</p>
+			<p>
+				Il est possible de rencontrer des cas plus difficiles, par exemple : largeur du pétale = 0,75 cm ; longueur du pétale = 2,5 cm :
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_knn_4.png" alt="iris"/>
+			</div>
+			<p>
+				Dans ce genre de cas, il peut être intéressant d'utiliser l'algorithme des "k plus proches voisins", en quoi consiste cet algorithme :
+			</p>
+			<ul>
+				<li>
+					on calcule la distance entre notre point (largeur du pétale = 0,75 cm ; longueur du pétale = 2,5 cm) et chaque point issu du jeu de données "iris" (à chaque fois c'est un calcul de distance entre 2 points tout ce qu'il y a de plus classique)
+				</li>
+				<li>
+					on sélectionne uniquement les k distances les plus petites (les k plus proches voisins)
+				</li>
+				<li>
+					parmi les k plus proches voisins, on détermine quelle est l'espèce majoritaire. On associe à notre "iris mystère" cette "espèce majoritaire parmi les k plus proches voisins"
+				</li>
+			</ul>
+			<p>
+				Prennons k = 3
+			</p>
+			<div class="centrer">
+				<img src="img/nsi_prem_knn_5.png" alt="iris"/>
+			</div>
+			<p>
+				Les 3 plus proches voisins sont signalés ci-dessus avec des flèches : nous avons deux "iris setosa" (point vert) et un "iris virginica" (point rouge). D'après l'algorithme des "k plus proches voisins", notre "iris mystère" appartient à l'espèce "setosa".
+			</p>
+			<p>
+				La bibliothèque Python <a href="https://scikit-learn.org/stable/">Scikit Learn</a> propose un grand nombre d'algorithmes lié au machine learning (c'est sans aucun doute la bibliothèque la plus utilisée en machine learning).
+				Parmi tous ces algorithmes, Scikit Learn propose l'algorithme des k plus proches voisins.
+			</p>
+			<h4>À faire vous-même 2</h4>
+			<p>Après avoir placé le fichier <a href="asset/iris.csv">iris.csv</a> dans le même répertoire que votre fichier Python, étudiez et testez le code suivant :</p>
+			<pre><code class='python'>
+import pandas
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
+
+#traitement CSV
+iris=pandas.read_csv("iris_0_1_2_petal.csv")
+x=iris.loc[:,"petal_length"]
+y=iris.loc[:,"petal_width"]
+lab=iris.loc[:,"species"]
+#fin traitement CSV
+
+#valeurs
+longueur=2.5
+largeur=0.75
+k=3
+#fin valeurs
+
+#graphique
+plt.scatter(x[lab == 0], y[lab == 0], color='g', label='setosa')
+plt.scatter(x[lab == 1], y[lab == 1], color='r', label='virginica')
+plt.scatter(x[lab == 2], y[lab == 2], color='b', label='versicolor')
+plt.scatter(longueur, largeur, color='k')
+plt.legend()
+#fin graphique
+
+#algo knn
+d=list(zip(x,y))
+model = KNeighborsClassifier(n_neighbors=k)
+model.fit(d,lab)
+prediction= model.predict([[longueur,largeur]])
+#fin algo knn
+
+#Affichage résultats
+txt="Résultat : "
+if prediction[0]==0:
+  txt=txt+"setosa"
+if prediction[0]==1:
+  txt=txt+"virginica"
+if prediction[0]==2:
+  txt=txt+"versicolor"
+plt.text(3,0.5, f"largeur : {largeur} cm longueur : {longueur} cm", fontsize=12)
+plt.text(3,0.3, f"k : {k}", fontsize=12)
+plt.text(3,0.1, txt, fontsize=12)
+#fin affichage résultats
+
+plt.show()
+			</code></pre>
+			<hr />
+			<p>
+				Le programme ci-dessus n'est pas très complexe à comprendre, nous allons tout de même nous attarder sur la partie "knn" :
+			</p>
+			<pre><code class='python'>
+d=list(zip(x,y))
+model = KNeighborsClassifier(n_neighbors=k)
+model.fit(d,lab)
+prediction= model.predict([[longueur,largeur]])
+			</code></pre>
+		<p>
+			La première ligne "d=list(zip(x,y))" permet de passer des 2 listes x et y :
+		</p>
+		<pre><code>
+x = [1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, ...]
+y = [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.4,....]
+		</code></pre>
+		<p>
+			à une liste de tuples d :
+		</p>
+		<pre><code>
+d = [(1.4, 0.2), (1.4, 0.2), (1.3, 0.2) (1.5, 0.2), (1.4, 0.2), (1.7, 0.2), (1.4, 0.4), ...]
+		</code></pre>
+		<p>
+			les éléments des tableaux x et y ayant le même indice sont regroupés dans un tuple, nous obtenons bien une liste de tuples.
+		</p>
+		<p>
+			"KNeighborsClassifier" est une méthode issue de la bibliothèque scikit-learn (voir plus haut le "from sklearn.neighbors import KNeighborsClassifier"), cette méthode prend ici  en paramètre le nombre de "plus proches voisins" (model = KNeighborsClassifier(n_neighbors=k))
+		</p>
+		<p>
+			"model.fit(d, lab)" permet d'associer les tuples présents dans la liste "d" avec les labels (0 : "iris setosa", 1 : "iris virginica" ou 2 : "iris versicolor").
+			Par exemple le premier tuple de la liste "d", (1.4, 0.2) est associé au premier label de la liste lab (0), et ainsi de suite...
+		</p>
+		<p>
+			La ligne "prediction= model.predict([[longueur,largeur]])" permet d'effectuer une prédiction pour un couple [longueur, largeur] (dans l'exemple ci-dessus "longueur=2.5" et "largeur=0.75").
+			La variable "prediction" contient alors le label trouvé par l'algorithme knn (dans notre exemple "prediction = 0")
+		</p>
+		<p>
+			Vous devriez normalement obtenir ceci :
+		</p>
+		<div class="centrer">
+			<img src="img/nsi_prem_knn_6.png" alt="iris"/>
+		</div>
+		<h4>À faire vous-même 3</h4>
+		<p>
+			Modifiez le programme du "À faire vous-même 2" afin de tester l'algorithme knn avec un nombre "de plus proches voisins" différent (en gardant un iris ayant une longueur de pétale égale à 2,5 cm et une largeur de pétale égale à 0,75 cm).
+			Que se passe-t-il pour k = 5 ?
+		</p>
+		<h4>À faire vous-même 4</h4>
+		<p>
+			Testez l'algorithme knn (toujours à l'aide du programme du "À faire vous-même 2") avec un iris de votre choix (si vous ne trouvez pas d'iris, vous pouvez toujours inventer des valeurs ;-))
+		</p>
+		</div>
+	</body>
+</html>
