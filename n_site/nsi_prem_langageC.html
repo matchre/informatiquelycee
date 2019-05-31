@@ -371,6 +371,122 @@ int somme(int x, int y);
 			On pourrait penser que toutes les contraintes imposées par le C par rapport au Python (indiquer le type des variables, le type des paramètres d'une fonction, le type de la valeur renvoyée par une fonction) est un handicape pour le programmeur. En faite, pas du tout, car
 			ces exigences obligent le programmeur à une plus grande rigueur et permettent de détecter beaucoup plus facilement certaines erreurs. Certains programmeurs n'aiment pas programmer en Python parce qu'ils le trouvent trop "laxiste" avec le type des variables.
 		</p>
+		<p>
+			Prenons un exemple :
+		</p>
+		<h4>À faire vous-même 9</h4>
+		<p>
+			Soit la fonction Python suivante :
+		</p>
+		<pre><code class='python'>
+def somme(x,y):
+  s=x+y
+	return s
+		</code></pre>
+		<p>
+		À l'aide de la console Python, testez la fonction "somme" avec 2 et 5 comme paramètres ("somme (2,5)")
+		</p>
+		<p>
+			Aucun problème, la fonction renvoie bien 7
+		</p>
+		<p>
+			Toujours à l'aide de la console Python, testez la fonction "somme" avec "2" et "5" comme paramètres ("somme ("2","5")")
+		</p>
+		<p>
+			Dans ce cas la fonction renvoie la chaîne de caractères "25", ce qui est logique (le signe + est aussi le signe de concaténation), mais cela peut poser d'énormes problèmes dans un programme :
+			le concepteur du programme a "pensé" la fonction "somme" comme une fonction qui renvoie la somme de 2 nombres et pas comme une fonction qui renvoie la concaténation de 2 chaînes de caractères.
+			Le gros problème est que Python ne renvoie aucun avertissement, aucune erreur. Le programmeur n'aura aucun moyen de savoir que sa fonction "somme" a été "mal" utilisée et qu'elle ne renvoie pas du tout le résultat attendu.
+		</p>
+		<hr />
+		<h4>À faire vous-même 10</h4>
+		<p>
+			Écrivons maintenant un programme équivalent en C :
+		</p>
+		<pre><code class='c'>
+#include &ltstdio.h&gt
+
+int somme(int x, int y);
+
+int main(void) {
+  int res;
+  res=somme(2,5);
+  printf("La somme vaut %d\n",res);
+  return 0;
+}
+int somme(int x, int y){
+  int s;
+  s=x+y;
+  return s;
+}
+		</code></pre>
+<p>
+	Le programme fonctionne parfaitement.
+</p>
+<p>
+	Remplacez maintenant la ligne
+</p>
+<pre><code class='c'>
+res=somme(2,5);
+</code></pre>
+<p>
+	par la ligne
+</p>
+<pre><code class='c'>
+res=somme("2","5");
+</code></pre>
+<p>
+	Le programme "fonctionne", on obtient d'ailleurs un résultat totalement inattendu : "La somme vaut 8391658".
+</p>
+<p>
+	Mais le plus important n'est pas là, le compilateur nous informe aussi de certains problèmes :
+</p>
+<div class="centrer">
+	<img src="img/nsi_langC_2.png" width="800px" alt="compilateur online"/>
+</div>
+<p>
+	Sans trop entrer dans les détails, le compilateur nous informe qu'il attend des entiers pour les paramètres de la fonction "somme" et que nous lui fournissons des caractères.
+</p>
+<p>
+	Le programmeur est donc averti du problème, il pourra donc prendre les mesures qui s'imposent pour le résoudre.
+</p>
+<p>
+	Évidemment le compilateur a pu informer le programmeur du problème parce que le prototype de la fonction précise que les paramètres attendus sont des entiers. Ce qui, au départ, aurait pu paraitre comme une contrainte inutile
+	peut rendre de grand service au programmeur au cours du débogage du programme, alors qu'en Python, l'erreur pourrait passer inaperçue.
+</p>
+<p>
+	Il existe un moyen en Python d'éviter ce genre de problème : l'utilisation des assertions.
+</p>
+<h4>À faire vous-même 11</h4>
+<p>
+	Testez cette fonction avec les paramètres 2 et 5 (somme(2,5)), puis avec les paramètres "2" et "5" (somme("2","5"))
+</p>
+<pre><code class='python'>
+def somme(x,y):
+  assert(isinstance(x,int))
+	assert(isinstance(y,int))
+  s=x+y
+  return s
+</code></pre>
+<p>
+	Vous pouvez constater que :
+</p>
+<ul>
+	<li>
+		Si les paramètres sont des entiers, il n'y a aucun problème, le programme fonctionne normalement
+	</li>
+	<li>
+		Si les paramètres sont des chaînes de caractères, la console Python affiche une erreur (on dit qu'une exception est levée).
+	</li>
+</ul>
+<p>
+	"isinstance" permet de vérifier le type d'une variable, dans l'exemple ci-dessus "isinstance(x,int)" renvoie True si x est de type entier (int) et False si x n'est pas de type entier. Si ce qui se trouve dans les parenthèses suivant le mot-clé "assert" est False, le système lève une exception et le programme s'arrête. En résumé, le "assert(isinstance(x,int))" permet de lever une exception si la variable x n'est pas de type entier.
+</p>
+<p>
+	Ces assertions permettent de pallier, au moins en partie, aux insuffisances de Python en termes de typage des paramètres d'une fonction (donner le type des paramètres d'une fonction).
+</p>
+<p>
+	L'exemple donné ici est volontairement très simple (voire même simpliste), mais ce genre de problèmes peut se poser dans des programmes extrêmement complexes, ou parfois, il peut se passer des choses inexplicables, très difficiles à comprendre, durant l'exécution. Alors que les erreurs qui entrainent ces comportements erratiques auraient été facilement identifiées si une exception avait été levée.
+</p>
 	</div>
 	</body>
 </html>
