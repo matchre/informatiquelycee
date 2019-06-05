@@ -118,11 +118,11 @@ point_de_vie = 15
 				Après avoir exécuté le programme en cliquant sur le triangle vert, il est possible de connaitre la valeur référencée par une variable en utilisant la partie "console" de Spyder.
 			</p>
 			<p>
-				Dans le cas qui nous intéresse ici, tapez "point_de_vie" dans la console
+				Dans le cas qui nous intéresse ici, tapez point_de_vie dans la console
 			</p>
 			<img src="img/nsi_spyder_5.png">
 			<p>
-				Après avoir appuyé sur la touche "Entrée", vous devriez voir la valeur référencée par la variable "point_de_vie" s'afficher dans la console.
+				Après avoir appuyé sur la touche "Entrée", vous devriez voir la valeur référencée par la variable point_de_vie s'afficher dans la console.
 			</p>
 			<img src="img/nsi_spyder_6.png">
 			<p>
@@ -139,7 +139,7 @@ point_de_vie = 15
 			<hr>
 			<h4>À faire vous-même 3</h4>
 			<p>
-				Écrire un programme dans lequel on attribue la valeur 12 à la variable "point_de_force". La valeur référencée par la variable "point_de_force" devra ensuite être affichée dans la console.
+				Écrire un programme dans lequel on attribue la valeur 12 à la variable point_de_force. La valeur référencée par la variable point_de_force devra ensuite être affichée dans la console.
 			</p>
 			<hr>
 			<p>
@@ -164,7 +164,7 @@ a = 5.2
 b = 12
 			</code></pre>
 			<p>
-				tapez "type(a)" puis "type(b)" dans la console
+				tapez type(a) puis type(b) dans la console
 			</p>
 			<img src="img/nsi_spyder_7.png">
 			<p>
@@ -183,9 +183,9 @@ b = 12
 			</p>
 			<h4>À faire vous-même 5</h4>
 			<p>
-				Essayez d'écrire un programme qui additionnera le contenu de 2 variables (nom des variables : a et b). Le résultat de cette opération devra être référencé par une troisième variable nommée "resultat" (atention pas d'accent dans les noms de variable).
+				Essayez d'écrire un programme qui additionnera le contenu de 2 variables (nom des variables : a et b). Le résultat de cette opération devra être référencé par une troisième variable nommée resultat (atention pas d'accent dans les noms de variable).
 
-				Testez votre programme en utilisant la console pour vérifier la valeur référencée par la variable "resultat".
+				Testez votre programme en utilisant la console pour vérifier la valeur référencée par la variable resultat.
 			</p>
 			<hr>
 			<h4>À faire vous-même 6</h4>
@@ -194,21 +194,21 @@ b = 12
 a = 11
 a = a + 1
 			</code></pre>
-			<p>Vérifiez votre réponse en exécutant le Programme (utilisation dans console pour déterminer la valeur référencée par la variable "a" à la fin du programme)</p>
+			<p>Vérifiez votre réponse en exécutant le Programme (utilisation dans console pour déterminer la valeur référencée par la variable a à la fin du programme)</p>
 			<hr>
 			<p>
 				Détaillons ce qui se passe dans le "À faire vous-même 6":
 			</p>
 			<ul>
-				<li>nous créons une variable "a" qui référence l'entier 11</li>
-				<li>nous affichons à l'écran la valeur référencée par "a" (c'est-à-dire 11)</li>
+				<li>nous créons une variable a qui référence l'entier 11</li>
+				<li>nous affichons à l'écran la valeur référencée par a (c'est-à-dire 11)</li>
 			</ul>
 			<p>La suite est un peu plus complexe, mais très importante à comprendre.
 				Il va falloir lire la ligne "a = a + 1" de droite à gauche, décortiquons cette ligne :</p>
 			<ul>
 				<li>"a + 1" : nous prenons la valeur actuelle de a (c'est-à-dire 11) et nous ajoutons 1 à 11, à droite de l'égalité nous avons donc maintenant la valeur 12</li>
-				<li>nous attribuons la valeur qui vient d'être calculée à la variable "a"</li>
-				<li>nous affichons à l'écran la nouvelle valeur référencée par "a"</li>
+				<li>nous attribuons la valeur qui vient d'être calculée à la variable a</li>
+				<li>nous affichons à l'écran la nouvelle valeur référencée par a</li>
 			</ul>
 			<p>Ce raisonnement peut être généralisé pour éviter des erreurs parfois difficiles à corriger : dans une égalité, commencer toujours par évaluer l'expression se trouvant à droite du signe égal.</p>
 			<h3>exposant, racine carrée, fonctions trigonométriques</h3>
@@ -226,16 +226,22 @@ import math
 			</ul>
 			<p>Si vous avez besoin d'autres fonctions mathématiques, je vous invite à consulter la documentation de Python : <a href="https://docs.python.org/3/library/math.html" target="_blank">https://docs.python.org/3/library/math.html</a>
 			<h4>À faire vous-même 7</h4>
-			<p>Quelles sont les valeurs référencées par les variables "d", "e" et "f" après l'exécution du programme suivant :</p>
+			<p>Quelles sont les valeurs référencées par les variables d, e, f, g, h et i après l'exécution du programme suivant :</p>
 			<pre><code class='python'>
 import math
 a = 5
 b = 16
 c = 3.14 / 2
-d = math.pow(a,2)
-e = math.sqrt(b)
-f = math.sin(c)
+d = b / a
+e = b // a
+f = b % a
+g = math.pow(a,2)
+h = math.sqrt(b)
+i = math.sin(c)
 			</code></pre>
+			<p>
+				Vérifiez vos réponses à l'aide la console
+			</p>
 			<hr>
 			<p>
 				À noter qu'il est tout à fait possible de "mélanger" des nombres entiers et des nombres à virgules ("3.14 / 2") dans une opération.
@@ -255,7 +261,7 @@ f = math.sin(c)
 ma_chaine = "Bonjour le monde !"
 			</code></pre>
 			<p>
-				Vérifiez que la variable "ma_chaine" référence la chaîne de caractères "Bonjour le monde !"
+				Vérifiez que la variable ma_chaine référence la chaîne de caractères "Bonjour le monde !"
 			</p>
 			<hr>
 			<h3>Le signe + et les chaînes de caractères</h3>
@@ -272,7 +278,7 @@ ma_chaine = "Bonjour le monde !"
 				Comme vous avez pu le deviner en lisant la définition ci-dessus, la concaténation va concerner les chaînes de caractères.
 			</p>
 			<h4>À faire vous-même 10</h4>
-			<p>Quelle est la chaîne de caractère référencée par la variable "mon_expression" après l'exécution du programme ci-dessous ? Validez votre réponse en testant ce programme.</p>
+			<p>Quelle est la chaîne de caractère référencée par la variable mon_expression après l'exécution du programme ci-dessous ? Validez votre réponse en testant ce programme.</p>
 			<pre><code class='python'>
 a = "Hello"
 b = "World"
@@ -292,7 +298,7 @@ res = ma_chaine_1 + ma_chaine_2 + "monde!"
 			</code></pre>
 			<hr />
 			<p>
-				Les 2 variables "ma_chaine_1" et "ma_chaine_2" référencent 2 chaînes de caractères, nous avons donc bien ici une concaténation.
+				Les 2 variables ma_chaine_1 et ma_chaine_2 référencent 2 chaînes de caractères, nous avons donc bien ici une concaténation.
 			</p>
 			<p>
 				Mais que se passe-t-il si la variable référence un nombre (entier ou flottant) ?
@@ -327,7 +333,7 @@ mon_nombre = 5
 mon_nombre = str(mon_nombre)
 			</code></pre>
 			<p>
-				Quel est le type de la valeur référencée par la variable "mon_nombre" après l'exécution du programme ci-dessus ?
+				Quel est le type de la valeur référencée par la variable mon_nombre après l'exécution du programme ci-dessus ?
 			</p>
 			<hr />
 			<h4>À faire vous-même 14</h4>
@@ -378,16 +384,16 @@ suite programme
 				"suite programme" ne fait pas partie de la fonction, car il n'est pas indenté. Pour indenter du code, il y a 2 solutions : mettre 4 espaces ou utiliser une tabulation. En Python il est conseillé d'utiliser les 4 espaces, mais ce n'est pas une obligation. Une chose est sûre, une
 				fois que vous avez choisi une méthode, n'en changé surtout pas au cours d'un même programme !
 			</p>
-			<p>Codons notre exemple (y=3x+2) en créant une fonction "ma_fonction" :</p>
+			<p>Codons notre exemple (y=3x+2) en créant une fonction ma_fonction :</p>
 			<pre><code class='python'>
 def ma_fonction(x):
 	y = 3 * x + 2
 	return y
 			</code></pre>
-			<p>Pour "utiliser" la fonction "ma_fonction", il suffit d'écrire : ma_fonction (4) (dans ce cas précis, notre fonction renverra le nombre 14).</p>
+			<p>Pour "utiliser" la fonction ma_fonction, il suffit d'écrire : ma_fonction (4) (dans ce cas précis, notre fonction renverra le nombre 14).</p>
 			<h4>À faire vous-même 16</h4>
 			<p>
-				Testez le programme suivant (quelle est la valeur référencée par la variable "solution" après l'exécution du programme) :
+				Testez le programme suivant (quelle est la valeur référencée par la variable solution après l'exécution du programme) :
 			</p>
 			<pre><code class='python'>
 def ma_fonction(x):
@@ -396,8 +402,8 @@ def ma_fonction(x):
 solution = ma_fonction(4)
 			</code></pre>
 			<p>
-				Il faut savoir qu'au moment de l'exécution de votre programme le code "ma_fonction(4)" sera systématiquement
-				remplacé par la valeur renvoyée par la fonction (toujours dans notre exemple le "ma_fonction(4)" sera remplacé par le nombre 14).
+				Il faut savoir qu'au moment de l'exécution de votre programme le code ma_fonction(4) sera systématiquement
+				remplacé par la valeur renvoyée par la fonction (toujours dans notre exemple le ma_fonction(4) sera remplacé par le nombre 14).
 			</p>
 			<hr>
 			<h4>À faire vous-même 17</h4>
@@ -413,7 +419,7 @@ solution = ma_fonction(4)
 			<img src="img/nsi_spyder_9.png">
 			<p>Il est possible de faire passer plusieurs paramètres à une fonction.</p>
 			<h4>À faire vous-même 15</h4>
-			<p>Quel est le résultat renvoyé par la fonction ci-dessous si l'on saisit dans la console "une_autre_fonction(5, 3)"</p>
+			<p>Quel est le résultat renvoyé par la fonction ci-dessous si l'on saisit dans la console une_autre_fonction(5, 3)</p>
 			<pre><code class='python'>
 def une_autre_fonction(x, b):
 	y = 3 * x + b
@@ -445,7 +451,7 @@ def dit_bonjour(nom, age):
 	phrase = f"Bonjour {nom}, vous avez {age} ans."
 	print(phrase)
 			</code></pre>
-			<p>Testez la fonction "dit_bonjour" à l'aide de la console (avec par exemple un "dit_bonjour("toto", 14)")</p>
+			<p>Testez la fonction dit_bonjour à l'aide de la console (avec par exemple un dit_bonjour("toto", 14))</p>
 			<hr>
 			<h3>les expressions et les booléens</h3>
 			<p>
