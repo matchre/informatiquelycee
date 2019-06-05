@@ -123,6 +123,16 @@ print(f"{mon_tuple[0]} + {mon_tuple[1]} = {mon_tuplee[2]}")
 mon_tuple = (5, 8, 6, 9)
 		</code></pre>
 		<hr />
+		<p>
+			Il est possible d'assigner à des variables les valeurs contenues dans un tuple :
+		</p>
+		<h4>À faire vous-même 6</h4>
+		<pre><code class='python'>
+a, b, c, d = (5, 8, 6, 9)
+		</code></pre>
+		<p>
+			Quelle est la valeur référencée par la variable a ? La variable b ? La variable c ? La variable d ? Vérifiez votre réponse à l'aide de la console Python.
+		</p>
 		<h3>Les listes en Python</h3>
 		<p>
 		Il n'est pas possible de modifier un tuple après sa création (on parle d'objet "immutable"), si vous essayez de modifier un tuple existant, l'interpréteur Python vous renverra une erreur.
@@ -140,7 +150,7 @@ ma_liste = [5, 8, 6, 9]
 		<p>
 			Une liste est une séquence, il est donc possible de "récupérer" un élément d'une liste à l'aide de son indice (de la même manière que pour un tuple)
 		</p>
-		<h4>À faire vous-même 6</h4>
+		<h4>À faire vous-même 7</h4>
 		<p>Quelle est la valeur référencée par la variable ma_variable après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 ma_liste = [5, 8, 6, 9]
@@ -153,7 +163,7 @@ ma_variable = ma_liste[2]
 		<p>
 			Il est possible de modifier une liste à l'aide de la "notation entre crochets" :
 		</p>
-		<h4>À faire vous-même 7</h4>
+		<h4>À faire vous-même 8</h4>
 		<p>Quel est le contenu de la liste référencée par la variable ma_liste après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 ma_liste = [5, 8, 6, 9]
@@ -166,7 +176,7 @@ ma_liste[2] = 15
 		<p>
 			Il est aussi possible d'ajouter un élément en fin de liste à l'aide de la méthode "append" :
 		</p>
-		<h4>À faire vous-même 8</h4>
+		<h4>À faire vous-même 9</h4>
 		<p>Quel est le contenu de la liste référencée par la variable ma_liste après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 ma_liste = [5, 8, 6, 9]
@@ -176,7 +186,7 @@ ma_liste.append(15)
 		<p>
 			L'instruction "del" permet de supprimer un élément d'une liste en utilisant son index :
 		</p>
-		<h4>À faire vous-même 9</h4>
+		<h4>À faire vous-même 10</h4>
 		<p>Quel est le contenu de la liste référencée par la variable ma_liste après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 ma_liste = [5, 8, 6, 9]
@@ -186,7 +196,7 @@ del ma_liste[1]
 		<p>
 			La fonction "len" permet de connaitre le nombre d’éléments présents dans une séquence (liste et tuple)
 		</p>
-		<h4>À faire vous-même 10</h4>
+		<h4>À faire vous-même 11</h4>
 		<p>Quelle est la valeur référencée par la variable nb_len après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 ma_liste = [5, 8, 6, 9]
@@ -201,7 +211,7 @@ nb_ele = len(ma_liste)
 		<p>
 			La boucle for... in permet de parcourir chacun des éléments d’une séquence (liste ou tuple) :
 		</p>
-		<h4>À faire vous-même 11</h4>
+		<h4>À faire vous-même 12</h4>
 		<p>Analysez puis testez le code suivant :</p>
 		<pre><code class='python'>
 ma_liste = [5, 8, 6, 9]
@@ -239,7 +249,7 @@ for toto in ma_liste:
 		<p>
 			Dans la boucle for... in il est possible d’utiliser la fonction prédéfinie range à la place d’une liste d’entiers :
 		</p>
-		<h4>À faire vous-même 12</h4>
+		<h4>À faire vous-même 13</h4>
 		<p>Analysez puis testez le code suivant :</p>
 		<pre><code class='python'>
 for element in range(0, 5):
@@ -260,7 +270,7 @@ for element in ma_liste:
 		<p>
 			Il est possible d'utiliser la méthode "range" pour "remplir" une liste :
 		</p>
-		<h4>À faire vous-même 13</h4>
+		<h4>À faire vous-même 14</h4>
 		<p>Quel est le contenu de la liste référencée par la variable ma_liste après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 ma_liste = []
@@ -281,7 +291,7 @@ ma_liste = [5, 8, 6, 9]
 		<p>
 			Il est aussi possible d'obtenir exactement le même résultat qu'au "À faire vous-même 13" en une seule ligne grâce à la compréhension de liste :
 		</p>
-		<h4>À faire vous-même 14</h4>
+		<h4>À faire vous-même 15</h4>
 		<p>Quel est le contenu de la liste référencée par la variable ma_liste après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 ma_liste = [p for p in range(0, 5)]
@@ -290,7 +300,7 @@ ma_liste = [p for p in range(0, 5)]
 		<p>
 			Les compréhensions de liste permettent de rajouter une condition (if) :
 		</p>
-		<h4>À faire vous-même 15</h4>
+		<h4>À faire vous-même 16</h4>
 		<p>Quel est le contenu de la liste référencée par la variable ma_liste après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 l = [1, 7, 9, 15, 5, 20, 10, 8]
@@ -300,7 +310,7 @@ ma_liste = [p for p in l if p &gt 10]
 		<p>
 			autre possibilité, utiliser des composants "arithmétiques" :
 		</p>
-		<h4>À faire vous-même 16</h4>
+		<h4>À faire vous-même 17</h4>
 		<p>Quel est le contenu de la liste référencée par la variable ma_liste après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p>
 		<pre><code class='python'>
 l = [1, 7, 9, 15, 5, 20, 10, 8]
@@ -377,7 +387,7 @@ m = [[1, 3, 4],
 		<p>
 			Pour cibler un élément particulier de la matrice, on utilise la notation avec "doubles crochets" : m[ligne][colonne] (sans perdre de vu que la première ligne et la première colonne ont pour indice 0)
 		</p>
-		<h4>À faire vous-même 17</h4>
+		<h4>À faire vous-même 18</h4>
 		<p><p>Quelle est la valeur référencée par la variable a après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p></p>
 		<pre><code class='python'>
 m = [[1, 3, 4],
@@ -390,7 +400,7 @@ a = m[1][2]
 			Comme vous pouvez le constater, la variable a référence bien l'entier situé à la 2e ligne (indice 1) et à la 3e colonne (indice 2), c'est-à-dire 8.
 		</p>
 		<hr />
-		<h4>À faire vous-même 18</h4>
+		<h4>À faire vous-même 19</h4>
 		<p><p>Quel est le contenu de la liste référencée par la variable mm après l'exécution du programme ci-dessous ? (utilisez la console pour vérifier votre réponse)</p></p>
 		<pre><code class='python'>
 m = [1, 2, 3]
@@ -406,7 +416,7 @@ m[0] = 100
 		<p>
 			Il est possible de parcourir l'ensemble des éléments d'une matrice à l'aide d'une "double boucle for" :
 		</p>
-		<h4>À faire vous-même 19</h4>
+		<h4>À faire vous-même 20</h4>
 		<p>Analysez puis testez le code suivant :</p>
 		<pre><code class='python'>
 m = [[1, 3, 4],
