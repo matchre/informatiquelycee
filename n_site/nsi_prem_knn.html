@@ -126,7 +126,7 @@
 			<pre><code class='python'>
 import pandas
 import matplotlib.pyplot as plt
-iris=pandas.read_csv("iris_0_1_2_petal.csv")
+iris=pandas.read_csv("iris.csv")
 x=iris.loc[:,"petal_length"]
 y=iris.loc[:,"petal_width"]
 lab=iris.loc[:,"species"]
@@ -211,7 +211,7 @@ import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 
 #traitement CSV
-iris=pandas.read_csv("iris_0_1_2_petal.csv")
+iris=pandas.read_csv("iris.csv")
 x=iris.loc[:,"petal_length"]
 y=iris.loc[:,"petal_width"]
 lab=iris.loc[:,"species"]
