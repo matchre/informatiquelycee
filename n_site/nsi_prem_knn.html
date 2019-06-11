@@ -288,7 +288,7 @@ d = [(1.4, 0.2), (1.4, 0.2), (1.3, 0.2) (1.5, 0.2), (1.4, 0.2), (1.7, 0.2), (1.4
 		</p>
 		<p>
 			La ligne "prediction= model.predict([[longueur,largeur]])" permet d'effectuer une prédiction pour un couple [longueur, largeur] (dans l'exemple ci-dessus "longueur=2.5" et "largeur=0.75").
-			La variable "prediction" contient alors le label trouvé par l'algorithme knn (dans notre exemple "prediction = 0")
+			La variable "prediction" contient alors le label trouvé par l'algorithme knn. Attention, "predection" est une liste Python qui contient un seul élément (le label), il est donc nécessaire d'écrire "predection[0]" afin d'obtenir le label.
 		</p>
 		<p>
 			Vous devriez normalement obtenir ceci :
